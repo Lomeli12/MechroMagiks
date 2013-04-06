@@ -1,0 +1,16 @@
+[
+{
+  "modid": "magiks",
+  "name": "MechroMagiks",
+  "version": "Alpha 0.0.1",
+  "description": "Magic and Machine",
+  "credits": "Created by Lomeli12",
+  "mcversion": "1.5.1",
+  "authors": [ "Lomeli12" ],
+  "parent":"",
+  "screenshots": [],
+  "dependencies": [
+         "mod_MinecraftForge"
+]
+}
+]
