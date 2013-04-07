@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import com.lomeli.magiks.blocks.ModBlocksMagiks;
 import com.lomeli.magiks.items.magik.ItemAmulets;
 import com.lomeli.magiks.items.magik.ItemFlyingRing;
+import com.lomeli.magiks.items.magik.ItemPirasVarinha;
 import com.lomeli.magiks.items.tools.ItemEmpoweredPick;
 import com.lomeli.magiks.items.tools.ItemLevelingSword;
 import com.lomeli.magiks.lib.Ints;
@@ -25,6 +26,8 @@ public class ModItemsMagiks
     public static Item ironStick;
     public static Item emeraldAmulet;
     public static Item ingotStamatic;
+    public static Item ingotIgnious;
+    public static Item pirasVarinha;
 
     public static void registerItems()
     {
@@ -43,12 +46,16 @@ public class ModItemsMagiks
                 .setUnlocalizedName("amulet");
         ingotStamatic = new ItemGeneric(Ints.ingotStamaticID, "ingotstamatic",
                 false).setUnlocalizedName("ingotstamatic");
+        ingotIgnious = new ItemGeneric(Ints.ingotIgniousID, "ingotignious",
+                false).setUnlocalizedName("ingotignious");
 
         neonitePick = new ItemEmpoweredPick(Ints.empoweredPickID,
                 EnumToolMaterial.IRON, "pickaxeEmpowered")
                 .setUnlocalizedName("empoweredPick");
         levelingSword = new ItemLevelingSword(9000, EnumToolMaterial.IRON,
                 "pickaxeEmpowered").setUnlocalizedName("lvlSword");
+        pirasVarinha = new ItemPirasVarinha(Ints.pirasVarinhaID,
+                "pirasvarinha", false).setUnlocalizedName("pirasvarinha");
 
         LanguageRegistry.addName(flyingRing, "Flying Ring");
         LanguageRegistry.addName(neoniteGem, "Neonite Gem");
@@ -59,12 +66,16 @@ public class ModItemsMagiks
         LanguageRegistry.addName(ironStick, "Iron Stick");
         LanguageRegistry.addName(emeraldAmulet, "Emerald Amulet");
         LanguageRegistry.addName(ingotStamatic, "Stamatic Ingot");
+        LanguageRegistry.addName(ingotIgnious, "Ignious Ingot");
+        LanguageRegistry.addName(pirasVarinha, "Piras Varinha");
     }
 
     public static void registerItemRecipes()
     {
-        GameRegistry.addRecipe(new ItemStack(levelingSword, 1), new Object[] {
-                "S", "S", "S", 'S', Item.stick });
+        /*
+         * GameRegistry.addRecipe(new ItemStack(levelingSword, 1), new Object[]
+         * { "S", "S", "S", 'S', Item.stick });
+         */
         GameRegistry
                 .addRecipe(new ItemStack(enchantedDiamond, 1), new Object[] {
                         "GEG", "EDE", "RER", 'G', Item.lightStoneDust, 'R',
@@ -81,11 +92,16 @@ public class ModItemsMagiks
         GameRegistry.addRecipe(new ItemStack(neonitePick, 1), new Object[] {
                 "GDG", "EIE", " I ", 'G', enchantedDiamond, 'D',
                 Item.pickaxeDiamond, 'E', neoniteGem, 'I', ironStick });
+        GameRegistry.addRecipe(new ItemStack(pirasVarinha, 1), new Object[] {
+                "GNG", "IGI", "IGI", 'G', Item.ingotGold, 'N',
+                enchantedDiamond, 'I', ingotIgnious });
     }
 
     public static void registerFurnaceRecipes()
     {
         GameRegistry.addSmelting(ModBlocksMagiks.stamaticOre.blockID,
-                (new ItemStack(ingotStamatic)), 5);
+                new ItemStack(ingotStamatic), 5);
+        GameRegistry.addSmelting(ModBlocksMagiks.igniousOre.blockID,
+                new ItemStack(ingotIgnious), 10);
     }
 }

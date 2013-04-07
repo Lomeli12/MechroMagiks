@@ -4,6 +4,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
+import com.lomeli.magiks.api.helpers.MultiblockHelper;
 import com.lomeli.magiks.blocks.BlockMagiks;
 import com.lomeli.magiks.blocks.ModBlocksMagiks;
 
@@ -19,7 +20,15 @@ public class BlockMecroBlock extends BlockMagiks
     public boolean onBlockActivated(World world, int x, int y, int z,
             EntityPlayer player, int i, float f, float g, float t)
     {
-        if(world.blockExists(x, (y+1), z))
+        if(MultiblockHelper.oneByTwo(this, ModBlocksMagiks.manceryGlass, world, x, y, z))
+        {
+            if(world.getBlockId(x, (y+2), z) == 0)
+            {
+                world.setBlockToAir(x, (y+1), z);
+                world.setBlock(x, y, z, ModBlocksMagiks.kineticGenerator.blockID);
+            }
+        }
+        /*if(world.blockExists(x, (y+1), z))
         {
             if(world.getBlockId(x, (y+1), z) == ModBlocksMagiks.manceryGlass.blockID)
             {
@@ -34,7 +43,7 @@ public class BlockMecroBlock extends BlockMagiks
                 }
             }
             else{}
-        }
+        }*/
         return true;
     }
 

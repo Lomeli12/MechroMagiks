@@ -18,7 +18,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class ModBlocksMagiks
 {
     public static Block neoniteOre, neoniteBlock, kineticGenerator,
-            manceryBlock, manceryGlass, stamaticOre;
+            manceryBlock, manceryGlass, stamaticOre, igniousOre;
 
     public static void registerBlocks()
     {
@@ -37,10 +37,13 @@ public class ModBlocksMagiks
                 0.5F);
         manceryGlass = new BlockMecroGlass(Ints.manceryGlassID, Material.glass,
                 "manceryglass").setUnlocalizedName("manceryglass").setHardness(
-                0.5F);
+                0.5F).setResistance(100F);
         stamaticOre = new BlockMagiks(Ints.stamaticOreID, Material.rock,
                 "orestamatic").setUnlocalizedName("orestamatic")
                 .setHardness(3F).setResistance(5F);
+        igniousOre = new BlockMagiks(Ints.igniousOreID, Material.rock, 
+                "oreignious").setUnlocalizedName("oreignious").setHardness(3F)
+                .setResistance(5F);
 
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");
         GameRegistry.registerBlock(neoniteBlock, "Neonite Block");
@@ -48,6 +51,7 @@ public class ModBlocksMagiks
         GameRegistry.registerBlock(manceryBlock, "Mancery Block");
         GameRegistry.registerBlock(manceryGlass, "Mancery Glass");
         GameRegistry.registerBlock(stamaticOre, "Stamatic Ore");
+        GameRegistry.registerBlock(igniousOre, "Ignious Ore");
 
         LanguageRegistry.addName(neoniteOre, "Neonite Ore");
         LanguageRegistry.addName(neoniteBlock, "Neonite Block");
@@ -55,9 +59,12 @@ public class ModBlocksMagiks
         LanguageRegistry.addName(manceryBlock, "Mancery Block");
         LanguageRegistry.addName(manceryGlass, "Mancery Glass");
         LanguageRegistry.addName(stamaticOre, "Statmatic Ore");
+        LanguageRegistry.addName(igniousOre, "Ignious Ore");
 
         MinecraftForge.setBlockHarvestLevel(neoniteOre, "pickaxe", 2);
         MinecraftForge.setBlockHarvestLevel(neoniteBlock, "pickaxe", 2);
+        MinecraftForge.setBlockHarvestLevel(stamaticOre, "pickaxe", 2);
+        MinecraftForge.setBlockHarvestLevel(igniousOre, "pickaxe", 2);
     }
 
     public static void registerBlockRecipes()

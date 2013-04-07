@@ -42,11 +42,11 @@ public class MagikWorldGen implements IWorldGenerator
         int xCoord = chunkX;
         int zCoord = chunkZ;
         new WorldGenMinable(ModBlocksMagiks.neoniteOre.blockID, 5).generate(
-                world, random, xCoord, random.nextInt(50), zCoord
-                        + random.nextInt(60));
+                world, random, xCoord, random.nextInt(50), zCoord);
         new WorldGenMinable(ModBlocksMagiks.stamaticOre.blockID, 10).generate(
-                world, random, xCoord, random.nextInt(65), zCoord
-                        + random.nextInt(60));
+                world, random, xCoord, random.nextInt(65), zCoord);
+        new WorldGenMinable(ModBlocksMagiks.igniousOre.blockID, 4).generate(
+                world, random, xCoord, random.nextInt(35), zCoord);
     }
 
 }
