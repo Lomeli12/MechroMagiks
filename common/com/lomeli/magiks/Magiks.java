@@ -11,6 +11,7 @@ import com.lomeli.magiks.core.config.ConfigMod;
 import com.lomeli.magiks.core.handler.EntityLivingHandler;
 import com.lomeli.magiks.core.handler.ItemDroppedHandler;
 import com.lomeli.magiks.core.handler.PlayerInteractHandler;
+import com.lomeli.magiks.core.handler.GuiHandler;
 import com.lomeli.magiks.items.ModItemsMagiks;
 import com.lomeli.magiks.lib.Strings;
 
@@ -24,6 +25,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = Strings.modID, name = Strings.modName, version = Strings.version)
@@ -40,6 +42,8 @@ public class Magiks
             CreativeTabs.getNextID(), Strings.modName);
 
     public static String configDir;
+    
+    private GuiHandler guih = new GuiHandler();
 
     @PreInit
     public void preInit(FMLPreInitializationEvent event)
@@ -52,6 +56,8 @@ public class Magiks
     @Init
     public void main(FMLInitializationEvent event)
     {
+        NetworkRegistry.instance().registerGuiHandler(this, guih);
+        
         MinecraftForge.EVENT_BUS.register(new ItemDroppedHandler());
         MinecraftForge.EVENT_BUS.register(new EntityLivingHandler());
         MinecraftForge.EVENT_BUS.register(new PlayerInteractHandler());
@@ -68,6 +74,7 @@ public class Magiks
         GameRegistry.registerWorldGenerator(new MagikWorldGen());
         
         proxy.registerRenderThings();
+        
     }
 
     @PostInit
