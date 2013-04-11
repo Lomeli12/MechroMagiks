@@ -9,7 +9,9 @@ public class Ints
     public static int ironStickID;
     public static int ingotStamaticID;
     public static int ingotIgniousID;
+    
     public static int pirasVarinhaID;
+    public static int diggersWandID;
 
     public static int empoweredPickID;
 
@@ -20,4 +22,5 @@ public class Ints
     public static int manceryGlassID;
     public static int stamaticOreID;
     public static int igniousOreID;
+    public static int solarGenID;
 }

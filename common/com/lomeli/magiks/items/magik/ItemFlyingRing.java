@@ -55,7 +55,7 @@ public class ItemFlyingRing extends Item
             List infoList, boolean bool)
     {
         int max = itemStack.getMaxDamage() - 1;
-        infoList.add(max - itemStack.getItemDamage() + "/" + max);
+        infoList.add("Mist Level: " + (max - itemStack.getItemDamage()) + "/" + max);
     }
 
     public static void recharge(EntityPlayer player, ItemStack itemStack)

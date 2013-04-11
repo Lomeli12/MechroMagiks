@@ -5,11 +5,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import com.lomeli.magiks.blocks.ModBlocksMagiks;
-import com.lomeli.magiks.items.magik.ItemAmulets;
-import com.lomeli.magiks.items.magik.ItemFlyingRing;
-import com.lomeli.magiks.items.magik.ItemPirasVarinha;
-import com.lomeli.magiks.items.tools.ItemEmpoweredPick;
-import com.lomeli.magiks.items.tools.ItemLevelingSword;
+import com.lomeli.magiks.items.magik.*;
+import com.lomeli.magiks.items.tools.*;
 import com.lomeli.magiks.lib.Ints;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -27,7 +24,10 @@ public class ModItemsMagiks
     public static Item emeraldAmulet;
     public static Item ingotStamatic;
     public static Item ingotIgnious;
+    
+    //wands
     public static Item pirasVarinha;
+    public static Item diggersWand;
 
     public static void registerItems()
     {
@@ -56,6 +56,8 @@ public class ModItemsMagiks
                 "pickaxeEmpowered").setUnlocalizedName("lvlSword");
         pirasVarinha = new ItemPirasVarinha(Ints.pirasVarinhaID,
                 "pirasvarinha", false).setUnlocalizedName("pirasvarinha");
+        diggersWand = new ItemMiningWands(Ints.diggersWandID, "diggerswand",
+                false, 300, 0).setUnlocalizedName("diggerswand");
 
         LanguageRegistry.addName(flyingRing, "Flying Ring");
         LanguageRegistry.addName(neoniteGem, "Neonite Gem");
@@ -68,6 +70,7 @@ public class ModItemsMagiks
         LanguageRegistry.addName(ingotStamatic, "Stamatic Ingot");
         LanguageRegistry.addName(ingotIgnious, "Ignious Ingot");
         LanguageRegistry.addName(pirasVarinha, "Piras Varinha");
+        LanguageRegistry.addName(diggersWand, "Digger's Wand");
     }
 
     public static void registerItemRecipes()

@@ -19,13 +19,23 @@ public class ClientProxy extends CommonProxy
     public void registerRenderThings()
     {
         RenderIDs.kineticGID = RenderingRegistry.getNextAvailableRenderId();
+        RenderIDs.solarGID = RenderingRegistry.getNextAvailableRenderId();
         
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityKineticGenerator.class, 
                 new TileEntityKineticGeneratorRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySolarMistCollector.class, 
+                new TileEntitySolarMistCollectorRenderer());
+        
         MinecraftForgeClient.registerItemRenderer(ModBlocksMagiks.kineticGenerator.blockID,
                 new ItemKineticGeneratorRenderer());
+        MinecraftForgeClient.registerItemRenderer(ModBlocksMagiks.solarMistCollector.blockID,
+                new ItemSolarMistCollectorRenderer());
+        
+        
         ClientRegistry.registerTileEntity(TileEntityKineticGenerator.class, "keneticGen", 
                 new TileEntityKineticGeneratorRenderer());
+        ClientRegistry.registerTileEntity(TileEntitySolarMistCollector.class, "solarGen", 
+                new TileEntitySolarMistCollectorRenderer());
         
         renderCapes(ConfigMod.capesEnabled);
     }

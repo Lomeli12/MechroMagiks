@@ -31,7 +31,7 @@ public class ItemPirasVarinha extends ItemGeneric
             List infoList, boolean bool)
     {
         int max = itemStack.getMaxDamage() - 1;
-        infoList.add(max - itemStack.getItemDamage() + "/" + max);
+        infoList.add("Mist Level: " + (max - itemStack.getItemDamage()) + "/" + max);
     }
 
     @Override
@@ -44,7 +44,8 @@ public class ItemPirasVarinha extends ItemGeneric
             Vec3 look = player.getLookVec();
             EntityLargeFireball entitylargefireball = new EntityLargeFireball(
                     world, player, 0, 0, 0);
-            entitylargefireball.field_92057_e = 1;
+            entitylargefireball.field_92057_e = 3;
+            entitylargefireball.setSprinting(true);
             entitylargefireball.setPosition(player.posX + look.xCoord * 4,
                     player.posY + look.yCoord + 1, player.posZ + look.zCoord * 4);
             entitylargefireball.accelerationX = look.xCoord * 0.3;

@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
@@ -48,19 +49,12 @@ public class ItemEmpoweredPick extends ItemPickaxe
         Vec3 look = player.getLookVec();
         
         int x = (int) (player.posX + look.xCoord * 4);
-        int y = (int) (look.yCoord) + 2;
+        int y = (int) (player.posY + look.yCoord * 4);
         int z = (int) (player.posZ + look.zCoord * 4);
         
+        int side = MathHelper.floor_double((double)(player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
         world.destroyBlock(x, y, z, true);
-        world.destroyBlock(x + 1, y, z, true);
-        world.destroyBlock(x - 1, y, z, true);
-        world.destroyBlock(x, y, z + 1, true);
-        world.destroyBlock(x, y, z - 1, true);
-        world.destroyBlock(x + 1, y, z - 1, true);
-        world.destroyBlock(x -1 , y, z + 1, true);
-        world.destroyBlock(x + 1, y, z + 1, true);
-        world.destroyBlock(x - 1, y, z - 1, true);
-        
+        player.sendChatToPlayer(""+side);
         return itemStack;
     }
 

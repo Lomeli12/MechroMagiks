@@ -39,7 +39,7 @@ public class ItemAmulets extends ItemGenericMagik
     
     public String getOwner(ItemStack itemStack)
     {
-        return NBTHelper.getString(itemStack, "owner");
+        return NBTHelper.getString(itemStack, "owner").toLowerCase();
     }
     
     public boolean isOwnerSet(ItemStack itemStack)
@@ -76,7 +76,7 @@ public class ItemAmulets extends ItemGenericMagik
     public void addInformation(ItemStack itemStack, EntityPlayer player,
             List infoList, boolean bool)
     {
-        infoList.add((itemStack.getMaxDamage() - itemStack.getItemDamage()) 
+        infoList.add("Mist Level: " + (itemStack.getMaxDamage() - itemStack.getItemDamage()) 
                 + "/" + itemStack.getMaxDamage());
         if(isOwnerSet(itemStack))
         {

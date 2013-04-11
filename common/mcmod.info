@@ -2,11 +2,12 @@
 {
   "modid": "magiks",
   "name": "MechroMagiks",
-  "version": "Alpha 0.0.3",
+  "version": "Alpha 0.0.4",
   "description": "Magic and Machine",
   "credits": "Created by Lomeli12",
   "mcversion": "1.5.1",
   "authors": [ "Lomeli12" ],
+  "logoFile": "/banner_magiks.png",
   "parent":"",
   "screenshots": [],
   "dependencies": [

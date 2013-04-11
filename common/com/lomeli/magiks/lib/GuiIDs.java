@@ -4,4 +4,5 @@ public class GuiIDs
 {
 
     public static final int kineticGen = 7;
+    public static final int solarGen = 8;
 }

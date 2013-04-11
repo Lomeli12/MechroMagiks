@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.lomeli.magiks.blocks.machine.BlockKineticGenerator;
+import com.lomeli.magiks.blocks.machine.BlockSolarMistCollector;
 import com.lomeli.magiks.blocks.machine.parts.BlockMecroBlock;
 import com.lomeli.magiks.blocks.machine.parts.BlockMecroGlass;
 import com.lomeli.magiks.items.ModItemsMagiks;
@@ -18,7 +19,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class ModBlocksMagiks
 {
     public static Block neoniteOre, neoniteBlock, kineticGenerator,
-            manceryBlock, manceryGlass, stamaticOre, igniousOre;
+            manceryBlock, manceryGlass, stamaticOre, igniousOre, solarMistCollector;
 
     public static void registerBlocks()
     {
@@ -34,7 +35,7 @@ public class ModBlocksMagiks
                 .setResistance(1000F).setHardness(3F);
         manceryBlock = new BlockMecroBlock(Ints.manceryBlockID, Material.rock,
                 "manceryblock").setUnlocalizedName("manceryblock").setHardness(
-                0.5F);
+                0.5F).setResistance(100F);
         manceryGlass = new BlockMecroGlass(Ints.manceryGlassID, Material.glass,
                 "manceryglass").setUnlocalizedName("manceryglass").setHardness(
                 0.5F).setResistance(100F);
@@ -44,6 +45,9 @@ public class ModBlocksMagiks
         igniousOre = new BlockMagiks(Ints.igniousOreID, Material.rock, 
                 "oreignious").setUnlocalizedName("oreignious").setHardness(3F)
                 .setResistance(5F);
+        solarMistCollector = new BlockSolarMistCollector(Ints.solarGenID, Material.rock, 
+                "solar").setUnlocalizedName("solarmistcollector").setHardness(3F)
+                .setResistance(100F);
 
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");
         GameRegistry.registerBlock(neoniteBlock, "Neonite Block");
@@ -52,6 +56,7 @@ public class ModBlocksMagiks
         GameRegistry.registerBlock(manceryGlass, "Mancery Glass");
         GameRegistry.registerBlock(stamaticOre, "Stamatic Ore");
         GameRegistry.registerBlock(igniousOre, "Ignious Ore");
+        GameRegistry.registerBlock(solarMistCollector, "Solar Mist Collector");
 
         LanguageRegistry.addName(neoniteOre, "Neonite Ore");
         LanguageRegistry.addName(neoniteBlock, "Neonite Block");
@@ -60,6 +65,7 @@ public class ModBlocksMagiks
         LanguageRegistry.addName(manceryGlass, "Mancery Glass");
         LanguageRegistry.addName(stamaticOre, "Statmatic Ore");
         LanguageRegistry.addName(igniousOre, "Ignious Ore");
+        LanguageRegistry.addName(solarMistCollector, "Solar Mist Collector");
 
         MinecraftForge.setBlockHarvestLevel(neoniteOre, "pickaxe", 2);
         MinecraftForge.setBlockHarvestLevel(neoniteBlock, "pickaxe", 2);

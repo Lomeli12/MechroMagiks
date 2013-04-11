@@ -33,12 +33,13 @@ public class ConfigMod
         Ints.empoweredPickID = config.get("Tools", "EmpoweredPick", 7020)
                 .getInt(7020);
         Ints.pirasVarinhaID = config.get("Tools", "FireWand", 7021).getInt(7021);
+        Ints.diggersWandID = config.get("Tools", "MiningWand-Level0", 7022).getInt(7022);
 
         Ints.enchantedOreID = config.get("Blocks", "EnchantedOre", 700).getInt(
                 100);
         Ints.enchantedBlockID = config.get("Blocks", "EnchantedBlock", 701)
                 .getInt(701);
-        Ints.kineticGenID = config.get("Blocks", "KineticGen", 702).getInt(702);
+        Ints.kineticGenID = config.get("Machines", "KineticGen", 702).getInt(702);
         Ints.manceryBlockID = config.get("Blocks", "ManceryBlock", 703).getInt(
                 703);
         Ints.manceryGlassID = config.get("Blocks", "ManceryGlass", 704).getInt(
@@ -46,6 +47,7 @@ public class ConfigMod
         Ints.stamaticOreID = config.get("Blocks", "OreStamatic", 705).getInt(
                 705);
         Ints.igniousOreID = config.get("Blocks", "OreIgnious", 706).getInt(706);
+        Ints.solarGenID = config.get("Machines", "SolarCollector", 707).getInt(707);
 
         config.save();
     }

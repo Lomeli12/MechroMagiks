@@ -6,15 +6,14 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import com.lomeli.magiks.tileentity.TileEntityKineticGenerator;
+import com.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
 
-public class ContainerKineticGenerator extends Container
+public class ContainerSolarMistCollector extends Container
 {
-    public ContainerKineticGenerator(InventoryPlayer inventoryPlayer,
-            TileEntityKineticGenerator keneticGen)
+    public ContainerSolarMistCollector(InventoryPlayer inventoryPlayer,
+            TileEntitySolarMistCollector solarCollect)
     {
-        this.addSlotToContainer(new Slot(keneticGen, 0, 56, 17)).slotNumber = 0;
-        this.addSlotToContainer(new Slot(keneticGen, 1, 56, 53)).slotNumber = 1;
+        this.addSlotToContainer(new Slot(solarCollect, 0, 56, 37));
 
         for (int inventoryRowIndex = 0; inventoryRowIndex < 3; ++inventoryRowIndex)
         {

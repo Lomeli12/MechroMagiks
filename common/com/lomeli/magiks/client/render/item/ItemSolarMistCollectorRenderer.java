@@ -4,21 +4,17 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import com.lomeli.magiks.client.model.ModelSolarMistCollector;
+import com.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
 
-import com.lomeli.magiks.client.model.ModelKineticGenerator;
-import com.lomeli.magiks.tileentity.TileEntityKineticGenerator;
-
-@SideOnly(Side.CLIENT)
-public class ItemKineticGeneratorRenderer implements IItemRenderer
+public class ItemSolarMistCollectorRenderer implements IItemRenderer
 {
     @SuppressWarnings("unused")
-    private ModelKineticGenerator kineticGenModel;
+    private ModelSolarMistCollector solarCollector;
     
-    public ItemKineticGeneratorRenderer()
+    public ItemSolarMistCollectorRenderer()
     {
-        kineticGenModel = new ModelKineticGenerator();
+        solarCollector = new ModelSolarMistCollector();
     }
     
     @Override
@@ -37,7 +33,7 @@ public class ItemKineticGeneratorRenderer implements IItemRenderer
     @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data)
     {
-        TileEntityRenderer.instance.renderTileEntityAt(new TileEntityKineticGenerator(),
+        TileEntityRenderer.instance.renderTileEntityAt(new TileEntitySolarMistCollector(),
                 0.05D, 0.05D, 0.05D, 0.05F);
     }
 }
