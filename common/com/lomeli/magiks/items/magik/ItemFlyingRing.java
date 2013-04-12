@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import com.lomeli.magiks.Magiks;
-import com.lomeli.magiks.items.ModItemsMagiks;
 import com.lomeli.magiks.core.helper.ItemHelper;
+import com.lomeli.magiks.items.ModItemsMagiks;
 import com.lomeli.magiks.lib.Strings;
 
 import cpw.mods.fml.relauncher.Side;
@@ -42,10 +42,9 @@ public class ItemFlyingRing extends Item
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void updateIcons(IconRegister iconRegister)
+    public void registerIcons(IconRegister iconRegister)
     {
-        iconIndex = iconRegister
-                .registerIcon(Strings.modID + ":" + itemTexture);
+        itemIcon = iconRegister.registerIcon(Strings.modID + ":" + itemTexture);
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -55,7 +54,8 @@ public class ItemFlyingRing extends Item
             List infoList, boolean bool)
     {
         int max = itemStack.getMaxDamage() - 1;
-        infoList.add("Mist Level: " + (max - itemStack.getItemDamage()) + "/" + max);
+        infoList.add("Mist Level: " + (max - itemStack.getItemDamage()) + "/"
+                + max);
     }
 
     public static void recharge(EntityPlayer player, ItemStack itemStack)
@@ -158,29 +158,34 @@ public class ItemFlyingRing extends Item
                         if (itemStack.getItemDamage() < itemStack
                                 .getMaxDamage() - 1)
                         {
-                            ItemStack amulet = new ItemStack(ModItemsMagiks.emeraldAmulet);
+                            ItemStack amulet = new ItemStack(
+                                    ModItemsMagiks.emeraldAmulet);
                             player.capabilities.allowFlying = true;
                             if (player.capabilities.isFlying == true)
-                            { 
-                                if(player.inventory.hasItemStack(amulet))
+                            {
+                                if (player.inventory.hasItemStack(amulet))
                                 {
-                                    helper.getItem(player, 
-                                            helper.getSlotContainingItem(amulet.itemID, 
-                                                    player.inventory.mainInventory)).damageItem(1, player);
-                                }
-                                else
+                                    helper.getItem(
+                                            player,
+                                            helper.getSlotContainingItem(
+                                                    amulet.itemID,
+                                                    player.inventory.mainInventory))
+                                            .damageItem(1, player);
+                                } else
                                 {
                                     itemStack.damageItem(1, player);
                                 }
                             } else if (player.fallDistance >= 4F)
                             {
-                                if(player.inventory.hasItemStack(amulet))
+                                if (player.inventory.hasItemStack(amulet))
                                 {
-                                    helper.getItem(player, 
-                                            helper.getSlotContainingItem(amulet.itemID, 
-                                                    player.inventory.mainInventory)).damageItem(1, player);
-                                }
-                                else
+                                    helper.getItem(
+                                            player,
+                                            helper.getSlotContainingItem(
+                                                    amulet.itemID,
+                                                    player.inventory.mainInventory))
+                                            .damageItem(1, player);
+                                } else
                                 {
                                     itemStack.damageItem(1, player);
                                 }

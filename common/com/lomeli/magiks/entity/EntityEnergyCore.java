@@ -15,19 +15,19 @@ public class EntityEnergyCore extends Entity
     @Override
     protected void entityInit()
     {
-        
+
     }
 
     @Override
     protected void readEntityFromNBT(NBTTagCompound nbttagcompound)
     {
-        
+
     }
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound nbttagcompound)
     {
-        
+
     }
 
 }

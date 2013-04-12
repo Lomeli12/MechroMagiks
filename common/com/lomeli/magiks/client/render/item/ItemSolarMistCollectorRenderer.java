@@ -11,12 +11,12 @@ public class ItemSolarMistCollectorRenderer implements IItemRenderer
 {
     @SuppressWarnings("unused")
     private ModelSolarMistCollector solarCollector;
-    
+
     public ItemSolarMistCollectorRenderer()
     {
         solarCollector = new ModelSolarMistCollector();
     }
-    
+
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type)
     {
@@ -33,7 +33,7 @@ public class ItemSolarMistCollectorRenderer implements IItemRenderer
     @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data)
     {
-        TileEntityRenderer.instance.renderTileEntityAt(new TileEntitySolarMistCollector(),
-                0.05D, 0.05D, 0.05D, 0.05F);
+        TileEntityRenderer.instance.renderTileEntityAt(
+                new TileEntitySolarMistCollector(), 0.05D, 0.05D, 0.05D, 0.05F);
     }
 }

@@ -25,12 +25,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockSolarMistCollector extends BlockContainer
 {
     private String blockTexture;
-    
+
     public BlockSolarMistCollector(int par1, Material par2Material,
             String texture)
     {
         super(par1, par2Material);
-        this.blockTexture = texture;
+        blockTexture = texture;
         this.setCreativeTab(Magiks.modTab);
     }
 
@@ -41,7 +41,7 @@ public class BlockSolarMistCollector extends BlockContainer
         blockIcon = iconRegister.registerIcon(Strings.modID + ":"
                 + blockTexture);
     }
-    
+
     @Override
     public boolean renderAsNormalBlock()
     {
@@ -59,13 +59,13 @@ public class BlockSolarMistCollector extends BlockContainer
     {
         return RenderIDs.solarGID;
     }
-    
+
     @Override
     public TileEntity createTileEntity(World world, int meta)
     {
         return new TileEntitySolarMistCollector();
     }
-    
+
     @Override
     public boolean hasTileEntity(int metadata)
     {
@@ -73,34 +73,39 @@ public class BlockSolarMistCollector extends BlockContainer
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int id, int meta) {
+    public void breakBlock(World world, int x, int y, int z, int id, int meta)
+    {
 
         dropInventory(world, x, y, z);
         super.breakBlock(world, x, y, z, id, meta);
     }
-    
+
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z,
             EntityPlayer player, int i, float f, float g, float t)
     {
         if (player.isSneaking())
             return false;
-        else {
-            if (!world.isRemote) 
+        else
+        {
+            if (!world.isRemote)
             {
-                TileEntitySolarMistCollector solarCollector = (TileEntitySolarMistCollector)world.getBlockTileEntity(x, y, z);
-                if(solarCollector != null)
+                TileEntitySolarMistCollector solarCollector = (TileEntitySolarMistCollector) world
+                        .getBlockTileEntity(x, y, z);
+                if (solarCollector != null)
                 {
-                    player.openGui(Magiks.instance, GuiIDs.solarGen, world, x, y, z);
+                    player.openGui(Magiks.instance, GuiIDs.solarGen, world, x,
+                            y, z);
                 }
             }
         }
         return true;
     }
-    
+
     private Random rand = new Random();
-    
-    private void dropInventory(World world, int x, int y, int z) {
+
+    private void dropInventory(World world, int x, int y, int z)
+    {
 
         TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
 
@@ -109,19 +114,25 @@ public class BlockSolarMistCollector extends BlockContainer
 
         IInventory inventory = (IInventory) tileEntity;
 
-        for (int i = 0; i < inventory.getSizeInventory(); i++) {
+        for (int i = 0; i < inventory.getSizeInventory(); i++)
+        {
 
             ItemStack itemStack = inventory.getStackInSlot(i);
 
-            if (itemStack != null && itemStack.stackSize > 0) {
+            if (itemStack != null && itemStack.stackSize > 0)
+            {
                 float dX = rand.nextFloat() * 0.8F + 0.1F;
                 float dY = rand.nextFloat() * 0.8F + 0.1F;
                 float dZ = rand.nextFloat() * 0.8F + 0.1F;
 
-                EntityItem entityItem = new EntityItem(world, x + dX, y + dY, z + dZ, new ItemStack(itemStack.itemID, itemStack.stackSize, itemStack.getItemDamage()));
+                EntityItem entityItem = new EntityItem(world, x + dX, y + dY, z
+                        + dZ, new ItemStack(itemStack.itemID,
+                        itemStack.stackSize, itemStack.getItemDamage()));
 
-                if (itemStack.hasTagCompound()) {
-                    entityItem.getEntityItem().setTagCompound((NBTTagCompound) itemStack.getTagCompound().copy());
+                if (itemStack.hasTagCompound())
+                {
+                    entityItem.getEntityItem().setTagCompound(
+                            (NBTTagCompound) itemStack.getTagCompound().copy());
                 }
 
                 float factor = 0.05F;
@@ -137,7 +148,6 @@ public class BlockSolarMistCollector extends BlockContainer
     @Override
     public TileEntity createNewTileEntity(World world)
     {
-        // TODO Auto-generated method stub
         return null;
     }
 }

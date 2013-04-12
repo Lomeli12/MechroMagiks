@@ -29,11 +29,12 @@ public class PlayerInteractHandler
                 }
             } else
             {
-                if(player.capabilities.allowFlying == false)
+                if (player.capabilities.allowFlying == false)
                 {
                     player.capabilities.allowFlying = true;
+                } else
+                {
                 }
-                else{}
             }
         }
     }

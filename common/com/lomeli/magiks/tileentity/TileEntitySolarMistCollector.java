@@ -7,16 +7,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
+import com.lomeli.magiks.api.libs.MagiksArrays;
 import com.lomeli.magiks.api.magiks.IMagiks;
-import com.lomeli.magiks.blocks.machine.BlockSolarMistCollector;
-import com.lomeli.magiks.items.ModItemsMagiks;
 import com.lomeli.magiks.lib.Strings;
 
-public class TileEntitySolarMistCollector extends TileEntity implements IInventory, IMagiks
+public class TileEntitySolarMistCollector extends TileEntity implements
+        IInventory, IMagiks
 {
     private ItemStack[] inventory;
-    private int maxMistLevel = 3000,
-            mistLevel = 0, tick = 0;
+    private int maxMistLevel = 3000, mistLevel;
 
     public TileEntitySolarMistCollector()
     {
@@ -32,7 +31,7 @@ public class TileEntitySolarMistCollector extends TileEntity implements IInvento
     @Override
     public ItemStack getStackInSlot(int slot)
     {
-            return inventory[slot];
+        return inventory[slot];
     }
 
     @Override
@@ -89,17 +88,18 @@ public class TileEntitySolarMistCollector extends TileEntity implements IInvento
     {
         super.readFromNBT(nbtTagCompound);
 
+        mistLevel = nbtTagCompound.getInteger("Mist");
+
         NBTTagList tagList = nbtTagCompound.getTagList("Inventory");
         for (int i = 0; i < tagList.tagCount(); ++i)
         {
             NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
             byte slot = tagCompound.getByte("Slot");
-            mistLevel = tagCompound.getInteger("Mist");
             if (slot >= 0 && slot < 2)
             {
                 inventory[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
             }
-    
+
         }
     }
 
@@ -109,6 +109,8 @@ public class TileEntitySolarMistCollector extends TileEntity implements IInvento
 
         super.writeToNBT(nbtTagCompound);
 
+        nbtTagCompound.setInteger("Mist", mistLevel);
+
         NBTTagList tagList = new NBTTagList();
         for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
         {
@@ -116,8 +118,7 @@ public class TileEntitySolarMistCollector extends TileEntity implements IInvento
             {
                 NBTTagCompound tagCompound = new NBTTagCompound();
                 tagCompound.setByte("Slot", (byte) currentIndex);
-                tagCompound.setInteger("Mist", mistLevel);
-        
+
                 inventory[currentIndex].writeToNBT(tagCompound);
                 tagList.appendTag(tagCompound);
             }
@@ -141,8 +142,8 @@ public class TileEntitySolarMistCollector extends TileEntity implements IInvento
     public boolean isUseableByPlayer(EntityPlayer player)
     {
         return worldObj.getBlockTileEntity(xCoord, yCoord, zCoord) == this
-            && player.getDistanceSq(xCoord + 0.5, yCoord + 0.5,
-                    zCoord + 0.5) < 64;
+                && player.getDistanceSq(xCoord + 0.5, yCoord + 0.5,
+                        zCoord + 0.5) < 64;
     }
 
     @Override
@@ -154,44 +155,53 @@ public class TileEntitySolarMistCollector extends TileEntity implements IInvento
     public void closeChest()
     {
     }
-    
+
     @Override
     public boolean isStackValidForSlot(int slot, ItemStack itemstack)
     {
         return true;
     }
-    
-    /*@Override
+
+    @Override
     public void updateEntity()
     {
-        if(getStackInSlot(0).itemID == ModItemsMagiks.flyingRing.itemID)
+        if (worldObj != null && !worldObj.isRemote)
         {
-            ItemStack ring = getStackInSlot(0);
-            if(ring.isItemDamaged())
+            ItemStack item = getStackInSlot(0);
+            if (item != null)
             {
-                ring.setItemDamage(ring.getItemDamage() - 1);
-                addToMistLevel(-1);
-            }
-        }
-        if (this.worldObj != null && !this.worldObj.isRemote && this.worldObj.getTotalWorldTime() % 20L == 0L)
-        {
-            this.blockType = this.getBlockType();
-            if (this.blockType != null && this.blockType instanceof BlockSolarMistCollector)
-            {
-                if(getMistLevel() <= maxMistLevel)
+                if (getMistLevel() != 0)
                 {
-                    addToMistLevel(10);
+                    for (ItemStack chargeable : MagiksArrays.rechargeableItems)
+                    {
+                        if (item.itemID == chargeable.itemID)
+                        {
+                            if (item.isItemDamaged())
+                            {
+                                item.setItemDamage(item.getItemDamage() - 1);
+                                addToMistLevel(-1);
+                            }
+                        }
+                    }
                 }
             }
-            
+            if (worldObj.isDaytime() && !worldObj.isRaining())
+            {
+                if (mistLevel <= maxMistLevel)
+                {
+                    mistLevel += 1;
+                }
+            }
         }
-        
-    }*/
+    }
 
     @Override
     public int getMistLevel()
     {
-        return mistLevel;
+        if (mistLevel != 0)
+            return mistLevel;
+        else
+            return 0;
     }
 
     @Override
@@ -231,7 +241,7 @@ public class TileEntitySolarMistCollector extends TileEntity implements IInvento
     @Override
     public boolean hasMist()
     {
-        if(getMistLevel() >= 0)
+        if (this.getMistLevel() >= 0)
             return true;
         else
             return false;

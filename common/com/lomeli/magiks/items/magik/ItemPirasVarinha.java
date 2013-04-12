@@ -22,8 +22,9 @@ public class ItemPirasVarinha extends ItemGeneric
     {
         super(par1, Texture, special);
         this.setMaxDamage(751);
+        this.setMaxStackSize(1);
     }
-    
+
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     @SideOnly(Side.CLIENT)
@@ -31,7 +32,8 @@ public class ItemPirasVarinha extends ItemGeneric
             List infoList, boolean bool)
     {
         int max = itemStack.getMaxDamage() - 1;
-        infoList.add("Mist Level: " + (max - itemStack.getItemDamage()) + "/" + max);
+        infoList.add("Mist Level: " + (max - itemStack.getItemDamage()) + "/"
+                + max);
     }
 
     @Override
@@ -47,14 +49,14 @@ public class ItemPirasVarinha extends ItemGeneric
             entitylargefireball.field_92057_e = 3;
             entitylargefireball.setSprinting(true);
             entitylargefireball.setPosition(player.posX + look.xCoord * 4,
-                    player.posY + look.yCoord + 1, player.posZ + look.zCoord * 4);
+                    player.posY + look.yCoord + 1, player.posZ + look.zCoord
+                            * 4);
             entitylargefireball.accelerationX = look.xCoord * 0.3;
             entitylargefireball.accelerationY = look.yCoord * 0.3;
             entitylargefireball.accelerationZ = look.zCoord * 0.3;
             world.spawnEntityInWorld(entitylargefireball);
             itemStack.damageItem(5, player);
-        }
-        else
+        } else
         {
             player.sendChatToPlayer("Not enough Mist!");
         }
@@ -75,7 +77,9 @@ public class ItemPirasVarinha extends ItemGeneric
                     player.addPotionEffect(new PotionEffect(12, -1, 10));
                 }
             }
-        }else{}
+        } else
+        {
+        }
 
     }
 

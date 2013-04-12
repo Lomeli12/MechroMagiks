@@ -52,44 +52,29 @@ public class ContainerKineticGenerator extends Container
             if (i == 0)
             {
                 if (!mergeItemStack(itemstack1, 1, 37, true))
-                {
                     return null;
-                }
-            }
-            else if (i >= 1 && i < 28)
+            } else if (i >= 1 && i < 28)
             {
                 if (!mergeItemStack(itemstack1, 28, 37, false))
-                {
                     return null;
-                }
-            }
-            else if (i >= 28 && i < 37)
+            } else if (i >= 28 && i < 37)
             {
                 if (!mergeItemStack(itemstack1, 1, 27, false))
-                {
                     return null;
-                }
-            }
-            else if (!mergeItemStack(itemstack1, 1, 37, false))
-            {
+            } else if (!mergeItemStack(itemstack1, 1, 37, false))
                 return null;
-            }
             if (itemstack1.stackSize == 0)
             {
                 slot.putStack(null);
-            }
-            else
+            } else
             {
                 slot.onSlotChanged();
             }
             if (itemstack1.stackSize != itemstack.stackSize)
             {
                 slot.onPickupFromSlot(player, itemstack1);
-            }
-            else
-            {
+            } else
                 return null;
-            }
         }
 
         return itemstack;

@@ -9,9 +9,9 @@ import com.lomeli.magiks.core.CommonProxy;
 import com.lomeli.magiks.core.CreativeTabSIW;
 import com.lomeli.magiks.core.config.ConfigMod;
 import com.lomeli.magiks.core.handler.EntityLivingHandler;
+import com.lomeli.magiks.core.handler.GuiHandler;
 import com.lomeli.magiks.core.handler.ItemDroppedHandler;
 import com.lomeli.magiks.core.handler.PlayerInteractHandler;
-import com.lomeli.magiks.core.handler.GuiHandler;
 import com.lomeli.magiks.items.ModItemsMagiks;
 import com.lomeli.magiks.lib.Strings;
 
@@ -42,7 +42,7 @@ public class Magiks
             CreativeTabs.getNextID(), Strings.modName);
 
     public static String configDir;
-    
+
     private GuiHandler guih = new GuiHandler();
 
     @PreInit
@@ -57,24 +57,26 @@ public class Magiks
     public void main(FMLInitializationEvent event)
     {
         NetworkRegistry.instance().registerGuiHandler(this, guih);
-        
+
         MinecraftForge.EVENT_BUS.register(new ItemDroppedHandler());
         MinecraftForge.EVENT_BUS.register(new EntityLivingHandler());
         MinecraftForge.EVENT_BUS.register(new PlayerInteractHandler());
 
         ModItemsMagiks.registerItems();
+        ModItemsMagiks.addChargeableItems();
 
         ModBlocksMagiks.registerBlocks();
-        
+        ModBlocksMagiks.registerKinGenFuel();
+
         ModBlocksMagiks.registerBlockRecipes();
-        
+
         ModItemsMagiks.registerItemRecipes();
         ModItemsMagiks.registerFurnaceRecipes();
 
         GameRegistry.registerWorldGenerator(new MagikWorldGen());
-        
+
         proxy.registerRenderThings();
-        
+
     }
 
     @PostInit

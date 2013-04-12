@@ -94,7 +94,7 @@ public class ModelSolarMistCollector extends ModelBase
         crystal3.render(f5);
         crystal4.render(f5);
     }
-    
+
     public void render(float f5)
     {
         base.render(f5);

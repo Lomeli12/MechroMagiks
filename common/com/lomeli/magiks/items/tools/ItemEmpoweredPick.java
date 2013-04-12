@@ -30,10 +30,9 @@ public class ItemEmpoweredPick extends ItemPickaxe
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void updateIcons(IconRegister iconRegister)
+    public void registerIcons(IconRegister iconRegister)
     {
-        iconIndex = iconRegister
-                .registerIcon(Strings.modID + ":" + itemTexture);
+        itemIcon = iconRegister.registerIcon(Strings.modID + ":" + itemTexture);
     }
 
     @SideOnly(Side.CLIENT)
@@ -41,20 +40,21 @@ public class ItemEmpoweredPick extends ItemPickaxe
             String keyBinding)
     {
     }
-    
+
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world,
             EntityPlayer player)
     {
         Vec3 look = player.getLookVec();
-        
+
         int x = (int) (player.posX + look.xCoord * 4);
         int y = (int) (player.posY + look.yCoord * 4);
         int z = (int) (player.posZ + look.zCoord * 4);
-        
-        int side = MathHelper.floor_double((double)(player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+
+        int side = MathHelper
+                .floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         world.destroyBlock(x, y, z, true);
-        player.sendChatToPlayer(""+side);
+        player.sendChatToPlayer("" + side);
         return itemStack;
     }
 

@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
+import com.lomeli.magiks.api.libs.MagiksArrays;
 import com.lomeli.magiks.blocks.machine.BlockKineticGenerator;
 import com.lomeli.magiks.blocks.machine.BlockSolarMistCollector;
 import com.lomeli.magiks.blocks.machine.parts.BlockMecroBlock;
@@ -19,7 +20,8 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class ModBlocksMagiks
 {
     public static Block neoniteOre, neoniteBlock, kineticGenerator,
-            manceryBlock, manceryGlass, stamaticOre, igniousOre, solarMistCollector;
+            manceryBlock, manceryGlass, stamaticOre, igniousOre,
+            solarMistCollector;
 
     public static void registerBlocks()
     {
@@ -34,25 +36,26 @@ public class ModBlocksMagiks
                 Material.rock).setUnlocalizedName("kineticgen")
                 .setResistance(1000F).setHardness(3F);
         manceryBlock = new BlockMecroBlock(Ints.manceryBlockID, Material.rock,
-                "manceryblock").setUnlocalizedName("manceryblock").setHardness(
-                0.5F).setResistance(100F);
+                "manceryblock").setUnlocalizedName("manceryblock")
+                .setHardness(0.5F).setResistance(100F);
         manceryGlass = new BlockMecroGlass(Ints.manceryGlassID, Material.glass,
-                "manceryglass").setUnlocalizedName("manceryglass").setHardness(
-                0.5F).setResistance(100F);
+                "manceryglass").setUnlocalizedName("manceryglass")
+                .setHardness(0.5F).setResistance(100F);
         stamaticOre = new BlockMagiks(Ints.stamaticOreID, Material.rock,
                 "orestamatic").setUnlocalizedName("orestamatic")
                 .setHardness(3F).setResistance(5F);
-        igniousOre = new BlockMagiks(Ints.igniousOreID, Material.rock, 
+        igniousOre = new BlockMagiks(Ints.igniousOreID, Material.rock,
                 "oreignious").setUnlocalizedName("oreignious").setHardness(3F)
                 .setResistance(5F);
-        solarMistCollector = new BlockSolarMistCollector(Ints.solarGenID, Material.rock, 
-                "solar").setUnlocalizedName("solarmistcollector").setHardness(3F)
+        solarMistCollector = new BlockSolarMistCollector(Ints.solarGenID,
+                Material.rock, "solar")
+                .setUnlocalizedName("solarmistcollector").setHardness(3F)
                 .setResistance(100F);
 
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");
         GameRegistry.registerBlock(neoniteBlock, "Neonite Block");
         GameRegistry.registerBlock(kineticGenerator, "Kinetic Generator");
-        GameRegistry.registerBlock(manceryBlock, "Mancery Block");
+        GameRegistry.registerBlock(manceryBlock, "Mancery Stone");
         GameRegistry.registerBlock(manceryGlass, "Mancery Glass");
         GameRegistry.registerBlock(stamaticOre, "Stamatic Ore");
         GameRegistry.registerBlock(igniousOre, "Ignious Ore");
@@ -61,7 +64,7 @@ public class ModBlocksMagiks
         LanguageRegistry.addName(neoniteOre, "Neonite Ore");
         LanguageRegistry.addName(neoniteBlock, "Neonite Block");
         LanguageRegistry.addName(kineticGenerator, "Kinetic Generator");
-        LanguageRegistry.addName(manceryBlock, "Mancery Block");
+        LanguageRegistry.addName(manceryBlock, "Mancery Stone");
         LanguageRegistry.addName(manceryGlass, "Mancery Glass");
         LanguageRegistry.addName(stamaticOre, "Statmatic Ore");
         LanguageRegistry.addName(igniousOre, "Ignious Ore");
@@ -85,5 +88,14 @@ public class ModBlocksMagiks
         GameRegistry.addRecipe(new ItemStack(manceryGlass, 4), new Object[] {
                 "RGR", "GIG", "RGR", 'R', Item.redstone, 'G', Block.glass, 'I',
                 new ItemStack(ModItemsMagiks.ingotStamatic, 4) });
+        GameRegistry.addRecipe(new ItemStack(solarMistCollector, 1),
+                new Object[] { "D D", "PPP", "MMM", 'D',
+                        ModItemsMagiks.darkMatter, 'P',
+                        ModItemsMagiks.mistPanel, 'M', manceryBlock });
+    }
+
+    public static void registerKinGenFuel()
+    {
+        MagiksArrays.kineticGenFuel.add(new ItemStack(Block.tnt));
     }
 }

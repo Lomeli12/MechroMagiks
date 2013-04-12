@@ -5,20 +5,20 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.world.IBlockAccess;
 
+import com.lomeli.magiks.client.model.ModelKineticGenerator;
+import com.lomeli.magiks.lib.RenderIDs;
+import com.lomeli.magiks.tileentity.TileEntityKineticGenerator;
+
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
-import com.lomeli.magiks.client.model.ModelKineticGenerator;
-import com.lomeli.magiks.tileentity.TileEntityKineticGenerator;
-import com.lomeli.magiks.lib.RenderIDs;
 
 @SideOnly(Side.CLIENT)
 public class RenderKineticGenerator implements ISimpleBlockRenderingHandler
 {
     @SuppressWarnings("unused")
     private ModelKineticGenerator kineticModel;
-    
+
     public RenderKineticGenerator(int id)
     {
         kineticModel = new ModelKineticGenerator();
@@ -30,8 +30,8 @@ public class RenderKineticGenerator implements ISimpleBlockRenderingHandler
             RenderBlocks renderer)
     {
         TileEntityRenderer entityRenderer = TileEntityRenderer.instance;
-        entityRenderer.renderTileEntityAt(new TileEntityKineticGenerator(), 0.0D, 0.0D,
-                0.0D, 0.5F);
+        entityRenderer.renderTileEntityAt(new TileEntityKineticGenerator(),
+                0.0D, 0.0D, 0.0D, 0.5F);
     }
 
     @Override

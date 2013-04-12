@@ -9,7 +9,10 @@ public class Ints
     public static int ironStickID;
     public static int ingotStamaticID;
     public static int ingotIgniousID;
-    
+    public static int darkMatterID;
+    public static int deprivedDustID;
+    public static int mistPanelID;
+
     public static int pirasVarinhaID;
     public static int diggersWandID;
 

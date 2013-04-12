@@ -1,17 +1,20 @@
 package com.lomeli.magiks.core;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-
 import net.minecraftforge.client.MinecraftForgeClient;
 
 import com.lomeli.magiks.blocks.ModBlocksMagiks;
+import com.lomeli.magiks.client.render.item.ItemKineticGeneratorRenderer;
+import com.lomeli.magiks.client.render.item.ItemSolarMistCollectorRenderer;
 import com.lomeli.magiks.core.DeveloperCapesAPI.DeveloperCapesAPI;
 import com.lomeli.magiks.core.config.ConfigMod;
 import com.lomeli.magiks.lib.RenderIDs;
-import com.lomeli.magiks.client.render.item.*;
-import com.lomeli.magiks.tileentity.*;
-import com.lomeli.magiks.tileentity.renderer.*;
+import com.lomeli.magiks.tileentity.TileEntityKineticGenerator;
+import com.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
+import com.lomeli.magiks.tileentity.renderer.TileEntityKineticGeneratorRenderer;
+import com.lomeli.magiks.tileentity.renderer.TileEntitySolarMistCollectorRenderer;
+
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy
 {
@@ -20,23 +23,26 @@ public class ClientProxy extends CommonProxy
     {
         RenderIDs.kineticGID = RenderingRegistry.getNextAvailableRenderId();
         RenderIDs.solarGID = RenderingRegistry.getNextAvailableRenderId();
-        
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityKineticGenerator.class, 
+
+        ClientRegistry.bindTileEntitySpecialRenderer(
+                TileEntityKineticGenerator.class,
                 new TileEntityKineticGeneratorRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySolarMistCollector.class, 
+        ClientRegistry.bindTileEntitySpecialRenderer(
+                TileEntitySolarMistCollector.class,
                 new TileEntitySolarMistCollectorRenderer());
-        
-        MinecraftForgeClient.registerItemRenderer(ModBlocksMagiks.kineticGenerator.blockID,
+
+        MinecraftForgeClient.registerItemRenderer(
+                ModBlocksMagiks.kineticGenerator.blockID,
                 new ItemKineticGeneratorRenderer());
-        MinecraftForgeClient.registerItemRenderer(ModBlocksMagiks.solarMistCollector.blockID,
+        MinecraftForgeClient.registerItemRenderer(
+                ModBlocksMagiks.solarMistCollector.blockID,
                 new ItemSolarMistCollectorRenderer());
-        
-        
-        ClientRegistry.registerTileEntity(TileEntityKineticGenerator.class, "keneticGen", 
-                new TileEntityKineticGeneratorRenderer());
-        ClientRegistry.registerTileEntity(TileEntitySolarMistCollector.class, "solarGen", 
-                new TileEntitySolarMistCollectorRenderer());
-        
+
+        ClientRegistry.registerTileEntity(TileEntityKineticGenerator.class,
+                "keneticGen", new TileEntityKineticGeneratorRenderer());
+        ClientRegistry.registerTileEntity(TileEntitySolarMistCollector.class,
+                "solarGen", new TileEntitySolarMistCollectorRenderer());
+
         renderCapes(ConfigMod.capesEnabled);
     }
 

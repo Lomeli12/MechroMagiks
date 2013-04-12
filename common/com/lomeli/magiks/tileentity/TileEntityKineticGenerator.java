@@ -1,5 +1,7 @@
 package com.lomeli.magiks.tileentity;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -7,15 +9,17 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
+import com.lomeli.magiks.api.libs.MagiksArrays;
 import com.lomeli.magiks.api.magiks.IMagiks;
-import com.lomeli.magiks.items.ModItemsMagiks;
+import com.lomeli.magiks.core.helper.BlockHelper;
 import com.lomeli.magiks.lib.Strings;
 
 public class TileEntityKineticGenerator extends TileEntity implements
         IInventory, IMagiks
 {
     private ItemStack[] inventory;
-    private int maxMistLevel = 3000, mistLevel = 100, heatLevel;
+    private int maxMistLevel = 3000, mistLevel, heatLevel, generationTime = 0,
+            coolDown = 0;
 
     public TileEntityKineticGenerator()
     {
@@ -88,15 +92,17 @@ public class TileEntityKineticGenerator extends TileEntity implements
     {
         super.readFromNBT(nbtTagCompound);
 
+        mistLevel = nbtTagCompound.getInteger("Mist");
+        heatLevel = nbtTagCompound.getInteger("Heat");
+
         NBTTagList tagList = nbtTagCompound.getTagList("Inventory");
         for (int i = 0; i < tagList.tagCount(); ++i)
         {
             NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
             byte slot = tagCompound.getByte("Slot");
-            int mist = tagCompound.getInteger("Mist");
             if (slot >= 0 && slot < 2)
             {
-               inventory[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
+                inventory[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
             }
         }
     }
@@ -106,18 +112,20 @@ public class TileEntityKineticGenerator extends TileEntity implements
     {
         super.writeToNBT(nbtTagCompound);
 
+        nbtTagCompound.setInteger("Mist", mistLevel);
+        nbtTagCompound.setInteger("Heat", heatLevel);
+
         NBTTagList tagList = new NBTTagList();
         for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
         {
             NBTTagCompound tagCompound = new NBTTagCompound();
-            tagCompound.setInteger("Mist", mistLevel);
             if (inventory[currentIndex] != null)
             {
-                tagCompound.setByte("Slot", (byte) currentIndex);   
+                tagCompound.setByte("Slot", (byte) currentIndex);
 
                 inventory[currentIndex].writeToNBT(tagCompound);
                 tagList.appendTag(tagCompound);
-                
+
             }
         }
         nbtTagCompound.setTag("Inventory", tagList);
@@ -158,36 +166,117 @@ public class TileEntityKineticGenerator extends TileEntity implements
     {
         return true;
     }
-    
+
     @Override
     public void updateEntity()
     {
-        this.blockType = this.getBlockType();
-
-        ItemStack item = getStackInSlot(0);
-        if(item !=  null)
+        if (worldObj != null && !worldObj.isRemote)
         {
-            if(getMistLevel() != 0)
+            blockType = this.getBlockType();
+
+            ItemStack item = getStackInSlot(0);
+            if (item != null)
             {
-                if(item.itemID == ModItemsMagiks.flyingRing.itemID)
+                if (getMistLevel() != 0)
                 {
-                    if(item.isItemDamaged())
+                    for (ItemStack chargeable : MagiksArrays.rechargeableItems)
                     {
-                        item.setItemDamage(item.getItemDamage() -1);
-                        addToMistLevel(-1);
+                        if (item.itemID == chargeable.itemID)
+                        {
+                            if (item.isItemDamaged())
+                            {
+                                item.setItemDamage(item.getItemDamage() - 1);
+                                addToMistLevel(-1);
+                            }
+                        }
                     }
                 }
             }
+
+            ItemStack fuel = getStackInSlot(1);
+            if (fuel != null && canUseAsFuel(fuel))
+            {
+                ++generationTime;
+                if (generationTime >= 200)
+                {
+                    generationTime = 0;
+                    this.decrStackSize(1, 1);
+                    this.addToMistLevel(75);
+                    this.addToHeatLevel(50 / this.coolRate());
+                    worldObj.playSoundEffect(xCoord, yCoord, zCoord,
+                            "random.explode", 4F,
+                            (1.0F + (worldObj.rand.nextFloat() - worldObj.rand
+                                    .nextFloat()) * 0.2F) * 0.7F);
+                    if (heatLevel < 80)
+                    {
+                        worldObj.spawnParticle("largeexplode", xCoord + 0.5,
+                                yCoord + 1, zCoord + 0.5, 1D, 0, 0);
+                    } else
+                    {
+                        worldObj.spawnParticle("hugeexplosion", xCoord + 0.5,
+                                yCoord + 1, zCoord + 0.5, 1D, 0, 0);
+                    }
+                }
+            }
+
+            if (heatLevel > 0)
+            {
+                ++coolDown;
+                if (coolDown >= 400 / this.coolRate())
+                {
+                    this.addToHeatLevel(-5 * this.coolRate());
+                } else if (coolDown >= 400 / this.coolRate()
+                        && worldObj.isRaining())
+                {
+                    this.addToHeatLevel(-10 * this.coolRate());
+                }
+            } else if (heatLevel >= 250)
+            {
+                worldObj.destroyBlock(xCoord, yCoord, zCoord, true);
+                worldObj.createExplosion((Entity) null, xCoord, yCoord, zCoord,
+                        5, false);
+            }
         }
+    }
+
+    private int coolRate()
+    {
+        int rate = 1;
+        if (BlockHelper.getBlock(worldObj, xCoord + 1, yCoord, zCoord) == Block.ice
+                || BlockHelper.getBlock(worldObj, xCoord, yCoord, zCoord + 1) == Block.ice
+                || BlockHelper.getBlock(worldObj, xCoord + 1, yCoord,
+                        zCoord + 1) == Block.ice
+                || BlockHelper.getBlock(worldObj, xCoord - 1, yCoord, zCoord) == Block.ice
+                || BlockHelper.getBlock(worldObj, xCoord, yCoord, zCoord - 1) == Block.ice
+                || BlockHelper.getBlock(worldObj, xCoord - 1, yCoord,
+                        zCoord - 1) == Block.ice)
+        {
+            rate++;
+        }
+        return rate;
+    }
+
+    public boolean isInUse()
+    {
+        return generationTime >= 0;
+    }
+
+    private boolean canUseAsFuel(ItemStack item)
+    {
+        for (ItemStack fuel : MagiksArrays.kineticGenFuel)
+        {
+            if (item.itemID == fuel.itemID)
+                return true;
+            else
+                return false;
+        }
+        return false;
     }
 
     @Override
     public boolean hasMist()
     {
-        if (mistLevel >= 0)
-            return true;
-        else
-            return false;
+        return mistLevel >= 0;
     }
 
     @Override
@@ -201,13 +290,13 @@ public class TileEntityKineticGenerator extends TileEntity implements
     {
         return heatLevel;
     }
-    
+
     @Override
     public void setMistLevel(int value)
     {
         mistLevel = value;
     }
-    
+
     @Override
     public void addToMistLevel(int value)
     {

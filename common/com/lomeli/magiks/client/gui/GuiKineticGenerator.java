@@ -43,16 +43,24 @@ public class GuiKineticGenerator extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float opacity, int x, int y)
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        mc.renderEngine.bindTexture("/mods/magiks/textures/gui/kineticgeneratorGUI.png");
+        mc.renderEngine
+                .bindTexture("/mods/magiks/textures/gui/kineticgeneratorGUI.png");
         int xStart = (width - xSize) / 2;
         int yStart = (height - ySize) / 2;
-        drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);
-        if(tileentitykingen.hasMist())
+        this.drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);
+        if (tileentitykingen.isInUse())
         {
-            fontRenderer.drawString(StatCollector.translateToLocal("Mist Level:"),xSize + 30, ySize - 123, 4210752);
-            fontRenderer.drawString(StatCollector.translateToLocal(tileentitykingen.getMistLevel() + "/" + tileentitykingen.getMaxMistLevel()),xSize + 30, ySize - 113, 4210752);
-            fontRenderer.drawString(StatCollector.translateToLocal("Heat Level: " + tileentitykingen.getHeatLevel()),xSize + 30, ySize - 83, 4210752);
-            
+            fontRenderer.drawString(
+                    StatCollector.translateToLocal("Mist Level:"), xSize + 30,
+                    ySize - 123, 4210752);
+            fontRenderer.drawString(StatCollector
+                    .translateToLocal(tileentitykingen.getMistLevel() + "/"
+                            + tileentitykingen.getMaxMistLevel()), xSize + 30,
+                    ySize - 113, 4210752);
+            fontRenderer.drawString(
+                    StatCollector.translateToLocal("Heat Level: "
+                            + tileentitykingen.getHeatLevel() + " C"),
+                    xSize + 30, ySize - 83, 4210752);
         }
     }
 }

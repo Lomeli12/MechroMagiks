@@ -25,10 +25,9 @@ public class ItemGeneric extends Item
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void updateIcons(IconRegister iconRegister)
+    public void registerIcons(IconRegister iconRegister)
     {
-        iconIndex = iconRegister
-                .registerIcon(Strings.modID + ":" + itemTexture);
+        itemIcon = iconRegister.registerIcon(Strings.modID + ":" + itemTexture);
     }
 
     @Override

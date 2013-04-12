@@ -20,7 +20,7 @@ public class ItemGenericMagik extends ItemGeneric
         this.setMaxDamage(magik + 1);
     }
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player,
             List infoList, boolean bool)

@@ -102,7 +102,7 @@ public class ModelKineticGenerator extends ModelBase
         side3.render(f5);
         side4.render(f5);
     }
-    
+
     public void render(float f5)
     {
         Base.render(f5);

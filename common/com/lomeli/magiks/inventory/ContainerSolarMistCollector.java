@@ -13,7 +13,7 @@ public class ContainerSolarMistCollector extends Container
     public ContainerSolarMistCollector(InventoryPlayer inventoryPlayer,
             TileEntitySolarMistCollector solarCollect)
     {
-        this.addSlotToContainer(new Slot(solarCollect, 0, 56, 37));
+        this.addSlotToContainer(new Slot(solarCollect, 0, 56, 35));
 
         for (int inventoryRowIndex = 0; inventoryRowIndex < 3; ++inventoryRowIndex)
         {
@@ -31,6 +31,7 @@ public class ContainerSolarMistCollector extends Container
             this.addSlotToContainer(new Slot(inventoryPlayer,
                     actionBarSlotIndex, 8 + actionBarSlotIndex * 18, 142));
         }
+
     }
 
     @Override
@@ -51,44 +52,29 @@ public class ContainerSolarMistCollector extends Container
             if (i == 0)
             {
                 if (!mergeItemStack(itemstack1, 1, 37, true))
-                {
                     return null;
-                }
-            }
-            else if (i >= 1 && i < 28)
+            } else if (i >= 1 && i < 28)
             {
                 if (!mergeItemStack(itemstack1, 28, 37, false))
-                {
                     return null;
-                }
-            }
-            else if (i >= 28 && i < 37)
+            } else if (i >= 28 && i < 37)
             {
                 if (!mergeItemStack(itemstack1, 1, 27, false))
-                {
                     return null;
-                }
-            }
-            else if (!mergeItemStack(itemstack1, 1, 37, false))
-            {
+            } else if (!mergeItemStack(itemstack1, 1, 37, false))
                 return null;
-            }
             if (itemstack1.stackSize == 0)
             {
                 slot.putStack(null);
-            }
-            else
+            } else
             {
                 slot.onSlotChanged();
             }
             if (itemstack1.stackSize != itemstack.stackSize)
             {
                 slot.onPickupFromSlot(player, itemstack1);
-            }
-            else
-            {
+            } else
                 return null;
-            }
         }
 
         return itemstack;
