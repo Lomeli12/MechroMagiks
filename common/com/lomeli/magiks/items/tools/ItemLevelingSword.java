@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
 import com.lomeli.magiks.Magiks;
@@ -21,16 +22,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemLevelingSword extends ItemSword
 {
     private String itemTexture;
-    public int level;
+    public int level = 0;
 
     public ItemLevelingSword(int par1, EnumToolMaterial par2EnumToolMaterial,
             String texture)
     {
         super(par1, par2EnumToolMaterial);
-        this.setMaxDamage(1000);
+        this.setMaxDamage(500);
         this.setCreativeTab(Magiks.modTab);
         itemTexture = texture;
-        level = 0;
     }
 
     @Override
@@ -49,12 +49,12 @@ public class ItemLevelingSword extends ItemSword
         level = getLevel(itemStack);
     }
 
-    private int getLevel(ItemStack itemStack)
+    protected int getLevel(ItemStack itemStack)
     {
         return NBTHelper.getInt(itemStack, "Level");
     }
 
-    private void setLevel(ItemStack itemStack, int plus)
+    protected void setLevel(ItemStack itemStack, int plus)
     {
         NBTHelper.setInteger(itemStack, "Level", level + plus);
     }
@@ -65,8 +65,16 @@ public class ItemLevelingSword extends ItemSword
     {
         if (entityLiving != null)
         {
-            itemStack.setItemDamage(itemStack.getItemDamage() - 10);
-            if (itemStack.getItemDamage() == 0)
+            if (getLevel(itemStack) >= 2)
+            {
+                itemStack.setItemDamage(itemStack.getItemDamage()
+                        - entityLiving.getMaxHealth() / getLevel(itemStack));
+            } else
+            {
+                itemStack.setItemDamage(itemStack.getItemDamage()
+                        - entityLiving.getMaxHealth());
+            }
+            if (itemStack.getItemDamage() == 0 && getLevel(itemStack) < 25)
             {
                 itemStack.setItemDamage(itemStack.getMaxDamage() - 1);
                 setLevel(itemStack, 1);
@@ -80,7 +88,6 @@ public class ItemLevelingSword extends ItemSword
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void onUpdate(ItemStack itemStack, World world, Entity entity,
             int par4, boolean par5)
     {
@@ -90,12 +97,25 @@ public class ItemLevelingSword extends ItemSword
             if (entity instanceof EntityPlayer)
             {
                 EntityPlayer player = (EntityPlayer) entity;
-                if (player.inventory.currentItem == itemID)
+                if (player.inventory.hasItemStack(itemStack))
                 {
-                    if (player.inventory.getCurrentItem().getItemDamage() == 0)
+                    if (player.inventory.getCurrentItem() == itemStack)
                     {
-                        itemStack.setItemDamage(itemStack.getMaxDamage() - 1);
-                        setLevel(itemStack, 1);
+                        if (getLevel(itemStack) >= 5)
+                        {
+                            player.addPotionEffect(new PotionEffect(5, -1,
+                                    getLevel(itemStack) / 5 - 1));
+                        } else
+                        {
+                        }
+                        if (player.inventory.getCurrentItem().getItemDamage() == 0
+                                && getLevel(itemStack) < 25)
+                        {
+                            itemStack
+                                    .setItemDamage(itemStack.getMaxDamage() - 1);
+                            setLevel(itemStack, 1);
+                        }
+
                     }
                 }
             }
@@ -112,5 +132,4 @@ public class ItemLevelingSword extends ItemSword
         infoList.add("Level " + getLevel(itemStack) + " EXP: "
                 + (max - itemStack.getItemDamage()) + "/" + max);
     }
-
 }

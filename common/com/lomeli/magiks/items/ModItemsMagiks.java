@@ -7,9 +7,11 @@ import net.minecraft.item.ItemStack;
 
 import com.lomeli.magiks.api.libs.MagiksArrays;
 import com.lomeli.magiks.blocks.ModBlocksMagiks;
+import com.lomeli.magiks.core.config.ConfigMod;
 import com.lomeli.magiks.items.magik.ItemAmulets;
 import com.lomeli.magiks.items.magik.ItemFlyingRing;
 import com.lomeli.magiks.items.magik.ItemPirasVarinha;
+import com.lomeli.magiks.items.magik.ItemWands;
 import com.lomeli.magiks.items.tools.ItemEmpoweredPick;
 import com.lomeli.magiks.items.tools.ItemLevelingSword;
 import com.lomeli.magiks.items.tools.ItemMiningWands;
@@ -35,12 +37,14 @@ public class ModItemsMagiks
     public static Item deprivedDust;
 
     // wands
+    public static Item basicWand;
+    public static Item chemistWand;
+    public static Item alchemistWand;
     public static Item pirasVarinha;
     public static Item diggersWand;
 
-    public static Item[] magikItems = new Item[] { flyingRing, pirasVarinha,
-            diggersWand, emeraldAmulet };
-
+    public static Item wand;
+    
     public static void registerItems()
     {
         flyingRing = new ItemFlyingRing(Ints.flyingRingID, "flyingring")
@@ -67,11 +71,18 @@ public class ModItemsMagiks
         deprivedDust = new ItemGeneric(Ints.deprivedDustID,
                 "deprivedglowstone", false).setUnlocalizedName("deprivedDust");
 
+        basicWand = new ItemWands(Ints.basicWandID, "basicwand", false, 50)
+                .setUnlocalizedName("basicwand");
+        chemistWand = new ItemWands(Ints.chemistWandID, "chemistwand", false, 100)
+                .setUnlocalizedName("chemistwand");
+        alchemistWand = new ItemWands(Ints.alchemistWandID, "alchemistwand", true, 300)
+                .setUnlocalizedName("alchemistwand");
+        
         neonitePick = new ItemEmpoweredPick(Ints.empoweredPickID,
                 EnumToolMaterial.IRON, "pickaxeEmpowered")
                 .setUnlocalizedName("empoweredPick");
         levelingSword = new ItemLevelingSword(9000, EnumToolMaterial.IRON,
-                "pickaxeEmpowered").setUnlocalizedName("lvlSword");
+                "levelingsword").setUnlocalizedName("lvlSword");
         pirasVarinha = new ItemPirasVarinha(Ints.pirasVarinhaID,
                 "pirasvarinha", false).setUnlocalizedName("pirasvarinha");
         diggersWand = new ItemMiningWands(Ints.diggersWandID, "diggerswand",
@@ -81,7 +92,7 @@ public class ModItemsMagiks
         LanguageRegistry.addName(neoniteGem, "Neonite Gem");
         LanguageRegistry.addName(neonitePick, "Neonite Pickaxe");
         LanguageRegistry.addName(enchantedDiamond, "Enchanted Diamond");
-        LanguageRegistry.addName(levelingSword, "RPGer's Sword");
+        LanguageRegistry.addName(levelingSword, "Sir Spencer's Blade");
         LanguageRegistry.addName(ironBand, "Iron Band");
         LanguageRegistry.addName(ironStick, "Iron Stick");
         LanguageRegistry.addName(emeraldAmulet, "Emerald Amulet");
@@ -92,6 +103,9 @@ public class ModItemsMagiks
         LanguageRegistry.addName(mistPanel, "Light Hungry Plates");
         LanguageRegistry.addName(darkMatter, "Dark Matter");
         LanguageRegistry.addName(deprivedDust, "Deprived Glowstone");
+        LanguageRegistry.addName(basicWand, "Basic Wand");
+        LanguageRegistry.addName(chemistWand, "Chemist's Wand");
+        LanguageRegistry.addName(alchemistWand, "Alchemist's Wand");
     }
 
     public static void registerItemRecipes()
@@ -110,7 +124,7 @@ public class ModItemsMagiks
                 'R', Item.redstone, 'F', Item.feather });
         GameRegistry.addRecipe(new ItemStack(darkMatter, 1), new Object[] {
                 "GMG", "MOM", "GMG", 'G', neoniteGem, 'M',
-                ModBlocksMagiks.manceryBlock, 'O', Block.obsidian });
+                ModBlocksMagiks.manceryBlock, 'O', enchantedDiamond });
         GameRegistry.addShapelessRecipe(new ItemStack(deprivedDust, 1), new Object[] {
                 Item.lightStoneDust, Block.slowSand, ingotStamatic });
         GameRegistry.addRecipe(new ItemStack(mistPanel, 1), new Object[] { "RDR",
@@ -120,9 +134,12 @@ public class ModItemsMagiks
         GameRegistry.addRecipe(new ItemStack(neonitePick, 1), new Object[] {
                 "GDG", "EIE", " I ", 'G', enchantedDiamond, 'D',
                 Item.pickaxeDiamond, 'E', neoniteGem, 'I', ironStick });
-        GameRegistry.addRecipe(new ItemStack(pirasVarinha, 1), new Object[] {
-                "GNG", "IGI", "IGI", 'G', Item.ingotGold, 'N',
-                enchantedDiamond, 'I', ingotIgnious });
+        if(!ConfigMod.disablePiras)
+        {
+            GameRegistry.addRecipe(new ItemStack(pirasVarinha, 1), new Object[] {
+                "GNG", "IGI", "IWI", 'G', Item.ingotGold, 'N',
+                enchantedDiamond, 'I', ingotIgnious, 'W',(new ItemStack(alchemistWand, -1, 0)) });
+        }
     }
 
     public static void registerFurnaceRecipes()
@@ -139,5 +156,12 @@ public class ModItemsMagiks
         MagiksArrays.rechargeableItems.add(new ItemStack(pirasVarinha));
         MagiksArrays.rechargeableItems.add(new ItemStack(emeraldAmulet));
         MagiksArrays.rechargeableItems.add(new ItemStack(diggersWand));
+        MagiksArrays.rechargeableItems.add(new ItemStack(basicWand));
+        MagiksArrays.rechargeableItems.add(new ItemStack(chemistWand));
+        MagiksArrays.rechargeableItems.add(new ItemStack(alchemistWand));
+        
+        MagiksArrays.damageOnCraft.add(new ItemStack(basicWand));
+        MagiksArrays.damageOnCraft.add(new ItemStack(chemistWand));
+        MagiksArrays.damageOnCraft.add(new ItemStack(alchemistWand));
     }
 }

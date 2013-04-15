@@ -5,8 +5,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
+//import net.minecraft.util.MathHelper;
+//import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 import com.lomeli.magiks.Magiks;
@@ -45,7 +45,7 @@ public class ItemEmpoweredPick extends ItemPickaxe
     public ItemStack onItemRightClick(ItemStack itemStack, World world,
             EntityPlayer player)
     {
-        Vec3 look = player.getLookVec();
+        /*Vec3 look = player.getLookVec();
 
         int x = (int) (player.posX + look.xCoord * 4);
         int y = (int) (player.posY + look.yCoord * 4);
@@ -54,7 +54,7 @@ public class ItemEmpoweredPick extends ItemPickaxe
         int side = MathHelper
                 .floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         world.destroyBlock(x, y, z, true);
-        player.sendChatToPlayer("" + side);
+        player.sendChatToPlayer("" + side);*/
         return itemStack;
     }
 

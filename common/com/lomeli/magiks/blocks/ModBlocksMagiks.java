@@ -37,10 +37,10 @@ public class ModBlocksMagiks
                 .setResistance(1000F).setHardness(3F);
         manceryBlock = new BlockMecroBlock(Ints.manceryBlockID, Material.rock,
                 "manceryblock").setUnlocalizedName("manceryblock")
-                .setHardness(0.5F).setResistance(100F);
+                .setHardness(0.5F).setResistance(5000F);
         manceryGlass = new BlockMecroGlass(Ints.manceryGlassID, Material.glass,
                 "manceryglass").setUnlocalizedName("manceryglass")
-                .setHardness(0.5F).setResistance(100F);
+                .setHardness(0.5F).setResistance(5000F);
         stamaticOre = new BlockMagiks(Ints.stamaticOreID, Material.rock,
                 "orestamatic").setUnlocalizedName("orestamatic")
                 .setHardness(3F).setResistance(5F);
@@ -48,7 +48,7 @@ public class ModBlocksMagiks
                 "oreignious").setUnlocalizedName("oreignious").setHardness(3F)
                 .setResistance(5F);
         solarMistCollector = new BlockSolarMistCollector(Ints.solarGenID,
-                Material.rock, "solar")
+                Material.rock, "solarmistcollector")
                 .setUnlocalizedName("solarmistcollector").setHardness(3F)
                 .setResistance(100F);
 

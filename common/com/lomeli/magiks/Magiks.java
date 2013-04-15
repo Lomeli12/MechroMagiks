@@ -8,10 +8,10 @@ import com.lomeli.magiks.blocks.worldgen.MagikWorldGen;
 import com.lomeli.magiks.core.CommonProxy;
 import com.lomeli.magiks.core.CreativeTabSIW;
 import com.lomeli.magiks.core.config.ConfigMod;
-import com.lomeli.magiks.core.handler.EntityLivingHandler;
 import com.lomeli.magiks.core.handler.GuiHandler;
 import com.lomeli.magiks.core.handler.ItemDroppedHandler;
 import com.lomeli.magiks.core.handler.PlayerInteractHandler;
+import com.lomeli.magiks.core.handler.WandCraftingHandler;
 import com.lomeli.magiks.items.ModItemsMagiks;
 import com.lomeli.magiks.lib.Strings;
 
@@ -59,7 +59,6 @@ public class Magiks
         NetworkRegistry.instance().registerGuiHandler(this, guih);
 
         MinecraftForge.EVENT_BUS.register(new ItemDroppedHandler());
-        MinecraftForge.EVENT_BUS.register(new EntityLivingHandler());
         MinecraftForge.EVENT_BUS.register(new PlayerInteractHandler());
 
         ModItemsMagiks.registerItems();
@@ -74,7 +73,8 @@ public class Magiks
         ModItemsMagiks.registerFurnaceRecipes();
 
         GameRegistry.registerWorldGenerator(new MagikWorldGen());
-
+        GameRegistry.registerCraftingHandler(new WandCraftingHandler());
+        
         proxy.registerRenderThings();
 
     }

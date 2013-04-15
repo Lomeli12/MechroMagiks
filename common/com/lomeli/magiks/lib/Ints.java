@@ -13,6 +13,9 @@ public class Ints
     public static int deprivedDustID;
     public static int mistPanelID;
 
+    public static int basicWandID;
+    public static int chemistWandID;
+    public static int alchemistWandID;
     public static int pirasVarinhaID;
     public static int diggersWandID;
 

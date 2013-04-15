@@ -8,8 +8,8 @@ import com.lomeli.magiks.lib.Ints;
 
 public class ConfigMod
 {
-
     public static boolean capesEnabled;
+    public static boolean disablePiras;
 
     public static void configureItemID(String loc)
     {
@@ -38,10 +38,14 @@ public class ConfigMod
 
         Ints.empoweredPickID = config.get("Tools", "EmpoweredPick", 7020)
                 .getInt(7020);
-        Ints.pirasVarinhaID = config.get("Tools", "FireWand", 7021)
+        Ints.pirasVarinhaID = config.get("Wands", "FireWand", 7021)
                 .getInt(7021);
-        Ints.diggersWandID = config.get("Tools", "MiningWand-Level0", 7022)
+        Ints.diggersWandID = config.get("Wands", "MiningWand-Level0", 7022)
                 .getInt(7022);
+        
+        Ints.basicWandID = config.get("Wands", "basicwand", 7023).getInt(7023);
+        Ints.chemistWandID = config.get("Wands", "chemistwand", 7024).getInt(7024);
+        Ints.alchemistWandID = config.get("Wands", "alchemistwand", 7025).getInt(7025);
 
         Ints.enchantedOreID = config.get("Blocks", "EnchantedOre", 700).getInt(
                 100);
@@ -70,6 +74,7 @@ public class ConfigMod
         config.load();
 
         capesEnabled = config.get(null, "capesEnabled", true).getBoolean(true);
+        disablePiras = config.get(null, "disablePiras", false).getBoolean(false);
 
         config.save();
     }

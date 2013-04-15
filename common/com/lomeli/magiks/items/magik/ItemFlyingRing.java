@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 
 import com.lomeli.magiks.Magiks;
 import com.lomeli.magiks.core.helper.ItemHelper;
+import com.lomeli.magiks.core.helper.RechargeHelper;
 import com.lomeli.magiks.items.ModItemsMagiks;
 import com.lomeli.magiks.lib.Strings;
 
@@ -58,86 +59,12 @@ public class ItemFlyingRing extends Item
                 + max);
     }
 
-    public static void recharge(EntityPlayer player, ItemStack itemStack)
-    {
-        if (player != null)
-        {
-            if (itemStack.getItemDamage() != 0)
-            {
-                if (player.inventory.hasItem(Item.lightStoneDust.itemID))
-                {
-                    player.inventory
-                            .consumeInventoryItem(Item.lightStoneDust.itemID);
-                    itemStack.setItemDamage(itemStack.getItemDamage() - 100);
-                } else if (player.inventory.hasItem(Item.coal.itemID))
-                {
-                    player.inventory.consumeInventoryItem(Item.coal.itemID);
-                    itemStack.setItemDamage(itemStack.getItemDamage() - 50);
-                } else if (player.inventory.hasItem(Item.redstone.itemID))
-                {
-                    player.inventory.consumeInventoryItem(Item.redstone.itemID);
-                    itemStack.setItemDamage(itemStack.getItemDamage() - 25);
-                } else
-                {
-                    player.capabilities.allowFlying = false;
-                    player.capabilities.isFlying = false;
-                }
-            } else
-            {
-            }
-        } else
-        {
-        }
-    }
-
-    public static void forcedRecharge(EntityPlayer player, ItemStack itemStack)
-    {
-        if (player != null)
-        {
-            if (itemStack.getItemDamage() > 0)
-            {
-                if (player.inventory.hasItem(Item.lightStoneDust.itemID))
-                {
-                    while (itemStack.getItemDamage() > 0)
-                    {
-                        player.inventory
-                                .consumeInventoryItem(Item.lightStoneDust.itemID);
-                        itemStack
-                                .setItemDamage(itemStack.getItemDamage() - 100);
-                    }
-                } else if (player.inventory.hasItem(Item.coal.itemID))
-                {
-                    while (itemStack.getItemDamage() > 0)
-                    {
-                        player.inventory.consumeInventoryItem(Item.coal.itemID);
-                        itemStack.setItemDamage(itemStack.getItemDamage() - 50);
-                    }
-                } else if (player.inventory.hasItem(Item.redstone.itemID))
-                {
-                    while (itemStack.getItemDamage() > 0)
-                    {
-                        player.inventory
-                                .consumeInventoryItem(Item.redstone.itemID);
-                        itemStack.setItemDamage(itemStack.getItemDamage() - 25);
-                    }
-                } else
-                {
-                }
-            } else
-            {
-            }
-        } else
-        {
-        }
-    }
-
     @Override
     @SideOnly(Side.CLIENT)
     public ItemStack onItemRightClick(ItemStack itemStack, World world,
             EntityPlayer player)
     {
-        recharge(player, itemStack);
-        // itemStack.setItemDamage(itemStack.getMaxDamage() - 1);
+        RechargeHelper.recharge(player, itemStack);
         return itemStack;
     }
 
@@ -161,38 +88,39 @@ public class ItemFlyingRing extends Item
                             ItemStack amulet = new ItemStack(
                                     ModItemsMagiks.emeraldAmulet);
                             player.capabilities.allowFlying = true;
-                            if (player.capabilities.isFlying == true)
+                            if(player.inventory.hasItemStack(amulet))
                             {
-                                if (player.inventory.hasItemStack(amulet))
+                                int slot = helper.getSlotContainingItem(amulet.itemID, player.inventory.mainInventory);
+                                player.sendChatToPlayer(""+slot);
+                                ItemStack item = player.inventory.mainInventory[slot];
+                                if(item.getItemDamage() <= (item.getMaxDamage() - 1))
                                 {
-                                    helper.getItem(
-                                            player,
-                                            helper.getSlotContainingItem(
-                                                    amulet.itemID,
-                                                    player.inventory.mainInventory))
-                                            .damageItem(1, player);
-                                } else
-                                {
-                                    itemStack.damageItem(1, player);
+                                    if (player.capabilities.isFlying)
+                                        item.damageItem(1, player);
+                                    else if(player.fallDistance >= 4F)
+                                        item.damageItem((int)(player.fallDistance/4F), player);
+                                    else {}
                                 }
-                            } else if (player.fallDistance >= 4F)
+                                else
+                                {
+                                    if (player.capabilities.isFlying)
+                                        itemStack.damageItem(1, player);
+                                    else if(player.fallDistance >= 4F)
+                                        itemStack.damageItem((int)(player.fallDistance/4F), player);
+                                    else {}
+                                }
+                            }
+                            else
                             {
-                                if (player.inventory.hasItemStack(amulet))
-                                {
-                                    helper.getItem(
-                                            player,
-                                            helper.getSlotContainingItem(
-                                                    amulet.itemID,
-                                                    player.inventory.mainInventory))
-                                            .damageItem(1, player);
-                                } else
-                                {
+                                if (player.capabilities.isFlying)
                                     itemStack.damageItem(1, player);
-                                }
+                                else if(player.fallDistance >= 4F)
+                                    itemStack.damageItem((int)(player.fallDistance/4F), player);
+                                else {}
                             }
                         } else
                         {
-                            forcedRecharge(player, itemStack);
+                            RechargeHelper.forcedRecharge(player, itemStack);
                             player.capabilities.allowFlying = false;
                             player.capabilities.isFlying = false;
                         }
@@ -202,9 +130,7 @@ public class ItemFlyingRing extends Item
                         player.capabilities.isFlying = false;
                     }
                 } else
-                {
                     player.capabilities.allowFlying = true;
-                }
             }
         }
     }

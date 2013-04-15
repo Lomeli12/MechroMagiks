@@ -7,19 +7,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import com.lomeli.magiks.core.helper.NBTHelper;
-import com.lomeli.magiks.items.ItemGenericMagik;
+import com.lomeli.magiks.items.ItemGeneric;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemAmulets extends ItemGenericMagik
+public class ItemAmulets extends ItemGeneric
 {
 
+    @SuppressWarnings("unused")
     private String owner;
 
     public ItemAmulets(int par1, String Texture, boolean special, int magik)
     {
-        super(par1, Texture, special, magik);
+        super(par1, Texture, special);
         this.setMaxDamage(magik);
         this.setMaxStackSize(1);
         owner = "";
@@ -27,7 +28,7 @@ public class ItemAmulets extends ItemGenericMagik
 
     private void setOwner(ItemStack itemStack, EntityPlayer player)
     {
-        NBTHelper.setString(itemStack, "owner", player.username.toLowerCase());
+        NBTHelper.setString(itemStack, "owner", player.username);
         NBTHelper.setBoolean(itemStack, "ownerset", true);
     }
 
@@ -39,7 +40,7 @@ public class ItemAmulets extends ItemGenericMagik
 
     public String getOwner(ItemStack itemStack)
     {
-        return NBTHelper.getString(itemStack, "owner").toLowerCase();
+        return NBTHelper.getString(itemStack, "owner");
     }
 
     public boolean isOwnerSet(ItemStack itemStack)
@@ -52,10 +53,10 @@ public class ItemAmulets extends ItemGenericMagik
     public ItemStack onItemRightClick(ItemStack itemStack, World world,
             EntityPlayer player)
     {
-        if (isOwnerSet(itemStack) && owner != "" || isOwnerSet(itemStack)
-                || owner != "")
+        if (isOwnerSet(itemStack) && this.getOwner(itemStack) != "" || isOwnerSet(itemStack)
+                || this.getOwner(itemStack) != "")
         {
-            if (player.username.toLowerCase() == owner.toLowerCase())
+            if (player.username.toLowerCase() == this.getOwner(itemStack))
             {
                 removeOwner(itemStack);
             } else
@@ -80,7 +81,7 @@ public class ItemAmulets extends ItemGenericMagik
                 + itemStack.getMaxDamage());
         if (isOwnerSet(itemStack))
         {
-            infoList.add("Owner: " + getOwner(itemStack));
+            infoList.add("Owner: " + this.getOwner(itemStack));
         }
 
     }
