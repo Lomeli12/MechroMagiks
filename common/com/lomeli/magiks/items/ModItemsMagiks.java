@@ -138,7 +138,7 @@ public class ModItemsMagiks
         {
             GameRegistry.addRecipe(new ItemStack(pirasVarinha, 1), new Object[] {
                 "GNG", "IGI", "IWI", 'G', Item.ingotGold, 'N',
-                enchantedDiamond, 'I', ingotIgnious, 'W',(new ItemStack(alchemistWand, -1, 0)) });
+                enchantedDiamond, 'I', ingotIgnious, 'W',(new ItemStack(alchemistWand, 1, -1)) });
         }
     }
 
