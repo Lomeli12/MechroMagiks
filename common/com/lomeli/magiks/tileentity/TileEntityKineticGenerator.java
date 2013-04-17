@@ -197,7 +197,7 @@ public class TileEntityKineticGenerator extends TileEntity implements
             if (fuel != null && canUseAsFuel(fuel))
             {
                 ++generationTime;
-                if (generationTime >= 200)
+                if (generationTime >= 100)
                 {
                     generationTime = 0;
                     this.decrStackSize(1, 1);

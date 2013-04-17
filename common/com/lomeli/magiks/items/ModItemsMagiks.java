@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 
 import com.lomeli.magiks.api.libs.MagiksArrays;
 import com.lomeli.magiks.blocks.ModBlocksMagiks;
-import com.lomeli.magiks.core.config.ConfigMod;
 import com.lomeli.magiks.items.magik.ItemAmulets;
 import com.lomeli.magiks.items.magik.ItemFlyingRing;
 import com.lomeli.magiks.items.magik.ItemPirasVarinha;
@@ -44,7 +43,7 @@ public class ModItemsMagiks
     public static Item diggersWand;
 
     public static Item wand;
-    
+
     public static void registerItems()
     {
         flyingRing = new ItemFlyingRing(Ints.flyingRingID, "flyingring")
@@ -73,11 +72,11 @@ public class ModItemsMagiks
 
         basicWand = new ItemWands(Ints.basicWandID, "basicwand", false, 50)
                 .setUnlocalizedName("basicwand");
-        chemistWand = new ItemWands(Ints.chemistWandID, "chemistwand", false, 100)
-                .setUnlocalizedName("chemistwand");
-        alchemistWand = new ItemWands(Ints.alchemistWandID, "alchemistwand", true, 300)
-                .setUnlocalizedName("alchemistwand");
-        
+        chemistWand = new ItemWands(Ints.chemistWandID, "chemistwand", false,
+                100).setUnlocalizedName("chemistwand");
+        alchemistWand = new ItemWands(Ints.alchemistWandID, "alchemistwand",
+                true, 300).setUnlocalizedName("alchemistwand");
+
         neonitePick = new ItemEmpoweredPick(Ints.empoweredPickID,
                 EnumToolMaterial.IRON, "pickaxeEmpowered")
                 .setUnlocalizedName("empoweredPick");
@@ -125,21 +124,23 @@ public class ModItemsMagiks
         GameRegistry.addRecipe(new ItemStack(darkMatter, 1), new Object[] {
                 "GMG", "MOM", "GMG", 'G', neoniteGem, 'M',
                 ModBlocksMagiks.manceryBlock, 'O', enchantedDiamond });
-        GameRegistry.addShapelessRecipe(new ItemStack(deprivedDust, 1), new Object[] {
-                Item.lightStoneDust, Block.slowSand, ingotStamatic });
-        GameRegistry.addRecipe(new ItemStack(mistPanel, 1), new Object[] { "RDR",
-                "DSD", "RDR", 'R', Item.redstone, 'S', Block.daylightSensor,
-                'D', deprivedDust });
+        GameRegistry.addShapelessRecipe(new ItemStack(deprivedDust, 1),
+                new Object[] { Item.lightStoneDust, Block.slowSand,
+                        ingotStamatic });
+        GameRegistry.addRecipe(new ItemStack(mistPanel, 1), new Object[] {
+                "RDR", "DSD", "RDR", 'R', Item.redstone, 'S',
+                Block.daylightSensor, 'D', deprivedDust });
 
         GameRegistry.addRecipe(new ItemStack(neonitePick, 1), new Object[] {
                 "GDG", "EIE", " I ", 'G', enchantedDiamond, 'D',
                 Item.pickaxeDiamond, 'E', neoniteGem, 'I', ironStick });
-        if(!ConfigMod.disablePiras)
-        {
-            GameRegistry.addRecipe(new ItemStack(pirasVarinha, 1), new Object[] {
+        GameRegistry.addRecipe(new ItemStack(pirasVarinha, 1), new Object[] {
                 "GNG", "IGI", "IWI", 'G', Item.ingotGold, 'N',
-                enchantedDiamond, 'I', ingotIgnious, 'W',(new ItemStack(alchemistWand, 1, -1)) });
-        }
+                enchantedDiamond, 'I', ingotIgnious, 'W',
+                new ItemStack(alchemistWand, 1, -1) });
+        GameRegistry.addRecipe(new ItemStack(levelingSword), new Object[] {
+                " I ", " I ", "GDG", 'I', Item.ingotIron, 'G', neoniteGem, 'D',
+                darkMatter });
     }
 
     public static void registerFurnaceRecipes()
@@ -159,7 +160,7 @@ public class ModItemsMagiks
         MagiksArrays.rechargeableItems.add(new ItemStack(basicWand));
         MagiksArrays.rechargeableItems.add(new ItemStack(chemistWand));
         MagiksArrays.rechargeableItems.add(new ItemStack(alchemistWand));
-        
+
         MagiksArrays.damageOnCraft.add(new ItemStack(basicWand));
         MagiksArrays.damageOnCraft.add(new ItemStack(chemistWand));
         MagiksArrays.damageOnCraft.add(new ItemStack(alchemistWand));

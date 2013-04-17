@@ -36,6 +36,8 @@ public class MagiksArrays
      */
     public static List<ItemStack> flyingRingFuel = new ArrayList<ItemStack>();
     
-    
+    /**
+     * Damages items when used in crafting recipe
+     */
     public static List<ItemStack> damageOnCraft = new ArrayList<ItemStack>();
 }

@@ -13,4 +13,6 @@ public class Strings
     public static String kineticGenName = "Kinetic Generator";
     public static String containerSolarGen = "container.solargen";
     public static String solarGenName = "Solar Mist Collector";
+    public static String containerDupeFurnace= "container.dupefurnace";
+    public static String dupeFurnaceName = "Duplication Furnace";
 }

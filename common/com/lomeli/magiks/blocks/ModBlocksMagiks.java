@@ -21,7 +21,7 @@ public class ModBlocksMagiks
 {
     public static Block neoniteOre, neoniteBlock, kineticGenerator,
             manceryBlock, manceryGlass, stamaticOre, igniousOre,
-            solarMistCollector;
+            solarMistCollector, mistCrafter;
 
     public static void registerBlocks()
     {
@@ -51,6 +51,8 @@ public class ModBlocksMagiks
                 Material.rock, "solarmistcollector")
                 .setUnlocalizedName("solarmistcollector").setHardness(3F)
                 .setResistance(100F);
+        mistCrafter = new BlockMistCrafter(800, Material.anvil)
+                .setUnlocalizedName("MistCrafter").setResistance(100F);
 
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");
         GameRegistry.registerBlock(neoniteBlock, "Neonite Block");
@@ -60,6 +62,7 @@ public class ModBlocksMagiks
         GameRegistry.registerBlock(stamaticOre, "Stamatic Ore");
         GameRegistry.registerBlock(igniousOre, "Ignious Ore");
         GameRegistry.registerBlock(solarMistCollector, "Solar Mist Collector");
+        GameRegistry.registerBlock(mistCrafter, "Mist Crafting Table");
 
         LanguageRegistry.addName(neoniteOre, "Neonite Ore");
         LanguageRegistry.addName(neoniteBlock, "Neonite Block");
@@ -69,6 +72,7 @@ public class ModBlocksMagiks
         LanguageRegistry.addName(stamaticOre, "Statmatic Ore");
         LanguageRegistry.addName(igniousOre, "Ignious Ore");
         LanguageRegistry.addName(solarMistCollector, "Solar Mist Collector");
+        LanguageRegistry.addName(mistCrafter, "Mist Crafting Table");
 
         MinecraftForge.setBlockHarvestLevel(neoniteOre, "pickaxe", 2);
         MinecraftForge.setBlockHarvestLevel(neoniteBlock, "pickaxe", 2);
