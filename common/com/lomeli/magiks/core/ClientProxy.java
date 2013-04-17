@@ -8,6 +8,8 @@ import com.lomeli.magiks.client.render.item.ItemSolarMistCollectorRenderer;
 import com.lomeli.magiks.core.DeveloperCapesAPI.DeveloperCapesAPI;
 import com.lomeli.magiks.core.config.ConfigMod;
 import com.lomeli.magiks.lib.RenderIDs;
+import com.lomeli.magiks.tileentity.TileEntityMultiFurnaceDummy;
+import com.lomeli.magiks.tileentity.TileEntityMultiFurnaceCore;
 import com.lomeli.magiks.tileentity.TileEntityKineticGenerator;
 import com.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
 import com.lomeli.magiks.tileentity.renderer.TileEntityKineticGeneratorRenderer;
@@ -15,11 +17,12 @@ import com.lomeli.magiks.tileentity.renderer.TileEntitySolarMistCollectorRendere
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ClientProxy extends CommonProxy
 {
     @Override
-    public void registerRenderThings()
+    public void registerThings()
     {
         RenderIDs.kineticGID = RenderingRegistry.getNextAvailableRenderId();
         RenderIDs.solarGID = RenderingRegistry.getNextAvailableRenderId();
@@ -42,6 +45,9 @@ public class ClientProxy extends CommonProxy
                 "keneticGen", new TileEntityKineticGeneratorRenderer());
         ClientRegistry.registerTileEntity(TileEntitySolarMistCollector.class,
                 "solarGen", new TileEntitySolarMistCollectorRenderer());
+        
+        GameRegistry.registerTileEntity(TileEntityMultiFurnaceCore.class,"dupefurnace");
+        GameRegistry.registerTileEntity(TileEntityMultiFurnaceDummy.class,"dupedummy");
 
         renderCapes(ConfigMod.capesEnabled);
     }

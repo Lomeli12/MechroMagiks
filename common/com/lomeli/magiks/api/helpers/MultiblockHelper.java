@@ -1,8 +1,8 @@
 package com.lomeli.magiks.api.helpers;
 
 /**
- * This is a (very poorly written) helper that will allow you to make simple
- * multi-block structures.
+ * This is a (very poorly written) helper that will allow you to make very 
+ * simple multi-block structures.
  * 
  * All you have to do is have an if statement call upon these methods in your
  * block's onBlockActivated method, and have it do something when it's true
@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 
 public class MultiblockHelper
 {
+
     public static boolean oneByTwo(Block block, World world, int x, int y, int z)
     {
         if (world.blockExists(x, y, z))
@@ -40,32 +41,4 @@ public class MultiblockHelper
         return false;
     }
 
-    public static boolean twoByTwo(Block block, World world, int x, int y, int z)
-    {
-        if (world.blockExists(x, y, z))
-        {
-            if (world.getBlockId(x, y, z) == block.blockID
-                    && world.getBlockId(x + 1, y, z) == block.blockID
-                    && world.getBlockId(x, y, z + 1) == block.blockID
-                    && world.getBlockId(x + 1, y, z + 1) == block.blockID)
-                return true;
-            else if (world.getBlockId(x, y, z) == block.blockID
-                    && world.getBlockId(x + 1, y, z) == block.blockID
-                    && world.getBlockId(x, y, z - 1) == block.blockID
-                    && world.getBlockId(x + 1, y, z - 1) == block.blockID)
-                return true;
-            else if (world.getBlockId(x, y, z) == block.blockID
-                    && world.getBlockId(x - 1, y, z) == block.blockID
-                    && world.getBlockId(x, y, z + 1) == block.blockID
-                    && world.getBlockId(x - 1, y, z + 1) == block.blockID)
-                return true;
-            else if (world.getBlockId(x, y, z) == block.blockID
-                    && world.getBlockId(x - 1, y, z) == block.blockID
-                    && world.getBlockId(x, y, z - 1) == block.blockID
-                    && world.getBlockId(x - 1, y, z - 1) == block.blockID)
-                return true;
-        } else
-            return false;
-        return false;
-    }
 }

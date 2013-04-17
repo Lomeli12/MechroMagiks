@@ -18,7 +18,7 @@ public class TileEntityKineticGenerator extends TileEntity implements
         IInventory, IMagiks
 {
     private ItemStack[] inventory;
-    private int maxMistLevel = 3000, mistLevel, heatLevel, generationTime = 0,
+    public int maxMistLevel = 3000, mistLevel, heatLevel, generationTime = 0,
             coolDown = 0;
 
     public TileEntityKineticGenerator()

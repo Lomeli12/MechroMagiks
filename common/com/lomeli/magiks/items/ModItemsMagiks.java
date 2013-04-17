@@ -34,6 +34,8 @@ public class ModItemsMagiks
     public static Item darkMatter;
     public static Item mistPanel;
     public static Item deprivedDust;
+    public static Item burningUpgrade;
+    public static Item ironPlate;
 
     // wands
     public static Item basicWand;
@@ -69,6 +71,11 @@ public class ModItemsMagiks
                 .setUnlocalizedName("darkmatter");
         deprivedDust = new ItemGeneric(Ints.deprivedDustID,
                 "deprivedglowstone", false).setUnlocalizedName("deprivedDust");
+        burningUpgrade = new ItemGeneric(Ints.burningUpgradeID,
+                "burningupgrade", false).setUnlocalizedName("burningupgrade")
+                .setMaxStackSize(2);
+        ironPlate = new ItemGeneric(Ints.ironPlateID, "ironplate", false)
+                .setUnlocalizedName("ironplate");
 
         basicWand = new ItemWands(Ints.basicWandID, "basicwand", false, 50)
                 .setUnlocalizedName("basicwand");
@@ -105,6 +112,8 @@ public class ModItemsMagiks
         LanguageRegistry.addName(basicWand, "Basic Wand");
         LanguageRegistry.addName(chemistWand, "Chemist's Wand");
         LanguageRegistry.addName(alchemistWand, "Alchemist's Wand");
+        LanguageRegistry.addName(ironPlate, "Iron Plate");
+        LanguageRegistry.addName(burningUpgrade, "Burning Upgrade");
     }
 
     public static void registerItemRecipes()
@@ -128,8 +137,15 @@ public class ModItemsMagiks
                 new Object[] { Item.lightStoneDust, Block.slowSand,
                         ingotStamatic });
         GameRegistry.addRecipe(new ItemStack(mistPanel, 1), new Object[] {
-                "RDR", "DSD", "RDR", 'R', Item.redstone, 'S',
-                Block.daylightSensor, 'D', deprivedDust });
+                "RDR", "DSD", "III", 'R', Item.redstone, 'S',
+                Block.daylightSensor, 'D', deprivedDust, 'I',ironPlate });
+        GameRegistry.addShapelessRecipe(new ItemStack(ironPlate, 1), new Object[] {
+                Item.ingotIron, Item.netherQuartz, Block.stoneSingleSlab
+        });
+        GameRegistry.addRecipe(new ItemStack(burningUpgrade, 1), new Object[]{
+                " B ", "BEB","III", 'B',Item.blazePowder, 'E',Item.enderPearl,
+                'I',ironPlate
+        });
 
         GameRegistry.addRecipe(new ItemStack(neonitePick, 1), new Object[] {
                 "GDG", "EIE", " I ", 'G', enchantedDiamond, 'D',
@@ -141,6 +157,19 @@ public class ModItemsMagiks
         GameRegistry.addRecipe(new ItemStack(levelingSword), new Object[] {
                 " I ", " I ", "GDG", 'I', Item.ingotIron, 'G', neoniteGem, 'D',
                 darkMatter });
+        
+        GameRegistry.addRecipe(new ItemStack(basicWand, 1), new Object[] {
+                " IE","ISI","RI ", 'E', Item.emerald, 'R',Item.redstone,
+                'S',Item.stick, 'I',ingotStamatic
+        });
+        GameRegistry.addRecipe(new ItemStack(chemistWand, 1), new Object[] {
+            " IE","ISI","RI ", 'E', Item.lightStoneDust, 'R',Item.diamond,
+            'S',basicWand, 'I',ingotStamatic
+    });
+        GameRegistry.addRecipe(new ItemStack(alchemistWand, 1), new Object[] {
+            " IE","ISI","RI ", 'E', enchantedDiamond, 'R',darkMatter,
+            'S',chemistWand, 'I',ingotStamatic
+    });
     }
 
     public static void registerFurnaceRecipes()
@@ -164,5 +193,9 @@ public class ModItemsMagiks
         MagiksArrays.damageOnCraft.add(new ItemStack(basicWand));
         MagiksArrays.damageOnCraft.add(new ItemStack(chemistWand));
         MagiksArrays.damageOnCraft.add(new ItemStack(alchemistWand));
+        
+        MagiksArrays.wands.add(new ItemStack(basicWand));
+        MagiksArrays.wands.add(new ItemStack(chemistWand));
+        MagiksArrays.wands.add(new ItemStack(alchemistWand));
     }
 }

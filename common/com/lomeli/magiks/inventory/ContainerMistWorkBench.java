@@ -18,16 +18,16 @@ public class ContainerMistWorkBench extends Container
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public IInventory craftResult = new InventoryCraftResult();
     private World worldObj;
-    private int posX;
-    private int posY;
-    private int posZ;
+    //private int posX;
+    //private int posY;
+    //private int posZ;
     
     public ContainerMistWorkBench(InventoryPlayer inventoryPlayer, World world, int par3, int par4, int par5)
     {
         this.worldObj = world;
-        this.posX = par3;
-        this.posY = par4;
-        this.posZ = par5;
+       // this.posX = par3;
+        //this.posY = par4;
+        //this.posZ = par5;
         this.addSlotToContainer(new SlotMistCrafting(inventoryPlayer.player, this.craftMatrix, this.craftResult, 0, 124, 35));
         //int var6;
         //int var7;

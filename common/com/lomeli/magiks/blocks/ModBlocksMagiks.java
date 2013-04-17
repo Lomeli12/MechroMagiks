@@ -7,8 +7,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.lomeli.magiks.api.libs.MagiksArrays;
+import com.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
 import com.lomeli.magiks.blocks.machine.BlockKineticGenerator;
 import com.lomeli.magiks.blocks.machine.BlockSolarMistCollector;
+import com.lomeli.magiks.blocks.machine.parts.BlockMultiFurnaceDummy;
 import com.lomeli.magiks.blocks.machine.parts.BlockMecroBlock;
 import com.lomeli.magiks.blocks.machine.parts.BlockMecroGlass;
 import com.lomeli.magiks.items.ModItemsMagiks;
@@ -21,7 +23,7 @@ public class ModBlocksMagiks
 {
     public static Block neoniteOre, neoniteBlock, kineticGenerator,
             manceryBlock, manceryGlass, stamaticOre, igniousOre,
-            solarMistCollector, mistCrafter;
+            solarMistCollector, mistCrafter, dupeFurnace, burningStone, manceryBrick;
 
     public static void registerBlocks()
     {
@@ -51,8 +53,14 @@ public class ModBlocksMagiks
                 Material.rock, "solarmistcollector")
                 .setUnlocalizedName("solarmistcollector").setHardness(3F)
                 .setResistance(100F);
-        mistCrafter = new BlockMistCrafter(800, Material.anvil)
+        mistCrafter = new BlockMistCrafter(Ints.mistCrafterID, Material.anvil)
                 .setUnlocalizedName("MistCrafter").setResistance(100F);
+        manceryBrick = new BlockMagiks(Ints.manceryBrickID, Material.rock,
+                "mancerybricks").setUnlocalizedName("mancerybricks")
+                .setHardness(0.5F).setResistance(5000F);
+        
+        dupeFurnace = new BlockMultiFurnaceCore(Ints.dupeFurnaceID);
+        burningStone = new BlockMultiFurnaceDummy(Ints.dupeDummyID);
 
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");
         GameRegistry.registerBlock(neoniteBlock, "Neonite Block");
@@ -63,6 +71,9 @@ public class ModBlocksMagiks
         GameRegistry.registerBlock(igniousOre, "Ignious Ore");
         GameRegistry.registerBlock(solarMistCollector, "Solar Mist Collector");
         GameRegistry.registerBlock(mistCrafter, "Mist Crafting Table");
+        GameRegistry.registerBlock(dupeFurnace, "Piras Oven Core");
+        GameRegistry.registerBlock(burningStone, "Burning Stone");
+        GameRegistry.registerBlock(manceryBrick, "Mancery Brick");
 
         LanguageRegistry.addName(neoniteOre, "Neonite Ore");
         LanguageRegistry.addName(neoniteBlock, "Neonite Block");
@@ -73,6 +84,9 @@ public class ModBlocksMagiks
         LanguageRegistry.addName(igniousOre, "Ignious Ore");
         LanguageRegistry.addName(solarMistCollector, "Solar Mist Collector");
         LanguageRegistry.addName(mistCrafter, "Mist Crafting Table");
+        LanguageRegistry.addName(dupeFurnace, "Piras Oven Core");
+        LanguageRegistry.addName(burningStone, "Burning Stone");
+        LanguageRegistry.addName(manceryBrick, "Mancery Brick");
 
         MinecraftForge.setBlockHarvestLevel(neoniteOre, "pickaxe", 2);
         MinecraftForge.setBlockHarvestLevel(neoniteBlock, "pickaxe", 2);
@@ -96,6 +110,19 @@ public class ModBlocksMagiks
                 new Object[] { "D D", "PPP", "MMM", 'D',
                         ModItemsMagiks.darkMatter, 'P',
                         ModItemsMagiks.mistPanel, 'M', manceryBlock });
+        GameRegistry.addRecipe(new ItemStack(burningStone, 4), new Object[] {
+                "IBI","BRB","IBI",'I',ModItemsMagiks.ingotIgnious, 'B', manceryBrick,
+                'R',Item.ingotIron
+        });
+        GameRegistry.addRecipe(new ItemStack(manceryBrick, 4), new Object[] {
+                "BB","BB", 'B',manceryBlock
+        });
+        GameRegistry.addRecipe(new ItemStack(dupeFurnace, 1), new Object[] {
+                "BBB","BFB","BBB", 'B', burningStone, 'F',Block.furnaceIdle
+        });
+        GameRegistry.addRecipe(new ItemStack(dupeFurnace, 1), new Object[] {
+            "BBB","BFB","BBB", 'B', burningStone, 'F',Block.furnaceBurning
+    });
     }
 
     public static void registerKinGenFuel()

@@ -2,8 +2,14 @@ package com.lomeli.magiks.core;
 
 public class CommonProxy
 {
-    public void registerRenderThings()
+    public void registerThings()
     {
     }
 
+    public void registerTileEntities()
+    {
+        
+        
+    }
+    
 }

@@ -75,7 +75,8 @@ public class Magiks
         GameRegistry.registerWorldGenerator(new MagikWorldGen());
         GameRegistry.registerCraftingHandler(new WandCraftingHandler());
         
-        proxy.registerRenderThings();
+        proxy.registerThings();
+        proxy.registerTileEntities();
 
     }
 

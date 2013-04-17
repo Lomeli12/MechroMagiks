@@ -35,6 +35,8 @@ public class ConfigMod
         Ints.deprivedDustID = config.get("Items", "deprivedLightStone", 7008)
                 .getInt(7008);
         Ints.mistPanelID = config.get("Items", "mistPanel", 7009).getInt(7009);
+        Ints.burningUpgradeID = config.get("Items", "burningUpgrades", 7010).getInt(7010);
+        Ints.ironPlateID = config.get("Items", "ironPlate", 7011).getInt(711);
 
         Ints.empoweredPickID = config.get("Tools", "EmpoweredPick", 7020)
                 .getInt(7020);
@@ -62,6 +64,10 @@ public class ConfigMod
         Ints.igniousOreID = config.get("Blocks", "OreIgnious", 706).getInt(706);
         Ints.solarGenID = config.get("Machines", "SolarCollector", 707).getInt(
                 707);
+        Ints.mistCrafterID = config.get("Blocks", "MistCrafter", 708).getInt(708);
+        Ints.dupeFurnaceID = config.get("Machines", "DupeFurnace", 709).getInt(709);
+        Ints.dupeDummyID = config.get("Blocks", "BuringStone", 710).getInt(710);
+        Ints.manceryBrickID = config.get("Blocks", "ManceryBrick", 711).getInt(711);
 
         config.save();
     }

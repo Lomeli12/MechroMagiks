@@ -40,4 +40,6 @@ public class MagiksArrays
      * Damages items when used in crafting recipe
      */
     public static List<ItemStack> damageOnCraft = new ArrayList<ItemStack>();
+    
+    public static List<ItemStack> wands = new ArrayList<ItemStack>();
 }

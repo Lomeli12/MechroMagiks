@@ -12,6 +12,8 @@ public class Ints
     public static int darkMatterID;
     public static int deprivedDustID;
     public static int mistPanelID;
+    public static int burningUpgradeID;
+    public static int ironPlateID;
 
     public static int basicWandID;
     public static int chemistWandID;
@@ -29,4 +31,8 @@ public class Ints
     public static int stamaticOreID;
     public static int igniousOreID;
     public static int solarGenID;
+    public static int mistCrafterID;
+    public static int dupeFurnaceID;
+    public static int dupeDummyID;
+    public static int manceryBrickID;
 }

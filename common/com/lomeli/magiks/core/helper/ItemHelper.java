@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 
 public class ItemHelper
 {
-    public int getSlotContainingItem(int itemID, ItemStack[] inventory)
+    public static int getSlotContainingItem(int itemID, ItemStack[] inventory)
     {
         for (int j = 0; j < inventory.length; j++)
         {
@@ -15,7 +15,7 @@ public class ItemHelper
         return -1;
     }
 
-    public ItemStack getItem(EntityPlayer player, int slot)
+    public static ItemStack getItem(EntityPlayer player, int slot)
     {
         return player.inventory.getStackInSlot(slot);
     }
