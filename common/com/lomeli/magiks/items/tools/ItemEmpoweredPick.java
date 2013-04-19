@@ -5,8 +5,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
-//import net.minecraft.util.MathHelper;
-//import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 import com.lomeli.magiks.Magiks;
@@ -14,6 +12,8 @@ import com.lomeli.magiks.lib.Strings;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+//import net.minecraft.util.MathHelper;
+//import net.minecraft.util.Vec3;
 
 public class ItemEmpoweredPick extends ItemPickaxe
 {
@@ -45,16 +45,17 @@ public class ItemEmpoweredPick extends ItemPickaxe
     public ItemStack onItemRightClick(ItemStack itemStack, World world,
             EntityPlayer player)
     {
-        /*Vec3 look = player.getLookVec();
-
-        int x = (int) (player.posX + look.xCoord * 4);
-        int y = (int) (player.posY + look.yCoord * 4);
-        int z = (int) (player.posZ + look.zCoord * 4);
-
-        int side = MathHelper
-                .floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        world.destroyBlock(x, y, z, true);
-        player.sendChatToPlayer("" + side);*/
+        /*
+         * Vec3 look = player.getLookVec();
+         * 
+         * int x = (int) (player.posX + look.xCoord * 4); int y = (int)
+         * (player.posY + look.yCoord * 4); int z = (int) (player.posZ +
+         * look.zCoord * 4);
+         * 
+         * int side = MathHelper .floor_double(player.rotationYaw * 4.0F /
+         * 360.0F + 0.5D) & 3; world.destroyBlock(x, y, z, true);
+         * player.sendChatToPlayer("" + side);
+         */
         return itemStack;
     }
 

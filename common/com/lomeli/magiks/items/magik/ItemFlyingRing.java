@@ -72,7 +72,6 @@ public class ItemFlyingRing extends Item
     public void onUpdate(ItemStack itemStack, World world, Entity entity,
             int par4, boolean par5)
     {
-        ItemHelper helper = new ItemHelper();
         if (entity != null)
         {
             if (entity instanceof EntityPlayer)
@@ -88,35 +87,54 @@ public class ItemFlyingRing extends Item
                             ItemStack amulet = new ItemStack(
                                     ModItemsMagiks.emeraldAmulet);
                             player.capabilities.allowFlying = true;
-                            if(player.inventory.hasItemStack(amulet))
+                            if (player.inventory.hasItemStack(amulet))
                             {
-                                int slot = helper.getSlotContainingItem(amulet.itemID, player.inventory.mainInventory);
-                                player.sendChatToPlayer(""+slot);
+                                int slot = ItemHelper.getSlotContainingItem(
+                                        amulet.itemID,
+                                        player.inventory.mainInventory);
+                                player.sendChatToPlayer("" + slot);
                                 ItemStack item = player.inventory.mainInventory[slot];
-                                if(item.getItemDamage() <= (item.getMaxDamage() - 1))
+                                if (item.getItemDamage() <= item.getMaxDamage() - 1)
                                 {
                                     if (player.capabilities.isFlying)
+                                    {
                                         item.damageItem(1, player);
-                                    else if(player.fallDistance >= 4F)
-                                        item.damageItem((int)(player.fallDistance/4F), player);
-                                    else {}
-                                }
-                                else
+                                    } else if (player.fallDistance >= 4F)
+                                    {
+                                        item.damageItem(
+                                                (int) (player.fallDistance / 4F),
+                                                player);
+                                    } else
+                                    {
+                                    }
+                                } else
                                 {
                                     if (player.capabilities.isFlying)
+                                    {
                                         itemStack.damageItem(1, player);
-                                    else if(player.fallDistance >= 4F)
-                                        itemStack.damageItem((int)(player.fallDistance/4F), player);
-                                    else {}
+                                    } else if (player.fallDistance >= 4F)
+                                    {
+                                        itemStack
+                                                .damageItem(
+                                                        (int) (player.fallDistance / 4F),
+                                                        player);
+                                    } else
+                                    {
+                                    }
                                 }
-                            }
-                            else
+                            } else
                             {
                                 if (player.capabilities.isFlying)
+                                {
                                     itemStack.damageItem(1, player);
-                                else if(player.fallDistance >= 4F)
-                                    itemStack.damageItem((int)(player.fallDistance/4F), player);
-                                else {}
+                                } else if (player.fallDistance >= 4F)
+                                {
+                                    itemStack.damageItem(
+                                            (int) (player.fallDistance / 4F),
+                                            player);
+                                } else
+                                {
+                                }
                             }
                         } else
                         {
@@ -130,7 +148,9 @@ public class ItemFlyingRing extends Item
                         player.capabilities.isFlying = false;
                     }
                 } else
+                {
                     player.capabilities.allowFlying = true;
+                }
             }
         }
     }

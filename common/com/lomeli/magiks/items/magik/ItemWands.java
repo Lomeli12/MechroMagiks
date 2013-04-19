@@ -14,11 +14,11 @@ public class ItemWands extends ItemGeneric
     }
 
     @Override
-    public boolean doesContainerItemLeaveCraftingGrid(ItemStack itemstack) 
+    public boolean doesContainerItemLeaveCraftingGrid(ItemStack itemstack)
     {
         return true;
     }
-    
+
     @Override
     public ItemStack getContainerItemStack(ItemStack itemStack)
     {

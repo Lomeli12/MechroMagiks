@@ -53,8 +53,8 @@ public class ItemAmulets extends ItemGeneric
     public ItemStack onItemRightClick(ItemStack itemStack, World world,
             EntityPlayer player)
     {
-        if (isOwnerSet(itemStack) && this.getOwner(itemStack) != "" || isOwnerSet(itemStack)
-                || this.getOwner(itemStack) != "")
+        if (isOwnerSet(itemStack) && this.getOwner(itemStack) != ""
+                || isOwnerSet(itemStack) || this.getOwner(itemStack) != "")
         {
             if (player.username.toLowerCase() == this.getOwner(itemStack))
             {

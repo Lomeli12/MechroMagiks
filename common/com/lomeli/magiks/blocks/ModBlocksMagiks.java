@@ -7,12 +7,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.lomeli.magiks.api.libs.MagiksArrays;
-import com.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
 import com.lomeli.magiks.blocks.machine.BlockKineticGenerator;
+import com.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
 import com.lomeli.magiks.blocks.machine.BlockSolarMistCollector;
-import com.lomeli.magiks.blocks.machine.parts.BlockMultiFurnaceDummy;
 import com.lomeli.magiks.blocks.machine.parts.BlockMecroBlock;
 import com.lomeli.magiks.blocks.machine.parts.BlockMecroGlass;
+import com.lomeli.magiks.blocks.machine.parts.BlockMultiFurnaceDummy;
 import com.lomeli.magiks.items.ModItemsMagiks;
 import com.lomeli.magiks.lib.Ints;
 
@@ -23,7 +23,8 @@ public class ModBlocksMagiks
 {
     public static Block neoniteOre, neoniteBlock, kineticGenerator,
             manceryBlock, manceryGlass, stamaticOre, igniousOre,
-            solarMistCollector, mistCrafter, dupeFurnace, burningStone, manceryBrick;
+            solarMistCollector, mistCrafter, dupeFurnace, burningStone,
+            manceryBrick;
 
     public static void registerBlocks()
     {
@@ -58,7 +59,7 @@ public class ModBlocksMagiks
         manceryBrick = new BlockMagiks(Ints.manceryBrickID, Material.rock,
                 "mancerybricks").setUnlocalizedName("mancerybricks")
                 .setHardness(0.5F).setResistance(5000F);
-        
+
         dupeFurnace = new BlockMultiFurnaceCore(Ints.dupeFurnaceID);
         burningStone = new BlockMultiFurnaceDummy(Ints.dupeDummyID);
 
@@ -111,18 +112,16 @@ public class ModBlocksMagiks
                         ModItemsMagiks.darkMatter, 'P',
                         ModItemsMagiks.mistPanel, 'M', manceryBlock });
         GameRegistry.addRecipe(new ItemStack(burningStone, 4), new Object[] {
-                "IBI","BRB","IBI",'I',ModItemsMagiks.ingotIgnious, 'B', manceryBrick,
-                'R',Item.ingotIron
-        });
+                "IBI", "BRB", "IBI", 'I', ModItemsMagiks.ingotIgnious, 'B',
+                manceryBrick, 'R', Item.ingotIron });
         GameRegistry.addRecipe(new ItemStack(manceryBrick, 4), new Object[] {
-                "BB","BB", 'B',manceryBlock
-        });
+                "BB", "BB", 'B', manceryBlock });
+        GameRegistry.addRecipe(new ItemStack(dupeFurnace, 1),
+                new Object[] { "BBB", "BFB", "BBB", 'B', burningStone, 'F',
+                        Block.furnaceIdle });
         GameRegistry.addRecipe(new ItemStack(dupeFurnace, 1), new Object[] {
-                "BBB","BFB","BBB", 'B', burningStone, 'F',Block.furnaceIdle
-        });
-        GameRegistry.addRecipe(new ItemStack(dupeFurnace, 1), new Object[] {
-            "BBB","BFB","BBB", 'B', burningStone, 'F',Block.furnaceBurning
-    });
+                "BBB", "BFB", "BBB", 'B', burningStone, 'F',
+                Block.furnaceBurning });
     }
 
     public static void registerKinGenFuel()

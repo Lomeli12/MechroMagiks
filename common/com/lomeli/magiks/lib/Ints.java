@@ -21,6 +21,7 @@ public class Ints
     public static int pirasVarinhaID;
     public static int diggersWandID;
 
+    public static int wandID;
     public static int empoweredPickID;
 
     public static int enchantedOreID;

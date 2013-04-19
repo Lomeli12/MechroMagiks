@@ -26,20 +26,21 @@ public class MagiksArrays
     public static List<ItemStack> rechargeableItems = new ArrayList<ItemStack>();
 
     /**
-     * Adding items to this array will allow them to be converted
-     * to Mist via the Kinetic Generator.
+     * Adding items to this array will allow them to be converted to Mist via
+     * the Kinetic Generator.
      */
     public static List<ItemStack> kineticGenFuel = new ArrayList<ItemStack>();
-    
+
     /**
-     * For now, any items added to this array will recharge the flying ring by 50
+     * For now, any items added to this array will recharge the flying ring by
+     * 50
      */
     public static List<ItemStack> flyingRingFuel = new ArrayList<ItemStack>();
-    
+
     /**
      * Damages items when used in crafting recipe
      */
     public static List<ItemStack> damageOnCraft = new ArrayList<ItemStack>();
-    
+
     public static List<ItemStack> wands = new ArrayList<ItemStack>();
 }

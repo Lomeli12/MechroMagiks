@@ -28,12 +28,14 @@ public class BlockMecroBlock extends BlockMagiks
             {
                 if (world.getBlockId(x, y + 2, z) == 0)
                 {
-                    if(player.inventory.hasItem(ModItemsMagiks.darkMatter.itemID))
+                    if (player.inventory
+                            .hasItem(ModItemsMagiks.darkMatter.itemID))
                     {
                         world.setBlockToAir(x, y + 1, z);
                         world.setBlock(x, y, z,
-                                    ModBlocksMagiks.kineticGenerator.blockID);
-                        player.inventory.consumeInventoryItem(ModItemsMagiks.darkMatter.itemID);
+                                ModBlocksMagiks.kineticGenerator.blockID);
+                        player.inventory
+                                .consumeInventoryItem(ModItemsMagiks.darkMatter.itemID);
                     }
                 }
             }

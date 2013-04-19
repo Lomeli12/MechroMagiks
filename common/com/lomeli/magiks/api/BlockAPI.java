@@ -5,11 +5,11 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.FMLLog;
 
 /**
- * Used to gain access to blocks in the mod. Thanks to Azanor
- * and his Thaumcraft API, of which this API is based off of.
+ * Used to gain access to blocks in the mod. Thanks to Azanor and his Thaumcraft
+ * API, of which this API is based off of.
  * 
- * This gets the block by the name I gave the block class. For example,
- * Mancery glass is:
+ * This gets the block by the name I gave the block class. For example, Mancery
+ * glass is:
  * 
  * public static Block manceryGlass;
  * 
@@ -17,11 +17,11 @@ import cpw.mods.fml.common.FMLLog;
  * 
  * BlockAPI.getBlock("manceryGlass", 1);
  * 
- * You can check the block names in com.lomeli.magiks.blocks.ModBlocksMagiks
- * in the mod's source: https://github.com/Lomeli12/MechroMagiks
+ * You can check the block names in com.lomeli.magiks.blocks.ModBlocksMagiks in
+ * the mod's source: https://github.com/Lomeli12/MechroMagiks
  * 
  * @author Anthony
- *
+ * 
  */
 public class BlockAPI
 {
@@ -41,15 +41,14 @@ public class BlockAPI
             {
                 item = (ItemStack) obj;
             }
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             FMLLog.warning("[MechroMagik] Could not retrieve block identified by: "
                     + itemString);
         }
         return item;
     }
-    
+
     public static ItemStack getBlock(String itemString)
     {
         ItemStack item = null;
@@ -66,8 +65,7 @@ public class BlockAPI
             {
                 item = (ItemStack) obj;
             }
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             FMLLog.warning("[MechroMagik] Could not retrieve block identified by: "
                     + itemString);

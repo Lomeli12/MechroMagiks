@@ -11,11 +11,12 @@ import com.lomeli.magiks.tileentity.TileEntityKineticGenerator;
 public class ContainerKineticGenerator extends Container
 {
     private TileEntityKineticGenerator kinGen;
+
     public ContainerKineticGenerator(InventoryPlayer inventoryPlayer,
             TileEntityKineticGenerator kineticGen)
     {
-        this.kinGen = kineticGen;
-        
+        kinGen = kineticGen;
+
         this.addSlotToContainer(new Slot(kineticGen, 0, 56, 17)).slotNumber = 0;
         this.addSlotToContainer(new Slot(kineticGen, 1, 56, 53)).slotNumber = 1;
 
@@ -82,24 +83,24 @@ public class ContainerKineticGenerator extends Container
 
         return itemstack;
     }
-    
+
     @Override
     public void detectAndSendChanges()
     {
         super.detectAndSendChanges();
     }
-    
+
     @Override
     public void updateProgressBar(int par1, int par2)
     {
         if (par1 == 0)
         {
-            this.kinGen.heatLevel = par2;
+            kinGen.heatLevel = par2;
         }
 
         if (par1 == 1)
         {
-            this.kinGen.mistLevel = par2;
+            kinGen.mistLevel = par2;
         }
 
     }

@@ -35,7 +35,8 @@ public class ConfigMod
         Ints.deprivedDustID = config.get("Items", "deprivedLightStone", 7008)
                 .getInt(7008);
         Ints.mistPanelID = config.get("Items", "mistPanel", 7009).getInt(7009);
-        Ints.burningUpgradeID = config.get("Items", "burningUpgrades", 7010).getInt(7010);
+        Ints.burningUpgradeID = config.get("Items", "burningUpgrades", 7010)
+                .getInt(7010);
         Ints.ironPlateID = config.get("Items", "ironPlate", 7011).getInt(711);
 
         Ints.empoweredPickID = config.get("Tools", "EmpoweredPick", 7020)
@@ -44,10 +45,13 @@ public class ConfigMod
                 .getInt(7021);
         Ints.diggersWandID = config.get("Wands", "MiningWand-Level0", 7022)
                 .getInt(7022);
-        
+
         Ints.basicWandID = config.get("Wands", "basicwand", 7023).getInt(7023);
-        Ints.chemistWandID = config.get("Wands", "chemistwand", 7024).getInt(7024);
-        Ints.alchemistWandID = config.get("Wands", "alchemistwand", 7025).getInt(7025);
+        Ints.chemistWandID = config.get("Wands", "chemistwand", 7024).getInt(
+                7024);
+        Ints.alchemistWandID = config.get("Wands", "alchemistwand", 7025)
+                .getInt(7025);
+        Ints.wandID = config.get("Wands", "wand", 7026).getInt(7026);
 
         Ints.enchantedOreID = config.get("Blocks", "EnchantedOre", 700).getInt(
                 100);
@@ -64,10 +68,13 @@ public class ConfigMod
         Ints.igniousOreID = config.get("Blocks", "OreIgnious", 706).getInt(706);
         Ints.solarGenID = config.get("Machines", "SolarCollector", 707).getInt(
                 707);
-        Ints.mistCrafterID = config.get("Blocks", "MistCrafter", 708).getInt(708);
-        Ints.dupeFurnaceID = config.get("Machines", "DupeFurnace", 709).getInt(709);
+        Ints.mistCrafterID = config.get("Blocks", "MistCrafter", 708).getInt(
+                708);
+        Ints.dupeFurnaceID = config.get("Machines", "DupeFurnace", 709).getInt(
+                709);
         Ints.dupeDummyID = config.get("Blocks", "BuringStone", 710).getInt(710);
-        Ints.manceryBrickID = config.get("Blocks", "ManceryBrick", 711).getInt(711);
+        Ints.manceryBrickID = config.get("Blocks", "ManceryBrick", 711).getInt(
+                711);
 
         config.save();
     }
@@ -80,7 +87,8 @@ public class ConfigMod
         config.load();
 
         capesEnabled = config.get(null, "capesEnabled", true).getBoolean(true);
-        disablePiras = config.get(null, "disablePiras", false).getBoolean(false);
+        disablePiras = config.get(null, "disablePiras", false)
+                .getBoolean(false);
 
         config.save();
     }

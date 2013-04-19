@@ -44,16 +44,16 @@ public class ItemPirasVarinha extends ItemGeneric
 
         if (itemStack.getItemDamage() <= itemStack.getMaxDamage() - 11)
         {
-            if(!ConfigMod.disablePiras)
-            { 
+            if (!ConfigMod.disablePiras)
+            {
                 Vec3 look = player.getLookVec();
                 EntityLargeFireball entitylargefireball = new EntityLargeFireball(
-                    world, player, 0, 0, 0);
+                        world, player, 0, 0, 0);
                 entitylargefireball.field_92057_e = 3;
                 entitylargefireball.setSprinting(true);
                 entitylargefireball.setPosition(player.posX + look.xCoord * 4,
-                    player.posY + look.yCoord + 1, player.posZ + look.zCoord
-                            * 4);
+                        player.posY + look.yCoord + 1, player.posZ
+                                + look.zCoord * 4);
                 entitylargefireball.accelerationX = look.xCoord * 0.3;
                 entitylargefireball.accelerationY = look.yCoord * 0.3;
                 entitylargefireball.accelerationZ = look.zCoord * 0.3;
