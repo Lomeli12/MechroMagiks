@@ -1,4 +1,4 @@
-MechroMagik API version 0.0.6
+MechroMagik API version 0.0.8
 =============================
 
 This api is for a mod that is still in under heavy
@@ -13,7 +13,7 @@ better than user input?).
 How to use
 ==========
 
-Simply drag the "com" folder into which ever
+Simply drag the "net" folder into which ever
 directory you have your source for your addon
 
 There should be some comments ATM that should help.

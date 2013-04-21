@@ -6,8 +6,8 @@ public class Strings
     public static final String modName = "MechroMagiks";
     public static final String version = "0.0.7";
 
-    public static final String commonProxy = "com.lomeli.magiks.core.CommonProxy";
-    public static final String clientProxy = "com.lomeli.magiks.core.ClientProxy";
+    public static final String commonProxy = "net.lomeli.magiks.core.CommonProxy";
+    public static final String clientProxy = "net.lomeli.magiks.core.ClientProxy";
 
     public static String containterKineticGen = "container.kineticgen";
     public static String kineticGenName = "Kinetic Generator";
@@ -15,4 +15,6 @@ public class Strings
     public static String solarGenName = "Solar Mist Collector";
     public static String containerDupeFurnace = "container.dupefurnace";
     public static String dupeFurnaceName = "Piras Oven";
+    public static String conatinerWeatherBlock = "container.weatherblock";
+    public static String weatehrBlockName = "Weather Modifier";
 }
