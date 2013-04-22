@@ -7,14 +7,12 @@ import net.lomeli.magiks.blocks.machine.BlockSolarMistCollector;
 import net.lomeli.magiks.blocks.machine.parts.BlockMecroBlock;
 import net.lomeli.magiks.blocks.machine.parts.BlockMecroGlass;
 import net.lomeli.magiks.blocks.machine.parts.BlockMultiFurnaceDummy;
-import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.lib.Ints;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
-
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -93,35 +91,6 @@ public class ModBlocksMagiks
         MinecraftForge.setBlockHarvestLevel(neoniteBlock, "pickaxe", 2);
         MinecraftForge.setBlockHarvestLevel(stamaticOre, "pickaxe", 2);
         MinecraftForge.setBlockHarvestLevel(igniousOre, "pickaxe", 2);
-    }
-
-    public static void registerBlockRecipes()
-    {
-        GameRegistry.addRecipe(new ItemStack(neoniteBlock, 1), new Object[] {
-                "GGG", "GGG", "GGG", 'G', ModItemsMagiks.neoniteGem });
-        GameRegistry.addShapelessRecipe(new ItemStack(
-                ModItemsMagiks.neoniteGem, 9), new Object[] { neoniteBlock });
-        GameRegistry.addRecipe(new ItemStack(manceryBlock, 4), new Object[] {
-                "RSR", "SIS", "RSR", 'R', Item.redstone, 'S', Block.stone, 'I',
-                new ItemStack(ModItemsMagiks.ingotStamatic, 4) });
-        GameRegistry.addRecipe(new ItemStack(manceryGlass, 4), new Object[] {
-                "RGR", "GIG", "RGR", 'R', Item.redstone, 'G', Block.glass, 'I',
-                new ItemStack(ModItemsMagiks.ingotStamatic, 4) });
-        GameRegistry.addRecipe(new ItemStack(solarMistCollector, 1),
-                new Object[] { "D D", "PPP", "MMM", 'D',
-                        ModItemsMagiks.darkMatter, 'P',
-                        ModItemsMagiks.mistPanel, 'M', manceryBlock });
-        GameRegistry.addRecipe(new ItemStack(burningStone, 4), new Object[] {
-                "IBI", "BRB", "IBI", 'I', ModItemsMagiks.ingotIgnious, 'B',
-                manceryBrick, 'R', Item.ingotIron });
-        GameRegistry.addRecipe(new ItemStack(manceryBrick, 4), new Object[] {
-                "BB", "BB", 'B', manceryBlock });
-        GameRegistry.addRecipe(new ItemStack(dupeFurnace, 1),
-                new Object[] { "BBB", "BFB", "BBB", 'B', burningStone, 'F',
-                        Block.furnaceIdle });
-        GameRegistry.addRecipe(new ItemStack(dupeFurnace, 1), new Object[] {
-                "BBB", "BFB", "BBB", 'B', burningStone, 'F',
-                Block.furnaceBurning });
     }
 
     public static void registerKinGenFuel()

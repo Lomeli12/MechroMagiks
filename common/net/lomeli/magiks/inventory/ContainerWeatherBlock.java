@@ -1,18 +1,23 @@
 package net.lomeli.magiks.inventory;
 
-import net.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
+import net.lomeli.magiks.tileentity.TileEntityWeatherBlock;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerSolarMistCollector extends Container
+public class ContainerWeatherBlock extends Container
 {
-    public ContainerSolarMistCollector(InventoryPlayer inventoryPlayer,
-            TileEntitySolarMistCollector solarCollect)
-    {
-        this.addSlotToContainer(new Slot(solarCollect, 0, 56, 35));
+	TileEntityWeatherBlock tileEntity;
+	
+	public ContainerWeatherBlock(InventoryPlayer inventoryPlayer,
+			TileEntityWeatherBlock tileEntity)
+	{
+		this.tileEntity = tileEntity;
+		
+		this.addSlotToContainer(new Slot(tileEntity, 0, 56, 35));
 
         for (int inventoryRowIndex = 0; inventoryRowIndex < 3; ++inventoryRowIndex)
         {
@@ -30,16 +35,15 @@ public class ContainerSolarMistCollector extends Container
             this.addSlotToContainer(new Slot(inventoryPlayer,
                     actionBarSlotIndex, 8 + actionBarSlotIndex * 18, 142));
         }
+	}
 
-    }
-
-    @Override
-    public boolean canInteractWith(EntityPlayer entityplayer)
-    {
-        return true;
-    }
-
-    @Override
+	@Override
+	public boolean canInteractWith(EntityPlayer entityplayer) {
+		
+		return true;
+	}
+	
+	@Override
     public ItemStack transferStackInSlot(EntityPlayer player, int i)
     {
         ItemStack itemstack = null;

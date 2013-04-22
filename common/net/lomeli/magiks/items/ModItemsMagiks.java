@@ -1,7 +1,6 @@
 package net.lomeli.magiks.items;
 
 import net.lomeli.magiks.api.libs.MagiksArrays;
-import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.items.magik.ItemAmulets;
 import net.lomeli.magiks.items.magik.ItemFlyingRing;
 import net.lomeli.magiks.items.magik.ItemPirasVarinha;
@@ -10,13 +9,11 @@ import net.lomeli.magiks.items.tools.ItemEmpoweredPick;
 import net.lomeli.magiks.items.tools.ItemLevelingSword;
 import net.lomeli.magiks.items.tools.ItemMiningWands;
 import net.lomeli.magiks.lib.Ints;
-import net.minecraft.block.Block;
+
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ModItemsMagiks
@@ -117,72 +114,6 @@ public class ModItemsMagiks
         LanguageRegistry.addName(ironPlate, "Iron Plate");
         LanguageRegistry.addName(burningUpgrade, "Burning Upgrade");
         LanguageRegistry.addName(wand, "Magician's Wand");
-    }
-
-    public static void registerItemRecipes()
-    {
-        GameRegistry
-                .addRecipe(new ItemStack(enchantedDiamond, 1), new Object[] {
-                        "GEG", "EDE", "RER", 'G', Item.lightStoneDust, 'R',
-                        Item.redstone, 'D', Item.diamond, 'E', neoniteGem });
-        GameRegistry.addRecipe(new ItemStack(ironStick, 2), new Object[] {
-                "  I", " I ", "I  ", 'I', Item.ingotIron });
-        GameRegistry.addRecipe(new ItemStack(ironBand, 1), new Object[] {
-                " I ", "IBI", " I ", 'I', ironStick, 'B', Item.bucketLava });
-        GameRegistry.addRecipe(new ItemStack(flyingRing, 1), new Object[] {
-                "GLR", "DID", "FEF", 'G', enchantedDiamond, 'D', Item.diamond,
-                'L', Item.lightStoneDust, 'E', Item.enderPearl, 'I', ironBand,
-                'R', Item.redstone, 'F', Item.feather });
-        GameRegistry.addRecipe(new ItemStack(darkMatter, 1), new Object[] {
-                "GMG", "MOM", "GMG", 'G', neoniteGem, 'M',
-                ModBlocksMagiks.manceryBlock, 'O', enchantedDiamond });
-        GameRegistry.addShapelessRecipe(new ItemStack(deprivedDust, 1),
-                new Object[] { Item.lightStoneDust, Block.slowSand,
-                        ingotStamatic });
-        GameRegistry.addRecipe(new ItemStack(mistPanel, 1), new Object[] {
-                "RDR", "DSD", "III", 'R', Item.redstone, 'S',
-                Block.daylightSensor, 'D', deprivedDust, 'I', ironPlate });
-        GameRegistry.addShapelessRecipe(new ItemStack(ironPlate, 1),
-                new Object[] { Item.ingotIron, Item.netherQuartz,
-                        Block.stoneSingleSlab });
-        GameRegistry.addRecipe(new ItemStack(burningUpgrade, 1), new Object[] {
-                " F ", "BEB", "III", 'B', Item.blazePowder, 'E',
-                Item.eyeOfEnder, 'I', ironPlate, 'F',Item.emerald });
-
-        GameRegistry.addRecipe(new ItemStack(neonitePick, 1), new Object[] {
-                "GDG", "EIE", " I ", 'G', enchantedDiamond, 'D',
-                Item.pickaxeDiamond, 'E', neoniteGem, 'I', ironStick });
-        GameRegistry.addRecipe(new ItemStack(pirasVarinha, 1), new Object[] {
-                "GNG", "IGI", "IWI", 'G', Item.ingotGold, 'N',
-                enchantedDiamond, 'I', ingotIgnious, 'W',
-                new ItemStack(alchemistWand, 1, -1) });
-        GameRegistry.addRecipe(new ItemStack(levelingSword), new Object[] {
-                " I ", " I ", "GDG", 'I', Item.ingotIron, 'G', neoniteGem, 'D',
-                darkMatter });
-
-        GameRegistry.addRecipe(new ItemStack(basicWand, 1), new Object[] {
-                " IE", "ISI", "RI ", 'E', Item.emerald, 'R', Item.redstone,
-                'S', Item.stick, 'I', ingotStamatic });
-        GameRegistry.addRecipe(new ItemStack(chemistWand, 1), new Object[] {
-                " IE", "ISI", "RI ", 'E', Item.lightStoneDust, 'R',
-                Item.diamond, 'S', basicWand, 'I', ingotStamatic });
-        GameRegistry.addRecipe(new ItemStack(alchemistWand, 1), new Object[] {
-                " IE", "ISI", "RI ", 'E', enchantedDiamond, 'R', darkMatter,
-                'S', chemistWand, 'I', ingotStamatic });
-        
-        GameRegistry.addRecipe(new ItemStack(wand, 1), new Object[]
-                {
-                    " CB","CSC","BC ", 'S',Item.stick, 'C',Item.coal,
-                    'B',(new ItemStack(Item.dyePowder, 1, 15))
-                });
-    }
-
-    public static void registerFurnaceRecipes()
-    {
-        GameRegistry.addSmelting(ModBlocksMagiks.stamaticOre.blockID,
-                new ItemStack(ingotStamatic), 5);
-        GameRegistry.addSmelting(ModBlocksMagiks.igniousOre.blockID,
-                new ItemStack(ingotIgnious), 10);
     }
 
     public static void addChargeableItems()

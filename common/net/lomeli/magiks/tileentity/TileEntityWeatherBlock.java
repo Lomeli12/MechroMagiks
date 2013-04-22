@@ -154,5 +154,12 @@ public class TileEntityWeatherBlock extends TileEntity implements
     @Override
     public void updateEntity()
     {
+    	if(!worldObj.isRemote)
+    	{
+    		if(getStackInSlot(0) != null)
+    		{
+    			
+    		}
+    	}
     }
 }

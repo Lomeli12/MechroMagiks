@@ -1,5 +1,6 @@
 package net.lomeli.magiks;
 
+import net.lomeli.magiks.addons.AddonCheck;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.blocks.worldgen.MagikWorldGen;
 import net.lomeli.magiks.core.CommonProxy;
@@ -11,6 +12,7 @@ import net.lomeli.magiks.core.handler.PlayerInteractHandler;
 import net.lomeli.magiks.core.handler.WandCraftingHandler;
 import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.recipes.MagiksRecipes;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -67,13 +69,12 @@ public class Magiks
         ModBlocksMagiks.registerBlocks();
         ModBlocksMagiks.registerKinGenFuel();
 
-        ModBlocksMagiks.registerBlockRecipes();
-
-        ModItemsMagiks.registerItemRecipes();
-        ModItemsMagiks.registerFurnaceRecipes();
-
         GameRegistry.registerWorldGenerator(new MagikWorldGen());
         GameRegistry.registerCraftingHandler(new WandCraftingHandler());
+        
+        MagiksRecipes.registerBlockRecipes();
+        MagiksRecipes.registerItemRecipes();
+        MagiksRecipes.registerFurnaceRecipes();
 
         proxy.registerThings();
         proxy.registerTileEntities();
@@ -83,5 +84,6 @@ public class Magiks
     @PostInit
     public void postLoad(FMLPostInitializationEvent event)
     {
+    	AddonCheck.checkAddons();
     }
 }
