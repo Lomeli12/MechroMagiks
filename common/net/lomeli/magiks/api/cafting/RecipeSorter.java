@@ -6,7 +6,6 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 
-@SuppressWarnings("rawtypes")
 public class RecipeSorter implements Comparator
 {
     final MagikCraftingManager recipeSorter;

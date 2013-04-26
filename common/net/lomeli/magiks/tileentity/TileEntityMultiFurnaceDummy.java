@@ -4,9 +4,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityMultiFurnaceDummy extends TileEntity implements
+public class TileEntityMultiFurnaceDummy extends TileEntityMagiks implements
         ISidedInventory
 {
     TileEntityMultiFurnaceCore tileEntityCore;

@@ -1,5 +1,7 @@
 package net.lomeli.magiks.api.magiks;
 
+import net.lomeli.magiks.tileentity.TileEntityMagiks;
+
 public interface IMagiks
 {
     int getMistLevel();
@@ -17,4 +19,10 @@ public interface IMagiks
     int getMaxMistLevel();
 
     boolean hasMist();
+    
+    boolean isConnected();
+    
+    void setConnection(TileEntityMagiks tileEntity);
+    
+    TileEntityMagiks getConnection();
 }

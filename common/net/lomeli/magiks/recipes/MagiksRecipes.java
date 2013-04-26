@@ -1,6 +1,7 @@
 package net.lomeli.magiks.recipes;
 
 import net.lomeli.magiks.items.ModItemsMagiks;
+import net.lomeli.magiks.api.cafting.MagikCraftingManager;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 
 import net.minecraft.block.Block;
@@ -39,6 +40,14 @@ public class MagiksRecipes
 		GameRegistry.addRecipe(new ItemStack(ModBlocksMagiks.dupeFurnace, 1), new Object[] {
             "BBB", "BFB", "BBB", 'B', ModBlocksMagiks.burningStone, 'F',
             Block.furnaceBurning });
+		GameRegistry.addRecipe(new ItemStack(ModBlocksMagiks.obsidianStairs, 4), new Object[]
+			{
+				"O  ","OO ","OOO", 'O',Block.obsidian
+			});
+		GameRegistry.addRecipe(new ItemStack(ModBlocksMagiks.obsidianStairs, 4), new Object[]
+			{
+				"  O"," OO","OOO", 'O',Block.obsidian
+			});
 	}
 	
     public static void registerItemRecipes()
@@ -105,6 +114,19 @@ public class MagiksRecipes
                 new ItemStack(ModItemsMagiks.ingotStamatic), 5);
         GameRegistry.addSmelting(ModBlocksMagiks.igniousOre.blockID,
                 new ItemStack(ModItemsMagiks.ingotIgnious), 10);
+        GameRegistry.addSmelting(ModBlocksMagiks.netherIgnious.blockID, 
+        		new ItemStack(ModItemsMagiks.ingotIgnious), 10);
+        GameRegistry.addSmelting(ModBlocksMagiks.copperOre.blockID,
+                new ItemStack(ModItemsMagiks.ingotCopper), 5);
+        GameRegistry.addSmelting(ModBlocksMagiks.tinOre.blockID,
+                new ItemStack(ModItemsMagiks.ingotTin), 5);
+        GameRegistry.addSmelting(ModBlocksMagiks.silverOre.blockID, 
+        		new ItemStack(ModItemsMagiks.ingotSilver), 5);
     }
 
+    public static void registerMistRecipes()
+    {
+    	MagikCraftingManager.getInstance().addRecipe(new ItemStack(Item.goldenCarrot),
+    			new Object[] { "WW", 'W',Item.appleRed});
+    }
 }

@@ -26,9 +26,9 @@ public class ConfigMod
                 .getInt(7002);
         Ints.ironBandID = config.get("Items", "IronBand", 7003).getInt(7003);
         Ints.ironStickID = config.get("Items", "IronStick", 7004).getInt(7004);
-        Ints.ingotStamaticID = config.get("Items", "IngotStamatic", 7005)
+        Ints.ingotStamaticID = config.get("Ingots", "IngotStamatic", 7005)
                 .getInt(7005);
-        Ints.ingotIgniousID = config.get("Items", "IngotIgnious", 7006).getInt(
+        Ints.ingotIgniousID = config.get("Ingots", "IngotIgnious", 7006).getInt(
                 7006);
         Ints.darkMatterID = config.get("Items", "darkMatter", 7007)
                 .getInt(7007);
@@ -52,6 +52,10 @@ public class ConfigMod
         Ints.alchemistWandID = config.get("Wands", "alchemistwand", 7025)
                 .getInt(7025);
         Ints.wandID = config.get("Wands", "wand", 7026).getInt(7026);
+        
+        Ints.ingotCopperID = config.get("Ingots", "IngotCopper", 7030).getInt(7030);
+        Ints.ingotTinID = config.get("Ingots", "IngotTin", 7031).getInt(7031);
+        Ints.ingotSilverID = config.get("Ingots", "IngotSilver", 7032).getInt(7032);
 
         Ints.enchantedOreID = config.get("Blocks", "EnchantedOre", 700).getInt(
                 100);
@@ -75,6 +79,14 @@ public class ConfigMod
         Ints.dupeDummyID = config.get("Blocks", "BuringStone", 710).getInt(710);
         Ints.manceryBrickID = config.get("Blocks", "ManceryBrick", 711).getInt(
                 711);
+        Ints.obsidianStairsID = config.get("Blocks", "ObsidianStairs", 712).getInt(712);
+        Ints.manceryStoneStairsID = config.get("Blocks", "ManceryStoneStairs", 713).getInt(713);
+        Ints.manceryBrickStairsID = config.get("Blocks", "ManceryBrickStairs", 714).getInt(714);
+        Ints.burningBrickStairsID = config.get("Blocks", "BurningStoneStairs", 715).getInt(715);
+        Ints.netherIgniousID = config.get("Blocks", "NetherIgnious", 716).getInt(716);
+        Ints.copperOreID = config.get("Blocks", "copperOre", 717).getInt(717);
+        Ints.tinOreID = config.get("Blocks", "tinOre", 718).getInt(718);
+        Ints.silverOreID = config.get("Blocks", "silverOre", 719).getInt(719);
 
         config.save();
     }

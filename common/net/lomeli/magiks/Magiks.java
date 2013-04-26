@@ -1,6 +1,7 @@
 package net.lomeli.magiks;
 
 import net.lomeli.magiks.addons.AddonCheck;
+import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.blocks.worldgen.MagikWorldGen;
 import net.lomeli.magiks.core.CommonProxy;
@@ -10,9 +11,13 @@ import net.lomeli.magiks.core.handler.GuiHandler;
 import net.lomeli.magiks.core.handler.ItemDroppedHandler;
 import net.lomeli.magiks.core.handler.PlayerInteractHandler;
 import net.lomeli.magiks.core.handler.WandCraftingHandler;
+import net.lomeli.magiks.core.helper.LogHelper;
+import net.lomeli.magiks.core.helper.UpdateHelper;
 import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.lib.Strings;
 import net.lomeli.magiks.recipes.MagiksRecipes;
+import net.lomeli.magiks.tileentity.TileEntityKineticGenerator;
+import net.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -30,18 +35,18 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = Strings.modID, name = Strings.modName, version = Strings.version)
+@Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class Magiks
 {
-    @SidedProxy(clientSide = Strings.clientProxy, serverSide = Strings.commonProxy)
+    @SidedProxy(clientSide = Strings.CLIENT_PROXY, serverSide = Strings.COMMON_PROXY)
     public static CommonProxy proxy;
 
-    @Instance(Strings.modID)
+    @Instance(Strings.MOD_ID)
     public static Magiks instance;
 
     public static CreativeTabs modTab = new CreativeTabSIW(
-            CreativeTabs.getNextID(), Strings.modName);
+            CreativeTabs.getNextID(), Strings.MOD_NAME);
 
     public static String configDir;
 
@@ -53,11 +58,13 @@ public class Magiks
         configDir = event.getModConfigurationDirectory() + "\\Magiks\\";
 
         ConfigMod.configureItemID(configDir);
+        
+        LogHelper.init();
     }
 
     @Init
     public void main(FMLInitializationEvent event)
-    {
+    {	
         NetworkRegistry.instance().registerGuiHandler(this, guih);
 
         MinecraftForge.EVENT_BUS.register(new ItemDroppedHandler());
@@ -75,15 +82,19 @@ public class Magiks
         MagiksRecipes.registerBlockRecipes();
         MagiksRecipes.registerItemRecipes();
         MagiksRecipes.registerFurnaceRecipes();
+        MagiksRecipes.registerMistRecipes();
+        
+        MagiksArrays.canRecieveMist.add(new TileEntitySolarMistCollector());
+        MagiksArrays.canRecieveMist.add(new TileEntityKineticGenerator());
 
         proxy.registerThings();
         proxy.registerTileEntities();
-
     }
 
     @PostInit
     public void postLoad(FMLPostInitializationEvent event)
     {
+    	UpdateHelper.isUpdated(Strings.XML_URL);
     	AddonCheck.checkAddons();
     }
 }

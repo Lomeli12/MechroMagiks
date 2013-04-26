@@ -34,7 +34,7 @@ public class BlockMecroGlass extends BlockGlass
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
-        blockIcon = iconRegister.registerIcon(Strings.modID + ":"
+        blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":"
                 + blockTexture);
     }
 

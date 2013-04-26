@@ -51,7 +51,13 @@ public class ClientProxy extends CommonProxy
         GameRegistry.registerTileEntity(TileEntityMultiFurnaceDummy.class,
                 "dupedummy");
 
-        renderCapes(ConfigMod.capesEnabled);
+        try
+        {
+        	renderCapes(ConfigMod.capesEnabled);
+        }catch(Exception e)
+        {
+        	e.getStackTrace();
+        }
     }
 
     public void renderCapes(boolean capes)

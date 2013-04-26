@@ -1,22 +1,29 @@
 package net.lomeli.magiks.client.gui;
 
+import net.lomeli.magiks.inventory.ContainerMistWorkBench;
+import net.lomeli.magiks.tileentity.TileEntityMistWorkBench;
+
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.inventory.Container;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
 public class GuiMistWorkBench extends GuiContainer
 {
-
-    public GuiMistWorkBench(Container par1Container)
+	private TileEntityMistWorkBench tileEntity;
+	
+    public GuiMistWorkBench(InventoryPlayer par1InventoryPlayer, TileEntityMistWorkBench tile)
     {
-        super(par1Container);
+        super(new ContainerMistWorkBench(par1InventoryPlayer, tile));
+        this.tileEntity = tile;
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
+    	
         fontRenderer.drawString(
                 StatCollector.translateToLocal("container.crafting"), 28, 6,
                 4210752);
@@ -31,7 +38,7 @@ public class GuiMistWorkBench extends GuiContainer
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.renderEngine
-                .bindTexture("/mods/magiks/textures/gui/kineticgeneratorGUI.png");
+                .bindTexture("/gui/crafting.png");
         int var5 = (width - xSize) / 2;
         int var6 = (height - ySize) / 2;
         this.drawTexturedModalRect(var5, var6, 0, 0, xSize, ySize);

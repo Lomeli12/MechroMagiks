@@ -29,7 +29,7 @@ public class BlockNeoniteOre extends Block
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
-        blockIcon = iconRegister.registerIcon(Strings.modID + ":"
+        blockIcon = iconRegister.registerIcon(Strings.MOD_ID  + ":"
                 + blockTexture);
     }
 

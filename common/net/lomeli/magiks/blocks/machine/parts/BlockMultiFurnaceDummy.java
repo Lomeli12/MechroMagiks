@@ -24,7 +24,6 @@ public class BlockMultiFurnaceDummy extends BlockContainer
     public BlockMultiFurnaceDummy(int blockId)
     {
         super(blockId, Material.rock);
-
         setUnlocalizedName("blockMultiFurnaceDummy");
         setStepSound(Block.soundStoneFootstep);
         setHardness(3.5f);
@@ -47,7 +46,7 @@ public class BlockMultiFurnaceDummy extends BlockContainer
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
-        blockIcon = iconRegister.registerIcon(Strings.modID.toLowerCase() + ":burningstone");
+        blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":burningstone");
     }
 
     @Override

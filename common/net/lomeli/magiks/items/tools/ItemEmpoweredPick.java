@@ -32,7 +32,7 @@ public class ItemEmpoweredPick extends ItemPickaxe
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
-        itemIcon = iconRegister.registerIcon(Strings.modID + ":" + itemTexture);
+        itemIcon = iconRegister.registerIcon(Strings.MOD_ID + ":" + itemTexture);
     }
 
     @SideOnly(Side.CLIENT)

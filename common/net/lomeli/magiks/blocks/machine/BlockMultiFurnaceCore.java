@@ -59,10 +59,19 @@ public class BlockMultiFurnaceCore extends BlockContainer
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
-        blockIcon = iconRegister.registerIcon(Strings.modID.toLowerCase() + ":dupeFurnace_Front_Lit");
-        faceIconUnlit = iconRegister.registerIcon(Strings.modID.toLowerCase() + ":dupeFurnace_Front_Unlit");
-        faceIconLit = iconRegister.registerIcon(Strings.modID.toLowerCase() + ":dupeFurnace_Front_Lit");
-        other = iconRegister.registerIcon(Strings.modID.toLowerCase() + ":burningstone");
+        faceIconUnlit = iconRegister.registerIcon(Strings.MOD_ID.toLowerCase() + ":dupeFurnace_Front_Unlit");
+        faceIconLit = iconRegister.registerIcon(Strings.MOD_ID.toLowerCase() + ":dupeFurnace_Front_Lit");
+        other = iconRegister.registerIcon(Strings.MOD_ID.toLowerCase() + ":burningstone");
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public Icon getIcon(int side, int metadata)
+    {
+        boolean isActive = metadata >> 3 == 1;
+
+        return side == 0 ? other : side == 1 ? other : isActive 
+        		? faceIconLit : !isActive ? faceIconUnlit: faceIconUnlit;
     }
 
     @Override
@@ -92,17 +101,6 @@ public class BlockMultiFurnaceCore extends BlockContainer
 
         metadata |= facing;
         world.setBlockMetadataWithNotify(x, y, z, metadata, 2);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public Icon getIcon(int side, int metadata)
-    {
-        boolean isActive = metadata >> 3 == 1;
-        int facing = metadata & MASK_DIR;
-
-        return side == getSideFromFacing(facing) ? isActive ? faceIconLit
-                : faceIconUnlit : other;
     }
 
     @Override
@@ -218,7 +216,8 @@ public class BlockMultiFurnaceCore extends BlockContainer
         super.breakBlock(world, x, y, z, par5, par6);
     }
 
-    private static int getSideFromFacing(int facing)
+    @SuppressWarnings("unused")
+	private static int getSideFromFacing(int facing)
     {
         switch (facing)
         {

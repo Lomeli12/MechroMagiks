@@ -13,6 +13,7 @@ import net.lomeli.magiks.lib.Ints;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -26,14 +27,19 @@ public class ModItemsMagiks
     public static Item ironBand;
     public static Item ironStick;
     public static Item emeraldAmulet;
-    public static Item ingotStamatic;
-    public static Item ingotIgnious;
     public static Item darkMatter;
     public static Item mistPanel;
     public static Item deprivedDust;
     public static Item burningUpgrade;
     public static Item ironPlate;
-
+    
+    // ores
+    public static Item ingotStamatic;
+    public static Item ingotIgnious;
+    public static Item ingotCopper;
+    public static Item ingotTin;
+    public static Item ingotSilver;
+    
     // wands
     public static Item basicWand;
     public static Item chemistWand;
@@ -73,6 +79,13 @@ public class ModItemsMagiks
                 .setMaxStackSize(2);
         ironPlate = new ItemGeneric(Ints.ironPlateID, "ironplate", false)
                 .setUnlocalizedName("ironplate");
+        ingotCopper = new ItemGeneric(Ints.ingotCopperID, "ingotCopper", false)
+        		.setUnlocalizedName("ingotCopper");
+        ingotTin = new ItemGeneric(Ints.ingotTinID, "ingotTin", false)
+		.setUnlocalizedName("ingotTin");
+        ingotSilver = new ItemGeneric(Ints.ingotSilverID, "ingotSilver", false)
+		.setUnlocalizedName("ingotSilver");
+        
         wand = new ItemGeneric(Ints.wandID, "magicianwand", false)
             .setCreativeTab(null).setUnlocalizedName("wand");
 
@@ -114,6 +127,13 @@ public class ModItemsMagiks
         LanguageRegistry.addName(ironPlate, "Iron Plate");
         LanguageRegistry.addName(burningUpgrade, "Burning Upgrade");
         LanguageRegistry.addName(wand, "Magician's Wand");
+        LanguageRegistry.addName(ingotCopper, "Copper Ingot");
+        LanguageRegistry.addName(ingotTin, "Tin Ingot");
+        LanguageRegistry.addName(ingotSilver, "Silver Ingot");
+        
+        OreDictionary.registerOre("ingotCopper", new ItemStack(ingotCopper));
+        OreDictionary.registerOre("ingotTin", new ItemStack(ingotTin));
+        OreDictionary.registerOre("ingotSilver", new ItemStack(ingotSilver));
     }
 
     public static void addChargeableItems()

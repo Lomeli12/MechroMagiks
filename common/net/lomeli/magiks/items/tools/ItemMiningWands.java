@@ -4,12 +4,11 @@ import net.lomeli.magiks.items.ItemGeneric;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-
 
 public class ItemMiningWands extends ItemGeneric
 {
+	int tick = 0;
     // private int wandStrength;
     public ItemMiningWands(int par1, String Texture, boolean special,
             int durability, int strength)
@@ -24,11 +23,16 @@ public class ItemMiningWands extends ItemGeneric
     public ItemStack onItemRightClick(ItemStack itemStack, World world,
             EntityPlayer player)
     {
-        Vec3 look = player.getLookVec();
-
-        int x = (int) (player.posX + look.xCoord * 4);
-        int y = (int) (player.posY + look.yCoord * 4);
-        int z = (int) (player.posZ + look.zCoord * 4);
+    	int x = 0, y = 0,z = 0;
+    	if(player != null)
+    	{
+    		if(player.rayTrace(200, 1.0F) != null)
+    		{
+    			x = player.rayTrace(200, 1F).blockX;
+    			y = player.rayTrace(200, 1F).blockY;
+    			z = player.rayTrace(200, 1F).blockZ;
+    		}
+    	}
 
         int id = world.getBlockId(x, y, z);
 
@@ -36,22 +40,29 @@ public class ItemMiningWands extends ItemGeneric
         if (id != 0 || world.blockExists(x, y, z)
                 || !Block.blocksList[id].isAirBlock(world, x, y, z))
         {
-            world.destroyBlock(x, y, z, false);
-            world.setBlockToAir(x, y, z);
-            try
-            {
-                ItemStack block = new ItemStack(Block.blocksList[id]);
-                if (block != null)
-                {
-                    player.inventory.addItemStackToInventory(block);
-                } else
-                {
-                    player.inventory.addItemStackToInventory(new ItemStack(
+        	if(tick == 0)
+        	{
+        		world.destroyBlock(x, y, z, false);
+        		world.destroyBlock(x, y, z, false);
+        		try
+        		{
+        			ItemStack block = new ItemStack(Block.blocksList[id]);
+        			if (block != null)
+        			{
+        				player.inventory.addItemStackToInventory(block);
+        			} else
+        			{	
+        				player.inventory.addItemStackToInventory(new ItemStack(
                             Block.dirt));
-                }
-            } catch (Exception e)
-            {
-            }
+        			}
+        		} catch (Exception e)
+        		{
+        		}
+        		tick++;
+        	}else if(tick >= 2)
+        	{
+        		tick = 0;
+        	}
         }
 
         return itemStack;

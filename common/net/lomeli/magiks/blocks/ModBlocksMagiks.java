@@ -13,6 +13,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.OreDictionary;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -22,7 +23,8 @@ public class ModBlocksMagiks
     public static Block neoniteOre, neoniteBlock, kineticGenerator,
             manceryBlock, manceryGlass, stamaticOre, igniousOre,
             solarMistCollector, mistCrafter, dupeFurnace, burningStone,
-            manceryBrick;
+            manceryBrick, obsidianStairs, manceryBlockStairs, manceryBrickStairs,
+            burningStoneStairs, netherIgnious, copperOre, tinOre, silverOre;
 
     public static void registerBlocks()
     {
@@ -52,14 +54,33 @@ public class ModBlocksMagiks
                 Material.rock, "solarmistcollector")
                 .setUnlocalizedName("solarmistcollector").setHardness(3F)
                 .setResistance(100F);
-        mistCrafter = new BlockMistCrafter(Ints.mistCrafterID, Material.anvil)
+        dupeFurnace = new BlockMultiFurnaceCore(Ints.dupeFurnaceID).setHardness(0.5F).setResistance(5000F);
+        burningStone = new BlockMultiFurnaceDummy(Ints.dupeDummyID).setHardness(0.5F).setResistance(5000F);
+        mistCrafter = new BlockMistWorkBench(Ints.mistCrafterID, Material.anvil)
                 .setUnlocalizedName("MistCrafter").setResistance(100F);
         manceryBrick = new BlockMagiks(Ints.manceryBrickID, Material.rock,
                 "mancerybricks").setUnlocalizedName("mancerybricks")
                 .setHardness(0.5F).setResistance(5000F);
-
-        dupeFurnace = new BlockMultiFurnaceCore(Ints.dupeFurnaceID);
-        burningStone = new BlockMultiFurnaceDummy(Ints.dupeDummyID);
+        obsidianStairs = new BlockMagikStairs(Ints.obsidianStairsID, Block.obsidian, 2,
+        		"obsidian").setHardness(50.0F).setResistance(2000.0F)
+        		.setUnlocalizedName("obsidianStairs");
+        manceryBlockStairs = new BlockMagikStairs(Ints.manceryStoneStairsID, manceryBlock, 3,
+        		"manceryblock").setUnlocalizedName("manceryblockstairs")
+                .setHardness(0.5F).setResistance(5000F);
+        manceryBrickStairs = new BlockMagikStairs(Ints.manceryBrickStairsID, manceryBrick, 4,
+        		"mancerybrick").setUnlocalizedName("mancerybricksstairs")
+                .setHardness(0.5F).setResistance(5000F);
+        burningStoneStairs = new BlockMagikStairs(Ints.burningBrickStairsID, burningStone, 5,
+        		"burningstone").setUnlocalizedName("burningstonestairs")
+                .setHardness(0.5F).setResistance(5000F);
+        netherIgnious = new BlockMagiks(Ints.netherIgniousID, Material.rock, "orenetherignious")
+        		.setHardness(3F).setResistance(5F).setUnlocalizedName("netherignious");
+        copperOre = new BlockMagiks(Ints.copperOreID, Material.rock, "oreCopper")
+        		.setHardness(3F).setResistance(5F).setUnlocalizedName("copperOre");
+        tinOre = new BlockMagiks(Ints.tinOreID, Material.rock, "oreTin")
+				.setHardness(3F).setResistance(5F).setUnlocalizedName("tinOre");
+        silverOre = new BlockMagiks(Ints.silverOreID, Material.rock, "oreSilver")
+				.setHardness(3F).setResistance(5F).setUnlocalizedName("silverOre");
 
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");
         GameRegistry.registerBlock(neoniteBlock, "Neonite Block");
@@ -73,28 +94,55 @@ public class ModBlocksMagiks
         GameRegistry.registerBlock(dupeFurnace, "Piras Oven Core");
         GameRegistry.registerBlock(burningStone, "Burning Stone");
         GameRegistry.registerBlock(manceryBrick, "Mancery Brick");
+        GameRegistry.registerBlock(netherIgnious, "Nether Ignious Ore");
+        GameRegistry.registerBlock(copperOre, "Copper Ore");
+        GameRegistry.registerBlock(tinOre, "Tin Ore");
+        GameRegistry.registerBlock(silverOre, "Silver Ore");
+        
+        GameRegistry.registerBlock(obsidianStairs, "Obsidian Stairs");
+        GameRegistry.registerBlock(manceryBlockStairs, "Mancery Stone Stairs");
+        GameRegistry.registerBlock(manceryBrickStairs, "Mancery Brick Stairs");
+        GameRegistry.registerBlock(burningStoneStairs, "Burning Stone Stairs");
 
         LanguageRegistry.addName(neoniteOre, "Neonite Ore");
         LanguageRegistry.addName(neoniteBlock, "Neonite Block");
         LanguageRegistry.addName(kineticGenerator, "Kinetic Generator");
         LanguageRegistry.addName(manceryBlock, "Mancery Stone");
         LanguageRegistry.addName(manceryGlass, "Mancery Glass");
-        LanguageRegistry.addName(stamaticOre, "Statmatic Ore");
+        LanguageRegistry.addName(stamaticOre, "Stamatic Ore");
         LanguageRegistry.addName(igniousOre, "Ignious Ore");
         LanguageRegistry.addName(solarMistCollector, "Solar Mist Collector");
         LanguageRegistry.addName(mistCrafter, "Mist Crafting Table");
         LanguageRegistry.addName(dupeFurnace, "Piras Oven Core");
         LanguageRegistry.addName(burningStone, "Burning Stone");
         LanguageRegistry.addName(manceryBrick, "Mancery Brick");
+        LanguageRegistry.addName(netherIgnious, "Nether Ignious Ore");
+        LanguageRegistry.addName(copperOre, "Copper Ore");
+        LanguageRegistry.addName(tinOre, "Tin Ore");
+        LanguageRegistry.addName(silverOre, "Silver Ore");
+        
+        LanguageRegistry.addName(obsidianStairs, "Obsidian Stairs");
+        LanguageRegistry.addName(manceryBlockStairs, "Mancery Stone Stairs");
+        LanguageRegistry.addName(manceryBrickStairs, "Mancery Brick Stairs");
+        LanguageRegistry.addName(burningStoneStairs, "Burning Stone Stairs");
 
         MinecraftForge.setBlockHarvestLevel(neoniteOre, "pickaxe", 2);
         MinecraftForge.setBlockHarvestLevel(neoniteBlock, "pickaxe", 2);
         MinecraftForge.setBlockHarvestLevel(stamaticOre, "pickaxe", 2);
         MinecraftForge.setBlockHarvestLevel(igniousOre, "pickaxe", 2);
+        MinecraftForge.setBlockHarvestLevel(netherIgnious, "pickaxe", 2);
+        MinecraftForge.setBlockHarvestLevel(copperOre, "pickaxe", 1);
+        MinecraftForge.setBlockHarvestLevel(tinOre, "pickaxe", 1);
+        MinecraftForge.setBlockHarvestLevel(silverOre, "pickaxe", 2);
+        
+        OreDictionary.registerOre("oreCopper", new ItemStack(copperOre));
+        OreDictionary.registerOre("oreTin", new ItemStack(tinOre));
+        OreDictionary.registerOre("oreSilver", new ItemStack(silverOre));
     }
 
     public static void registerKinGenFuel()
     {
         MagiksArrays.kineticGenFuel.add(new ItemStack(Block.tnt));
+        MagiksArrays.kineticGenFuelAmount.add(75);
     }
 }

@@ -28,6 +28,12 @@ public class EE3Recipes
 	public static void registerTransmutations()
 	{
 		addStones();
+		/* added this in just so I can get the philosopher's stone in my single player world =P
+		GameRegistry.addRecipe(EE3ItemAPI.getItem("philStone"), new Object[] {
+			"RGR","GMG","RGR", 'R',Item.redstone, 'G',Item.lightStoneDust,
+			'M',EE3ItemAPI.getItem("miniumStone")
+		});*/
+		
 		for(ItemStack stone : transmutationStones)
 		{
 			MagiksArrays.rechargeableItems.add(stone);

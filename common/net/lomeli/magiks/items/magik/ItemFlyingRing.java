@@ -45,7 +45,7 @@ public class ItemFlyingRing extends Item
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
-        itemIcon = iconRegister.registerIcon(Strings.modID + ":" + itemTexture);
+        itemIcon = iconRegister.registerIcon(Strings.MOD_ID + ":" + itemTexture);
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })

@@ -18,6 +18,8 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
+import net.lomeli.magiks.tileentity.TileEntityMagiks;
+
 public class MagiksArrays
 {
     /**
@@ -30,7 +32,7 @@ public class MagiksArrays
      * the Kinetic Generator.
      */
     public static List<ItemStack> kineticGenFuel = new ArrayList<ItemStack>();
-
+    public static List<Integer> kineticGenFuelAmount = new ArrayList<Integer>();
     /**
      * For now, any items added to this array will recharge the flying ring by
      * 50
@@ -43,4 +45,6 @@ public class MagiksArrays
     public static List<ItemStack> damageOnCraft = new ArrayList<ItemStack>();
 
     public static List<ItemStack> wands = new ArrayList<ItemStack>();
+    
+    public static List<TileEntityMagiks> canRecieveMist = new ArrayList<TileEntityMagiks>();
 }

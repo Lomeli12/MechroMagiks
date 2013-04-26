@@ -1,18 +1,15 @@
 package net.lomeli.magiks.tileentity;
 
 import net.lomeli.magiks.api.libs.MagiksArrays;
-import net.lomeli.magiks.api.magiks.IMagiks;
 import net.lomeli.magiks.lib.Strings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 
-
-public class TileEntitySolarMistCollector extends TileEntity implements
-        IInventory, IMagiks
+public class TileEntitySolarMistCollector extends TileEntityMagiks implements
+        IInventory
 {
     private ItemStack[] inventory;
     private int maxMistLevel = 3000, mistLevel;
@@ -195,55 +192,5 @@ public class TileEntitySolarMistCollector extends TileEntity implements
         }
     }
 
-    @Override
-    public int getMistLevel()
-    {
-        if (mistLevel != 0)
-            return mistLevel;
-        else
-            return 0;
-    }
-
-    @Override
-    public void setMistLevel(int value)
-    {
-        mistLevel = value;
-    }
-
-    @Override
-    public void addToMistLevel(int value)
-    {
-        mistLevel += value;
-    }
-
-    @Override
-    public int getHeatLevel()
-    {
-        return 0;
-    }
-
-    @Override
-    public void setHeatLevel(int temp)
-    {
-    }
-
-    @Override
-    public void addToHeatLevel(int temp)
-    {
-    }
-
-    @Override
-    public int getMaxMistLevel()
-    {
-        return maxMistLevel;
-    }
-
-    @Override
-    public boolean hasMist()
-    {
-        if (this.getMistLevel() >= 0)
-            return true;
-        else
-            return false;
-    }
+    
 }

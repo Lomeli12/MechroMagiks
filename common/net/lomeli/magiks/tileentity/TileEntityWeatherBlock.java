@@ -6,9 +6,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityWeatherBlock extends TileEntity implements
+public class TileEntityWeatherBlock extends TileEntityMagiks implements
     IInventory
 {
     private ItemStack[] inventory;

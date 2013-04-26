@@ -1,9 +1,12 @@
 package net.lomeli.magiks.tileentity;
 
+import java.util.logging.Level;
+
 import net.lomeli.magiks.api.libs.MagiksArrays;
-import net.lomeli.magiks.api.magiks.IMagiks;
 import net.lomeli.magiks.core.helper.BlockHelper;
+import net.lomeli.magiks.core.helper.LogHelper;
 import net.lomeli.magiks.lib.Strings;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,15 +14,11 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 
-
-public class TileEntityKineticGenerator extends TileEntity implements
-        IInventory, IMagiks
+public class TileEntityKineticGenerator extends TileEntityMagiks implements
+        IInventory
 {
     private ItemStack[] inventory;
-    public int maxMistLevel = 3000, mistLevel, heatLevel, generationTime = 0,
-            coolDown = 0;
 
     public TileEntityKineticGenerator()
     {
@@ -201,7 +200,9 @@ public class TileEntityKineticGenerator extends TileEntity implements
                 {
                     generationTime = 0;
                     this.decrStackSize(1, 1);
-                    this.addToMistLevel(75);
+                    int index = MagiksArrays.kineticGenFuel.indexOf(fuel);
+                    LogHelper.log(Level.INFO, "index: " + index);
+                    //this.addToMistLevel(MagiksArrays.kineticGenFuelAmount.get(index));
                     this.addToHeatLevel(50 / this.coolRate());
                     worldObj.playSoundEffect(xCoord, yCoord, zCoord,
                             "random.explode", 4F,
@@ -271,53 +272,5 @@ public class TileEntityKineticGenerator extends TileEntity implements
                 return false;
         }
         return false;
-    }
-
-    @Override
-    public boolean hasMist()
-    {
-        return mistLevel >= 0;
-    }
-
-    @Override
-    public int getMistLevel()
-    {
-        return mistLevel;
-    }
-
-    @Override
-    public int getHeatLevel()
-    {
-        return heatLevel;
-    }
-
-    @Override
-    public void setMistLevel(int value)
-    {
-        mistLevel = value;
-    }
-
-    @Override
-    public void addToMistLevel(int value)
-    {
-        setMistLevel(mistLevel + value);
-    }
-
-    @Override
-    public void setHeatLevel(int temp)
-    {
-        mistLevel = temp;
-    }
-
-    @Override
-    public void addToHeatLevel(int temp)
-    {
-        mistLevel += temp;
-    }
-
-    @Override
-    public int getMaxMistLevel()
-    {
-        return maxMistLevel;
     }
 }
