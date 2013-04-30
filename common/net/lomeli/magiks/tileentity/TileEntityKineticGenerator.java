@@ -1,10 +1,8 @@
 package net.lomeli.magiks.tileentity;
 
-import java.util.logging.Level;
-
+import net.lomeli.magiks.api.cafting.KineticGenFuel;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.core.helper.BlockHelper;
-import net.lomeli.magiks.core.helper.LogHelper;
 import net.lomeli.magiks.lib.Strings;
 
 import net.minecraft.block.Block;
@@ -193,30 +191,33 @@ public class TileEntityKineticGenerator extends TileEntityMagiks implements
             }
 
             ItemStack fuel = getStackInSlot(1);
-            if (fuel != null && canUseAsFuel(fuel))
+            
+            if (fuel != null)
             {
-                ++generationTime;
-                if (generationTime >= 100)
-                {
-                    generationTime = 0;
-                    this.decrStackSize(1, 1);
-                    int index = MagiksArrays.kineticGenFuel.indexOf(fuel);
-                    LogHelper.log(Level.INFO, "index: " + index);
-                    //this.addToMistLevel(MagiksArrays.kineticGenFuelAmount.get(index));
-                    this.addToHeatLevel(50 / this.coolRate());
-                    worldObj.playSoundEffect(xCoord, yCoord, zCoord,
+            	//System.out.println(canUseAsFuel(fuel));
+            	if(canUseAsFuel(fuel))
+            	{	
+            		
+            		++generationTime;
+            		if (generationTime >= 100)
+            		{
+            			generationTime = 0;
+            			this.decrStackSize(1, 1);
+            			int index = MagiksArrays.kineticGenFuel.indexOf(new ItemStack(fuel.getItem()));
+            			System.out.println(index);
+            			this.addToMistLevel(75);
+            			this.addToHeatLevel(50 / this.coolRate());
+            			worldObj.playSoundEffect(xCoord, yCoord, zCoord,
                             "random.explode", 4F,
                             (1.0F + (worldObj.rand.nextFloat() - worldObj.rand
                                     .nextFloat()) * 0.2F) * 0.7F);
-                    if (heatLevel < 80)
-                    {
-                        worldObj.spawnParticle("largeexplode", xCoord + 0.5,
+            			if (heatLevel < 80)
+            				worldObj.spawnParticle("largeexplode", xCoord + 0.5,
+            					yCoord + 1, zCoord + 0.5, 1D, 0, 0);
+            			else
+            				worldObj.spawnParticle("hugeexplosion", xCoord + 0.5,
                                 yCoord + 1, zCoord + 0.5, 1D, 0, 0);
-                    } else
-                    {
-                        worldObj.spawnParticle("hugeexplosion", xCoord + 0.5,
-                                yCoord + 1, zCoord + 0.5, 1D, 0, 0);
-                    }
+            		}
                 }
             }
 
@@ -264,13 +265,6 @@ public class TileEntityKineticGenerator extends TileEntityMagiks implements
 
     private boolean canUseAsFuel(ItemStack item)
     {
-        for (ItemStack fuel : MagiksArrays.kineticGenFuel)
-        {
-            if (item.itemID == fuel.itemID)
-                return true;
-            else
-                return false;
-        }
-        return false;
+    	return KineticGenFuel.fuel().isValidItem(item);
     }
 }

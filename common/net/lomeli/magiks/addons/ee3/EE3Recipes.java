@@ -38,6 +38,14 @@ public class EE3Recipes
 		{
 			MagiksArrays.rechargeableItems.add(stone);
 			
+			GameRegistry.addShapelessRecipe(new ItemStack(Item.redstone, 2), 
+					new Object[] { (new ItemStack(Item.coal, 1, WILDCARD_DAMAGE_VALUE)),
+					(new ItemStack(stone.getItem(), 1, WILDCARD_DAMAGE_VALUE)) });
+			
+			GameRegistry.addShapelessRecipe(new ItemStack(Item.coal, 1), 
+					new Object[] { Item.redstone, Item.redstone,
+					(new ItemStack(stone.getItem(), 1, WILDCARD_DAMAGE_VALUE)) });
+			
 			// 1 Neonite -> 2 Emeralds
 			GameRegistry.addShapelessRecipe(new ItemStack(Item.emerald, 2), 
 				new Object[] { ModItemsMagiks.neoniteGem,

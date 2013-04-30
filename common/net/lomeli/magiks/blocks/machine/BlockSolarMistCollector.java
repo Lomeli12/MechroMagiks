@@ -94,6 +94,7 @@ public class BlockSolarMistCollector extends BlockContainer
                         .getBlockTileEntity(x, y, z);
                 if (solarCollector != null)
                 {
+                	
                     player.openGui(Magiks.instance, GuiIDs.solarGen, world, x,
                             y, z);
                 }

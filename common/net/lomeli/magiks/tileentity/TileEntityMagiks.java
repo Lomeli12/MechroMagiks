@@ -12,46 +12,48 @@ public class TileEntityMagiks extends TileEntity implements IMagiks
     @Override
     public int getMistLevel()
     {
-        if (mistLevel != 0)
-            return mistLevel;
-        else
-            return 0;
+        return this.mistLevel;
+    }
+    
+    public int getMistPercentage()
+    {
+    	return (this.mistLevel / this.maxMistLevel);
     }
 
     @Override
     public void setMistLevel(int value)
     {
-        mistLevel = value;
+    	this.mistLevel = value;
     }
 
     @Override
     public void addToMistLevel(int value)
     {
-        mistLevel += value;
+    	this.mistLevel += value;
     }
 
     @Override
     public int getHeatLevel()
     {
-        return heatLevel;
+        return this.heatLevel;
     }
 
     @Override
     public void setHeatLevel(int temp)
     {
-        mistLevel = temp;
+    	this.mistLevel = temp;
     }
 
     @Override
     public void addToHeatLevel(int temp)
     {
-        mistLevel += temp;
+    	this.mistLevel += temp;
     }
 
     @Override
     public int getMaxMistLevel()
     {
-        return maxMistLevel;
+        return this.maxMistLevel;
     }
 
     @Override
@@ -65,7 +67,7 @@ public class TileEntityMagiks extends TileEntity implements IMagiks
 
 	@Override
 	public boolean isConnected() {
-		if(connected != null)
+		if(this.connected != null)
 				return true;
 			else
 				return false;
@@ -74,7 +76,7 @@ public class TileEntityMagiks extends TileEntity implements IMagiks
 	@Override
 	public void setConnection(TileEntityMagiks tileEntity) {
 		if(getConnection() == null)
-			connected = tileEntity;
+			this.connected = tileEntity;
 		else
 		{
 		}
@@ -82,7 +84,7 @@ public class TileEntityMagiks extends TileEntity implements IMagiks
 
 	@Override
 	public TileEntityMagiks getConnection() {
-		return connected;
+		return this.connected;
 	}
 
 }

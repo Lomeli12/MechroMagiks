@@ -9,9 +9,11 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerSolarMistCollector extends Container
 {
+	public TileEntitySolarMistCollector tileEntity;
     public ContainerSolarMistCollector(InventoryPlayer inventoryPlayer,
             TileEntitySolarMistCollector solarCollect)
     {
+    	this.tileEntity = solarCollect;
         this.addSlotToContainer(new Slot(solarCollect, 0, 56, 35));
 
         for (int inventoryRowIndex = 0; inventoryRowIndex < 3; ++inventoryRowIndex)

@@ -35,4 +35,6 @@ public class ItemGeneric extends Item
     {
         return isSpecial;
     }
+    
+    
 }

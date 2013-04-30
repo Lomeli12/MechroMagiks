@@ -6,12 +6,12 @@ import net.lomeli.magiks.tileentity.TileEntityMistWorkBench;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
-import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
 public class GuiMistWorkBench extends GuiContainer
 {
+	@SuppressWarnings("unused")
 	private TileEntityMistWorkBench tileEntity;
 	
     public GuiMistWorkBench(InventoryPlayer par1InventoryPlayer, TileEntityMistWorkBench tile)
@@ -25,7 +25,7 @@ public class GuiMistWorkBench extends GuiContainer
     {
     	
         fontRenderer.drawString(
-                StatCollector.translateToLocal("container.crafting"), 28, 6,
+                StatCollector.translateToLocal("Mist Workbench"), 28, 6,
                 4210752);
         fontRenderer.drawString(
                 StatCollector.translateToLocal("container.inventory"), 8,

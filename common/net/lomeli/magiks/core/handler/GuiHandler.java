@@ -1,6 +1,5 @@
 package net.lomeli.magiks.core.handler;
 
-import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.client.gui.GuiKineticGenerator;
 import net.lomeli.magiks.client.gui.GuiMultiFurnace;
 import net.lomeli.magiks.client.gui.GuiSolarMistCollector;

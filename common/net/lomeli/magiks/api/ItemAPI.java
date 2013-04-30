@@ -31,7 +31,7 @@ public class ItemAPI
 
         try
         {
-            String itemClass = "com.lomeli.magiks.items.ModItemsMagiks";
+            String itemClass = "net.lomeli.magiks.items.ModItemsMagiks";
             Object obj = Class.forName(itemClass).getField(itemString)
                     .get(null);
             if (obj instanceof Item)
@@ -55,7 +55,7 @@ public class ItemAPI
 
         try
         {
-            String itemClass = "com.lomeli.magiks.items.ModItemsMagiks";
+            String itemClass = "net.lomeli.magiks.items.ModItemsMagiks";
             Object obj = Class.forName(itemClass).getField(itemString)
                     .get(null);
             if (obj instanceof Item)

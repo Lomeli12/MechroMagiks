@@ -9,8 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.IRecipe;/*
 import net.minecraft.item.crafting.RecipeFireworks;
 import net.minecraft.item.crafting.RecipesArmor;
 import net.minecraft.item.crafting.RecipesArmorDyes;
@@ -21,41 +20,32 @@ import net.minecraft.item.crafting.RecipesIngots;
 import net.minecraft.item.crafting.RecipesMapCloning;
 import net.minecraft.item.crafting.RecipesMapExtending;
 import net.minecraft.item.crafting.RecipesTools;
-import net.minecraft.item.crafting.RecipesWeapons;
+import net.minecraft.item.crafting.RecipesWeapons;*/
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.world.World;
 
-public class MagikCraftingManager
+public class MagiksCraftingManager
 {
-    private static final MagikCraftingManager instance = new MagikCraftingManager();
+    private static final MagiksCraftingManager instance = new MagiksCraftingManager();
 
     private List<IRecipe> recipes = new ArrayList<IRecipe>();
 
-    public static final MagikCraftingManager getInstance()
+    public static final MagiksCraftingManager getInstance()
     {
         return instance;
     }
-    
-
-    private MagikCraftingManager()
-    {/*
-    	this.recipes.add(new RecipesTools());
-    	this.recipes.add(new RecipesTools());
-    	this.recipes.add(new RecipesWeapons());
-    	this.recipes.add(new RecipesIngots());
-    	this.recipes.add(new RecipesFood());
-    	this.recipes.add(new RecipesCrafting());
-    	this.recipes.add(new RecipesArmor());
-    	this.recipes.add(new RecipesDyes());
-        
+	@SuppressWarnings("unchecked")
+	private MagiksCraftingManager()
+    {
+		/*
         (new RecipesTools()).addRecipes(this);
         (new RecipesWeapons()).addRecipes(this);
         (new RecipesIngots()).addRecipes(this);
         (new RecipesFood()).addRecipes(this);
         (new RecipesCrafting()).addRecipes(this);
         (new RecipesArmor()).addRecipes(this);
-        (new RecipesDyes()).addRecipes(this);*/
+        (new RecipesDyes()).addRecipes(this);
         this.recipes.add(new RecipesArmorDyes());
         this.recipes.add(new RecipesMapCloning());
         this.recipes.add(new RecipesMapExtending());
@@ -166,9 +156,10 @@ public class MagikCraftingManager
         this.addShapelessRecipe(new ItemStack(Item.fireballCharge, 3), new Object[] {Item.gunpowder, Item.blazePowder, new ItemStack(Item.coal, 1, 1)});
         this.addRecipe(new ItemStack(Block.daylightSensor), new Object[] {"GGG", "QQQ", "WWW", 'G', Block.glass, 'Q', Item.netherQuartz, 'W', Block.woodSingleSlab});
         this.addRecipe(new ItemStack(Block.hopperBlock), new Object[] {"I I", "ICI", " I ", 'I', Item.ingotIron, 'C', Block.chest});
+        //*/
         Collections.sort(this.recipes, new RecipeSorter(this));
         System.out.println(this.recipes.size() + " recipes");
-    }
+    }  
 
     public ShapedRecipes addRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
     {

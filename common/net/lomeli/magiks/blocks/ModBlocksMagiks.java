@@ -1,9 +1,11 @@
 package net.lomeli.magiks.blocks;
 
+import net.lomeli.magiks.api.cafting.KineticGenFuel;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.blocks.machine.BlockKineticGenerator;
 import net.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
 import net.lomeli.magiks.blocks.machine.BlockSolarMistCollector;
+import net.lomeli.magiks.blocks.machine.BlockCoil;
 import net.lomeli.magiks.blocks.machine.parts.BlockMecroBlock;
 import net.lomeli.magiks.blocks.machine.parts.BlockMecroGlass;
 import net.lomeli.magiks.blocks.machine.parts.BlockMultiFurnaceDummy;
@@ -24,7 +26,8 @@ public class ModBlocksMagiks
             manceryBlock, manceryGlass, stamaticOre, igniousOre,
             solarMistCollector, mistCrafter, dupeFurnace, burningStone,
             manceryBrick, obsidianStairs, manceryBlockStairs, manceryBrickStairs,
-            burningStoneStairs, netherIgnious, copperOre, tinOre, silverOre;
+            burningStoneStairs, netherIgnious, copperOre, tinOre, silverOre,
+            smallCoil;
 
     public static void registerBlocks()
     {
@@ -68,7 +71,7 @@ public class ModBlocksMagiks
         		"manceryblock").setUnlocalizedName("manceryblockstairs")
                 .setHardness(0.5F).setResistance(5000F);
         manceryBrickStairs = new BlockMagikStairs(Ints.manceryBrickStairsID, manceryBrick, 4,
-        		"mancerybrick").setUnlocalizedName("mancerybricksstairs")
+        		"mancerybricks").setUnlocalizedName("mancerybricksstairs")
                 .setHardness(0.5F).setResistance(5000F);
         burningStoneStairs = new BlockMagikStairs(Ints.burningBrickStairsID, burningStone, 5,
         		"burningstone").setUnlocalizedName("burningstonestairs")
@@ -81,6 +84,7 @@ public class ModBlocksMagiks
 				.setHardness(3F).setResistance(5F).setUnlocalizedName("tinOre");
         silverOre = new BlockMagiks(Ints.silverOreID, Material.rock, "oreSilver")
 				.setHardness(3F).setResistance(5F).setUnlocalizedName("silverOre");
+        smallCoil = new BlockCoil(Ints.smallCoilID, Material.rock, "oreSilver");
 
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");
         GameRegistry.registerBlock(neoniteBlock, "Neonite Block");
@@ -98,6 +102,7 @@ public class ModBlocksMagiks
         GameRegistry.registerBlock(copperOre, "Copper Ore");
         GameRegistry.registerBlock(tinOre, "Tin Ore");
         GameRegistry.registerBlock(silverOre, "Silver Ore");
+        GameRegistry.registerBlock(smallCoil, "Small Coil");
         
         GameRegistry.registerBlock(obsidianStairs, "Obsidian Stairs");
         GameRegistry.registerBlock(manceryBlockStairs, "Mancery Stone Stairs");
@@ -120,6 +125,7 @@ public class ModBlocksMagiks
         LanguageRegistry.addName(copperOre, "Copper Ore");
         LanguageRegistry.addName(tinOre, "Tin Ore");
         LanguageRegistry.addName(silverOre, "Silver Ore");
+        LanguageRegistry.addName(smallCoil, "Small Coil");
         
         LanguageRegistry.addName(obsidianStairs, "Obsidian Stairs");
         LanguageRegistry.addName(manceryBlockStairs, "Mancery Stone Stairs");
@@ -140,9 +146,10 @@ public class ModBlocksMagiks
         OreDictionary.registerOre("oreSilver", new ItemStack(silverOre));
     }
 
+    public static final int WILDCARD = Short.MAX_VALUE;
     public static void registerKinGenFuel()
     {
-        MagiksArrays.kineticGenFuel.add(new ItemStack(Block.tnt));
-        MagiksArrays.kineticGenFuelAmount.add(75);
+    	KineticGenFuel.fuel().addFuel(0, new ItemStack(Block.tnt), 75);
+    	MagiksArrays.addNewKinGenFuel(new ItemStack(Block.tnt), 75, 0);
     }
 }

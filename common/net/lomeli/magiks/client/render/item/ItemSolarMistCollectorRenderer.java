@@ -1,15 +1,15 @@
 package net.lomeli.magiks.client.render.item;
 
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.client.FMLClientHandler;
+
 import net.lomeli.magiks.client.model.ModelSolarMistCollector;
-import net.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 
-
 public class ItemSolarMistCollectorRenderer implements IItemRenderer
 {
-    @SuppressWarnings("unused")
     private ModelSolarMistCollector solarCollector;
 
     public ItemSolarMistCollectorRenderer()
@@ -33,7 +33,26 @@ public class ItemSolarMistCollectorRenderer implements IItemRenderer
     @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data)
     {
-        TileEntityRenderer.instance.renderTileEntityAt(
-                new TileEntitySolarMistCollector(), 0.05D, 0.05D, 0.05D, 0.05F);
+    	if(type == ItemRenderType.EQUIPPED)
+			renderSMC(0.25F, 1.5F, 0.25F, 1.25F);
+		else
+			renderSMC(0F, 1F, 0F, 1.0F);
+    }
+    
+    public void renderSMC(float x, float y, float z, float scale)
+    {
+    	GL11.glPushMatrix();
+        GL11.glDisable(GL11.GL_LIGHTING);
+
+        // Scale, Translate, Rotate
+        GL11.glScalef(scale, scale, scale);
+        GL11.glTranslatef(x, y, z);
+        GL11.glRotatef(180F, 1F, 0, 0);
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture("/mods/magiks/models/SolarMistCollector.png");
+        
+        solarCollector.render(0.0625F);
+        
+        GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glPopMatrix();
     }
 }

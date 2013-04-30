@@ -1,15 +1,18 @@
 package net.lomeli.magiks.core;
 
-import net.lomeli.magiks.blocks.ModBlocksMagiks;
+import net.lomeli.magiks.client.render.item.ItemCoilRenderer;
 import net.lomeli.magiks.client.render.item.ItemKineticGeneratorRenderer;
 import net.lomeli.magiks.client.render.item.ItemSolarMistCollectorRenderer;
 import net.lomeli.magiks.core.DeveloperCapesAPI.DeveloperCapesAPI;
 import net.lomeli.magiks.core.config.ConfigMod;
+import net.lomeli.magiks.lib.Ints;
 import net.lomeli.magiks.lib.RenderIDs;
+import net.lomeli.magiks.tileentity.TileEntityCoil;
 import net.lomeli.magiks.tileentity.TileEntityKineticGenerator;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceCore;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceDummy;
 import net.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
+import net.lomeli.magiks.tileentity.renderer.TileEntityCoilRenderer;
 import net.lomeli.magiks.tileentity.renderer.TileEntityKineticGeneratorRenderer;
 import net.lomeli.magiks.tileentity.renderer.TileEntitySolarMistCollectorRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -26,6 +29,7 @@ public class ClientProxy extends CommonProxy
     {
         RenderIDs.kineticGID = RenderingRegistry.getNextAvailableRenderId();
         RenderIDs.solarGID = RenderingRegistry.getNextAvailableRenderId();
+        RenderIDs.coilID = RenderingRegistry.getNextAvailableRenderId();
 
         ClientRegistry.bindTileEntitySpecialRenderer(
                 TileEntityKineticGenerator.class,
@@ -33,18 +37,25 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(
                 TileEntitySolarMistCollector.class,
                 new TileEntitySolarMistCollectorRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(
+                TileEntityCoil.class,
+                new TileEntityCoilRenderer());
 
         MinecraftForgeClient.registerItemRenderer(
-                ModBlocksMagiks.kineticGenerator.blockID,
+                Ints.kineticGenID,
                 new ItemKineticGeneratorRenderer());
         MinecraftForgeClient.registerItemRenderer(
-                ModBlocksMagiks.solarMistCollector.blockID,
+        		Ints.solarGenID,
                 new ItemSolarMistCollectorRenderer());
+        MinecraftForgeClient.registerItemRenderer(Ints.smallCoilID, 
+        		new ItemCoilRenderer());
 
         ClientRegistry.registerTileEntity(TileEntityKineticGenerator.class,
                 "keneticGen", new TileEntityKineticGeneratorRenderer());
         ClientRegistry.registerTileEntity(TileEntitySolarMistCollector.class,
                 "solarGen", new TileEntitySolarMistCollectorRenderer());
+        ClientRegistry.registerTileEntity(TileEntityCoil.class, "smallcoil", 
+        		new TileEntityCoilRenderer());
 
         GameRegistry.registerTileEntity(TileEntityMultiFurnaceCore.class,
                 "dupefurnace");

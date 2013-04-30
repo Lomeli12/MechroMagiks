@@ -87,6 +87,7 @@ public class ConfigMod
         Ints.copperOreID = config.get("Blocks", "copperOre", 717).getInt(717);
         Ints.tinOreID = config.get("Blocks", "tinOre", 718).getInt(718);
         Ints.silverOreID = config.get("Blocks", "silverOre", 719).getInt(719);
+        Ints.smallCoilID = config.get("Machines", "smallCoil", 720).getInt(720);
 
         config.save();
     }

@@ -1,5 +1,11 @@
 package net.lomeli.magiks.api.libs;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+
 /**
  * If you want you items to be able to charge using the various generators, or
  * be affected by certain items, add them to the various arrays
@@ -13,13 +19,6 @@ package net.lomeli.magiks.api.libs;
  * MagiksArrays.
  * 
  */
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-
-import net.lomeli.magiks.tileentity.TileEntityMagiks;
-
 public class MagiksArrays
 {
     /**
@@ -46,5 +45,11 @@ public class MagiksArrays
 
     public static List<ItemStack> wands = new ArrayList<ItemStack>();
     
-    public static List<TileEntityMagiks> canRecieveMist = new ArrayList<TileEntityMagiks>();
+    public static List<TileEntity> canRecieveMist = new ArrayList<TileEntity>();
+    
+    public static void addNewKinGenFuel(ItemStack itemStack, int amount, int slot)
+    {
+    	kineticGenFuel.add(slot, itemStack);
+    	kineticGenFuelAmount.add(slot, amount);
+    }
 }

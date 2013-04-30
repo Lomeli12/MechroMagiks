@@ -17,7 +17,7 @@ public class GuiMultiFurnace extends GuiContainer
             TileEntityMultiFurnaceCore tileEntity)
     {
         super(new ContainerMultiFurnace(playerInventory, tileEntity));
-
+        ySize = 176;
         this.tileEntity = tileEntity;
     }
 

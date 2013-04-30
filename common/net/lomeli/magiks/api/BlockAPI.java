@@ -31,7 +31,7 @@ public class BlockAPI
 
         try
         {
-            String itemClass = "com.lomeli.magiks.blocks.ModBlocksMagiks";
+            String itemClass = "net.lomeli.magiks.blocks.ModBlocksMagiks";
             Object obj = Class.forName(itemClass).getField(itemString)
                     .get(null);
             if (obj instanceof Block)
@@ -55,7 +55,7 @@ public class BlockAPI
 
         try
         {
-            String itemClass = "com.lomeli.magiks.blocks.ModBlocksMagiks";
+            String itemClass = "net.lomeli.magiks.blocks.ModBlocksMagiks";
             Object obj = Class.forName(itemClass).getField(itemString)
                     .get(null);
             if (obj instanceof Block)

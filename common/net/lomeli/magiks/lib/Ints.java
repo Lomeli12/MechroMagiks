@@ -45,6 +45,7 @@ public class Ints
     public static int manceryBrickStairsID;
     public static int burningBrickStairsID;
     public static int netherIgniousID;
+    public static int smallCoilID;
     
     //ores
     public static int stamaticOreID;
