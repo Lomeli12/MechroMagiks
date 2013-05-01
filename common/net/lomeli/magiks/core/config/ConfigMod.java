@@ -53,6 +53,9 @@ public class ConfigMod
                 .getInt(7025);
         Ints.wandID = config.get("Wands", "wand", 7026).getInt(7026);
         
+        Ints.spencerSwordID = config.get("Tools", "SpencerSword", 7027).getInt(7027);
+        Ints.emeraldAmuletID = config.get("Tools", "EmeraldAmulet", 7028).getInt(7028);
+        
         Ints.ingotCopperID = config.get("Ingots", "IngotCopper", 7030).getInt(7030);
         Ints.ingotTinID = config.get("Ingots", "IngotTin", 7031).getInt(7031);
         Ints.ingotSilverID = config.get("Ingots", "IngotSilver", 7032).getInt(7032);

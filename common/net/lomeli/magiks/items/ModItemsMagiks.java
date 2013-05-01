@@ -62,7 +62,7 @@ public class ModItemsMagiks
                 .setUnlocalizedName("ironBand");
         ironStick = new ItemGeneric(Ints.ironStickID, "ironstick", false)
                 .setUnlocalizedName("ironStick");
-        emeraldAmulet = new ItemAmulets(9001, "amuletGold", true, 50000)
+        emeraldAmulet = new ItemAmulets(Ints.emeraldAmuletID, "amuletGold", true, 50000)
                 .setUnlocalizedName("amulet");
         ingotStamatic = new ItemGeneric(Ints.ingotStamaticID, "ingotstamatic",
                 false).setUnlocalizedName("ingotstamatic");
@@ -99,7 +99,7 @@ public class ModItemsMagiks
         neonitePick = new ItemEmpoweredPick(Ints.empoweredPickID,
                 EnumToolMaterial.IRON, "pickaxeEmpowered")
                 .setUnlocalizedName("empoweredPick");
-        levelingSword = new ItemLevelingSword(9000, EnumToolMaterial.IRON,
+        levelingSword = new ItemLevelingSword(Ints.spencerSwordID, EnumToolMaterial.IRON,
                 "levelingsword").setUnlocalizedName("lvlSword");
         pirasVarinha = new ItemPirasVarinha(Ints.pirasVarinhaID,
                 "pirasvarinha", false).setUnlocalizedName("pirasvarinha");

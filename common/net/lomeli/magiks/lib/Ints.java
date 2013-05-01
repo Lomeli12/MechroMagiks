@@ -7,6 +7,8 @@ public class Ints
     public static int enchantedDiamondID;
     public static int ironBandID;
     public static int ironStickID;
+    public static int spencerSwordID;
+    public static int emeraldAmuletID;
     
     public static int darkMatterID;
     public static int deprivedDustID;
