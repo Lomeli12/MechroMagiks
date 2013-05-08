@@ -59,63 +59,54 @@ public class TileEntityMultiFurnaceDummy extends TileEntityMagiks implements
     @Override
     public int getSizeInventory()
     {
-        // TODO Auto-generated method stub
         return tileEntityCore.getSizeInventory();
     }
 
     @Override
     public ItemStack getStackInSlot(int i)
     {
-        // TODO Auto-generated method stub
         return tileEntityCore.getStackInSlot(i);
     }
 
     @Override
     public ItemStack decrStackSize(int i, int j)
     {
-        // TODO Auto-generated method stub
         return tileEntityCore.decrStackSize(i, j);
     }
 
     @Override
     public ItemStack getStackInSlotOnClosing(int i)
     {
-        // TODO Auto-generated method stub
         return tileEntityCore.getStackInSlotOnClosing(i);
     }
 
     @Override
     public void setInventorySlotContents(int i, ItemStack itemstack)
     {
-        // TODO Auto-generated method stub
         tileEntityCore.setInventorySlotContents(i, itemstack);
     }
 
     @Override
     public String getInvName()
     {
-        // TODO Auto-generated method stub
         return tileEntityCore.getInvName();
     }
 
     @Override
     public boolean isInvNameLocalized()
     {
-        // TODO Auto-generated method stub
         return tileEntityCore.isInvNameLocalized();
     }
 
     @Override
     public int getInventoryStackLimit()
     {
-        // TODO Auto-generated method stub
         return tileEntityCore.getInventoryStackLimit();
     }
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer)
     {
-        // TODO Auto-generated method stub
         return worldObj.getBlockTileEntity(xCoord, yCoord, zCoord) != this ? false
                 : entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5,
                         zCoord + 0.5) <= 64.0;
@@ -134,28 +125,32 @@ public class TileEntityMultiFurnaceDummy extends TileEntityMagiks implements
     @Override
     public boolean isStackValidForSlot(int i, ItemStack itemstack)
     {
-        // TODO Auto-generated method stub
         return tileEntityCore.isStackValidForSlot(i, itemstack);
     }
 
-    @Override
-    public int[] getSizeInventorySide(int var1)
-    {
-        // TODO Auto-generated method stub
-        return tileEntityCore.getSizeInventorySide(var1);
-    }
+    @SuppressWarnings("static-access")
+	@Override
+	public int[] getAccessibleSlotsFromSide(int var1) 
+	{
+		return var1 == 0 ? tileEntityCore.sidedSlotBottom : var1 == 1 ? tileEntityCore.sidedSlotTop
+                : tileEntityCore.sidedSlotSides;
+	}
 
-    @Override
-    public boolean func_102007_a(int i, ItemStack itemstack, int j)
-    {
-        // TODO Auto-generated method stub
-        return tileEntityCore.func_102007_a(i, itemstack, j);
-    }
+	@Override
+	public boolean canInsertItem(int slot, ItemStack itemstack, int side) {
+		if(side == 1)
+			return this.isStackValidForSlot(0, itemstack);
+		if(side == 0)
+			return this.isStackValidForSlot(1, itemstack);
+		else
+			return false;
+	}
 
-    @Override
-    public boolean func_102008_b(int i, ItemStack itemstack, int j)
-    {
-        // TODO Auto-generated method stub
-        return tileEntityCore.func_102008_b(i, itemstack, j);
-    }
+	@Override
+	public boolean canExtractItem(int slot, ItemStack itemStack, int side) {
+		if(side == this.blockMetadata)
+			return true;
+		else
+			return false;
+	}
 }

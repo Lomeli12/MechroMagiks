@@ -1,22 +1,32 @@
 package net.lomeli.magiks.core;
 
+import com.jadarstudios.api.developercapesapi.DeveloperCapesAPI;
+
 import net.lomeli.magiks.client.render.item.ItemCoilRenderer;
+import net.lomeli.magiks.client.render.item.ItemHollowWoodRenderer;
 import net.lomeli.magiks.client.render.item.ItemKineticGeneratorRenderer;
+import net.lomeli.magiks.client.render.item.ItemLinkingChestRenderer;
+import net.lomeli.magiks.client.render.item.ItemMancerWorkTableRenderer;
 import net.lomeli.magiks.client.render.item.ItemSolarMistCollectorRenderer;
-import net.lomeli.magiks.core.DeveloperCapesAPI.DeveloperCapesAPI;
 import net.lomeli.magiks.core.config.ConfigMod;
 import net.lomeli.magiks.lib.Ints;
 import net.lomeli.magiks.lib.RenderIDs;
 import net.lomeli.magiks.tileentity.TileEntityCoil;
+import net.lomeli.magiks.tileentity.TileEntityHollowWood;
 import net.lomeli.magiks.tileentity.TileEntityKineticGenerator;
+import net.lomeli.magiks.tileentity.TileEntityLinkingChest;
+import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceCore;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceDummy;
 import net.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
 import net.lomeli.magiks.tileentity.renderer.TileEntityCoilRenderer;
 import net.lomeli.magiks.tileentity.renderer.TileEntityKineticGeneratorRenderer;
+import net.lomeli.magiks.tileentity.renderer.TileEntityLinkingChestRenderer;
 import net.lomeli.magiks.tileentity.renderer.TileEntitySolarMistCollectorRenderer;
-import net.minecraftforge.client.MinecraftForgeClient;
+import net.lomeli.magiks.tileentity.renderer.TileEntiyMancerWorkTableRenderer;
+import net.lomeli.magiks.tileentity.renderer.TileEntityHollowWoodRenderer;
 
+import net.minecraftforge.client.MinecraftForgeClient;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -30,6 +40,9 @@ public class ClientProxy extends CommonProxy
         RenderIDs.kineticGID = RenderingRegistry.getNextAvailableRenderId();
         RenderIDs.solarGID = RenderingRegistry.getNextAvailableRenderId();
         RenderIDs.coilID = RenderingRegistry.getNextAvailableRenderId();
+        RenderIDs.mancerWTID = RenderingRegistry.getNextAvailableRenderId();
+        RenderIDs.hollowWoodID = RenderingRegistry.getNextAvailableRenderId();
+        RenderIDs.chestID = RenderingRegistry.getNextAvailableRenderId();
 
         ClientRegistry.bindTileEntitySpecialRenderer(
                 TileEntityKineticGenerator.class,
@@ -40,6 +53,15 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(
                 TileEntityCoil.class,
                 new TileEntityCoilRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(
+        		TileEntityMancerWorkTable.class,
+        		new TileEntiyMancerWorkTableRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(
+        		TileEntityHollowWood.class,
+        		new TileEntityHollowWoodRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(
+        		TileEntityLinkingChest.class,
+        		new TileEntityLinkingChestRenderer());
 
         MinecraftForgeClient.registerItemRenderer(
                 Ints.kineticGenID,
@@ -49,6 +71,12 @@ public class ClientProxy extends CommonProxy
                 new ItemSolarMistCollectorRenderer());
         MinecraftForgeClient.registerItemRenderer(Ints.smallCoilID, 
         		new ItemCoilRenderer());
+        MinecraftForgeClient.registerItemRenderer(Ints.mancerWorkTableID,
+        		new ItemMancerWorkTableRenderer());
+        MinecraftForgeClient.registerItemRenderer(Ints.hollowWoodID,
+        		new ItemHollowWoodRenderer());
+        MinecraftForgeClient.registerItemRenderer(Ints.linkingChestID,
+        		new ItemLinkingChestRenderer());
 
         ClientRegistry.registerTileEntity(TileEntityKineticGenerator.class,
                 "keneticGen", new TileEntityKineticGeneratorRenderer());
@@ -56,6 +84,12 @@ public class ClientProxy extends CommonProxy
                 "solarGen", new TileEntitySolarMistCollectorRenderer());
         ClientRegistry.registerTileEntity(TileEntityCoil.class, "smallcoil", 
         		new TileEntityCoilRenderer());
+        ClientRegistry.registerTileEntity(TileEntityMancerWorkTable.class, "mancerWT",
+        		new TileEntiyMancerWorkTableRenderer());
+        ClientRegistry.registerTileEntity(TileEntityHollowWood.class, "hallowWood",
+        		new TileEntityHollowWoodRenderer());
+        ClientRegistry.registerTileEntity(TileEntityLinkingChest.class, "linkingChest",
+        		new TileEntityLinkingChestRenderer());
 
         GameRegistry.registerTileEntity(TileEntityMultiFurnaceCore.class,
                 "dupefurnace");
@@ -74,12 +108,8 @@ public class ClientProxy extends CommonProxy
     public void renderCapes(boolean capes)
     {
         if (capes == true)
-        {
             DeveloperCapesAPI
                     .getInstance()
                     .init("https://dl.dropbox.com/u/17430088/Minecraft%20Mods/DivingGear/UserCapes.txt");
-        } else
-        {
-        }
     }
 }

@@ -1,23 +1,19 @@
 package net.lomeli.magiks.client.gui;
 
 import net.lomeli.magiks.inventory.ContainerMistWorkBench;
-import net.lomeli.magiks.tileentity.TileEntityMistWorkBench;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
 public class GuiMistWorkBench extends GuiContainer
 {
-	@SuppressWarnings("unused")
-	private TileEntityMistWorkBench tileEntity;
-	
-    public GuiMistWorkBench(InventoryPlayer par1InventoryPlayer, TileEntityMistWorkBench tile)
+    public GuiMistWorkBench(InventoryPlayer par1InventoryPlayer, World world, int x, int y, int z)
     {
-        super(new ContainerMistWorkBench(par1InventoryPlayer, tile));
-        this.tileEntity = tile;
+        super(new ContainerMistWorkBench(par1InventoryPlayer, world, x, y, z));
     }
 
     @Override

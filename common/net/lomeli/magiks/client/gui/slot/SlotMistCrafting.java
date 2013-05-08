@@ -14,24 +14,36 @@ import cpw.mods.fml.common.registry.GameRegistry;
 //Just copied the code for regular crafting table, will change when i need to
 public class SlotMistCrafting extends Slot
 {
+    /** The craft matrix inventory linked to this result slot. */
     private final IInventory craftMatrix;
 
+    /** The player that is using the GUI where this slot resides. */
     private EntityPlayer thePlayer;
 
+    /**
+     * The number of items that have been crafted so far. Gets passed to ItemStack.onCrafting before being reset.
+     */
     private int amountCrafted;
 
-    public SlotMistCrafting(EntityPlayer player, IInventory inventory,
-            IInventory craftResult, int par2, int par3, int par4)
+    public SlotMistCrafting(EntityPlayer par1EntityPlayer, IInventory par2IInventory, IInventory par3IInventory, int par4, int par5, int par6)
     {
-    	super(inventory, par2, par3, par4);
-        this.thePlayer = player;
-        this.craftMatrix = inventory;
+        super(par3IInventory, par4, par5, par6);
+        this.thePlayer = par1EntityPlayer;
+        this.craftMatrix = par2IInventory;
     }
+
+    /**
+     * Check if the stack is a valid item for this slot. Always true beside for the armor slots.
+     */
     public boolean isItemValid(ItemStack par1ItemStack)
     {
         return false;
     }
 
+    /**
+     * Decrease the size of the stack in slot (first int arg) by the amount of the second int arg. Returns the new
+     * stack.
+     */
     public ItemStack decrStackSize(int par1)
     {
         if (this.getHasStack())
@@ -42,12 +54,19 @@ public class SlotMistCrafting extends Slot
         return super.decrStackSize(par1);
     }
 
+    /**
+     * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood. Typically increases an
+     * internal count then calls onCrafting(item).
+     */
     protected void onCrafting(ItemStack par1ItemStack, int par2)
     {
         this.amountCrafted += par2;
         this.onCrafting(par1ItemStack);
     }
 
+    /**
+     * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood.
+     */
     protected void onCrafting(ItemStack par1ItemStack)
     {
         par1ItemStack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.amountCrafted);

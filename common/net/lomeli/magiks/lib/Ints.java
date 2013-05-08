@@ -9,6 +9,9 @@ public class Ints
     public static int ironStickID;
     public static int spencerSwordID;
     public static int emeraldAmuletID;
+    public static int weatherRocketsID;
+    public static int chestLinkerID;
+    public static int circutID;
     
     public static int darkMatterID;
     public static int deprivedDustID;
@@ -48,6 +51,9 @@ public class Ints
     public static int burningBrickStairsID;
     public static int netherIgniousID;
     public static int smallCoilID;
+    public static int mancerWorkTableID;
+    public static int hollowWoodID;
+    public static int linkingChestID;
     
     //ores
     public static int stamaticOreID;

@@ -19,4 +19,10 @@ public class Strings
     public static String dupeFurnaceName = "Piras Oven";
     public static String conatinerWeatherBlock = "container.weatherblock";
     public static String weatehrBlockName = "Weather Modifier";
+    public static String containerMancerWT = "container.mancerworktable";
+    public static String mancerWTName = "Mancer WorkTable";
+    public static String containerHollowWood = "container.hollowwood";
+    public static String hollowWoodName = "Hollow Wood";
+    public static String containerLinkingChest = "container.linkingChest";
+    public static String linkingChestName = "Linking Chest";
 }

@@ -3,6 +3,7 @@ package net.lomeli.magiks.blocks;
 import net.lomeli.magiks.api.cafting.KineticGenFuel;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.blocks.machine.BlockKineticGenerator;
+import net.lomeli.magiks.blocks.machine.BlockMancerWorkTable;
 import net.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
 import net.lomeli.magiks.blocks.machine.BlockSolarMistCollector;
 import net.lomeli.magiks.blocks.machine.BlockCoil;
@@ -27,7 +28,7 @@ public class ModBlocksMagiks
             solarMistCollector, mistCrafter, dupeFurnace, burningStone,
             manceryBrick, obsidianStairs, manceryBlockStairs, manceryBrickStairs,
             burningStoneStairs, netherIgnious, copperOre, tinOre, silverOre,
-            smallCoil;
+            smallCoil, mancerWorkTable, hollowWood, linkingChest;
 
     public static void registerBlocks()
     {
@@ -84,7 +85,13 @@ public class ModBlocksMagiks
 				.setHardness(3F).setResistance(5F).setUnlocalizedName("tinOre");
         silverOre = new BlockMagiks(Ints.silverOreID, Material.rock, "oreSilver")
 				.setHardness(3F).setResistance(5F).setUnlocalizedName("silverOre");
-        smallCoil = new BlockCoil(Ints.smallCoilID, Material.rock, "oreSilver");
+        smallCoil = new BlockCoil(Ints.smallCoilID, Material.rock, "oreSilver").setUnlocalizedName("smallcoil");
+        mancerWorkTable = new BlockMancerWorkTable(Ints.mancerWorkTableID, Material.wood, "wood")
+        		.setHardness(2F).setResistance(5F).setUnlocalizedName("mancerWT");
+        hollowWood = new BlockHollowWood(Ints.hollowWoodID, Material.wood, "wood")
+        		.setHardness(2F).setResistance(5F).setUnlocalizedName("hallowWood");
+        linkingChest = new BlockLinkingChest(Ints.linkingChestID, "mancerybricks")
+        	.setHardness(0.5F).setResistance(5000F);;
 
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");
         GameRegistry.registerBlock(neoniteBlock, "Neonite Block");
@@ -108,6 +115,9 @@ public class ModBlocksMagiks
         GameRegistry.registerBlock(manceryBlockStairs, "Mancery Stone Stairs");
         GameRegistry.registerBlock(manceryBrickStairs, "Mancery Brick Stairs");
         GameRegistry.registerBlock(burningStoneStairs, "Burning Stone Stairs");
+        GameRegistry.registerBlock(mancerWorkTable, "Mancer WorkTable");
+        GameRegistry.registerBlock(hollowWood, "Hollow Wood");
+        GameRegistry.registerBlock(linkingChest, "Linking Chest");
 
         LanguageRegistry.addName(neoniteOre, "Neonite Ore");
         LanguageRegistry.addName(neoniteBlock, "Neonite Block");
@@ -131,6 +141,9 @@ public class ModBlocksMagiks
         LanguageRegistry.addName(manceryBlockStairs, "Mancery Stone Stairs");
         LanguageRegistry.addName(manceryBrickStairs, "Mancery Brick Stairs");
         LanguageRegistry.addName(burningStoneStairs, "Burning Stone Stairs");
+        LanguageRegistry.addName(mancerWorkTable, "Mancer WorkTable");
+        LanguageRegistry.addName(hollowWood, "Hollow Wood");
+        LanguageRegistry.addName(linkingChest, "Linking Chest");
 
         MinecraftForge.setBlockHarvestLevel(neoniteOre, "pickaxe", 2);
         MinecraftForge.setBlockHarvestLevel(neoniteBlock, "pickaxe", 2);
@@ -140,6 +153,8 @@ public class ModBlocksMagiks
         MinecraftForge.setBlockHarvestLevel(copperOre, "pickaxe", 1);
         MinecraftForge.setBlockHarvestLevel(tinOre, "pickaxe", 1);
         MinecraftForge.setBlockHarvestLevel(silverOre, "pickaxe", 2);
+        MinecraftForge.setBlockHarvestLevel(mancerWorkTable, "axe", 0);
+        MinecraftForge.setBlockHarvestLevel(hollowWood, "axe", 0);
         
         OreDictionary.registerOre("oreCopper", new ItemStack(copperOre));
         OreDictionary.registerOre("oreTin", new ItemStack(tinOre));

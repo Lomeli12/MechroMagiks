@@ -4,9 +4,7 @@ import java.util.Random;
 
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 
-import net.minecraft.block.Block;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 
@@ -20,23 +18,22 @@ public class MagikWorldGen implements IWorldGenerator
     {
         switch (world.provider.dimensionId)
         {
-            case 1:
+            case -1:
                 generateNether(world, random, chunkX * 16, chunkZ * 16);
             case 0:
                 generateSurface(world, random, chunkX * 16, chunkZ * 16);
-            case -1:
+            case 1:
                 generateEnd(world, random, chunkX * 16, chunkZ * 16);
-        }
-        if(world.getBiomeGenForCoords(chunkX, chunkZ) == BiomeGenBase.hell)
-        {
-        	this.generateNether(world, random, chunkX, chunkZ);
         }
     }
 
     private void generateNether(World world, Random random, int chunkX,
             int chunkZ)
     {
-        new WorldGenMinable(ModBlocksMagiks.netherIgnious.blockID, 30, Block.netherrack.blockID);
+    	int xCoord = chunkX + random.nextInt(16);
+        int zCoord = chunkZ + random.nextInt(16);
+        new WorldGenNether(ModBlocksMagiks.netherIgnious.blockID, 30)
+        	.generate(world, random, xCoord, random.nextInt(126), zCoord);
     }
 
     private void generateEnd(World world, Random random, int chunkX, int chunkZ)
@@ -46,14 +43,14 @@ public class MagikWorldGen implements IWorldGenerator
     private void generateSurface(World world, Random random, int chunkX,
             int chunkZ)
     {
-        int xCoord = chunkX;
-        int zCoord = chunkZ;
+        int xCoord = chunkX + random.nextInt(16);
+        int zCoord = chunkZ + random.nextInt(16);
         new WorldGenMinable(ModBlocksMagiks.neoniteOre.blockID, 5).generate(
-                world, random, (xCoord + random.nextInt(16)), random.nextInt(50), (zCoord + random.nextInt(16)));
+                world, random, xCoord, random.nextInt(50), zCoord);
         new WorldGenMinable(ModBlocksMagiks.stamaticOre.blockID, 10).generate(
-                world, random, (xCoord + random.nextInt(16)), random.nextInt(65), (zCoord + random.nextInt(16)));
+                world, random, xCoord, random.nextInt(65), zCoord);
         new WorldGenMinable(ModBlocksMagiks.igniousOre.blockID, 4).generate(
-                world, random, (xCoord + random.nextInt(16)), random.nextInt(35), (zCoord + random.nextInt(16)));
+                world, random, xCoord, random.nextInt(35), zCoord);
     }
 
 }

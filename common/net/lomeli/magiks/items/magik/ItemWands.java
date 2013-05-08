@@ -1,5 +1,6 @@
 package net.lomeli.magiks.items.magik;
 
+import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.items.ItemGeneric;
 import net.lomeli.magiks.tileentity.TileEntityMagiks;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,24 +31,27 @@ public class ItemWands extends ItemGeneric
     }
     
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world,
-            EntityPlayer player)
+    public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
     {
-    	int blockX = 0, blockY = 0,blockZ = 0;
-    	if(player != null)
-    	{
-    		if(player.rayTrace(200, 1.0F) != null)
-    		{
-    			blockX = player.rayTrace(200, 1F).blockX;
-    			blockY = player.rayTrace(200, 1F).blockY;
-    			blockZ = player.rayTrace(200, 1F).blockZ;
-    		}
-    		if(world.blockExists(blockX, blockY, blockZ))
-    		{}
-    	}
-
-		return itemStack;
+    	int regBlock = world.getBlockId(x, y, z);
+    	System.out.println(regBlock);
+    	boolean result = false;
     	
+    	if(regBlock == 5)
+    	{
+    		System.out.println("wood");
+    		if(!world.isRemote)
+    		{
+    			System.out.println("hello");
+    			world.setBlock(x, y, z, ModBlocksMagiks.hollowWood.blockID);
+    			world.notifyBlockOfNeighborChange(x, y, z, world.getBlockId(x, y, z));
+    			world.markBlockForUpdate(x, y, z);
+    			world.addBlockEvent(x, y, z, ModBlocksMagiks.hollowWood.blockID, 1, 1);
+    			this.setItemDamageForStack(itemstack, (itemstack.getItemDamage() + 10));
+    			result = true;
+    		}
+    	}
+    	return result;
     }
     
     public static void setTile(TileEntityMagiks tile)

@@ -2,9 +2,11 @@ package net.lomeli.magiks.items;
 
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.items.magik.ItemAmulets;
+import net.lomeli.magiks.items.magik.ItemChestLink;
 import net.lomeli.magiks.items.magik.ItemFlyingRing;
 import net.lomeli.magiks.items.magik.ItemPirasVarinha;
 import net.lomeli.magiks.items.magik.ItemWands;
+import net.lomeli.magiks.items.science.ItemWeatherRockets;
 import net.lomeli.magiks.items.tools.ItemEmpoweredPick;
 import net.lomeli.magiks.items.tools.ItemLevelingSword;
 import net.lomeli.magiks.items.tools.ItemMiningWands;
@@ -32,6 +34,8 @@ public class ModItemsMagiks
     public static Item deprivedDust;
     public static Item burningUpgrade;
     public static Item ironPlate;
+    public static Item weatherRockets;
+    public static Item chestLinker;
     
     // ores
     public static Item ingotStamatic;
@@ -82,9 +86,13 @@ public class ModItemsMagiks
         ingotCopper = new ItemGeneric(Ints.ingotCopperID, "ingotCopper", false)
         		.setUnlocalizedName("ingotCopper");
         ingotTin = new ItemGeneric(Ints.ingotTinID, "ingotTin", false)
-		.setUnlocalizedName("ingotTin");
+			.setUnlocalizedName("ingotTin");
         ingotSilver = new ItemGeneric(Ints.ingotSilverID, "ingotSilver", false)
-		.setUnlocalizedName("ingotSilver");
+			.setUnlocalizedName("ingotSilver");
+        chestLinker = new ItemChestLink(Ints.chestLinkerID, "chestLinker")
+        	.setUnlocalizedName("chestLinker");
+        
+        weatherRockets = new ItemWeatherRockets(Ints.weatherRocketsID, "rockets");
         
         wand = new ItemGeneric(Ints.wandID, "magicianwand", false)
             .setCreativeTab(null).setUnlocalizedName("wand");
@@ -130,6 +138,14 @@ public class ModItemsMagiks
         LanguageRegistry.addName(ingotCopper, "Copper Ingot");
         LanguageRegistry.addName(ingotTin, "Tin Ingot");
         LanguageRegistry.addName(ingotSilver, "Silver Ingot");
+        LanguageRegistry.addName(chestLinker, "Chest Linker");
+        
+        LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 0),  "Sunny Rocket");
+        LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 1),  "Morning Rocket");
+        LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 2),  "Noctornal Rocket");
+        LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 3),  "Dark Rocket");
+        LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 4),  "Cloudy Rocket");
+        LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 5),  "Ender Rocket");
         
         OreDictionary.registerOre("ingotCopper", new ItemStack(ingotCopper));
         OreDictionary.registerOre("ingotTin", new ItemStack(ingotTin));

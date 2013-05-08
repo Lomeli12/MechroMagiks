@@ -55,10 +55,13 @@ public class ConfigMod
         
         Ints.spencerSwordID = config.get("Tools", "SpencerSword", 7027).getInt(7027);
         Ints.emeraldAmuletID = config.get("Tools", "EmeraldAmulet", 7028).getInt(7028);
+        Ints.weatherRocketsID = config.get("Items", "Weather Rockets", 7029).getInt(7029);
         
         Ints.ingotCopperID = config.get("Ingots", "IngotCopper", 7030).getInt(7030);
         Ints.ingotTinID = config.get("Ingots", "IngotTin", 7031).getInt(7031);
         Ints.ingotSilverID = config.get("Ingots", "IngotSilver", 7032).getInt(7032);
+        
+        Ints.chestLinkerID = config.get("Tools", "chestLinker", 7033).getInt(7033);
 
         Ints.enchantedOreID = config.get("Blocks", "EnchantedOre", 700).getInt(
                 100);
@@ -91,6 +94,9 @@ public class ConfigMod
         Ints.tinOreID = config.get("Blocks", "tinOre", 718).getInt(718);
         Ints.silverOreID = config.get("Blocks", "silverOre", 719).getInt(719);
         Ints.smallCoilID = config.get("Machines", "smallCoil", 720).getInt(720);
+        Ints.mancerWorkTableID = config.get("Machines", "mancerWT", 721).getInt(721);
+        Ints.hollowWoodID = config.get("Blocks", "hallowWood", 722).getInt(722);
+        Ints.linkingChestID = config.get("Blocks", "linkingChest", 723).getInt(723);
 
         config.save();
     }

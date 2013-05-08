@@ -9,7 +9,6 @@ import net.lomeli.magiks.lib.Strings;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,9 +21,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TileEntityMultiFurnaceCore extends TileEntityMagiks implements
         ISidedInventory
 {
-    private static final int[] sidedSlotSides = new int[] { 0 };
-    private static final int[] sidedSlotBottom = new int[] { 2, 1 };
-    private static final int[] sidedSlotTop = new int[] { 1 };
+    public static final int[] sidedSlotSides = new int[] { 0 };
+    public static final int[] sidedSlotBottom = new int[] { 2, 1 };
+    public static final int[] sidedSlotTop = new int[] { 1 };
 
     private ItemStack[] furnaceItems = new ItemStack[6];
     public int furnaceBurnTime = 0;
@@ -388,26 +387,6 @@ public class TileEntityMultiFurnaceCore extends TileEntityMagiks implements
                 .isItemFuel(itemStack) : true;
     }
 
-    @Override
-    public int[] getSizeInventorySide(int par1)
-    {
-        return par1 == 0 ? sidedSlotBottom : par1 == 1 ? sidedSlotTop
-                : sidedSlotSides;
-    }
-
-    @Override
-    public boolean func_102007_a(int par1, ItemStack par2ItemStack, int j)
-    {
-        return this.isStackValidForSlot(par1, par2ItemStack);
-    }
-
-    @Override
-    public boolean func_102008_b(int par1, ItemStack par2ItemStack, int par3)
-    {
-        return par3 != 0 || par1 != 1
-                || par2ItemStack.itemID == Item.bucketEmpty.itemID;
-    }
-
     @SuppressWarnings("unused")
     @Override
     public void readFromNBT(NBTTagCompound tagCompound)
@@ -566,5 +545,30 @@ public class TileEntityMultiFurnaceCore extends TileEntityMagiks implements
             }
         }
     }
+
+	@Override
+	public int[] getAccessibleSlotsFromSide(int var1) 
+	{
+		return var1 == 0 ? sidedSlotBottom : var1 == 1 ? sidedSlotTop
+                : sidedSlotSides;
+	}
+
+	@Override
+	public boolean canInsertItem(int slot, ItemStack itemstack, int side) {
+		if(side == 1)
+			return this.isStackValidForSlot(0, itemstack);
+		if(side == 0)
+			return this.isStackValidForSlot(1, itemstack);
+		else
+			return false;
+	}
+
+	@Override
+	public boolean canExtractItem(int slot, ItemStack itemStack, int side) {
+		if(side == this.blockMetadata)
+			return true;
+		else
+			return false;
+	}
 
 }

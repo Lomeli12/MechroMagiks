@@ -1,7 +1,6 @@
 package net.lomeli.magiks.recipes;
 
 import net.lomeli.magiks.items.ModItemsMagiks;
-import net.lomeli.magiks.api.cafting.MagiksCraftingManager;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 
 import net.minecraft.block.Block;
@@ -126,8 +125,5 @@ public class MagiksRecipes
 
     public static void registerMistRecipes()
     {
-    	
-    	MagiksCraftingManager.getInstance().addRecipe(new ItemStack(Item.goldenCarrot),
-    			new Object[] { "WW ", "   ", "   ", 'W',Item.appleRed});
     }
 }

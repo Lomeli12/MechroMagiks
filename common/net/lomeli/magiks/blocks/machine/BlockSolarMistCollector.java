@@ -61,8 +61,8 @@ public class BlockSolarMistCollector extends BlockContainer
     }
 
     @Override
-    public TileEntity createTileEntity(World world, int meta)
-    {
+	public TileEntity createNewTileEntity(World world) 
+	{
         return new TileEntitySolarMistCollector();
     }
 
@@ -144,11 +144,5 @@ public class BlockSolarMistCollector extends BlockContainer
                 itemStack.stackSize = 0;
             }
         }
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World world)
-    {
-        return null;
     }
 }

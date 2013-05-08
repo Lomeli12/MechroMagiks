@@ -14,7 +14,6 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntitySolarMistCollector extends TileEntity implements
         IInventory
 {
-	
 	public int maxMistLevel = 30000, mistLevel = 0, heatLevel, generationTime = 0,
             coolDown = 0, spawnParticle = 0;
 	
