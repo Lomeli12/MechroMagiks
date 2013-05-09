@@ -1,6 +1,7 @@
 package net.lomeli.magiks.recipes;
 
 import net.lomeli.magiks.items.ModItemsMagiks;
+import net.lomeli.magiks.api.MechroMagiksAPI;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 
 import net.minecraft.block.Block;
@@ -51,10 +52,9 @@ public class MagiksRecipes
 	
     public static void registerItemRecipes()
     {
-        GameRegistry
-                .addRecipe(new ItemStack(ModItemsMagiks.enchantedDiamond, 1), new Object[] {
-                        "GEG", "EDE", "RER", 'G', Item.lightStoneDust, 'R',
-                        Item.redstone, 'D', Item.diamond, 'E', ModItemsMagiks.neoniteGem });
+        GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.enchantedDiamond, 1), 
+        		new Object[] { "GEG", "EDE", "RER", 'G', Item.lightStoneDust, 'R',
+                Item.redstone, 'D', Item.diamond, 'E', ModItemsMagiks.neoniteGem });
         GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.ironStick, 2), new Object[] {
                 "  I", " I ", "I  ", 'I', Item.ingotIron });
         GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.ironBand, 1), new Object[] {
@@ -101,10 +101,16 @@ public class MagiksRecipes
                 'S', ModItemsMagiks.chemistWand, 'I', ModItemsMagiks.ingotStamatic });
         
         GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.wand, 1), new Object[]
-                {
-                    " CB","CSC","BC ", 'S',Item.stick, 'C',Item.coal,
-                    'B',(new ItemStack(Item.dyePowder, 1, 15))
-                });
+                {" CB","CSC","BC ", 'S',Item.stick, 'C',Item.coal,
+                    'B',(new ItemStack(Item.dyePowder, 1, 15)) });
+        
+        GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.copperWire, 4), new Object[]
+        		{" CS", "CIC", "SC ", 'S',Item.silk, 'C',ModItemsMagiks.ingotCopper,
+        		'I',ModItemsMagiks.ironStick});
+        GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.electroicCircuit, 1), 
+        		new Object[]{ "DIG","CPC","GID", 'G',Item.goldNugget, 'I',ModItemsMagiks.ironPlate,
+        		'C',ModItemsMagiks.copperWire, 'P', ModItemsMagiks.ingotSilver, 
+        		'D', new ItemStack(Item.dyePowder, 1, 2)});
     }
 
     public static void registerFurnaceRecipes()
@@ -114,7 +120,7 @@ public class MagiksRecipes
         GameRegistry.addSmelting(ModBlocksMagiks.igniousOre.blockID,
                 new ItemStack(ModItemsMagiks.ingotIgnious), 10);
         GameRegistry.addSmelting(ModBlocksMagiks.netherIgnious.blockID, 
-        		new ItemStack(ModItemsMagiks.ingotIgnious), 10);
+        		new ItemStack(ModItemsMagiks.ingotIgnious, 2), 10);
         GameRegistry.addSmelting(ModBlocksMagiks.copperOre.blockID,
                 new ItemStack(ModItemsMagiks.ingotCopper), 5);
         GameRegistry.addSmelting(ModBlocksMagiks.tinOre.blockID,
@@ -125,5 +131,14 @@ public class MagiksRecipes
 
     public static void registerMistRecipes()
     {
+    	MechroMagiksAPI.addMachineRecipe(new ItemStack(ModItemsMagiks.wirelessReciever), new Object[]
+			{"  T ", " TET", " IT ", "I   ", 'I',ModItemsMagiks.ironStick, 'E', Item.enderPearl,
+			'T',ModItemsMagiks.ingotTin});
+    	MechroMagiksAPI.addMachineRecipe(new ItemStack(ModItemsMagiks.chestLinker), new Object[]
+			{ "  IE"," ISI", "IRI ", "II  ", 'I',ModItemsMagiks.ironPlate, 'R',Item.redstone,
+			'E',ModItemsMagiks.wirelessReciever, 'S',Block.stoneButton });
+    	MechroMagiksAPI.addMachineRecipe(new ItemStack(ModBlocksMagiks.linkingChest, 1), new Object[]
+    			{ "BBBB","BRCB","BCRB","BBBB", 'B', ModBlocksMagiks.manceryBlock, 'R',Item.redstone,
+    			'C',Block.chest });
     }
 }

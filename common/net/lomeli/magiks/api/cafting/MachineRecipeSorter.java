@@ -7,11 +7,11 @@ import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 
 @SuppressWarnings("rawtypes")
-public class MancerRecipeSorter implements Comparator
+public class MachineRecipeSorter implements Comparator
 {
-    final MancerWorkTableManager recipeSorter;
+    final MachineRecipeManager recipeSorter;
 
-    MancerRecipeSorter(MancerWorkTableManager craftingManager)
+    MachineRecipeSorter(MachineRecipeManager craftingManager)
     {
         recipeSorter = craftingManager;
     }

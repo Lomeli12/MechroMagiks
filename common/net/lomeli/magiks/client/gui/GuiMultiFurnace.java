@@ -32,7 +32,7 @@ public class GuiMultiFurnace extends GuiContainer
                 4210752);
         fontRenderer.drawString(
                 StatCollector.translateToLocal("container.inventory"), 8,
-                ySize - 96 + 2, 4210752);
+                ySize - 104, 4210752);
     }
 
     @Override

@@ -1,13 +1,9 @@
 package net.lomeli.magiks.api.cafting;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import net.lomeli.magiks.blocks.ModBlocksMagiks;
-import net.lomeli.magiks.items.ModItemsMagiks;
-import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
@@ -15,39 +11,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 
-@SuppressWarnings({"rawtypes", "unused"})
-public class MancerWorkTableManager 
+public class MachineRecipes 
 {
-	private static final MancerWorkTableManager instance = new MancerWorkTableManager();
-	private static TileEntityMancerWorkTable tileEntity;
+	@SuppressWarnings("rawtypes")
+	public static List recipes = new ArrayList();
 	
-	private List recipes = new ArrayList();
-	
-	public static final MancerWorkTableManager getInstance(TileEntityMancerWorkTable tileentity)
-	{
-		tileEntity = tileentity;
-		return instance;
-	}
-	
-	@SuppressWarnings("unchecked")
-	private MancerWorkTableManager()
-	{
-		recipes = new ArrayList();
-		
-		this.addRecipe(new ItemStack(ModItemsMagiks.chestLinker), new Object[]
-			{ "  IE"," ISI", "IRI ", "II  ", 'I',ModItemsMagiks.ironPlate, 'R',Item.redstone,
-			'E',Item.enderPearl, 'S',ModItemsMagiks.ironStick });
-		
-		this.addRecipe(new ItemStack(ModBlocksMagiks.linkingChest, 1), new Object[]
-			{ "BBBB","BRCB","BCRB","BBBB", 'B', ModBlocksMagiks.manceryBlock, 'R',Item.redstone,
-			'C',Block.chest });
-		
-		Collections.sort(recipes, new MancerRecipeSorter(this));
-        System.out.println(recipes.size() + " recipes");
-    }  
-
-    @SuppressWarnings("unchecked")
-	public MancerShapedRecipes addRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static MancerShapedRecipes addRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
     {
     	String var3 = "";
         int var4 = 0;
@@ -107,12 +77,12 @@ public class MancerWorkTableManager
         }
         
         MancerShapedRecipes var17 = new MancerShapedRecipes(var5, var6, var15, par1ItemStack);
-        this.recipes.add(var17);
+        recipes.add(var17);
         return var17;
     }
 
-    @SuppressWarnings("unchecked")
-	public void addShapelessRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public static void addShapelessRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
     {
     	ArrayList var3 = new ArrayList();
     	Object[] var4 = par2ArrayOfObj;
@@ -134,10 +104,10 @@ public class MancerWorkTableManager
         		var3.add(new ItemStack((Block)var7));
         	}
         }
-        this.recipes.add(new MancerShapelessRecipes(par1ItemStack, var3));
+        recipes.add(new MancerShapelessRecipes(par1ItemStack, var3));
     }
 
-    public ItemStack findMatchingRecipe(InventoryCrafting par1InventoryCrafting, World par2World)
+    public static ItemStack findMatchingRecipe(InventoryCrafting par1InventoryCrafting, World par2World)
     {
     	int var3 = 0;
         ItemStack var4 = null;
@@ -176,9 +146,9 @@ public class MancerWorkTableManager
         }
         else
         {
-        	for (var6 = 0; var6 < this.recipes.size(); ++var6)
+        	for (var6 = 0; var6 < recipes.size(); ++var6)
         	{
-        		IRecipe var12 = (IRecipe)this.recipes.get(var6);
+        		IRecipe var12 = (IRecipe)recipes.get(var6);
         		if (var12.matches(par1InventoryCrafting, par2World))
         			return var12.getCraftingResult(par1InventoryCrafting);
         	}
@@ -189,8 +159,9 @@ public class MancerWorkTableManager
     /**
      * returns the List<> of all recipes
      */
-    public List getRecipeList()
+    @SuppressWarnings("rawtypes")
+	public static List getRecipeList()
     {
-        return this.recipes;
+        return recipes;
     }
 }

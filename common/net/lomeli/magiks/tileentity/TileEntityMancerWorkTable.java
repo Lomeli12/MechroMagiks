@@ -13,6 +13,8 @@ public class TileEntityMancerWorkTable extends TileEntity implements
 {
 	private ItemStack[] inventory;
 	
+	private int craft;
+	
 	public TileEntityMancerWorkTable()
 	{
 		inventory = new ItemStack[18];
@@ -41,17 +43,14 @@ public class TileEntityMancerWorkTable extends TileEntity implements
         ItemStack itemStack = getStackInSlot(slot);
         if (itemStack != null)
         {
-            if (itemStack.stackSize <= amount)
-            {
-                setInventorySlotContents(slot, null);
-            } else
-            {
-                itemStack = itemStack.splitStack(amount);
-                if (itemStack.stackSize == 0)
-                {
-                    setInventorySlotContents(slot, null);
-                }
-            }
+        	if(itemStack.stackSize <= amount)
+        		setInventorySlotContents(slot, null);
+        	else
+        	{
+        		itemStack.splitStack(amount);
+        		if (itemStack.stackSize == 0)
+        			setInventorySlotContents(slot, null);
+        	}
         }
 
         return itemStack;
@@ -162,4 +161,14 @@ public class TileEntityMancerWorkTable extends TileEntity implements
     	
     }
 
+    
+    public int getCurrentMode()
+    {
+    	return this.craft;
+    }
+    
+    public void setMode(int bool)
+    {
+    	this.craft = bool;
+    }
 }

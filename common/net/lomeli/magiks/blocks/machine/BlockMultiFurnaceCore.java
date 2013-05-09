@@ -134,10 +134,20 @@ public class BlockMultiFurnaceCore extends BlockContainer
                                     .damageItem(10, player);
                                 tileEntity.convertDummies();
                                 if (world.isRemote)
-                                {
-                                    player.sendChatToPlayer(Strings.dupeFurnaceName
+                                	player.sendChatToPlayer(Strings.dupeFurnaceName
                                         + "Created!");
-                                }
+                            }
+                            else if(!tileEntity.getIsValid())
+                            {
+                            	ItemHelper.getItem(
+                            			player, ItemHelper.getSlotContainingItem(
+                            				wand.itemID, player.inventory.mainInventory))
+                            			.damageItem(10, player);
+                            	tileEntity.convertDummies();
+                            	
+                            	if (world.isRemote)
+                            		player.sendChatToPlayer(Strings.dupeFurnaceName
+                            			+ "Created!");
                             }
                         }
                     }
@@ -146,12 +156,9 @@ public class BlockMultiFurnaceCore extends BlockContainer
 
             // Check if the multi-block structure has been formed.
             if (tileEntity.getIsValid())
-            {
-                player.openGui(Magiks.instance, GuiIDs.dupeFurnace, world, x,
-                        y, z);
-            }
+            	player.openGui(Magiks.instance, GuiIDs.dupeFurnace, world, x,
+            		y, z);
         }
-
         return true;
     }
 

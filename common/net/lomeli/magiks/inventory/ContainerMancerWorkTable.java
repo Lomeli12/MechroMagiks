@@ -2,6 +2,7 @@ package net.lomeli.magiks.inventory;
 
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.client.gui.slot.SlotMistCrafting;
+import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -15,11 +16,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.world.World;
 
-import net.lomeli.magiks.api.cafting.MancerWorkTableManager;
+import net.lomeli.magiks.api.cafting.BluePrintRecipeManager;
+import net.lomeli.magiks.api.cafting.MachineRecipeManager;
 
 public class ContainerMancerWorkTable extends Container
 {
-	private boolean customRecipes = false;
 	private TileEntityMancerWorkTable tileEntity;
 	public InventoryCrafting craftMatrix;
 	public IInventory craftResult;
@@ -39,7 +40,8 @@ public class ContainerMancerWorkTable extends Container
 	    this.posY = this.tileEntity.yCoord;
 	    this.posZ = this.tileEntity.zCoord;
 	    
-	    this.addSlotToContainer(new SlotMistCrafting(inventoryPlayer.player, craftMatrix, craftResult, 0, 124, 34));
+	    this.addSlotToContainer(new SlotMistCrafting(inventoryPlayer.player, 
+	    		craftMatrix, craftResult, 0, 124, 34, this.tileEntity));
 	    
         for(int l = 0; l < 4; l++)
         {
@@ -72,15 +74,22 @@ public class ContainerMancerWorkTable extends Container
 		if(this.tileEntity.getStackInSlot(17) != null 
 			&& this.tileEntity.getStackInSlot(17).getItem() == Item.paper)
 		{
-			craftResult.setInventorySlotContents(0, MancerWorkTableManager.getInstance(this.tileEntity)
+			craftResult.setInventorySlotContents(0, BluePrintRecipeManager.getInstance(this.tileEntity)
 				.findMatchingRecipe(craftMatrix, worldObj));
-			this.customRecipes = true;
+			this.tileEntity.setMode(0);
+		}
+		else if(this.tileEntity.getStackInSlot(17) != null 
+				&& this.tileEntity.getStackInSlot(17).getItem() == ModItemsMagiks.electroicCircuit)
+		{
+			craftResult.setInventorySlotContents(0, MachineRecipeManager.getInstance(this.tileEntity)
+					.findMatchingRecipe(craftMatrix, worldObj));
+				this.tileEntity.setMode(1);
 		}
 		else
 		{
 			craftResult.setInventorySlotContents(0, CraftingManager.getInstance()
 				.findMatchingRecipe(craftMatrix, worldObj));
-			this.customRecipes = false;
+			this.tileEntity.setMode(2);
 		}
     }
 
@@ -96,15 +105,6 @@ public class ContainerMancerWorkTable extends Container
 	    		entityplayer.dropPlayerItem(itemstack);
 	    }
 	}
-
-	public void detectAndSendChanges()
-    {
-		if(this.tileEntity.getStackInSlot(17) != null 
-				&& this.tileEntity.getStackInSlot(17).getItem() == Item.paper && this.customRecipes)
-		{
-			this.tileEntity.decrStackSize(17, 1);
-		}
-    }
 	
 	public boolean canInteractWith(EntityPlayer entityplayer)
 	{

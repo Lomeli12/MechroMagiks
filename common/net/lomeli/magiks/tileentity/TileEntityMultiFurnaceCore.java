@@ -24,6 +24,7 @@ public class TileEntityMultiFurnaceCore extends TileEntityMagiks implements
     public static final int[] sidedSlotSides = new int[] { 0 };
     public static final int[] sidedSlotBottom = new int[] { 2, 1 };
     public static final int[] sidedSlotTop = new int[] { 1 };
+    public static boolean valid;
 
     private ItemStack[] furnaceItems = new ItemStack[6];
     public int furnaceBurnTime = 0;
@@ -53,7 +54,6 @@ public class TileEntityMultiFurnaceCore extends TileEntityMagiks implements
         furnaceBurnTime = 0;
         currentItemBurnTime = 0;
         furnaceCookTime = 0;
-
         revertDummies();
     }
 

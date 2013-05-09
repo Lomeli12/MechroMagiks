@@ -11,6 +11,7 @@ import net.lomeli.magiks.items.tools.ItemEmpoweredPick;
 import net.lomeli.magiks.items.tools.ItemLevelingSword;
 import net.lomeli.magiks.items.tools.ItemMiningWands;
 import net.lomeli.magiks.lib.Ints;
+import net.lomeli.magiks.lib.Strings;
 
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
@@ -36,6 +37,10 @@ public class ModItemsMagiks
     public static Item ironPlate;
     public static Item weatherRockets;
     public static Item chestLinker;
+    public static Item electroicCircuit;
+    public static Item copperWire;
+    public static Item wirelessReciever;
+    public static Item advReciever;
     
     // ores
     public static Item ingotStamatic;
@@ -91,6 +96,14 @@ public class ModItemsMagiks
 			.setUnlocalizedName("ingotSilver");
         chestLinker = new ItemChestLink(Ints.chestLinkerID, "chestLinker")
         	.setUnlocalizedName("chestLinker");
+        electroicCircuit = new ItemGeneric(Ints.circuitID, "electronicCircuit", false)
+        	.setUnlocalizedName("electronicCircuit");
+        copperWire = new ItemGeneric(Ints.copperWireID, "copperWire", false)
+        	.setUnlocalizedName("copperWire");
+        wirelessReciever = new ItemGeneric(Ints.wirelessRecieverID, Strings.NO_TEXTURE, false)
+        	.setUnlocalizedName("wirelessReciever");
+        advReciever = new ItemGeneric(Ints.advRecieverID, Strings.NO_TEXTURE, true)
+        	.setUnlocalizedName("advReciever");
         
         weatherRockets = new ItemWeatherRockets(Ints.weatherRocketsID, "rockets");
         
@@ -139,6 +152,10 @@ public class ModItemsMagiks
         LanguageRegistry.addName(ingotTin, "Tin Ingot");
         LanguageRegistry.addName(ingotSilver, "Silver Ingot");
         LanguageRegistry.addName(chestLinker, "Chest Linker");
+        LanguageRegistry.addName(electroicCircuit, "Electronic Circuit");
+        LanguageRegistry.addName(copperWire, "Copper Wire");
+        LanguageRegistry.addName(wirelessReciever, "Wireless Reciever");
+        LanguageRegistry.addName(advReciever, "Advanced Wireless Reciever");
         
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 0),  "Sunny Rocket");
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 1),  "Morning Rocket");

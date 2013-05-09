@@ -10,8 +10,15 @@ public class ConfigMod
 {
     public static boolean capesEnabled;
     public static boolean disablePiras;
-
-    public static void configureItemID(String loc)
+    
+    public static void configureMod(String Loc)
+    {
+    	configureItemIDs(Loc);
+    	configureBlockIDs(Loc);
+    	configureOptions(Loc);
+    }
+    
+    public static void configureItemIDs(String loc)
     {
         Configuration config = new Configuration(new File(loc,
                 "MechroMagikIDs.cfg"));
@@ -62,29 +69,43 @@ public class ConfigMod
         Ints.ingotSilverID = config.get("Ingots", "IngotSilver", 7032).getInt(7032);
         
         Ints.chestLinkerID = config.get("Tools", "chestLinker", 7033).getInt(7033);
+        Ints.circuitID = config.get("Items", "circuit", 7034).getInt(7034);
+        Ints.copperWireID = config.get("Items", "copperWire", 7035).getInt(7035);
+        Ints.wirelessRecieverID = config.get("Items", "wirelessReciever", 7036).getInt(7036);
+        Ints.advRecieverID = config.get("Items", "advReciever", 7037).getInt(7037);
 
-        Ints.enchantedOreID = config.get("Blocks", "EnchantedOre", 700).getInt(
-                100);
+        config.save();
+    }
+    
+    public static void configureBlockIDs(String loc)
+    {
+    	Configuration config = new Configuration(new File(loc,
+                "MechroMagikIDs.cfg"));
+
+        config.load();
+        
+    	Ints.enchantedOreID = config.get("Blocks", "EnchantedOre", 700).getInt(
+                 100);
         Ints.enchantedBlockID = config.get("Blocks", "EnchantedBlock", 701)
-                .getInt(701);
+                 .getInt(701);
         Ints.kineticGenID = config.get("Machines", "KineticGen", 702).getInt(
-                702);
+                 702);
         Ints.manceryBlockID = config.get("Blocks", "ManceryBlock", 703).getInt(
-                703);
+                 703);
         Ints.manceryGlassID = config.get("Blocks", "ManceryGlass", 704).getInt(
-                704);
+                 704);
         Ints.stamaticOreID = config.get("Blocks", "OreStamatic", 705).getInt(
-                705);
+                 705);
         Ints.igniousOreID = config.get("Blocks", "OreIgnious", 706).getInt(706);
         Ints.solarGenID = config.get("Machines", "SolarCollector", 707).getInt(
-                707);
+                 707);
         Ints.mistCrafterID = config.get("Blocks", "MistCrafter", 708).getInt(
-                708);
+                 708);
         Ints.dupeFurnaceID = config.get("Machines", "DupeFurnace", 709).getInt(
-                709);
+                 709);
         Ints.dupeDummyID = config.get("Blocks", "BuringStone", 710).getInt(710);
         Ints.manceryBrickID = config.get("Blocks", "ManceryBrick", 711).getInt(
-                711);
+                 711);
         Ints.obsidianStairsID = config.get("Blocks", "ObsidianStairs", 712).getInt(712);
         Ints.manceryStoneStairsID = config.get("Blocks", "ManceryStoneStairs", 713).getInt(713);
         Ints.manceryBrickStairsID = config.get("Blocks", "ManceryBrickStairs", 714).getInt(714);
@@ -101,15 +122,16 @@ public class ConfigMod
         config.save();
     }
 
-    public static void configureOptions(String loc)
-    {
+    @SuppressWarnings("static-access")
+	public static void configureOptions(String loc)
+    {   
         Configuration config = new Configuration(new File(loc,
                 "MechroMagikOptions.cfg"));
 
         config.load();
 
-        capesEnabled = config.get(null, "capesEnabled", true).getBoolean(true);
-        disablePiras = config.get(null, "disablePiras", false)
+        capesEnabled = config.get(config.CATEGORY_GENERAL, "capesEnabled", true).getBoolean(true);
+        disablePiras = config.get(config.CATEGORY_GENERAL, "disablePiras", false)
                 .getBoolean(false);
 
         config.save();

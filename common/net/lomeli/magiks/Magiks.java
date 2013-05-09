@@ -18,9 +18,9 @@ import net.lomeli.magiks.lib.Strings;
 import net.lomeli.magiks.recipes.MagiksRecipes;
 import net.lomeli.magiks.tileentity.TileEntityKineticGenerator;
 import net.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
-
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -57,7 +57,7 @@ public class Magiks
     {
         configDir = event.getModConfigurationDirectory() + "\\Magiks\\";
 
-        ConfigMod.configureItemID(configDir);
+        ConfigMod.configureMod(configDir);
         
         LogHelper.init();
     }

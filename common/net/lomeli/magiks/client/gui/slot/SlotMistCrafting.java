@@ -1,5 +1,7 @@
 package net.lomeli.magiks.client.gui.slot;
 
+import net.lomeli.magiks.items.ModItemsMagiks;
+import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -19,17 +21,21 @@ public class SlotMistCrafting extends Slot
 
     /** The player that is using the GUI where this slot resides. */
     private EntityPlayer thePlayer;
+    
+    private TileEntityMancerWorkTable tileEntity;
 
     /**
      * The number of items that have been crafted so far. Gets passed to ItemStack.onCrafting before being reset.
      */
     private int amountCrafted;
 
-    public SlotMistCrafting(EntityPlayer par1EntityPlayer, IInventory par2IInventory, IInventory par3IInventory, int par4, int par5, int par6)
+    public SlotMistCrafting(EntityPlayer par1EntityPlayer, IInventory par2IInventory, 
+    		IInventory par3IInventory, int par4, int par5, int par6, TileEntityMancerWorkTable tile)
     {
         super(par3IInventory, par4, par5, par6);
         this.thePlayer = par1EntityPlayer;
         this.craftMatrix = par2IInventory;
+        this.tileEntity = tile;
     }
 
     /**
@@ -118,7 +124,19 @@ public class SlotMistCrafting extends Slot
     {
         GameRegistry.onItemCrafted(par1EntityPlayer, par2ItemStack, craftMatrix);
         this.onCrafting(par2ItemStack);
-
+        if(this.tileEntity.getCurrentMode() == 0)
+        {
+        	if(this.tileEntity.getStackInSlot(17) != null 
+                			&& this.tileEntity.getStackInSlot(17).getItem() == Item.paper)
+        		this.tileEntity.decrStackSize(17, 1);
+        }
+        else if(this.tileEntity.getCurrentMode() == 1)
+        {
+        	if(this.tileEntity.getStackInSlot(17) != null 
+        			&& this.tileEntity.getStackInSlot(17).getItem() == ModItemsMagiks.electroicCircuit)
+        		this.tileEntity.decrStackSize(17, 1);
+        }
+        
         for (int i = 0; i < this.craftMatrix.getSizeInventory(); ++i)
         {
             ItemStack itemstack1 = this.craftMatrix.getStackInSlot(i);
@@ -127,6 +145,7 @@ public class SlotMistCrafting extends Slot
             {
                 this.craftMatrix.decrStackSize(i, 1);
 
+                
                 if (itemstack1.getItem().hasContainerItem())
                 {
                     ItemStack itemstack2 = itemstack1.getItem().getContainerItemStack(itemstack1);

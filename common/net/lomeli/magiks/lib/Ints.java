@@ -11,7 +11,10 @@ public class Ints
     public static int emeraldAmuletID;
     public static int weatherRocketsID;
     public static int chestLinkerID;
-    public static int circutID;
+    public static int circuitID;
+    public static int copperWireID;
+    public static int wirelessRecieverID;
+    public static int advRecieverID;
     
     public static int darkMatterID;
     public static int deprivedDustID;

@@ -76,7 +76,8 @@ public class BlockMultiFurnaceDummy extends BlockContainer
         if (dummy != null && dummy.getCore() != null)
         {
             TileEntityMultiFurnaceCore core = dummy.getCore();
-            return core.getBlockType().onBlockActivated(world, core.xCoord,
+            if(core.getIsValid())
+            	return core.getBlockType().onBlockActivated(world, core.xCoord,
                     core.yCoord, core.zCoord, player, par6, par7, par8, par9);
         }
 
