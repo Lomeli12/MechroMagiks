@@ -1,6 +1,6 @@
 package net.lomeli.magiks.blocks;
 
-import net.lomeli.magiks.api.cafting.KineticGenFuel;
+import net.lomeli.magiks.api.crafting.KineticGenFuel;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.blocks.machine.BlockKineticGenerator;
 import net.lomeli.magiks.blocks.machine.BlockMancerWorkTable;

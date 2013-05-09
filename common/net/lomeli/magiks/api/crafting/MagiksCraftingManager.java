@@ -1,4 +1,4 @@
-package net.lomeli.magiks.api.cafting;
+package net.lomeli.magiks.api.crafting;
 
 import java.util.ArrayList;
 import java.util.Collections;

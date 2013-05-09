@@ -1,6 +1,6 @@
 package net.lomeli.magiks.inventory;
 
-import net.lomeli.magiks.api.cafting.MagiksCraftingManager;
+import net.lomeli.magiks.api.crafting.MagiksCraftingManager;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

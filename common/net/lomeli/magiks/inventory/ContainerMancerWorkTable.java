@@ -16,8 +16,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.world.World;
 
-import net.lomeli.magiks.api.cafting.BluePrintRecipeManager;
-import net.lomeli.magiks.api.cafting.MachineRecipeManager;
+import net.lomeli.magiks.api.crafting.BluePrintRecipeManager;
+import net.lomeli.magiks.api.crafting.MachineRecipeManager;
 
 public class ContainerMancerWorkTable extends Container
 {

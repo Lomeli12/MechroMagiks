@@ -1,6 +1,6 @@
 package net.lomeli.magiks.tileentity;
 
-import net.lomeli.magiks.api.cafting.KineticGenFuel;
+import net.lomeli.magiks.api.crafting.KineticGenFuel;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.core.helper.BlockHelper;
 import net.lomeli.magiks.lib.Strings;

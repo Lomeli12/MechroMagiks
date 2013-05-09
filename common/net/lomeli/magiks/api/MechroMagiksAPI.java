@@ -1,7 +1,7 @@
 package net.lomeli.magiks.api;
 
-import net.lomeli.magiks.api.cafting.BluePrintRecipes;
-import net.lomeli.magiks.api.cafting.MachineRecipes;
+import net.lomeli.magiks.api.crafting.BluePrintRecipes;
+import net.lomeli.magiks.api.crafting.MachineRecipes;
 import net.minecraft.item.ItemStack;
 
 public class MechroMagiksAPI 

@@ -1,13 +1,9 @@
-package net.lomeli.magiks.api.cafting;
+package net.lomeli.magiks.api.crafting;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import net.lomeli.magiks.blocks.ModBlocksMagiks;
-import net.lomeli.magiks.items.ModItemsMagiks;
-import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
@@ -15,32 +11,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 
-@SuppressWarnings({"rawtypes", "unused"})
-public class BluePrintRecipeManager 
+public class MachineRecipes 
 {
-	private static final BluePrintRecipeManager instance = new BluePrintRecipeManager();
-	private static TileEntityMancerWorkTable tileEntity;
+	@SuppressWarnings("rawtypes")
+	public static List recipes = new ArrayList();
 	
-	private List recipes = new ArrayList();
-	
-	public static final BluePrintRecipeManager getInstance(TileEntityMancerWorkTable tileentity)
-	{
-		tileEntity = tileentity;
-		return instance;
-	}
-	
-	@SuppressWarnings("unchecked")
-	private BluePrintRecipeManager()
-	{
-		recipes = new ArrayList();
-		
-		recipes = BluePrintRecipes.getRecipeList();
-		
-		Collections.sort(recipes, new BluePrintRecipeSorter(this));
-    }  
-
-    @SuppressWarnings("unchecked")
-	public MancerShapedRecipes addRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static MancerShapedRecipes addRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
     {
     	String var3 = "";
         int var4 = 0;
@@ -100,11 +77,37 @@ public class BluePrintRecipeManager
         }
         
         MancerShapedRecipes var17 = new MancerShapedRecipes(var5, var6, var15, par1ItemStack);
-        this.recipes.add(var17);
+        recipes.add(var17);
         return var17;
     }
 
-    public ItemStack findMatchingRecipe(InventoryCrafting par1InventoryCrafting, World par2World)
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public static void addShapelessRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
+    {
+    	ArrayList var3 = new ArrayList();
+    	Object[] var4 = par2ArrayOfObj;
+    	int var5 = par2ArrayOfObj.length;
+
+        for (int var6 = 0; var6 < var5; ++var6)
+        {
+        	Object var7 = var4[var6];
+        	
+        	if (var7 instanceof ItemStack)
+        		var3.add(((ItemStack)var7).copy());
+        	else if (var7 instanceof Item)
+        		var3.add(new ItemStack((Item)var7));
+        	else
+        	{
+        		if (!(var7 instanceof Block))
+        			throw new RuntimeException("Invalid shapeless recipy!");
+        		
+        		var3.add(new ItemStack((Block)var7));
+        	}
+        }
+        recipes.add(new MancerShapelessRecipes(par1ItemStack, var3));
+    }
+
+    public static ItemStack findMatchingRecipe(InventoryCrafting par1InventoryCrafting, World par2World)
     {
     	int var3 = 0;
         ItemStack var4 = null;
@@ -143,9 +146,9 @@ public class BluePrintRecipeManager
         }
         else
         {
-        	for (var6 = 0; var6 < this.recipes.size(); ++var6)
+        	for (var6 = 0; var6 < recipes.size(); ++var6)
         	{
-        		IRecipe var12 = (IRecipe)this.recipes.get(var6);
+        		IRecipe var12 = (IRecipe)recipes.get(var6);
         		if (var12.matches(par1InventoryCrafting, par2World))
         			return var12.getCraftingResult(par1InventoryCrafting);
         	}
@@ -156,8 +159,9 @@ public class BluePrintRecipeManager
     /**
      * returns the List<> of all recipes
      */
-    public List getRecipeList()
+    @SuppressWarnings("rawtypes")
+	public static List getRecipeList()
     {
-        return this.recipes;
+        return recipes;
     }
 }
