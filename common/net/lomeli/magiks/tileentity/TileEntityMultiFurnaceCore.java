@@ -2,6 +2,7 @@ package net.lomeli.magiks.tileentity;
 
 import java.util.Random;
 
+import net.lomeli.magiks.api.tiles.TileEntityMagiks;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
 import net.lomeli.magiks.items.ModItemsMagiks;

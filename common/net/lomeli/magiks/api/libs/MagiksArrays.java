@@ -3,6 +3,7 @@ package net.lomeli.magiks.api.libs;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
@@ -46,6 +47,15 @@ public class MagiksArrays
     public static List<ItemStack> wands = new ArrayList<ItemStack>();
     
     public static List<TileEntity> canRecieveMist = new ArrayList<TileEntity>();
+    
+    /**
+     * These arrays are for what blocks the digging wand can break;
+     */
+    public static List<Block> stoneLvl = new ArrayList<Block>();
+    
+    public static List<Block> ironLvl = new ArrayList<Block>();
+    
+    public static List<Block> diamondLvl = new ArrayList<Block>();
     
     public static void addNewKinGenFuel(ItemStack itemStack, int amount, int slot)
     {

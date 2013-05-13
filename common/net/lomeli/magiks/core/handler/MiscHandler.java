@@ -17,9 +17,14 @@ public class MiscHandler
         return false;
     }
 	
-	public static String additionalInfoInstructions() 
+	public static String additionalInfoInstructions(String color) 
 	{
         String message = "Press SHIFT for more info.";
-        return "\u00a76\u00a7o" + message;
+        return "\u00a7" + color + "\u00a7o" + message;
     }
+	
+	public static String gibberish()
+	{
+		return "\u00a7k";
+	}
 }

@@ -1,6 +1,6 @@
 package net.lomeli.magiks.api.magiks;
 
-import net.lomeli.magiks.tileentity.TileEntityMagiks;
+import net.lomeli.magiks.api.tiles.TileEntityMagiks;
 
 public interface IMagiks
 {

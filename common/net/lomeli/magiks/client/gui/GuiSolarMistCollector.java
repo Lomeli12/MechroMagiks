@@ -41,16 +41,18 @@ public class GuiSolarMistCollector extends GuiContainer
         fontRenderer.drawString(
                 StatCollector.translateToLocal("container.inventory"), 8,
                 ySize - 106 + 2, 4210752);
-        int e = tileEntitySolar.mistLevel;
-        if(e > tileEntitySolar.maxMistLevel)
-        	e = tileEntitySolar.maxMistLevel;
+        int e = containerSolar.tileEntity.getMistLevel();
+        if(e > tileEntitySolar.getMaxMistLevel())
+        	e = tileEntitySolar.getMaxMistLevel();
         
         fontRenderer.drawString("Mist Level:",
         		xStart + 5, yStart - 68, 4210752);
         fontRenderer.drawString(""+e,  xStart + 5 , yStart - 52, 4210752);
-        fontRenderer.drawString("/" + tileEntitySolar.maxMistLevel, 
+        fontRenderer.drawString("/" + tileEntitySolar.getMaxMistLevel(), 
                 xStart + 10, yStart - 42, 4210752);
-
+        
+        this.drawTexturedModalRect(xStart + 33, yStart + 17, 179, 0, 9,
+                (52 * (tileEntitySolar.mistLevel / tileEntitySolar.maxMistLevel)));
     }
 
     @Override
@@ -63,8 +65,7 @@ public class GuiSolarMistCollector extends GuiContainer
         int yStart = (height - ySize) / 2;
         drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);
         
-        this.drawTexturedModalRect(xStart + 33, yStart + 17, 179, 0, 9,
-                (52 * this.tileEntitySolar.getMistPercentage()));
+        
 
     }
 }

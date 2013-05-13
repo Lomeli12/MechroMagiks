@@ -10,7 +10,7 @@ import net.lomeli.magiks.blocks.machine.BlockCoil;
 import net.lomeli.magiks.blocks.machine.parts.BlockMecroBlock;
 import net.lomeli.magiks.blocks.machine.parts.BlockMecroGlass;
 import net.lomeli.magiks.blocks.machine.parts.BlockMultiFurnaceDummy;
-import net.lomeli.magiks.lib.Ints;
+import net.lomeli.magiks.lib.ItemIDs;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -32,65 +32,65 @@ public class ModBlocksMagiks
 
     public static void registerBlocks()
     {
-        neoniteOre = new BlockNeoniteOre(Ints.enchantedOreID, "neoniteOre")
+        neoniteOre = new BlockNeoniteOre(ItemIDs.enchantedOreID, "neoniteOre")
                 .setUnlocalizedName("neoniteOre").setLightValue(0.5F)
                 .setResistance(50F).setHardness(3.0F);
-        neoniteBlock = new BlockMagiks(Ints.enchantedBlockID, Material.rock,
+        neoniteBlock = new BlockMagiks(ItemIDs.enchantedBlockID, Material.rock,
                 "neoniteBlock").setUnlocalizedName("neoniteBlock")
                 .setLightValue(1.5F).setResistance(100F).setHardness(3.0F)
                 .setLightOpacity(0).setStepSound(Block.soundStoneFootstep);
-        kineticGenerator = new BlockKineticGenerator(Ints.kineticGenID,
+        kineticGenerator = new BlockKineticGenerator(ItemIDs.kineticGenID,
                 Material.rock).setUnlocalizedName("kineticgen")
                 .setResistance(1000F).setHardness(3F);
-        manceryBlock = new BlockMecroBlock(Ints.manceryBlockID, Material.rock,
+        manceryBlock = new BlockMecroBlock(ItemIDs.manceryBlockID, Material.rock,
                 "manceryblock").setUnlocalizedName("manceryblock")
                 .setHardness(0.5F).setResistance(5000F);
-        manceryGlass = new BlockMecroGlass(Ints.manceryGlassID, Material.glass,
+        manceryGlass = new BlockMecroGlass(ItemIDs.manceryGlassID, Material.glass,
                 "manceryglass").setUnlocalizedName("manceryglass")
                 .setHardness(0.5F).setResistance(5000F);
-        stamaticOre = new BlockMagiks(Ints.stamaticOreID, Material.rock,
+        stamaticOre = new BlockMagiks(ItemIDs.stamaticOreID, Material.rock,
                 "orestamatic").setUnlocalizedName("orestamatic")
                 .setHardness(3F).setResistance(5F);
-        igniousOre = new BlockMagiks(Ints.igniousOreID, Material.rock,
+        igniousOre = new BlockMagiks(ItemIDs.igniousOreID, Material.rock,
                 "oreignious").setUnlocalizedName("oreignious").setHardness(3F)
                 .setResistance(5F);
-        solarMistCollector = new BlockSolarMistCollector(Ints.solarGenID,
+        solarMistCollector = new BlockSolarMistCollector(ItemIDs.solarGenID,
                 Material.rock, "solarmistcollector")
                 .setUnlocalizedName("solarmistcollector").setHardness(3F)
                 .setResistance(100F);
-        dupeFurnace = new BlockMultiFurnaceCore(Ints.dupeFurnaceID).setHardness(0.5F).setResistance(5000F);
-        burningStone = new BlockMultiFurnaceDummy(Ints.dupeDummyID).setHardness(0.5F).setResistance(5000F);
-        mistCrafter = new BlockMistWorkBench(Ints.mistCrafterID, Material.anvil)
+        dupeFurnace = new BlockMultiFurnaceCore(ItemIDs.dupeFurnaceID).setHardness(0.5F).setResistance(5000F);
+        burningStone = new BlockMultiFurnaceDummy(ItemIDs.dupeDummyID).setHardness(0.5F).setResistance(5000F);
+        mistCrafter = new BlockMistWorkBench(ItemIDs.mistCrafterID, Material.anvil)
                 .setUnlocalizedName("MistCrafter").setResistance(100F);
-        manceryBrick = new BlockMagiks(Ints.manceryBrickID, Material.rock,
+        manceryBrick = new BlockMagiks(ItemIDs.manceryBrickID, Material.rock,
                 "mancerybricks").setUnlocalizedName("mancerybricks")
                 .setHardness(0.5F).setResistance(5000F);
-        obsidianStairs = new BlockMagikStairs(Ints.obsidianStairsID, Block.obsidian, 2,
+        obsidianStairs = new BlockMagikStairs(ItemIDs.obsidianStairsID, Block.obsidian, 2,
         		"obsidian").setHardness(50.0F).setResistance(2000.0F)
         		.setUnlocalizedName("obsidianStairs");
-        manceryBlockStairs = new BlockMagikStairs(Ints.manceryStoneStairsID, manceryBlock, 3,
+        manceryBlockStairs = new BlockMagikStairs(ItemIDs.manceryStoneStairsID, manceryBlock, 3,
         		"manceryblock").setUnlocalizedName("manceryblockstairs")
                 .setHardness(0.5F).setResistance(5000F);
-        manceryBrickStairs = new BlockMagikStairs(Ints.manceryBrickStairsID, manceryBrick, 4,
+        manceryBrickStairs = new BlockMagikStairs(ItemIDs.manceryBrickStairsID, manceryBrick, 4,
         		"mancerybricks").setUnlocalizedName("mancerybricksstairs")
                 .setHardness(0.5F).setResistance(5000F);
-        burningStoneStairs = new BlockMagikStairs(Ints.burningBrickStairsID, burningStone, 5,
+        burningStoneStairs = new BlockMagikStairs(ItemIDs.burningBrickStairsID, burningStone, 5,
         		"burningstone").setUnlocalizedName("burningstonestairs")
                 .setHardness(0.5F).setResistance(5000F);
-        netherIgnious = new BlockMagiks(Ints.netherIgniousID, Material.rock, "orenetherignious")
+        netherIgnious = new BlockMagiks(ItemIDs.netherIgniousID, Material.rock, "orenetherignious")
         		.setHardness(3F).setResistance(5F).setUnlocalizedName("netherignious");
-        copperOre = new BlockMagiks(Ints.copperOreID, Material.rock, "oreCopper")
+        copperOre = new BlockMagiks(ItemIDs.copperOreID, Material.rock, "oreCopper")
         		.setHardness(3F).setResistance(5F).setUnlocalizedName("copperOre");
-        tinOre = new BlockMagiks(Ints.tinOreID, Material.rock, "oreTin")
+        tinOre = new BlockMagiks(ItemIDs.tinOreID, Material.rock, "oreTin")
 				.setHardness(3F).setResistance(5F).setUnlocalizedName("tinOre");
-        silverOre = new BlockMagiks(Ints.silverOreID, Material.rock, "oreSilver")
+        silverOre = new BlockMagiks(ItemIDs.silverOreID, Material.rock, "oreSilver")
 				.setHardness(3F).setResistance(5F).setUnlocalizedName("silverOre");
-        smallCoil = new BlockCoil(Ints.smallCoilID, Material.rock, "oreSilver").setUnlocalizedName("smallcoil");
-        mancerWorkTable = new BlockMancerWorkTable(Ints.mancerWorkTableID, Material.wood, "wood")
+        smallCoil = new BlockCoil(ItemIDs.smallCoilID, Material.rock, "oreSilver").setUnlocalizedName("smallcoil");
+        mancerWorkTable = new BlockMancerWorkTable(ItemIDs.mancerWorkTableID, Material.wood, "wood")
         		.setHardness(2F).setResistance(5F).setUnlocalizedName("mancerWT");
-        hollowWood = new BlockHollowWood(Ints.hollowWoodID, Material.wood, "wood")
+        hollowWood = new BlockHollowWood(ItemIDs.hollowWoodID, Material.wood, "wood")
         		.setHardness(2F).setResistance(5F).setUnlocalizedName("hallowWood");
-        linkingChest = new BlockLinkingChest(Ints.linkingChestID, "mancerybricks")
+        linkingChest = new BlockLinkingChest(ItemIDs.linkingChestID, "mancerybricks")
         	.setHardness(0.5F).setResistance(5000F);;
 
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");
@@ -166,5 +166,12 @@ public class ModBlocksMagiks
     {
     	KineticGenFuel.fuel().addFuel(0, new ItemStack(Block.tnt), 75);
     	MagiksArrays.addNewKinGenFuel(new ItemStack(Block.tnt), 75, 0);
+    }
+    
+    public static void addBreakableBlocks()
+    {
+    	//Block[]
+    	
+    	//MagiksArrays.stoneLvl.add(e);
     }
 }

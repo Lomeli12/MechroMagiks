@@ -48,21 +48,18 @@ public class GuiKineticGenerator extends GuiContainer
         int xStart = (width - xSize) / 2;
         int yStart = (height - ySize) / 2;
         this.drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);
-        if (tileentitykingen.isInUse())
-        {
-            fontRenderer.drawString(
-                    StatCollector.translateToLocal("Mist Level:"), xStart + 80,
-                    yStart + 20, 4210752);
-            fontRenderer.drawString(
-                    StatCollector.translateToLocal(tileentitykingen.mistLevel
-                            + "/" + tileentitykingen.getMaxMistLevel()),
-                    xStart + 80, yStart + 30, 4210752);
-            fontRenderer.drawString(
-                    StatCollector.translateToLocal("Heat Level: "), xStart + 80,
-                            yStart + 50, 4210752);
-            fontRenderer.drawString(
-                    StatCollector.translateToLocal(tileentitykingen.heatLevel + " C"), xStart + 80,
-                            yStart + 60, 4210752);
-        }
+        fontRenderer.drawString(
+        	StatCollector.translateToLocal("Mist Level:"), xStart + 80,
+            yStart + 20, 4210752);
+        fontRenderer.drawString(
+            StatCollector.translateToLocal(tileentitykingen.mistLevel
+            + "/" + tileentitykingen.maxMistLevel),
+            xStart + 80, yStart + 30, 4210752);
+        fontRenderer.drawString(
+            StatCollector.translateToLocal("Heat Level: "), xStart + 80,
+            yStart + 50, 4210752);
+        fontRenderer.drawString(
+            StatCollector.translateToLocal(tileentitykingen.heatLevel + " C"), xStart + 80,
+            yStart + 60, 4210752);
     }
 }

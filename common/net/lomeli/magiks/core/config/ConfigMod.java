@@ -3,8 +3,8 @@ package net.lomeli.magiks.core.config;
 import java.io.File;
 
 import net.lomeli.magiks.lib.Ints;
+import net.lomeli.magiks.lib.ItemIDs;
 import net.minecraftforge.common.Configuration;
-
 
 public class ConfigMod
 {
@@ -20,120 +20,136 @@ public class ConfigMod
     
     public static void configureItemIDs(String loc)
     {
+    	System.out.println(loc);
         Configuration config = new Configuration(new File(loc,
                 "MechroMagikIDs.cfg"));
 
         config.load();
 
-        Ints.flyingRingID = config.get("Items", "FlyingRing", 7000)
+        ItemIDs.flyingRingID = config.get("Items", "FlyingRing", 7000)
                 .getInt(7000);
-        Ints.enchantedGemID = config.get("Items", "EnchantedGem", 7001).getInt(
+        ItemIDs.enchantedGemID = config.get("Items", "EnchantedGem", 7001).getInt(
                 7001);
-        Ints.enchantedDiamondID = config.get("Items", "EnchantedDiamond", 7002)
+        ItemIDs.enchantedDiamondID = config.get("Items", "EnchantedDiamond", 7002)
                 .getInt(7002);
-        Ints.ironBandID = config.get("Items", "IronBand", 7003).getInt(7003);
-        Ints.ironStickID = config.get("Items", "IronStick", 7004).getInt(7004);
-        Ints.ingotStamaticID = config.get("Ingots", "IngotStamatic", 7005)
+        ItemIDs.ironBandID = config.get("Items", "IronBand", 7003).getInt(7003);
+        ItemIDs.ironStickID = config.get("Items", "IronStick", 7004).getInt(7004);
+        ItemIDs.ingotStamaticID = config.get("Ingots", "IngotStamatic", 7005)
                 .getInt(7005);
-        Ints.ingotIgniousID = config.get("Ingots", "IngotIgnious", 7006).getInt(
+        ItemIDs.ingotIgniousID = config.get("Ingots", "IngotIgnious", 7006).getInt(
                 7006);
-        Ints.darkMatterID = config.get("Items", "darkMatter", 7007)
+        ItemIDs.darkMatterID = config.get("Items", "darkMatter", 7007)
                 .getInt(7007);
-        Ints.deprivedDustID = config.get("Items", "deprivedLightStone", 7008)
+        ItemIDs.deprivedDustID = config.get("Items", "deprivedLightStone", 7008)
                 .getInt(7008);
-        Ints.mistPanelID = config.get("Items", "mistPanel", 7009).getInt(7009);
-        Ints.burningUpgradeID = config.get("Items", "burningUpgrades", 7010)
+        ItemIDs.mistPanelID = config.get("Items", "mistPanel", 7009).getInt(7009);
+        ItemIDs.burningUpgradeID = config.get("Items", "burningUpgrades", 7010)
                 .getInt(7010);
-        Ints.ironPlateID = config.get("Items", "ironPlate", 7011).getInt(711);
+        ItemIDs.ironPlateID = config.get("Items", "ironPlate", 7011).getInt(711);
 
-        Ints.empoweredPickID = config.get("Tools", "EmpoweredPick", 7020)
+        ItemIDs.empoweredPickID = config.get("Tools", "EmpoweredPick", 7020)
                 .getInt(7020);
-        Ints.pirasVarinhaID = config.get("Wands", "FireWand", 7021)
+        ItemIDs.pirasVarinhaID = config.get("Wands", "FireWand", 7021)
                 .getInt(7021);
-        Ints.diggersWandID = config.get("Wands", "MiningWand-Level0", 7022)
+        ItemIDs.diggersWandID = config.get("Wands", "MiningWand-Stone", 7022)
                 .getInt(7022);
+        ItemIDs.diggersWandIronID = config.get("Wands", "MiningWand-Iron", 7038)
+        		.getInt(7038);
+        ItemIDs.diggersWandDiamondID = config.get("Wands", "MiningWand-Diamond", 7039)
+        		.getInt(7039);
 
-        Ints.basicWandID = config.get("Wands", "basicwand", 7023).getInt(7023);
-        Ints.chemistWandID = config.get("Wands", "chemistwand", 7024).getInt(
+        ItemIDs.basicWandID = config.get("Wands", "basicwand", 7023).getInt(7023);
+        ItemIDs.chemistWandID = config.get("Wands", "chemistwand", 7024).getInt(
                 7024);
-        Ints.alchemistWandID = config.get("Wands", "alchemistwand", 7025)
+        ItemIDs.alchemistWandID = config.get("Wands", "alchemistwand", 7025)
                 .getInt(7025);
-        Ints.wandID = config.get("Wands", "wand", 7026).getInt(7026);
+        ItemIDs.wandID = config.get("Wands", "wand", 7026).getInt(7026);
         
-        Ints.spencerSwordID = config.get("Tools", "SpencerSword", 7027).getInt(7027);
-        Ints.emeraldAmuletID = config.get("Tools", "EmeraldAmulet", 7028).getInt(7028);
-        Ints.weatherRocketsID = config.get("Items", "Weather Rockets", 7029).getInt(7029);
+        ItemIDs.spencerSwordID = config.get("Tools", "SpencerSword", 7027).getInt(7027);
+        ItemIDs.emeraldAmuletID = config.get("Tools", "EmeraldAmulet", 7028).getInt(7028);
+        ItemIDs.weatherRocketsID = config.get("Items", "Weather Rockets", 7029).getInt(7029);
         
-        Ints.ingotCopperID = config.get("Ingots", "IngotCopper", 7030).getInt(7030);
-        Ints.ingotTinID = config.get("Ingots", "IngotTin", 7031).getInt(7031);
-        Ints.ingotSilverID = config.get("Ingots", "IngotSilver", 7032).getInt(7032);
+        ItemIDs.ingotCopperID = config.get("Ingots", "IngotCopper", 7030).getInt(7030);
+        ItemIDs.ingotTinID = config.get("Ingots", "IngotTin", 7031).getInt(7031);
+        ItemIDs.ingotSilverID = config.get("Ingots", "IngotSilver", 7032).getInt(7032);
         
-        Ints.chestLinkerID = config.get("Tools", "chestLinker", 7033).getInt(7033);
-        Ints.circuitID = config.get("Items", "circuit", 7034).getInt(7034);
-        Ints.copperWireID = config.get("Items", "copperWire", 7035).getInt(7035);
-        Ints.wirelessRecieverID = config.get("Items", "wirelessReciever", 7036).getInt(7036);
-        Ints.advRecieverID = config.get("Items", "advReciever", 7037).getInt(7037);
+        ItemIDs.chestLinkerID = config.get("Tools", "chestLinker", 7033).getInt(7033);
+        ItemIDs.circuitID = config.get("Items", "circuit", 7034).getInt(7034);
+        ItemIDs.copperWireID = config.get("Items", "copperWire", 7035).getInt(7035);
+        ItemIDs.wirelessRecieverID = config.get("Items", "wirelessReciever", 7036).getInt(7036);
+        ItemIDs.advRecieverID = config.get("Items", "advReciever", 7037).getInt(7037);
 
         config.save();
     }
     
     public static void configureBlockIDs(String loc)
     {
+    	System.out.println(loc);
     	Configuration config = new Configuration(new File(loc,
                 "MechroMagikIDs.cfg"));
 
         config.load();
         
-    	Ints.enchantedOreID = config.get("Blocks", "EnchantedOre", 700).getInt(
+    	ItemIDs.enchantedOreID = config.get("Blocks", "EnchantedOre", 700).getInt(
                  100);
-        Ints.enchantedBlockID = config.get("Blocks", "EnchantedBlock", 701)
+        ItemIDs.enchantedBlockID = config.get("Blocks", "EnchantedBlock", 701)
                  .getInt(701);
-        Ints.kineticGenID = config.get("Machines", "KineticGen", 702).getInt(
+        ItemIDs.kineticGenID = config.get("Machines", "KineticGen", 702).getInt(
                  702);
-        Ints.manceryBlockID = config.get("Blocks", "ManceryBlock", 703).getInt(
+        ItemIDs.manceryBlockID = config.get("Blocks", "ManceryBlock", 703).getInt(
                  703);
-        Ints.manceryGlassID = config.get("Blocks", "ManceryGlass", 704).getInt(
+        ItemIDs.manceryGlassID = config.get("Blocks", "ManceryGlass", 704).getInt(
                  704);
-        Ints.stamaticOreID = config.get("Blocks", "OreStamatic", 705).getInt(
+        ItemIDs.stamaticOreID = config.get("Blocks", "OreStamatic", 705).getInt(
                  705);
-        Ints.igniousOreID = config.get("Blocks", "OreIgnious", 706).getInt(706);
-        Ints.solarGenID = config.get("Machines", "SolarCollector", 707).getInt(
+        ItemIDs.igniousOreID = config.get("Blocks", "OreIgnious", 706).getInt(706);
+        ItemIDs.solarGenID = config.get("Machines", "SolarCollector", 707).getInt(
                  707);
-        Ints.mistCrafterID = config.get("Blocks", "MistCrafter", 708).getInt(
+        ItemIDs.mistCrafterID = config.get("Blocks", "MistCrafter", 708).getInt(
                  708);
-        Ints.dupeFurnaceID = config.get("Machines", "DupeFurnace", 709).getInt(
+        ItemIDs.dupeFurnaceID = config.get("Machines", "DupeFurnace", 709).getInt(
                  709);
-        Ints.dupeDummyID = config.get("Blocks", "BuringStone", 710).getInt(710);
-        Ints.manceryBrickID = config.get("Blocks", "ManceryBrick", 711).getInt(
+        ItemIDs.dupeDummyID = config.get("Blocks", "BuringStone", 710).getInt(710);
+        ItemIDs.manceryBrickID = config.get("Blocks", "ManceryBrick", 711).getInt(
                  711);
-        Ints.obsidianStairsID = config.get("Blocks", "ObsidianStairs", 712).getInt(712);
-        Ints.manceryStoneStairsID = config.get("Blocks", "ManceryStoneStairs", 713).getInt(713);
-        Ints.manceryBrickStairsID = config.get("Blocks", "ManceryBrickStairs", 714).getInt(714);
-        Ints.burningBrickStairsID = config.get("Blocks", "BurningStoneStairs", 715).getInt(715);
-        Ints.netherIgniousID = config.get("Blocks", "NetherIgnious", 716).getInt(716);
-        Ints.copperOreID = config.get("Blocks", "copperOre", 717).getInt(717);
-        Ints.tinOreID = config.get("Blocks", "tinOre", 718).getInt(718);
-        Ints.silverOreID = config.get("Blocks", "silverOre", 719).getInt(719);
-        Ints.smallCoilID = config.get("Machines", "smallCoil", 720).getInt(720);
-        Ints.mancerWorkTableID = config.get("Machines", "mancerWT", 721).getInt(721);
-        Ints.hollowWoodID = config.get("Blocks", "hallowWood", 722).getInt(722);
-        Ints.linkingChestID = config.get("Blocks", "linkingChest", 723).getInt(723);
-
+        ItemIDs.obsidianStairsID = config.get("Blocks", "ObsidianStairs", 712).getInt(712);
+        ItemIDs.manceryStoneStairsID = config.get("Blocks", "ManceryStoneStairs", 713).getInt(713);
+        ItemIDs.manceryBrickStairsID = config.get("Blocks", "ManceryBrickStairs", 714).getInt(714);
+        ItemIDs.burningBrickStairsID = config.get("Blocks", "BurningStoneStairs", 715).getInt(715);
+        ItemIDs.netherIgniousID = config.get("Blocks", "NetherIgnious", 716).getInt(716);
+        ItemIDs.copperOreID = config.get("Blocks", "copperOre", 717).getInt(717);
+        ItemIDs.tinOreID = config.get("Blocks", "tinOre", 718).getInt(718);
+        ItemIDs.silverOreID = config.get("Blocks", "silverOre", 719).getInt(719);
+        ItemIDs.smallCoilID = config.get("Machines", "smallCoil", 720).getInt(720);
+        ItemIDs.mancerWorkTableID = config.get("Machines", "mancerWT", 721).getInt(721);
+        ItemIDs.hollowWoodID = config.get("Blocks", "hallowWood", 722).getInt(722);
+        ItemIDs.linkingChestID = config.get("Blocks", "linkingChest", 723).getInt(723);
+        
         config.save();
+        
+        
+
     }
 
-    @SuppressWarnings("static-access")
+	@SuppressWarnings("static-access")
 	public static void configureOptions(String loc)
-    {   
-        Configuration config = new Configuration(new File(loc,
-                "MechroMagikOptions.cfg"));
-
-        config.load();
-
-        capesEnabled = config.get(config.CATEGORY_GENERAL, "capesEnabled", true).getBoolean(true);
-        disablePiras = config.get(config.CATEGORY_GENERAL, "disablePiras", false)
+    {
+		Configuration config2 = new Configuration(new File(loc, "MechroMagikOptions.cfg"));
+        
+        config2.load();
+        
+        capesEnabled = config2.get(config2.CATEGORY_GENERAL, "capesEnabled", true).getBoolean(true);
+        disablePiras = config2.get(config2.CATEGORY_GENERAL, "disablePiras", false)
                 .getBoolean(false);
-
-        config.save();
+        
+        Ints.neoniteGen = config2.get("OreGen", "neonite", 3).getInt(3);
+        Ints.igniousGen = config2.get("OreGen", "ignious", 4).getInt(4);
+        Ints.nIgniousGen = config2.get("OreGen", "netherIgnious", 15).getInt(15);
+        Ints.stamaticGen = config2.get("OreGen", "stamatic", 15).getInt(15);
+        Ints.copperGen = config2.get("OreGen", "copper", 10).getInt(10);
+        Ints.tinGen = config2.get("OreGen", "tin", 7).getInt(7);
+        Ints.silverGen = config2.get("OreGen", "silver", 7).getInt(7);
+        
+        config2.save();   
     }
 }

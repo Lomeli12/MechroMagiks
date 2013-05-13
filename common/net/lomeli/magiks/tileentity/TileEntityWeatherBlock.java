@@ -1,5 +1,6 @@
 package net.lomeli.magiks.tileentity;
 
+import net.lomeli.magiks.api.tiles.TileEntityMagiks;
 import net.lomeli.magiks.lib.Strings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

@@ -13,7 +13,6 @@ import net.minecraft.util.Icon;
 
 public class ItemWeatherRockets extends ItemGeneric
 {
-	@SideOnly(Side.CLIENT)
 	public Icon[] iconArray = new Icon[6];
 	public String itemTexture;
 	

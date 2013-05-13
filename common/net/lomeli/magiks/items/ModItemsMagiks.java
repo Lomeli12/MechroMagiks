@@ -7,10 +7,11 @@ import net.lomeli.magiks.items.magik.ItemFlyingRing;
 import net.lomeli.magiks.items.magik.ItemPirasVarinha;
 import net.lomeli.magiks.items.magik.ItemWands;
 import net.lomeli.magiks.items.science.ItemWeatherRockets;
+import net.lomeli.magiks.items.tools.EnumWandStrength;
 import net.lomeli.magiks.items.tools.ItemEmpoweredPick;
 import net.lomeli.magiks.items.tools.ItemLevelingSword;
 import net.lomeli.magiks.items.tools.ItemMiningWands;
-import net.lomeli.magiks.lib.Ints;
+import net.lomeli.magiks.lib.ItemIDs;
 import net.lomeli.magiks.lib.Strings;
 
 import net.minecraft.item.EnumToolMaterial;
@@ -21,7 +22,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ModItemsMagiks
-{
+{	
     public static Item flyingRing;
     public static Item neoniteGem;
     public static Item neonitePick;
@@ -54,78 +55,85 @@ public class ModItemsMagiks
     public static Item chemistWand;
     public static Item alchemistWand;
     public static Item pirasVarinha;
-    public static Item diggersWand;
+    
+    public static Item diggersWandS;
+    public static Item diggersWandI;
+    public static Item diggersWandD;
 
     public static Item wand;
 
     public static void registerItems()
     {
-        flyingRing = new ItemFlyingRing(Ints.flyingRingID, "flyingring")
+        flyingRing = new ItemFlyingRing(ItemIDs.flyingRingID, "flyingring")
                 .setUnlocalizedName("flyingring");
-        neoniteGem = new ItemGeneric(Ints.enchantedGemID, "neoniteGem", true)
+        neoniteGem = new ItemGeneric(ItemIDs.enchantedGemID, "neoniteGem", true)
                 .setUnlocalizedName("enchantedGem");
-        enchantedDiamond = new ItemGeneric(Ints.enchantedDiamondID,
+        enchantedDiamond = new ItemGeneric(ItemIDs.enchantedDiamondID,
                 "empowereddiamond", true)
                 .setUnlocalizedName("enchantedDiamond");
-        ironBand = new ItemGeneric(Ints.ironBandID, "ironband", false)
+        ironBand = new ItemGeneric(ItemIDs.ironBandID, "ironband", false)
                 .setUnlocalizedName("ironBand");
-        ironStick = new ItemGeneric(Ints.ironStickID, "ironstick", false)
+        ironStick = new ItemGeneric(ItemIDs.ironStickID, "ironstick", false)
                 .setUnlocalizedName("ironStick");
-        emeraldAmulet = new ItemAmulets(Ints.emeraldAmuletID, "amuletGold", true, 50000)
+        emeraldAmulet = new ItemAmulets(ItemIDs.emeraldAmuletID, "amuletGold", true, 50000)
                 .setUnlocalizedName("amulet");
-        ingotStamatic = new ItemGeneric(Ints.ingotStamaticID, "ingotstamatic",
+        ingotStamatic = new ItemGeneric(ItemIDs.ingotStamaticID, "ingotstamatic",
                 false).setUnlocalizedName("ingotstamatic");
-        ingotIgnious = new ItemGeneric(Ints.ingotIgniousID, "ingotignious",
+        ingotIgnious = new ItemGeneric(ItemIDs.ingotIgniousID, "ingotignious",
                 false).setUnlocalizedName("ingotignious");
-        mistPanel = new ItemGeneric(Ints.mistPanelID, "lighthungryplates",
+        mistPanel = new ItemGeneric(ItemIDs.mistPanelID, "lighthungryplates",
                 false).setUnlocalizedName("mistPanel");
-        darkMatter = new ItemGeneric(Ints.darkMatterID, "darkmatter", true)
+        darkMatter = new ItemGeneric(ItemIDs.darkMatterID, "darkmatter", true)
                 .setUnlocalizedName("darkmatter");
-        deprivedDust = new ItemGeneric(Ints.deprivedDustID,
+        deprivedDust = new ItemGeneric(ItemIDs.deprivedDustID,
                 "deprivedglowstone", false).setUnlocalizedName("deprivedDust");
-        burningUpgrade = new ItemGeneric(Ints.burningUpgradeID,
+        burningUpgrade = new ItemGeneric(ItemIDs.burningUpgradeID,
                 "burningupgrade", false).setUnlocalizedName("burningupgrade")
                 .setMaxStackSize(2);
-        ironPlate = new ItemGeneric(Ints.ironPlateID, "ironplate", false)
+        ironPlate = new ItemGeneric(ItemIDs.ironPlateID, "ironplate", false)
                 .setUnlocalizedName("ironplate");
-        ingotCopper = new ItemGeneric(Ints.ingotCopperID, "ingotCopper", false)
+        ingotCopper = new ItemGeneric(ItemIDs.ingotCopperID, "ingotCopper", false)
         		.setUnlocalizedName("ingotCopper");
-        ingotTin = new ItemGeneric(Ints.ingotTinID, "ingotTin", false)
+        ingotTin = new ItemGeneric(ItemIDs.ingotTinID, "ingotTin", false)
 			.setUnlocalizedName("ingotTin");
-        ingotSilver = new ItemGeneric(Ints.ingotSilverID, "ingotSilver", false)
+        ingotSilver = new ItemGeneric(ItemIDs.ingotSilverID, "ingotSilver", false)
 			.setUnlocalizedName("ingotSilver");
-        chestLinker = new ItemChestLink(Ints.chestLinkerID, "chestLinker")
+        chestLinker = new ItemChestLink(ItemIDs.chestLinkerID, "chestLinker")
         	.setUnlocalizedName("chestLinker");
-        electroicCircuit = new ItemGeneric(Ints.circuitID, "electronicCircuit", false)
+        electroicCircuit = new ItemGeneric(ItemIDs.circuitID, "electronicCircuit", false)
         	.setUnlocalizedName("electronicCircuit");
-        copperWire = new ItemGeneric(Ints.copperWireID, "copperWire", false)
+        copperWire = new ItemGeneric(ItemIDs.copperWireID, "copperWire", false)
         	.setUnlocalizedName("copperWire");
-        wirelessReciever = new ItemGeneric(Ints.wirelessRecieverID, Strings.NO_TEXTURE, false)
+        wirelessReciever = new ItemGeneric(ItemIDs.wirelessRecieverID, Strings.NO_TEXTURE, false)
         	.setUnlocalizedName("wirelessReciever");
-        advReciever = new ItemGeneric(Ints.advRecieverID, Strings.NO_TEXTURE, true)
+        advReciever = new ItemGeneric(ItemIDs.advRecieverID, Strings.NO_TEXTURE, true)
         	.setUnlocalizedName("advReciever");
         
-        weatherRockets = new ItemWeatherRockets(Ints.weatherRocketsID, "rockets");
+        weatherRockets = new ItemWeatherRockets(ItemIDs.weatherRocketsID, "rockets");
         
-        wand = new ItemGeneric(Ints.wandID, "magicianwand", false)
+        wand = new ItemGeneric(ItemIDs.wandID, "magicianwand", false)
             .setCreativeTab(null).setUnlocalizedName("wand");
 
-        basicWand = new ItemWands(Ints.basicWandID, "basicwand", false, 50)
+        basicWand = new ItemWands(ItemIDs.basicWandID, "basicwand", false, 50)
                 .setUnlocalizedName("basicwand");
-        chemistWand = new ItemWands(Ints.chemistWandID, "chemistwand", false,
+        chemistWand = new ItemWands(ItemIDs.chemistWandID, "chemistwand", false,
                 100).setUnlocalizedName("chemistwand");
-        alchemistWand = new ItemWands(Ints.alchemistWandID, "alchemistwand",
+        alchemistWand = new ItemWands(ItemIDs.alchemistWandID, "alchemistwand",
                 true, 300).setUnlocalizedName("alchemistwand");
 
-        neonitePick = new ItemEmpoweredPick(Ints.empoweredPickID,
+        neonitePick = new ItemEmpoweredPick(ItemIDs.empoweredPickID,
                 EnumToolMaterial.IRON, "pickaxeEmpowered")
                 .setUnlocalizedName("empoweredPick");
-        levelingSword = new ItemLevelingSword(Ints.spencerSwordID, EnumToolMaterial.IRON,
+        levelingSword = new ItemLevelingSword(ItemIDs.spencerSwordID, EnumToolMaterial.IRON,
                 "levelingsword").setUnlocalizedName("lvlSword");
-        pirasVarinha = new ItemPirasVarinha(Ints.pirasVarinhaID,
+        pirasVarinha = new ItemPirasVarinha(ItemIDs.pirasVarinhaID,
                 "pirasvarinha", false).setUnlocalizedName("pirasvarinha");
-        diggersWand = new ItemMiningWands(Ints.diggersWandID, "diggerswand",
-                false, 300, 0).setUnlocalizedName("diggerswand");
+        diggersWandS = new ItemMiningWands(ItemIDs.diggersWandID, "diggerswand",
+                EnumWandStrength.STONE).setUnlocalizedName("diggerswandS");
+        diggersWandI = new ItemMiningWands(ItemIDs.diggersWandIronID, "diggerswand",
+        		EnumWandStrength.IRON).setUnlocalizedName("diggersWandI");
+        diggersWandD = new ItemMiningWands(ItemIDs.diggersWandDiamondID, "diggerswand",
+        		EnumWandStrength.DIAMOND).setUnlocalizedName("diggersWandD");
 
         LanguageRegistry.addName(flyingRing, "ShadowWing's Gale");
         LanguageRegistry.addName(neoniteGem, "Neonite Gem");
@@ -136,9 +144,11 @@ public class ModItemsMagiks
         LanguageRegistry.addName(ironStick, "Iron Stick");
         LanguageRegistry.addName(emeraldAmulet, "Emerald Amulet");
         LanguageRegistry.addName(ingotStamatic, "Stamatic Ingot");
-        LanguageRegistry.addName(ingotIgnious, "Ignious Ingot");
-        LanguageRegistry.addName(pirasVarinha, "Piras Varinha");
-        LanguageRegistry.addName(diggersWand, "Digger's Wand");
+        LanguageRegistry.addName(ingotIgnious, "\u00a74Ignious Ingot");
+        LanguageRegistry.addName(pirasVarinha, "\u00a74Piras Varinha");
+        LanguageRegistry.addName(diggersWandS, "\u00a7eDigger's Wand");
+        LanguageRegistry.addName(diggersWandI, "\u00a76Digger's Wand");
+        LanguageRegistry.addName(diggersWandD, "\u00a7bDigger's Wand");
         LanguageRegistry.addName(mistPanel, "Light Hungry Plates");
         LanguageRegistry.addName(darkMatter, "Dark Matter");
         LanguageRegistry.addName(deprivedDust, "Deprived Glowstone");
@@ -174,7 +184,7 @@ public class ModItemsMagiks
         MagiksArrays.rechargeableItems.add(new ItemStack(flyingRing));
         MagiksArrays.rechargeableItems.add(new ItemStack(pirasVarinha));
         MagiksArrays.rechargeableItems.add(new ItemStack(emeraldAmulet));
-        MagiksArrays.rechargeableItems.add(new ItemStack(diggersWand));
+        MagiksArrays.rechargeableItems.add(new ItemStack(diggersWandS));
         MagiksArrays.rechargeableItems.add(new ItemStack(basicWand));
         MagiksArrays.rechargeableItems.add(new ItemStack(chemistWand));
         MagiksArrays.rechargeableItems.add(new ItemStack(alchemistWand));

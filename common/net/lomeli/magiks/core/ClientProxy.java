@@ -9,7 +9,7 @@ import net.lomeli.magiks.client.render.item.ItemLinkingChestRenderer;
 import net.lomeli.magiks.client.render.item.ItemMancerWorkTableRenderer;
 import net.lomeli.magiks.client.render.item.ItemSolarMistCollectorRenderer;
 import net.lomeli.magiks.core.config.ConfigMod;
-import net.lomeli.magiks.lib.Ints;
+import net.lomeli.magiks.lib.ItemIDs;
 import net.lomeli.magiks.lib.RenderIDs;
 import net.lomeli.magiks.tileentity.TileEntityCoil;
 import net.lomeli.magiks.tileentity.TileEntityHollowWood;
@@ -64,18 +64,18 @@ public class ClientProxy extends CommonProxy
         		new TileEntityLinkingChestRenderer());
 
         MinecraftForgeClient.registerItemRenderer(
-                Ints.kineticGenID,
+                ItemIDs.kineticGenID,
                 new ItemKineticGeneratorRenderer());
         MinecraftForgeClient.registerItemRenderer(
-        		Ints.solarGenID,
+        		ItemIDs.solarGenID,
                 new ItemSolarMistCollectorRenderer());
-        MinecraftForgeClient.registerItemRenderer(Ints.smallCoilID, 
+        MinecraftForgeClient.registerItemRenderer(ItemIDs.smallCoilID, 
         		new ItemCoilRenderer());
-        MinecraftForgeClient.registerItemRenderer(Ints.mancerWorkTableID,
+        MinecraftForgeClient.registerItemRenderer(ItemIDs.mancerWorkTableID,
         		new ItemMancerWorkTableRenderer());
-        MinecraftForgeClient.registerItemRenderer(Ints.hollowWoodID,
+        MinecraftForgeClient.registerItemRenderer(ItemIDs.hollowWoodID,
         		new ItemHollowWoodRenderer());
-        MinecraftForgeClient.registerItemRenderer(Ints.linkingChestID,
+        MinecraftForgeClient.registerItemRenderer(ItemIDs.linkingChestID,
         		new ItemLinkingChestRenderer());
 
         ClientRegistry.registerTileEntity(TileEntityKineticGenerator.class,

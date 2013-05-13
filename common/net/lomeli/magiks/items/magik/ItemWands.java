@@ -1,8 +1,8 @@
 package net.lomeli.magiks.items.magik;
 
+import net.lomeli.magiks.api.tiles.TileEntityMagiks;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.items.ItemGeneric;
-import net.lomeli.magiks.tileentity.TileEntityMagiks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

@@ -59,9 +59,9 @@ public class ContainerLinkingChest extends Container
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (par2 < 2 * 7)
+            if (par2 < 6 * 7)
             {
-                if (!this.mergeItemStack(itemstack1, 2 * 9, this.inventorySlots.size(), true))
+                if (!this.mergeItemStack(itemstack1, 6 * 9, this.inventorySlots.size(), true))
                 {
                     return null;
                 }

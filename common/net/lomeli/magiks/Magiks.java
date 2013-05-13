@@ -69,12 +69,12 @@ public class Magiks
 
         MinecraftForge.EVENT_BUS.register(new ItemDroppedHandler());
         MinecraftForge.EVENT_BUS.register(new PlayerInteractHandler());
-
-        ModItemsMagiks.registerItems();
-        ModItemsMagiks.addChargeableItems();
-
+        
         ModBlocksMagiks.registerBlocks();
         ModBlocksMagiks.registerKinGenFuel();
+        
+        ModItemsMagiks.registerItems();
+        ModItemsMagiks.addChargeableItems();
 
         GameRegistry.registerWorldGenerator(new MagikWorldGen());
         GameRegistry.registerCraftingHandler(new WandCraftingHandler());

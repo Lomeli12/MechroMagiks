@@ -25,8 +25,9 @@ public class KineticGenFuel
     	return instance;
     }
     
-    private KineticGenFuel()
+    public KineticGenFuel()
     {
+    	fuelList = new HashMap();
     	this.addFuel(0, new ItemStack(Block.tnt), 75);
     	this.addFuel(1, new ItemStack(Item.gunpowder), 25);
     	

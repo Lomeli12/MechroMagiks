@@ -1,4 +1,4 @@
-package net.lomeli.magiks.tileentity;
+package net.lomeli.magiks.api.tiles;
 
 import net.lomeli.magiks.api.magiks.IMagiks;
 import net.minecraft.tileentity.TileEntity;
@@ -6,10 +6,10 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntityMagiks extends TileEntity implements IMagiks
 {
 	public TileEntityMagiks connected;
-    public int maxMistLevel, mistLevel, heatLevel, generationTime = 0,
+    
+	public int maxMistLevel, mistLevel, heatLevel, generationTime = 0,
             coolDown = 0, spawnParticle = 0;
 
-    @Override
     public int getMistLevel()
     {
         return this.mistLevel;
@@ -20,43 +20,71 @@ public class TileEntityMagiks extends TileEntity implements IMagiks
     	return (this.mistLevel / this.maxMistLevel);
     }
 
-    @Override
     public void setMistLevel(int value)
     {
     	this.mistLevel = value;
     }
 
-    @Override
     public void addToMistLevel(int value)
     {
     	this.mistLevel += value;
     }
 
-    @Override
     public int getHeatLevel()
     {
         return this.heatLevel;
     }
 
-    @Override
     public void setHeatLevel(int temp)
     {
     	this.mistLevel = temp;
     }
 
-    @Override
     public void addToHeatLevel(int temp)
     {
     	this.mistLevel += temp;
     }
 
-    @Override
     public int getMaxMistLevel()
     {
         return this.maxMistLevel;
     }
+    
+    public void setMaxMistLevel(int value)
+    {
+    	this.maxMistLevel = value;
+    }
+    
+    public int getGenerationTime()
+    {
+    	return this.generationTime;
+    }
+    
+    public void setGenerationTime(int value)
+    {
+    	this.generationTime = value;
+    }
+    
+    public void addToGenerationTime(int value)
+    {
+    	this.generationTime += value;
+    }
+    
+    public int getCoolTime()
+    {
+    	return this.getCoolTime();
+    }
+    
+    public void setCoolTime(int value)
+    {
+    	this.coolDown = value;
+    }
+    
+    public void addToCoolTime(int value)
+    {
+    	this.coolDown += value;
+    }
 
-    @Override
     public boolean hasMist()
     {
         if (this.getMistLevel() >= 0)
@@ -65,7 +93,6 @@ public class TileEntityMagiks extends TileEntity implements IMagiks
             return false;
     }
 
-	@Override
 	public boolean isConnected() {
 		if(this.connected != null)
 				return true;
@@ -73,7 +100,6 @@ public class TileEntityMagiks extends TileEntity implements IMagiks
 				return false;
 	}
 
-	@Override
 	public void setConnection(TileEntityMagiks tileEntity) {
 		if(getConnection() == null)
 			this.connected = tileEntity;
@@ -82,9 +108,13 @@ public class TileEntityMagiks extends TileEntity implements IMagiks
 		}
 	}
 
-	@Override
 	public TileEntityMagiks getConnection() {
 		return this.connected;
 	}
+	
+	public int getMistScaled(int scaleVal)
+    {
+        return this.getMistLevel() * scaleVal / 100;
+    }
 
 }

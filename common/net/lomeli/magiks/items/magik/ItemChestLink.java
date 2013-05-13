@@ -150,7 +150,7 @@ public class ItemChestLink extends ItemGeneric
 				infoList.add("Chest Z-Coord: " + getChestZ(itemStack));
 			}
 			else
-				infoList.add(MiscHandler.additionalInfoInstructions());
+				infoList.add(MiscHandler.additionalInfoInstructions("6"));
 		}
 		else
 		{
@@ -160,7 +160,7 @@ public class ItemChestLink extends ItemGeneric
 				infoList.add("Linking chest to link to it.");
 			}
 			else
-				infoList.add(MiscHandler.additionalInfoInstructions());
+				infoList.add(MiscHandler.additionalInfoInstructions("6"));
 		}
     }
 	
