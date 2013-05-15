@@ -105,8 +105,6 @@ public class ConfigMod
         ItemIDs.igniousOreID = config.get("Blocks", "OreIgnious", 706).getInt(706);
         ItemIDs.solarGenID = config.get("Machines", "SolarCollector", 707).getInt(
                  707);
-        ItemIDs.mistCrafterID = config.get("Blocks", "MistCrafter", 708).getInt(
-                 708);
         ItemIDs.dupeFurnaceID = config.get("Machines", "DupeFurnace", 709).getInt(
                  709);
         ItemIDs.dupeDummyID = config.get("Blocks", "BuringStone", 710).getInt(710);

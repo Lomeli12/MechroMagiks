@@ -41,13 +41,11 @@ public class MagiksRecipes
             "BBB", "BFB", "BBB", 'B', ModBlocksMagiks.burningStone, 'F',
             Block.furnaceBurning });
 		GameRegistry.addRecipe(new ItemStack(ModBlocksMagiks.obsidianStairs, 4), new Object[]
-			{
-				"O  ","OO ","OOO", 'O',Block.obsidian
-			});
+			{ "O  ","OO ","OOO", 'O',Block.obsidian });
 		GameRegistry.addRecipe(new ItemStack(ModBlocksMagiks.obsidianStairs, 4), new Object[]
-			{
-				"  O"," OO","OOO", 'O',Block.obsidian
-			});
+			{ "  O"," OO","OOO", 'O',Block.obsidian });
+		GameRegistry.addRecipe(new ItemStack(ModBlocksMagiks.manceryPane, 16), new Object[]
+			{ "GGG","GGG", 'G', ModBlocksMagiks.manceryGlass });
 	}
 	
     public static void registerItemRecipes()

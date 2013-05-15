@@ -131,16 +131,43 @@ public class ItemFlyingRing extends Item
                             RechargeHelper.forcedRecharge(player, itemStack);
                             player.capabilities.allowFlying = false;
                             player.capabilities.isFlying = false;
+                            player.capabilities.setPlayerWalkSpeed(0.1F);
+                        	player.stepHeight = 0.5F;
                         }
                     } 
                     else
                     {
                         player.capabilities.allowFlying = false;
                         player.capabilities.isFlying = false;
+                        player.capabilities.setPlayerWalkSpeed(0.1F);
+                    	player.stepHeight = 0.5F;
                     }
                 } 
                 else
+                {
                 	player.capabilities.allowFlying = true;
+                	player.capabilities.setPlayerWalkSpeed(0.1F);
+                	player.stepHeight = 0.5F;
+                }
+                
+                if (player.inventory.hasItemStack(itemStack))
+                {
+                    if (itemStack.getItemDamage() < itemStack.getMaxDamage())
+                    {
+                    	player.capabilities.setPlayerWalkSpeed(0.15F);
+                    	player.stepHeight = 1F;
+                    }
+                    else
+                    {
+                    	player.capabilities.setPlayerWalkSpeed(0.1F);
+                    	player.stepHeight = 0.5F;
+                    }
+                }
+                else
+                {
+                	player.capabilities.setPlayerWalkSpeed(0.1F);
+                	player.stepHeight = 0.5F;
+                }
             }
         }
     }

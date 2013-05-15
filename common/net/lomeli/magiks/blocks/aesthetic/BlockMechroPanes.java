@@ -13,7 +13,7 @@ import net.minecraft.util.Icon;
 
 public class BlockMechroPanes extends BlockPane
 {
-	protected Icon blockIcons;
+	protected Icon sideTexture;
 	protected String blockTexture;
 	
 	public BlockMechroPanes(int par1, String par2Str) 
@@ -29,14 +29,15 @@ public class BlockMechroPanes extends BlockPane
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
-        this.blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":" + blockTexture);
+        blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":" + blockTexture);
+        sideTexture = iconRegister.registerIcon(Strings.MOD_ID + ":thin_" + blockTexture);
     }
 	
 	@Override
 	@SideOnly(Side.CLIENT)
     public Icon getSideTextureIndex()
 	{
-		return this.blockIcon;
+		return sideTexture;
 	}
 	
 	@Override

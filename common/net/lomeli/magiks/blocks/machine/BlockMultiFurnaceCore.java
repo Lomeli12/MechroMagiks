@@ -2,7 +2,7 @@ package net.lomeli.magiks.blocks.machine;
 
 import java.util.Random;
 
-import net.lomeli.lomlib.util.ItemUtil;
+import net.lomeli.lomlib.item.ItemUtil;
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.lib.GuiIDs;

@@ -35,7 +35,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.VERSION)
+@Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.VERSION, dependencies="required-after:LomLib@[1.0.1,)")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class Magiks
 {
@@ -96,7 +96,7 @@ public class Magiks
     @PostInit
     public void postLoad(FMLPostInitializationEvent event)
     {
-    	UpdateHelper.isUpdated(Strings.XML_URL);
+    	//UpdateHelper.isUpdated(Strings.XML_URL);
     	AddonCheck.checkAddons();
     }
 }

@@ -2,7 +2,7 @@ package net.lomeli.magiks.items.magik;
 
 import java.util.List;
 
-import net.lomeli.lomlib.util.ItemUtil;
+import net.lomeli.lomlib.item.ItemUtil;
 import net.lomeli.lomlib.util.NBTUtil;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.items.ItemGeneric;

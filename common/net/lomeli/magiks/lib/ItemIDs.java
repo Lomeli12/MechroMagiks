@@ -46,7 +46,6 @@ public class ItemIDs
     public static int manceryGlassID;
     
     public static int solarGenID;
-    public static int mistCrafterID;
     public static int dupeFurnaceID;
     public static int dupeDummyID;
     public static int manceryBrickID;

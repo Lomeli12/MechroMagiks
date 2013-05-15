@@ -2,6 +2,7 @@ package net.lomeli.magiks.blocks.worldgen;
 
 import java.util.Random;
 
+import net.lomeli.lomlib.worldgen.WorldGenNether;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.lib.Ints;
 

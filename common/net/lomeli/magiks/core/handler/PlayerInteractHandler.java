@@ -26,9 +26,13 @@ public class PlayerInteractHandler
                 {
                     player.capabilities.allowFlying = false;
                     player.capabilities.isFlying = false;
+                    player.capabilities.setPlayerWalkSpeed(0.1F);
+                    player.stepHeight = 0.5F;
                 }
             } else
             {
+            	player.capabilities.setPlayerWalkSpeed(0.1F);
+            	player.stepHeight = 0.5F;
                 if (player.capabilities.allowFlying == false)
                 {
                     player.capabilities.allowFlying = true;

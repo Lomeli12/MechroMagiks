@@ -26,7 +26,7 @@ public class ModBlocksMagiks
 {
     public static Block neoniteOre, neoniteBlock, kineticGenerator,
             manceryBlock, manceryGlass, stamaticOre, igniousOre,
-            solarMistCollector, mistCrafter, dupeFurnace, burningStone,
+            solarMistCollector, dupeFurnace, burningStone,
             manceryBrick, obsidianStairs, manceryBlockStairs, manceryBrickStairs,
             burningStoneStairs, netherIgnious, copperOre, tinOre, silverOre,
             smallCoil, mancerWorkTable, hollowWood, linkingChest, manceryPane;
@@ -61,8 +61,7 @@ public class ModBlocksMagiks
                 .setResistance(100F);
         dupeFurnace = new BlockMultiFurnaceCore(ItemIDs.dupeFurnaceID).setHardness(0.5F).setResistance(5000F);
         burningStone = new BlockMultiFurnaceDummy(ItemIDs.dupeDummyID).setHardness(0.5F).setResistance(5000F);
-        mistCrafter = new BlockMistWorkBench(ItemIDs.mistCrafterID, Material.anvil)
-                .setUnlocalizedName("MistCrafter").setResistance(100F);
+        
         manceryBrick = new BlockMagiks(ItemIDs.manceryBrickID, Material.rock,
                 "mancerybricks").setUnlocalizedName("mancerybricks")
                 .setHardness(0.5F).setResistance(5000F);
@@ -105,7 +104,6 @@ public class ModBlocksMagiks
         GameRegistry.registerBlock(stamaticOre, "Stamatic Ore");
         GameRegistry.registerBlock(igniousOre, "Ignious Ore");
         GameRegistry.registerBlock(solarMistCollector, "Solar Mist Collector");
-        GameRegistry.registerBlock(mistCrafter, "Mist Crafting Table");
         GameRegistry.registerBlock(dupeFurnace, "Piras Oven Core");
         GameRegistry.registerBlock(burningStone, "Burning Stone");
         GameRegistry.registerBlock(manceryBrick, "Mancery Brick");
@@ -132,7 +130,6 @@ public class ModBlocksMagiks
         LanguageRegistry.addName(stamaticOre, "Stamatic Ore");
         LanguageRegistry.addName(igniousOre, "Ignious Ore");
         LanguageRegistry.addName(solarMistCollector, "Solar Mist Collector");
-        LanguageRegistry.addName(mistCrafter, "Mist Crafting Table");
         LanguageRegistry.addName(dupeFurnace, "Piras Oven Core");
         LanguageRegistry.addName(burningStone, "Burning Stone");
         LanguageRegistry.addName(manceryBrick, "Mancery Brick");

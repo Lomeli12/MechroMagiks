@@ -11,7 +11,7 @@
   "parent":"",
   "screenshots": [],
   "dependencies": [
-         "mod_MinecraftForge"
+         "Forge", "LomLib"
 ]
 }
 ]
