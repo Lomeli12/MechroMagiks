@@ -4,7 +4,7 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.lomeli.magiks.core.handler.MiscHandler;
+import net.lomeli.lomlib.util.ToolTipUtil;
 import net.lomeli.magiks.items.ItemGeneric;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -86,7 +86,7 @@ public class ItemMiningWands extends ItemGeneric
             List infoList, boolean bool)
     {
     	infoList.add("Mining Level: " + wandStrength.getName());
-    	if(MiscHandler.doAdditionalInfo())
+    	if(ToolTipUtil.doAdditionalInfo())
     	{
     		infoList.add("Right-Click: Insta-Mine");
     		infoList.add("SHIFT-Right-Click: Get Required Mining Level");
@@ -96,19 +96,19 @@ public class ItemMiningWands extends ItemGeneric
     		switch(this.wandStrength.getHarvestLevel())
     		{
     			case 0:
-    				infoList.add(MiscHandler.additionalInfoInstructions("e"));
+    				infoList.add(ToolTipUtil.additionalInfoInstructions("e"));
     				break;
     			case 1:
-    				infoList.add(MiscHandler.additionalInfoInstructions("8"));
+    				infoList.add(ToolTipUtil.additionalInfoInstructions("8"));
     				break;
     			case 2:
-    				infoList.add(MiscHandler.additionalInfoInstructions("7"));
+    				infoList.add(ToolTipUtil.additionalInfoInstructions("7"));
     				break;
     			case 3:
-    				infoList.add(MiscHandler.additionalInfoInstructions("b"));
+    				infoList.add(ToolTipUtil.additionalInfoInstructions("b"));
     				break;
     			default:
-    				infoList.add(MiscHandler.additionalInfoInstructions("e"));
+    				infoList.add(ToolTipUtil.additionalInfoInstructions("e"));
     				break;
     				
     		}

@@ -2,13 +2,14 @@ package net.lomeli.magiks.blocks;
 
 import net.lomeli.magiks.api.crafting.KineticGenFuel;
 import net.lomeli.magiks.api.libs.MagiksArrays;
+import net.lomeli.magiks.blocks.aesthetic.BlockMechroPanes;
+import net.lomeli.magiks.blocks.aesthetic.BlockMecroGlass;
 import net.lomeli.magiks.blocks.machine.BlockKineticGenerator;
 import net.lomeli.magiks.blocks.machine.BlockMancerWorkTable;
 import net.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
 import net.lomeli.magiks.blocks.machine.BlockSolarMistCollector;
 import net.lomeli.magiks.blocks.machine.BlockCoil;
 import net.lomeli.magiks.blocks.machine.parts.BlockMecroBlock;
-import net.lomeli.magiks.blocks.machine.parts.BlockMecroGlass;
 import net.lomeli.magiks.blocks.machine.parts.BlockMultiFurnaceDummy;
 import net.lomeli.magiks.lib.ItemIDs;
 
@@ -28,7 +29,7 @@ public class ModBlocksMagiks
             solarMistCollector, mistCrafter, dupeFurnace, burningStone,
             manceryBrick, obsidianStairs, manceryBlockStairs, manceryBrickStairs,
             burningStoneStairs, netherIgnious, copperOre, tinOre, silverOre,
-            smallCoil, mancerWorkTable, hollowWood, linkingChest;
+            smallCoil, mancerWorkTable, hollowWood, linkingChest, manceryPane;
 
     public static void registerBlocks()
     {
@@ -85,13 +86,16 @@ public class ModBlocksMagiks
 				.setHardness(3F).setResistance(5F).setUnlocalizedName("tinOre");
         silverOre = new BlockMagiks(ItemIDs.silverOreID, Material.rock, "oreSilver")
 				.setHardness(3F).setResistance(5F).setUnlocalizedName("silverOre");
-        smallCoil = new BlockCoil(ItemIDs.smallCoilID, Material.rock, "oreSilver").setUnlocalizedName("smallcoil");
+        smallCoil = new BlockCoil(ItemIDs.smallCoilID, Material.rock, "oreSilver")
+        	.setUnlocalizedName("smallcoil");
         mancerWorkTable = new BlockMancerWorkTable(ItemIDs.mancerWorkTableID, Material.wood, "wood")
         		.setHardness(2F).setResistance(5F).setUnlocalizedName("mancerWT");
         hollowWood = new BlockHollowWood(ItemIDs.hollowWoodID, Material.wood, "wood")
         		.setHardness(2F).setResistance(5F).setUnlocalizedName("hallowWood");
         linkingChest = new BlockLinkingChest(ItemIDs.linkingChestID, "mancerybricks")
-        	.setHardness(0.5F).setResistance(5000F);;
+        	.setHardness(0.5F).setResistance(5000F);
+        manceryPane = new BlockMechroPanes(800, "manceryglass")
+        	.setUnlocalizedName("mancerypanes");
 
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");
         GameRegistry.registerBlock(neoniteBlock, "Neonite Block");
@@ -110,6 +114,7 @@ public class ModBlocksMagiks
         GameRegistry.registerBlock(tinOre, "Tin Ore");
         GameRegistry.registerBlock(silverOre, "Silver Ore");
         GameRegistry.registerBlock(smallCoil, "Small Coil");
+        GameRegistry.registerBlock(manceryPane, "Mancery Pane");
         
         GameRegistry.registerBlock(obsidianStairs, "Obsidian Stairs");
         GameRegistry.registerBlock(manceryBlockStairs, "Mancery Stone Stairs");
@@ -136,6 +141,7 @@ public class ModBlocksMagiks
         LanguageRegistry.addName(tinOre, "Tin Ore");
         LanguageRegistry.addName(silverOre, "Silver Ore");
         LanguageRegistry.addName(smallCoil, "Small Coil");
+        LanguageRegistry.addName(manceryPane, "Mancery Pane");
         
         LanguageRegistry.addName(obsidianStairs, "Obsidian Stairs");
         LanguageRegistry.addName(manceryBlockStairs, "Mancery Stone Stairs");

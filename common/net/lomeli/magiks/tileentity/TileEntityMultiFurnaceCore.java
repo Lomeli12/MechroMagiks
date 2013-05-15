@@ -2,7 +2,6 @@ package net.lomeli.magiks.tileentity;
 
 import java.util.Random;
 
-import net.lomeli.magiks.api.tiles.TileEntityMagiks;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
 import net.lomeli.magiks.items.ModItemsMagiks;
@@ -14,12 +13,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityMultiFurnaceCore extends TileEntityMagiks implements
+public class TileEntityMultiFurnaceCore extends TileEntity implements
         ISidedInventory
 {
     public static final int[] sidedSlotSides = new int[] { 0 };

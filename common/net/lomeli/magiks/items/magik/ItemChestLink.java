@@ -4,10 +4,10 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.lomeli.lomlib.util.ToolTipUtil;
+import net.lomeli.lomlib.util.NBTUtil;
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
-import net.lomeli.magiks.core.handler.MiscHandler;
-import net.lomeli.magiks.core.helper.NBTHelper;
 import net.lomeli.magiks.items.ItemGeneric;
 import net.lomeli.magiks.lib.GuiIDs;
 import net.lomeli.magiks.tileentity.TileEntityHollowWood;
@@ -27,52 +27,52 @@ public class ItemChestLink extends ItemGeneric
 	
 	private void linkChest(ItemStack itemStack, int x, int y, int z, int world, String type)
 	{
-		NBTHelper.setInteger(itemStack, "world", world);
-		NBTHelper.setInteger(itemStack, "chestX", x);
-		NBTHelper.setInteger(itemStack, "chestY", y);
-		NBTHelper.setInteger(itemStack, "chestZ", z);
-		NBTHelper.setBoolean(itemStack, "linked", true);
-		NBTHelper.setString(itemStack, "type", type);
+		NBTUtil.setInteger(itemStack, "world", world);
+		NBTUtil.setInteger(itemStack, "chestX", x);
+		NBTUtil.setInteger(itemStack, "chestY", y);
+		NBTUtil.setInteger(itemStack, "chestZ", z);
+		NBTUtil.setBoolean(itemStack, "linked", true);
+		NBTUtil.setString(itemStack, "type", type);
 	}
 	
 	private boolean isLinked(ItemStack itemStack)
 	{
-		return NBTHelper.getBoolean(itemStack, "linked");
+		return NBTUtil.getBoolean(itemStack, "linked");
 	}
 	
 	private int getWorld(ItemStack itemStack)
 	{
-		return NBTHelper.getInt(itemStack, "world");
+		return NBTUtil.getInt(itemStack, "world");
 	}
 	
 	private int getChestX(ItemStack itemStack)
 	{
-		return NBTHelper.getInt(itemStack, "chestX");
+		return NBTUtil.getInt(itemStack, "chestX");
 	}
 	
 	private int getChestY(ItemStack itemStack)
 	{
-		return NBTHelper.getInt(itemStack, "chestY");
+		return NBTUtil.getInt(itemStack, "chestY");
 	}
 	
 	private int getChestZ(ItemStack itemStack)
 	{
-		return NBTHelper.getInt(itemStack, "chestZ");
+		return NBTUtil.getInt(itemStack, "chestZ");
 	}
 	
 	private String getType(ItemStack itemStack)
 	{
-		return NBTHelper.getString(itemStack, "type");
+		return NBTUtil.getString(itemStack, "type");
 	}
 	
 	private void unLinkChest(ItemStack itemStack)
 	{
-		NBTHelper.removeTag(itemStack, "world");
-		NBTHelper.removeTag(itemStack, "chestX");
-		NBTHelper.removeTag(itemStack, "chestY");
-		NBTHelper.removeTag(itemStack, "chestZ");
-		NBTHelper.removeTag(itemStack, "type");
-		NBTHelper.setBoolean(itemStack, "linked", false);
+		NBTUtil.removeTag(itemStack, "world");
+		NBTUtil.removeTag(itemStack, "chestX");
+		NBTUtil.removeTag(itemStack, "chestY");
+		NBTUtil.removeTag(itemStack, "chestZ");
+		NBTUtil.removeTag(itemStack, "type");
+		NBTUtil.setBoolean(itemStack, "linked", false);
 	}
 
 	@Override
@@ -134,7 +134,7 @@ public class ItemChestLink extends ItemGeneric
     {
 		if(isLinked(itemStack))
 		{
-			if(MiscHandler.doAdditionalInfo())
+			if(ToolTipUtil.doAdditionalInfo())
 			{
 				if(getWorld(itemStack) == 0)
 					infoList.add("World: Overworld");
@@ -150,17 +150,17 @@ public class ItemChestLink extends ItemGeneric
 				infoList.add("Chest Z-Coord: " + getChestZ(itemStack));
 			}
 			else
-				infoList.add(MiscHandler.additionalInfoInstructions("6"));
+				infoList.add(ToolTipUtil.additionalInfoInstructions("6"));
 		}
 		else
 		{
-			if(MiscHandler.doAdditionalInfo())
+			if(ToolTipUtil.doAdditionalInfo())
 			{
 				infoList.add("SHIFT+Right Click a Hollow Wood or");
 				infoList.add("Linking chest to link to it.");
 			}
 			else
-				infoList.add(MiscHandler.additionalInfoInstructions("6"));
+				infoList.add(ToolTipUtil.additionalInfoInstructions("6"));
 		}
     }
 	

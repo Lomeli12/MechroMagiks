@@ -2,7 +2,9 @@ package net.lomeli.magiks.items.magik;
 
 import java.util.List;
 
-import net.lomeli.magiks.core.helper.NBTHelper;
+import net.lomeli.lomlib.util.ItemUtil;
+import net.lomeli.lomlib.util.NBTUtil;
+import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.items.ItemGeneric;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -14,60 +16,103 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemAmulets extends ItemGeneric
 {
-
-    @SuppressWarnings("unused")
-    private String owner;
-
+	private int tick = 0;
+	
     public ItemAmulets(int par1, String Texture, boolean special, int magik)
     {
         super(par1, Texture, special);
         this.setMaxDamage(magik);
         this.setMaxStackSize(1);
-        owner = "";
     }
 
     private void setOwner(ItemStack itemStack, EntityPlayer player)
     {
-        NBTHelper.setString(itemStack, "owner", player.username);
-        NBTHelper.setBoolean(itemStack, "ownerset", true);
+        NBTUtil.setString(itemStack, "owner", player.username);
+        NBTUtil.setBoolean(itemStack, "ownerset", true);
     }
 
     private void removeOwner(ItemStack itemStack)
     {
-        NBTHelper.setString(itemStack, "owner", "");
-        NBTHelper.setBoolean(itemStack, "ownerset", false);
+        NBTUtil.setString(itemStack, "owner", "");
+        NBTUtil.setBoolean(itemStack, "ownerset", false);
     }
 
     public String getOwner(ItemStack itemStack)
     {
-        return NBTHelper.getString(itemStack, "owner");
+        return NBTUtil.getString(itemStack, "owner");
     }
 
     public boolean isOwnerSet(ItemStack itemStack)
     {
-        return NBTHelper.getBoolean(itemStack, "ownerset");
+        return NBTUtil.getBoolean(itemStack, "ownerset");
+    }
+    
+    public boolean isPlayerOwner(EntityPlayer player, ItemStack itemStack)
+    {
+    	if (player.username.equals(this.getOwner(itemStack)))
+    		return true;
+    	else
+    		return false;
+    }
+    
+    public void rechargeItem(EntityPlayer player, ItemStack item)
+    {
+    	
+    	for(ItemStack mistItem : player.inventory.mainInventory)
+    	{
+    		if(mistItem != null)
+    		{
+    			for(ItemStack check : MagiksArrays.rechargeableItems)
+    			{
+    				if(mistItem.itemID == check.itemID)
+    				{	
+    					ItemUtil.getSlotContainingItem(mistItem.itemID, player.inventory.mainInventory);
+    					
+    					if(item.getItemDamage() < (item.getMaxDamage()-1))
+    					{
+    						item.damageItem(item.getItemDamage(), player);
+    						mistItem.setItemDamage(0);
+    					}
+    				}
+    			}
+    		}
+    	}
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public ItemStack onItemRightClick(ItemStack itemStack, World world,
-            EntityPlayer player)
+    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, 
+    		World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
     {
-        if (isOwnerSet(itemStack) && this.getOwner(itemStack) != ""
-                || isOwnerSet(itemStack) || this.getOwner(itemStack) != "")
-        {
-            if (player.username.toLowerCase() == this.getOwner(itemStack))
+        if (isOwnerSet(itemStack))
+        {	
+            if (isPlayerOwner(player, itemStack))
             {
-                removeOwner(itemStack);
-            } else
-            {
-                player.setFire(10);
+            	if(player.isSneaking())
+            		removeOwner(itemStack);
+            	else
+            	{
+            		tick++;
+            		if(tick >= 2)
+            			rechargeItem(player, itemStack);
+            	}
             }
-        } else
+            else
+            {
+            	player.sendChatToPlayer("You're not allowd to use this!");
+            	player.setFire(10);
+            }
+        } 
+        else
         {
-            setOwner(itemStack, player);
+        	if(player.isSneaking())
+        	{
+        		tick++;
+        		if(tick >= 2)
+        			setOwner(itemStack, player);
+        	}
         }
-        return itemStack;
+        
+        return false;
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })

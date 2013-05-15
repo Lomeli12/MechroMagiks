@@ -95,7 +95,7 @@ public class ContainerKineticGenerator extends Container
     {
         if (par1 == 0)
         {
-            kinGen.setHeatLevel(par2);
+            kinGen.setMistLevel(par2);
         }
 
         if (par1 == 1)

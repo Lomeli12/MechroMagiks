@@ -12,7 +12,7 @@ public class TileEntityMancerWorkTable extends TileEntity implements
 		IInventory
 {
 	private ItemStack[] inventory;
-	
+	protected int count;
 	private int craft;
 	
 	public TileEntityMancerWorkTable()
@@ -155,12 +155,14 @@ public class TileEntityMancerWorkTable extends TileEntity implements
         nbtTagCompound.setTag("Inventory", tagList);
     }
     
-    @Override
-    public void updateEntity() 
+    public void updateEntity()
     {
-    	
+    	super.updateEntity();
+    	if(!this.worldObj.isRemote)
+    	{
+    		this.count++;
+    	}
     }
-
     
     public int getCurrentMode()
     {

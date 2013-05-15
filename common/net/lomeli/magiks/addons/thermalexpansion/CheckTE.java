@@ -2,7 +2,7 @@ package net.lomeli.magiks.addons.thermalexpansion;
 
 import java.util.logging.Level;
 
-import net.lomeli.magiks.core.helper.LogHelper;
+import net.lomeli.magiks.Magiks;
 import net.minecraft.item.ItemStack;
 
 import cpw.mods.fml.common.Loader;
@@ -19,11 +19,11 @@ public class CheckTE implements ISmelterManager
         {
             try
             {
-            	LogHelper.log(Level.INFO, "Thermal Expansion Installed");
+            	Magiks.logger.log(Level.INFO, "Thermal Expansion Installed");
             }
             catch(Exception ex)
             {
-            	LogHelper.log(Level.INFO, "Thermal Expansion not installed");
+            	Magiks.logger.log(Level.INFO, "Thermal Expansion not installed");
             }
         }
 	}

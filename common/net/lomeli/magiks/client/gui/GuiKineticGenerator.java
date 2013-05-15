@@ -52,14 +52,14 @@ public class GuiKineticGenerator extends GuiContainer
         	StatCollector.translateToLocal("Mist Level:"), xStart + 80,
             yStart + 20, 4210752);
         fontRenderer.drawString(
-            StatCollector.translateToLocal(tileentitykingen.mistLevel
-            + "/" + tileentitykingen.maxMistLevel),
+            StatCollector.translateToLocal(tileentitykingen.getMistLevel()
+            + "/" + tileentitykingen.getMaxMistLevel()),
             xStart + 80, yStart + 30, 4210752);
         fontRenderer.drawString(
             StatCollector.translateToLocal("Heat Level: "), xStart + 80,
             yStart + 50, 4210752);
         fontRenderer.drawString(
-            StatCollector.translateToLocal(tileentitykingen.heatLevel + " C"), xStart + 80,
+            StatCollector.translateToLocal(tileentitykingen.getHeatLevel() + " C"), xStart + 80,
             yStart + 60, 4210752);
     }
 }

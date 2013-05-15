@@ -1,9 +1,9 @@
 package net.lomeli.magiks.api.magiks;
 
-import net.lomeli.magiks.api.tiles.TileEntityMagiks;
+import net.minecraft.tileentity.TileEntity;
 
 public interface IMagiks
-{
+{	
     int getMistLevel();
 
     void setMistLevel(int value);
@@ -22,7 +22,7 @@ public interface IMagiks
     
     boolean isConnected();
     
-    void setConnection(TileEntityMagiks tileEntity);
+    void setConnection(TileEntity tileEntity);
     
-    TileEntityMagiks getConnection();
+    TileEntity getConnection();
 }

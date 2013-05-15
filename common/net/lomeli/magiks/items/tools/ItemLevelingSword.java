@@ -2,8 +2,8 @@ package net.lomeli.magiks.items.tools;
 
 import java.util.List;
 
+import net.lomeli.lomlib.util.NBTUtil;
 import net.lomeli.magiks.Magiks;
-import net.lomeli.magiks.core.helper.NBTHelper;
 import net.lomeli.magiks.lib.Strings;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
@@ -51,12 +51,12 @@ public class ItemLevelingSword extends ItemSword
 
     protected int getLevel(ItemStack itemStack)
     {
-        return NBTHelper.getInt(itemStack, "Level");
+        return NBTUtil.getInt(itemStack, "Level");
     }
 
     protected void setLevel(ItemStack itemStack, int plus)
     {
-        NBTHelper.setInteger(itemStack, "Level", level + plus);
+        NBTUtil.setInteger(itemStack, "Level", level + plus);
     }
 
     @Override

@@ -42,6 +42,7 @@ public class ModItemsMagiks
     public static Item copperWire;
     public static Item wirelessReciever;
     public static Item advReciever;
+    public static Item testdye;
     
     // ores
     public static Item ingotStamatic;
@@ -184,7 +185,11 @@ public class ModItemsMagiks
         MagiksArrays.rechargeableItems.add(new ItemStack(flyingRing));
         MagiksArrays.rechargeableItems.add(new ItemStack(pirasVarinha));
         MagiksArrays.rechargeableItems.add(new ItemStack(emeraldAmulet));
+        
         MagiksArrays.rechargeableItems.add(new ItemStack(diggersWandS));
+        MagiksArrays.rechargeableItems.add(new ItemStack(diggersWandI));
+        MagiksArrays.rechargeableItems.add(new ItemStack(diggersWandD));
+
         MagiksArrays.rechargeableItems.add(new ItemStack(basicWand));
         MagiksArrays.rechargeableItems.add(new ItemStack(chemistWand));
         MagiksArrays.rechargeableItems.add(new ItemStack(alchemistWand));

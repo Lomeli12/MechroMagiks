@@ -2,9 +2,9 @@ package net.lomeli.magiks.blocks.machine;
 
 import java.util.Random;
 
+import net.lomeli.lomlib.util.ItemUtil;
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.api.libs.MagiksArrays;
-import net.lomeli.magiks.core.helper.ItemHelper;
 import net.lomeli.magiks.lib.GuiIDs;
 import net.lomeli.magiks.lib.Strings;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceCore;
@@ -121,17 +121,15 @@ public class BlockMultiFurnaceCore extends BlockContainer
                 {
                     if (player.inventory.hasItem(wand.itemID))
                     {
-                        if(ItemHelper.getSlotContainingItem(wand.itemID, player.inventory.mainInventory) 
+                        if(ItemUtil.getSlotContainingItem(wand.itemID, player.inventory.mainInventory)
                                 == player.inventory.currentItem)
                         {
                             if (tileEntity.checkIfProperlyFormed())
                             {
-                                ItemHelper.getItem(
-                                    player,
-                                    ItemHelper.getSlotContainingItem(
-                                            wand.itemID,
-                                            player.inventory.mainInventory))
-                                    .damageItem(10, player);
+                            	player.inventory.getStackInSlot(
+                            		ItemUtil.getSlotContainingItem(wand.itemID, 
+                            		player.inventory.mainInventory))
+                            		.damageItem(10, player);
                                 tileEntity.convertDummies();
                                 if (world.isRemote)
                                 	player.sendChatToPlayer(Strings.dupeFurnaceName
@@ -139,10 +137,10 @@ public class BlockMultiFurnaceCore extends BlockContainer
                             }
                             else if(!tileEntity.getIsValid())
                             {
-                            	ItemHelper.getItem(
-                            			player, ItemHelper.getSlotContainingItem(
-                            				wand.itemID, player.inventory.mainInventory))
-                            			.damageItem(10, player);
+                            	player.inventory.getStackInSlot(
+                            		ItemUtil.getSlotContainingItem(
+                            		wand.itemID, player.inventory.mainInventory))
+                            		.damageItem(10, player);
                             	tileEntity.convertDummies();
                             	
                             	if (world.isRemote)

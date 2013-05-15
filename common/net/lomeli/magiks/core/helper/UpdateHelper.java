@@ -10,6 +10,7 @@ import java.util.logging.Level;
 
 import javax.xml.parsers.*;
 
+import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.lib.Strings;
 
 import org.xml.sax.*;
@@ -24,7 +25,7 @@ public class UpdateHelper
 		double installedVersion = Double.parseDouble(Strings.VERSION);
 		String updatedVersion = null;
 		
-		LogHelper.log(Level.INFO, "Checking for newer versions.");
+		Magiks.logger.log(Level.INFO, "Checking for newer versions.");
 		try {
 			URL xmlURL = new URL(xml);
 			InputStream xmlStream = xmlURL.openStream();
@@ -45,7 +46,7 @@ public class UpdateHelper
 				doc = db.parse(xmlStream);
 			}catch (ConnectException ce)
 			{
-				LogHelper.log(Level.INFO, "");
+				Magiks.logger.log(Level.INFO, "");
 			}
 			
 			doc.getDocumentElement().normalize();
@@ -57,11 +58,11 @@ public class UpdateHelper
 			{
 				if(installedVersion >= Double.parseDouble(updatedVersion))
 				{
-					LogHelper.log(Level.INFO, Strings.MOD_NAME + " is up-to-date.");
+					Magiks.logger.log(Level.INFO, Strings.MOD_NAME + " is up-to-date.");
 				}
 				else
 				{
-					LogHelper.log(Level.INFO, " A new version of " + Strings.MOD_ID + ", " +
+					Magiks.logger.log(Level.INFO, " A new version of " + Strings.MOD_ID + ", " +
 						updatedVersion + " has been found. Download it at: bit.ly/ZIj6I9");
 				}
 			}

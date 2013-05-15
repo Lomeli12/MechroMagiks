@@ -1,5 +1,6 @@
 package net.lomeli.magiks;
 
+import net.lomeli.lomlib.util.LogHelper;
 import net.lomeli.magiks.addons.AddonCheck;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
@@ -11,7 +12,6 @@ import net.lomeli.magiks.core.handler.GuiHandler;
 import net.lomeli.magiks.core.handler.ItemDroppedHandler;
 import net.lomeli.magiks.core.handler.PlayerInteractHandler;
 import net.lomeli.magiks.core.handler.WandCraftingHandler;
-import net.lomeli.magiks.core.helper.LogHelper;
 import net.lomeli.magiks.core.helper.UpdateHelper;
 import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.lib.Strings;
@@ -51,6 +51,8 @@ public class Magiks
     public static String configDir;
 
     private GuiHandler guih = new GuiHandler();
+    
+    public static LogHelper logger;
 
     @PreInit
     public void preInit(FMLPreInitializationEvent event)
@@ -59,7 +61,7 @@ public class Magiks
 
         ConfigMod.configureMod(configDir);
         
-        LogHelper.init();
+        logger = new LogHelper(Strings.MOD_NAME);
     }
 
     @Init

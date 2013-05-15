@@ -1,14 +1,14 @@
 package net.lomeli.magiks.tileentity;
 
-import net.lomeli.magiks.api.tiles.TileEntityMagiks;
 import net.lomeli.magiks.lib.Strings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityWeatherBlock extends TileEntityMagiks implements
+public class TileEntityWeatherBlock extends TileEntity implements
     IInventory
 {
     private ItemStack[] inventory;

@@ -10,7 +10,6 @@ import cpw.mods.fml.common.ICraftingHandler;
 
 public class WandCraftingHandler implements ICraftingHandler
 {
-
     @Override
     public void onCrafting(EntityPlayer player, ItemStack item, IInventory inv)
     {

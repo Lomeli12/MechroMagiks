@@ -1,10 +1,11 @@
 package net.lomeli.magiks.items.magik;
 
-import net.lomeli.magiks.api.tiles.TileEntityMagiks;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.items.ItemGeneric;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class ItemWands extends ItemGeneric
@@ -54,7 +55,7 @@ public class ItemWands extends ItemGeneric
     	return result;
     }
     
-    public static void setTile(TileEntityMagiks tile)
+    public static void setTile(TileEntity tile)
     {
     	//connection = tile;
     }

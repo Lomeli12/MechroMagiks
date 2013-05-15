@@ -1,4 +1,4 @@
-package net.lomeli.magiks.blocks.machine.parts;
+package net.lomeli.magiks.blocks.aesthetic;
 
 import java.util.Random;
 
@@ -14,7 +14,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockMecroGlass extends BlockGlass
 {
-
     private String blockTexture;
 
     public BlockMecroGlass(int par1, Material par2Material, String texture)
@@ -37,18 +36,4 @@ public class BlockMecroGlass extends BlockGlass
         blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":"
                 + blockTexture);
     }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int getRenderBlockPass()
-    {
-        return 1;
-    }
-
-    @Override
-    public boolean isOpaqueCube()
-    {
-        return false;
-    }
-
 }

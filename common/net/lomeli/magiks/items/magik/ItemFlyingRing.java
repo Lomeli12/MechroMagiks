@@ -2,10 +2,9 @@ package net.lomeli.magiks.items.magik;
 
 import java.util.List;
 
+import net.lomeli.lomlib.util.NBTUtil;
 import net.lomeli.magiks.Magiks;
-import net.lomeli.magiks.core.helper.ItemHelper;
 import net.lomeli.magiks.core.helper.RechargeHelper;
-import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.lib.Strings;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
@@ -14,7 +13,6 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -32,6 +30,26 @@ public class ItemFlyingRing extends Item
         this.setMaxDamage(4001);
         this.setMaxStackSize(1);
         // this.flyspeed = 0.05F;
+    }
+    
+    public static boolean isOwnerSet(ItemStack itemStack)
+    {
+        return NBTUtil.getBoolean(itemStack, "ownerset");
+    }
+    
+    public static String getOwner(ItemStack itemStack)
+    {
+    	return NBTUtil.getString(itemStack, "owner");
+    }
+    
+    public static boolean isPlayerOwner(EntityPlayer player, ItemStack itemStack)
+    {
+    	if (isOwnerSet(itemStack) && player.username.equals(getOwner(itemStack)))
+    		return true;
+    	else if(!isOwnerSet(itemStack))
+    		return true;
+    	else
+    		return false;
     }
 
     @Override
@@ -81,76 +99,48 @@ public class ItemFlyingRing extends Item
                 {
                     if (player.inventory.hasItemStack(itemStack))
                     {
-                        if (itemStack.getItemDamage() < itemStack
-                                .getMaxDamage() - 1)
+                        if (itemStack.getItemDamage() < itemStack.getMaxDamage())
                         {
-                            ItemStack amulet = new ItemStack(
-                                    ModItemsMagiks.emeraldAmulet);
-                            player.capabilities.allowFlying = true;
-                            if (player.inventory.hasItemStack(amulet))
-                            {
-                                int slot = ItemHelper.getSlotContainingItem(
-                                        amulet.itemID,
-                                        player.inventory.mainInventory);
-                                player.sendChatToPlayer("" + slot);
-                                ItemStack item = player.inventory.mainInventory[slot];
-                                if (item.getItemDamage() <= item.getMaxDamage() - 1)
-                                {
-                                    if (player.capabilities.isFlying)
-                                    {
-                                        item.damageItem(1, player);
-                                    } else if (player.fallDistance >= 4F)
-                                    {
-                                        item.damageItem(
-                                                (int) (player.fallDistance / 4F),
-                                                player);
-                                    } else
-                                    {
-                                    }
-                                } else
-                                {
-                                    if (player.capabilities.isFlying)
-                                    {
-                                        itemStack.damageItem(1, player);
-                                    } else if (player.fallDistance >= 4F)
-                                    {
-                                        itemStack
-                                                .damageItem(
-                                                        (int) (player.fallDistance / 4F),
-                                                        player);
-                                    } else
-                                    {
-                                    }
-                                }
-                            } else
-                            {
-                                if (player.capabilities.isFlying)
-                                {
-                                    itemStack.damageItem(1, player);
-                                } else if (player.fallDistance >= 4F)
-                                {
-                                    itemStack.damageItem(
-                                            (int) (player.fallDistance / 4F),
-                                            player);
-                                } else
-                                {
-                                }
-                            }
-                        } else
+                        	player.capabilities.allowFlying = true;
+                        	for(ItemStack mistItem : player.inventory.mainInventory)
+                        	{
+                        		if(mistItem != null)
+                        		{
+                        			if(mistItem.getItem() instanceof ItemAmulets)
+                        			{
+                        				if(isPlayerOwner(player, mistItem))
+                        				{
+                        					if(mistItem.getItemDamage() < mistItem.getMaxDamage() 
+                        						&& itemStack.getItemDamage() > 0)
+                        					{
+                        						mistItem.damageItem(1, player);
+                        						itemStack.damageItem(-1, player);
+                        					}
+                        				}
+                        			}
+                        		}
+                        	}
+                        	if(player.capabilities.isFlying)
+                        		itemStack.damageItem(1, player);
+                        	else if(player.fallDistance >= 4F)
+                        		itemStack.damageItem((int)(player.fallDistance/4F), player);
+                        	else{}
+                        } 
+                        else
                         {
                             RechargeHelper.forcedRecharge(player, itemStack);
                             player.capabilities.allowFlying = false;
                             player.capabilities.isFlying = false;
                         }
-                    } else
+                    } 
+                    else
                     {
                         player.capabilities.allowFlying = false;
                         player.capabilities.isFlying = false;
                     }
-                } else
-                {
-                    player.capabilities.allowFlying = true;
-                }
+                } 
+                else
+                	player.capabilities.allowFlying = true;
             }
         }
     }

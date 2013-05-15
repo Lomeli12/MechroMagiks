@@ -52,7 +52,7 @@ public class GuiSolarMistCollector extends GuiContainer
                 xStart + 10, yStart - 42, 4210752);
         
         this.drawTexturedModalRect(xStart + 33, yStart + 17, 179, 0, 9,
-                (52 * (tileEntitySolar.mistLevel / tileEntitySolar.maxMistLevel)));
+                (52 * (tileEntitySolar.getMistLevel() / tileEntitySolar.getMaxMistLevel())));
     }
 
     @Override

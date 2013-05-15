@@ -1,12 +1,12 @@
 package net.lomeli.magiks.tileentity;
 
-import net.lomeli.magiks.api.tiles.TileEntityMagiks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityMultiFurnaceDummy extends TileEntityMagiks implements
+public class TileEntityMultiFurnaceDummy extends TileEntity implements
         ISidedInventory
 {
     TileEntityMultiFurnaceCore tileEntityCore;
@@ -153,5 +153,11 @@ public class TileEntityMultiFurnaceDummy extends TileEntityMagiks implements
 			return true;
 		else
 			return false;
+	}
+
+	@Override
+	public void onInventoryChanged() {
+		// TODO Auto-generated method stub
+		
 	}
 }
