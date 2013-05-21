@@ -2,6 +2,7 @@ package net.lomeli.magiks.tileentity;
 
 import java.util.Random;
 
+import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
 import net.lomeli.magiks.items.ModItemsMagiks;
@@ -496,27 +497,33 @@ public class TileEntityMultiFurnaceCore extends TileEntity implements
             if (furnaceItems[2] == null)
             {
                 furnaceItems[2] = itemStack.copy();
-                ++furnaceItems[2].stackSize;
-                if (luck <= 800 + upgrades * 20)
+                for(ItemStack ore : MagiksArrays.doubledOres)
                 {
-                    ++furnaceItems[2].stackSize;
+                	if(furnaceItems[0].isItemEqual(ore))
+                	{
+                		++furnaceItems[2].stackSize;
+                		if (luck <= 800 + upgrades * 20)
+                			++furnaceItems[2].stackSize;
+                	}
                 }
+                
             } else if (furnaceItems[2].isItemEqual(itemStack))
             {
                 furnaceItems[2].stackSize += itemStack.stackSize;
-                ++furnaceItems[2].stackSize;
-
-                if (luck <= 800 + upgrades * 20)
+                for(ItemStack ore : MagiksArrays.doubledOres)
                 {
-                    ++furnaceItems[2].stackSize;
+                	if(furnaceItems[0].isItemEqual(ore))
+                	{
+                		++furnaceItems[2].stackSize;
+                		if (luck <= 800 + upgrades * 20)
+                			++furnaceItems[2].stackSize;
+                	}
                 }
             }
 
             furnaceItems[0].stackSize--;
             if (furnaceItems[0].stackSize <= 0)
-            {
-                furnaceItems[0] = null;
-            }
+            	furnaceItems[0] = null;
         }
     }
 

@@ -12,7 +12,7 @@ import net.lomeli.magiks.core.handler.GuiHandler;
 import net.lomeli.magiks.core.handler.ItemDroppedHandler;
 import net.lomeli.magiks.core.handler.PlayerInteractHandler;
 import net.lomeli.magiks.core.handler.WandCraftingHandler;
-import net.lomeli.magiks.core.helper.UpdateHelper;
+//import net.lomeli.magiks.core.helper.UpdateHelper;
 import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.lib.Strings;
 import net.lomeli.magiks.recipes.MagiksRecipes;
@@ -35,7 +35,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, version = Strings.VERSION, dependencies="required-after:LomLib@[1.0.1,)")
+@Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, 
+	version = Strings.VERSION, dependencies="required-after:LomLib@[1.0.1,)")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class Magiks
 {
@@ -85,6 +86,7 @@ public class Magiks
         MagiksRecipes.registerItemRecipes();
         MagiksRecipes.registerFurnaceRecipes();
         MagiksRecipes.registerMistRecipes();
+        MagiksRecipes.addDoubleOres();
         
         MagiksArrays.canRecieveMist.add(new TileEntitySolarMistCollector());
         MagiksArrays.canRecieveMist.add(new TileEntityKineticGenerator());

@@ -28,6 +28,7 @@ public class ItemIDs
     public static int diggersWandID;
     public static int diggersWandIronID;
     public static int diggersWandDiamondID;
+    public static int bluePrintID;
 
     public static int wandID;
     public static int empoweredPickID;
@@ -58,6 +59,7 @@ public class ItemIDs
     public static int mancerWorkTableID;
     public static int hollowWoodID;
     public static int linkingChestID;
+    public static int manceryPaneID;
     
     //ores
     public static int stamaticOreID;

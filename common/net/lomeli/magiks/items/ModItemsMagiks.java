@@ -6,6 +6,7 @@ import net.lomeli.magiks.items.magik.ItemChestLink;
 import net.lomeli.magiks.items.magik.ItemFlyingRing;
 import net.lomeli.magiks.items.magik.ItemPirasVarinha;
 import net.lomeli.magiks.items.magik.ItemWands;
+import net.lomeli.magiks.items.science.ItemMachineBluePrints;
 import net.lomeli.magiks.items.science.ItemWeatherRockets;
 import net.lomeli.magiks.items.tools.EnumWandStrength;
 import net.lomeli.magiks.items.tools.ItemEmpoweredPick;
@@ -50,6 +51,17 @@ public class ModItemsMagiks
     public static Item ingotCopper;
     public static Item ingotTin;
     public static Item ingotSilver;
+    
+    //blueprints
+    public static Item bluePrint;
+    /*
+    public static Item coilBluePrint;
+    public static Item weatherBluePrint;
+    public static Item maceratorBluePrint;
+    public static Item areaDetoxicBluePrint;
+    public static Item matterGeneratorBluePrint;
+    public static Item lavaGeneratorBluePrint;
+    public static Item matterCondenserBluePrint;*/
     
     // wands
     public static Item basicWand;
@@ -135,6 +147,7 @@ public class ModItemsMagiks
         		EnumWandStrength.IRON).setUnlocalizedName("diggersWandI");
         diggersWandD = new ItemMiningWands(ItemIDs.diggersWandDiamondID, "diggerswand",
         		EnumWandStrength.DIAMOND).setUnlocalizedName("diggersWandD");
+        bluePrint = new ItemMachineBluePrints(ItemIDs.bluePrintID);
 
         LanguageRegistry.addName(flyingRing, "ShadowWing's Gale");
         LanguageRegistry.addName(neoniteGem, "Neonite Gem");
@@ -174,6 +187,14 @@ public class ModItemsMagiks
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 3),  "Dark Rocket");
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 4),  "Cloudy Rocket");
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 5),  "Ender Rocket");
+        
+        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 0), "Small Coil BluePrint");
+        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 1), "Atmospheric Disruptor BluePrint");
+        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 2), "Ore Crusher BluePrint");
+        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 3), "Area Detoxifier BluePrint");
+        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 4), "Matter Generator BluePrint");
+        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 5), "Lava Generator BluePrint");
+        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 6), "Matter Conderser BluePrint");
         
         OreDictionary.registerOre("ingotCopper", new ItemStack(ingotCopper));
         OreDictionary.registerOre("ingotTin", new ItemStack(ingotTin));

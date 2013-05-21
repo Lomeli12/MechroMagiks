@@ -78,6 +78,7 @@ public class ConfigMod
         ItemIDs.copperWireID = config.get("Items", "copperWire", 7035).getInt(7035);
         ItemIDs.wirelessRecieverID = config.get("Items", "wirelessReciever", 7036).getInt(7036);
         ItemIDs.advRecieverID = config.get("Items", "advReciever", 7037).getInt(7037);
+        ItemIDs.bluePrintID = config.get("Items", "BluePrints", 7040).getInt(7038);
 
         config.save();
     }
@@ -105,6 +106,7 @@ public class ConfigMod
         ItemIDs.igniousOreID = config.get("Blocks", "OreIgnious", 706).getInt(706);
         ItemIDs.solarGenID = config.get("Machines", "SolarCollector", 707).getInt(
                  707);
+        ItemIDs.manceryPaneID = config.get("Blocks", "manceryPane", 708).getInt(708);
         ItemIDs.dupeFurnaceID = config.get("Machines", "DupeFurnace", 709).getInt(
                  709);
         ItemIDs.dupeDummyID = config.get("Blocks", "BuringStone", 710).getInt(710);

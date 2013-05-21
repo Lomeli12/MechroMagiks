@@ -211,6 +211,7 @@ public class TileEntityKineticGenerator extends TileEntity implements
             		{
             			generationTime = 0;
             			decrStackSize(1, 1);
+            			
             			mistLevel += ((int)fueler.getMist(fuel));
             			heatLevel += (50 / this.coolRate());
             			worldObj.playSoundEffect(xCoord, yCoord, zCoord,

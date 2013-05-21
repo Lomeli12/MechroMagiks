@@ -1,29 +1,29 @@
 package net.lomeli.magiks.tileentity;
 
 import net.lomeli.magiks.api.libs.MagiksArrays;
-import net.lomeli.magiks.api.magiks.IMagiks;
+import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.lib.Strings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 
-public class TileEntitySolarMistCollector extends TileEntity implements
-        IInventory, IMagiks
+public class TileEntitySolarMistCollector extends TileEntityMagiks implements
+        IInventory
 {	
+	public TileEntityMagiks connected;
+    
+	public int maxMistLevel = 30000, mistLevel = 0, generationTime = 0;
     private ItemStack[] inventory;
 
-    private TileEntity connected;
-    
-	@SuppressWarnings("unused")
-	private static int maxMistLevel = 30000, mistLevel, heatLevel, generationTime = 0,
-            coolDown = 0, spawnParticle = 0;
-    
     public TileEntitySolarMistCollector()
     {
         inventory = new ItemStack[1];
+        this.maxMistLevel = 30000;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class TileEntitySolarMistCollector extends TileEntity implements
             ItemStack item = getStackInSlot(0);
             if (item != null)
             {
-                if (mistLevel >= 0)
+                if (this.getMistLevel() != 0)
                 {
                     for (ItemStack chargeable : MagiksArrays.rechargeableItems)
                     {
@@ -63,68 +63,96 @@ public class TileEntitySolarMistCollector extends TileEntity implements
                             if (item.isItemDamaged())
                             {
                                 item.setItemDamage(item.getItemDamage() - 1);
-                                mistLevel--;
+                                this.addToMistLevel(-1);
                             }
                         }
                     }
                 }
             }
-            if (this.worldObj.canBlockSeeTheSky(xCoord, yCoord, zCoord) && 
-            		this.worldObj.getBlockLightValue(xCoord, yCoord, zCoord) > 4
+            if (this.worldObj.canBlockSeeTheSky(xCoord, yCoord, zCoord) && this.worldObj.isDaytime()
             		&& !this.worldObj.isRaining() && !this.worldObj.isThundering())
             {
-                if (mistLevel <= maxMistLevel)
+                if (this.getMistLevel() <= this.getMaxMistLevel())
                 {
-                	mistLevel++;
-                	if(worldObj.isRemote)
-                		this.worldObj.spawnParticle("portal", (xCoord+0.5), (yCoord+1), (zCoord+0.5), 1F, 1F, 1F);
+                	this.addToMistLevel(1);
+                	this.worldObj.spawnParticle("portal", (xCoord+0.5), (yCoord+1), (zCoord+0.5), 1F, 1F, 1F);
                 }
             }
         }
     }
+    
 
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
         super.readFromNBT(nbtTagCompound);
-
-        NBTTagList tagList = nbtTagCompound.getTagList("Inventory");
         
-        NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(1);
-        mistLevel = tag.getInteger("Mist");
-        
-        for (int i = 0; i < tagList.tagCount(); ++i)
-        {
-            NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
-            
-            byte slot = tagCompound.getByte("Slot");
-            if (slot >= 0 && slot < inventory.length)
-                inventory[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
-        }
+        loadNBT(nbtTagCompound);
     }
+    
+    
 
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
         super.writeToNBT(nbtTagCompound);
 
-        NBTTagList tagList = new NBTTagList();
-        if(mistLevel >= 0)
+        addToNBT(nbtTagCompound);
+    }
+    
+    public void loadNBT(NBTTagCompound nbtTagCompound)
+    {
+    	this.mistLevel = nbtTagCompound.getInteger("Mist");
+        
+        NBTTagList tagList = nbtTagCompound.getTagList("Inventory");
+        for (int i = 0; i < tagList.tagCount(); ++i)
         {
-        	NBTTagCompound tagCompound = new NBTTagCompound();
-        	tagCompound.setInteger("Mist", mistLevel);
-        	tagList.appendTag(tagCompound);
+            NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
+            
+            byte slot = tagCompound.getByte("Slot");
+            if (slot >= 0 && slot < 2)
+            {
+                inventory[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
+            }
+
         }
+    }
+    
+    public void addToNBT(NBTTagCompound nbtTagCompound)
+    {
+    	nbtTagCompound.setInteger("Mist", this.mistLevel);
+        
+        NBTTagCompound tagCompound = new NBTTagCompound();
+
+        NBTTagList tagList = new NBTTagList();
         for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
         {
             if (inventory[currentIndex] != null)
             {
-                NBTTagCompound tagCompound = new NBTTagCompound();
                 tagCompound.setByte("Slot", (byte) currentIndex);
-                
+
                 inventory[currentIndex].writeToNBT(tagCompound);
                 tagList.appendTag(tagCompound);
             }
         }
         nbtTagCompound.setTag("Inventory", tagList);
+    }
+    
+    @Override
+    public Packet getDescriptionPacket() 
+    {
+        Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
+        NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
+
+        addToNBT(tag);
+
+        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+    }
+
+    @Override
+    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) 
+    {
+        super.onDataPacket(net, pkt);
+        NBTTagCompound tag = pkt.customParam1;
+        loadNBT(tag);
     }
 
 	@Override
@@ -204,69 +232,45 @@ public class TileEntitySolarMistCollector extends TileEntity implements
 				return true;
 		}
 	}
-
+	
+	// TileEntityMagiks stufff
+	
 	@Override
-	public int getMistLevel() 
-	{
-		return mistLevel;
-	}
-
+	public int getMistLevel()
+    {
+		return this.mistLevel;
+    }
+	
 	@Override
-	public void setMistLevel(int value) 
-	{
-		mistLevel = value;
-	}
-
+	public void setMistLevel(int value)
+    {
+		this.mistLevel = value;
+    }
+	
 	@Override
-	public void addToMistLevel(int value) 
-	{
-		mistLevel += value;
-	}
-
+	public void addToMistLevel(int value)
+    {
+		this.mistLevel += value;
+    }
+	
 	@Override
-	public int getHeatLevel() 
-	{
-		return 0;
-	}
-
+	public int getMaxMistLevel()
+    {
+        return this.maxMistLevel;
+    }
+    
 	@Override
-	public void setHeatLevel(int temp) {}
-
+    public void setMaxMistLevel(int value)
+    {
+		this.maxMistLevel = value;
+    }
+	
 	@Override
-	public void addToHeatLevel(int temp) {}
-
-	@Override
-	public int getMaxMistLevel() 
-	{
-		return maxMistLevel;
-	}
-
-	@Override
-	public boolean hasMist() {
-		if(mistLevel >= 0)
+	public boolean hasMist()
+    {
+		if(this.getMistLevel() > 0)
 			return true;
 		else
 			return false;
-	}
-
-	@Override
-	public boolean isConnected() 
-	{
-		if(connected != null)
-			return true;
-		else
-			return false;
-	}
-
-	@Override
-	public void setConnection(TileEntity tileEntity) 
-	{
-		this.connected = tileEntity;
-	}
-
-	@Override
-	public TileEntity getConnection() 
-	{
-		return this.connected;
-	}
+    }
 }

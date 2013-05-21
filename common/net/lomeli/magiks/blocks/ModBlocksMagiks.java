@@ -93,7 +93,7 @@ public class ModBlocksMagiks
         		.setHardness(2F).setResistance(5F).setUnlocalizedName("hallowWood");
         linkingChest = new BlockLinkingChest(ItemIDs.linkingChestID, "mancerybricks")
         	.setHardness(0.5F).setResistance(5000F);
-        manceryPane = new BlockMechroPanes(800, "manceryglass")
+        manceryPane = new BlockMechroPanes(ItemIDs.manceryPaneID, "manceryglass")
         	.setUnlocalizedName("mancerypanes");
 
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");

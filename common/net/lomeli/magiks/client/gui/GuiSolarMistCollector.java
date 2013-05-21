@@ -17,7 +17,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class GuiSolarMistCollector extends GuiContainer
 {
     private TileEntitySolarMistCollector tileEntitySolar;
-    public ContainerSolarMistCollector containerSolar;
+    
+    private ContainerSolarMistCollector containerSolar;
 
     public GuiSolarMistCollector(InventoryPlayer container,
             TileEntitySolarMistCollector tileEntity)
@@ -51,8 +52,6 @@ public class GuiSolarMistCollector extends GuiContainer
         fontRenderer.drawString("/" + tileEntitySolar.getMaxMistLevel(), 
                 xStart + 10, yStart - 42, 4210752);
         
-        this.drawTexturedModalRect(xStart + 33, yStart + 17, 179, 0, 9,
-                (52 * (tileEntitySolar.getMistLevel() / tileEntitySolar.getMaxMistLevel())));
     }
 
     @Override
@@ -65,7 +64,9 @@ public class GuiSolarMistCollector extends GuiContainer
         int yStart = (height - ySize) / 2;
         drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);
         
-        
+        if(tileEntitySolar.getMistLevel() > 0)
+        	this.drawTexturedModalRect(xStart + 33, yStart + 17, 179, 0, 9,
+                (52 * (tileEntitySolar.getMistLevel() / tileEntitySolar.getMaxMistLevel())));
 
     }
 }

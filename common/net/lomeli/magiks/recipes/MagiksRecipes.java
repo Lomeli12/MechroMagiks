@@ -2,11 +2,13 @@ package net.lomeli.magiks.recipes;
 
 import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.api.MechroMagiksAPI;
+import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MagiksRecipes 
@@ -40,12 +42,12 @@ public class MagiksRecipes
 		GameRegistry.addRecipe(new ItemStack(ModBlocksMagiks.dupeFurnace, 1), new Object[] {
             "BBB", "BFB", "BBB", 'B', ModBlocksMagiks.burningStone, 'F',
             Block.furnaceBurning });
-		GameRegistry.addRecipe(new ItemStack(ModBlocksMagiks.obsidianStairs, 4), new Object[]
-			{ "O  ","OO ","OOO", 'O',Block.obsidian });
-		GameRegistry.addRecipe(new ItemStack(ModBlocksMagiks.obsidianStairs, 4), new Object[]
-			{ "  O"," OO","OOO", 'O',Block.obsidian });
+		
 		GameRegistry.addRecipe(new ItemStack(ModBlocksMagiks.manceryPane, 16), new Object[]
 			{ "GGG","GGG", 'G', ModBlocksMagiks.manceryGlass });
+		GameRegistry.addShapedRecipe(new ItemStack(ModBlocksMagiks.mancerWorkTable, 1),
+			new Object[]{"RPR","WCW", "S S", 'S', Item.stick, 'W',Block.planks, 'C', Block.workbench,
+			'P',Item.paper, 'R',Item.redstone});
 	}
 	
     public static void registerItemRecipes()
@@ -87,7 +89,12 @@ public class MagiksRecipes
         GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.levelingSword), new Object[] {
                 " I ", " I ", "GDG", 'I', Item.ingotIron, 'G', ModItemsMagiks.neoniteGem, 'D',
                 ModItemsMagiks.darkMatter });
-
+        
+        stairRecipes(ModBlocksMagiks.obsidianStairs, Block.obsidian);
+        stairRecipes(ModBlocksMagiks.burningStoneStairs, ModBlocksMagiks.burningStone);
+        stairRecipes(ModBlocksMagiks.manceryBlockStairs, ModBlocksMagiks.manceryBlock);
+        stairRecipes(ModBlocksMagiks.manceryBrickStairs, ModBlocksMagiks.manceryBrick);
+        
         GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.basicWand, 1), new Object[] {
                 " IE", "ISI", "RI ", 'E', Item.emerald, 'R', Item.redstone,
                 'S', Item.stick, 'I', ModItemsMagiks.ingotStamatic });
@@ -138,5 +145,51 @@ public class MagiksRecipes
     	MechroMagiksAPI.addMachineRecipe(new ItemStack(ModBlocksMagiks.linkingChest, 1), new Object[]
     			{ "BBBB","BRCB","BCRB","BBBB", 'B', ModBlocksMagiks.manceryBlock, 'R',Item.redstone,
     			'C',Block.chest });
+    }
+    
+    public static void stairRecipes(Block ouput, Block input)
+    {
+    	GameRegistry.addRecipe(new ItemStack(ouput, 4), new Object[]
+    		{ "O  ","OO ","OOO", 'O',input });
+    	GameRegistry.addRecipe(new ItemStack(ouput, 4), new Object[]
+    		{ "  O"," OO","OOO", 'O',input });
+    }
+    
+    public static void addDoubleOres()
+    {
+    	MagiksArrays.doubledOres.add(new ItemStack(Block.sand));
+    	MagiksArrays.doubledOres.add(new ItemStack(Item.clay));
+    	MagiksArrays.doubledOres.add(new ItemStack(Block.oreGold));
+    	MagiksArrays.doubledOres.add(new ItemStack(Block.oreIron));
+    	MagiksArrays.doubledOres.add(new ItemStack(Block.oreDiamond));
+    	MagiksArrays.doubledOres.add(new ItemStack(Block.oreEmerald));
+    	
+    	MagiksArrays.doubledOres.add(new ItemStack(ModBlocksMagiks.igniousOre));
+    	MagiksArrays.doubledOres.add(new ItemStack(ModBlocksMagiks.stamaticOre));
+    	
+    	for(ItemStack copper : OreDictionary.getOres("oreCopper"))
+    	{
+    		MagiksArrays.doubledOres.add(copper);
+    	}
+    	for(ItemStack tin : OreDictionary.getOres("oreTin"))
+    	{
+    		MagiksArrays.doubledOres.add(tin);
+    	}
+    	for(ItemStack silver : OreDictionary.getOres("oreSilver"))
+    	{
+    		MagiksArrays.doubledOres.add(silver);
+    	}
+    	for(ItemStack lead : OreDictionary.getOres("oreLead"))
+    	{
+    		MagiksArrays.doubledOres.add(lead);
+    	}
+    	for(ItemStack oreZinc : OreDictionary.getOres("oreZinc"))
+    	{
+    		MagiksArrays.doubledOres.add(oreZinc);
+    	}
+    	for(ItemStack oreAluminum : OreDictionary.getOres("oreAluminum"))
+    	{
+    		MagiksArrays.doubledOres.add(oreAluminum);
+    	}
     }
 }
