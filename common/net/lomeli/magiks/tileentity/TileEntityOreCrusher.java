@@ -1,6 +1,9 @@
 package net.lomeli.magiks.tileentity;
 
+import net.lomeli.magiks.api.machines.OreCrusherManager;
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
+import net.lomeli.magiks.lib.Strings;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -12,25 +15,96 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 {
 	private ItemStack[] inventory;
 	
-	private int mistLevel, maxMistLevel, processingTime;
+	private int mistLevel, maxMistLevel; 
+	public int processingTime;
 	
 	public TileEntityOreCrusher()
 	{
 		inventory = new ItemStack[4];
+		this.maxMistLevel = 3000;
+		this.mistLevel = 3000;
 	}
 	
 	@Override
     public void updateEntity()
     {
-		if(this.worldObj != null)
+		if(this.worldObj != null && !this.worldObj.isRemote)
 		{
-			ItemStack crushedOre = getStackInSlot(0);
-			if(crushedOre != null)
+			if(canCrushOre())
 			{
-				
+				if(inventory[2] == null || getStackInSlot(2).stackSize < 64)
+				{
+					processingTime++;
+					if(processingTime >= 270)
+					{
+						addToStack();
+						decrStackSize(0, 1);
+						processingTime = 0;
+					}
+					mistLevel--;
+				}
 			}
+			else
+				processingTime = 0;
 		}
     }
+	
+	public ItemStack addToStack()
+	{
+		ItemStack itemStack = OreCrusherManager.getInstance().getCrushResult(this.inventory[0]);
+		if(itemStack != null)
+		{
+			if(inventory[2] == null)
+				inventory[2] = itemStack.copy();
+			else if(inventory[2].isItemEqual(itemStack) && inventory[2].stackSize <= 64)
+				inventory[2].stackSize += itemStack.stackSize;
+			else if(inventory[3] == null)
+				inventory[3] = itemStack.copy();
+			else if(inventory[3].isItemEqual(itemStack) && inventory[3].stackSize <= 64)
+				inventory[3].stackSize += itemStack.stackSize;
+		}
+		
+		return itemStack;
+	}
+	
+	public boolean canCrushOre()
+	{
+		if(this.inventory[0] == null)
+			return false;
+		else
+		{
+			ItemStack item = OreCrusherManager.getInstance().getCrushResult(this.inventory[0]);
+			if(item == null) { return false; }
+			if(this.mistLevel > 300) { return true; }
+			if(!this.inventory[2].isItemEqual(item)) { return false; }
+			int result = this.inventory[2].stackSize + item.stackSize;
+			return (result <= getInventoryStackLimit() && result <= item.getMaxStackSize());
+		}
+	}
+	
+	@Override
+	public int getMistLevel()
+	{
+		return this.mistLevel;
+	}
+	
+	@Override
+	public void setMistLevel(int value)
+	{
+		this.mistLevel = value;
+	}
+	
+	@Override
+	public void addToMistLevel(int value)
+	{
+		this.mistLevel += value;
+	}
+	
+	@Override
+	public int getMaxMistLevel()
+	{
+		return this.maxMistLevel;
+	}
 	
 	public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
@@ -44,7 +118,7 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
             mistLevel = tagCompound.getInteger("Mist");
             
             byte slot = tagCompound.getByte("Slot");
-            if (slot >= 0 && slot < 2)
+            if (slot >= 0 && slot < 4)
                 inventory[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
         }
     }
@@ -56,7 +130,7 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 		NBTTagCompound tagCompound = new NBTTagCompound();
 		
 		NBTTagList tagList = new NBTTagList();
-        for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
+        for (int currentIndex = 0; currentIndex < 4; ++currentIndex)
         {
         	tagCompound.setInteger("Mist", mistLevel);
             if (inventory[currentIndex] != null)
@@ -138,7 +212,7 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 
 	@Override
 	public boolean isInvNameLocalized() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -165,6 +239,6 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 	@Override
     public String getInvName()
     {
-	    return null;
+	    return Strings.containerOreCrusher;
     }
 }

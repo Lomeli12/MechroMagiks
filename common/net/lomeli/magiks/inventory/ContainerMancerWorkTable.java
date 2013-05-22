@@ -4,6 +4,7 @@ import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.client.gui.slot.SlotMistCrafting;
 import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -18,6 +19,7 @@ import net.minecraft.world.World;
 
 import net.lomeli.magiks.api.crafting.BluePrintRecipeManager;
 import net.lomeli.magiks.api.crafting.MachineRecipeManager;
+import net.lomeli.magiks.api.crafting.BasicRecipeManager;
 
 public class ContainerMancerWorkTable extends Container
 {
@@ -85,11 +87,24 @@ public class ContainerMancerWorkTable extends Container
 					.findMatchingRecipe(craftMatrix, worldObj));
 				this.tileEntity.setMode(1);
 		}
+		else if(this.tileEntity.getStackInSlot(17) != null)
+		{
+			ItemStack wand = this.tileEntity.getStackInSlot(17);
+			if(wand.getItem() == ModItemsMagiks.basicWand
+    				|| wand.getItem() == ModItemsMagiks.chemistWand ||
+    				wand.getItem() == ModItemsMagiks.alchemistWand)
+			{
+				craftResult.setInventorySlotContents(0, BasicRecipeManager.getInstance(this.tileEntity)
+					.findMatchingRecipe(craftMatrix, worldObj));
+				this.tileEntity.setMode(2);
+			}
+		}
 		else
 		{
 			craftResult.setInventorySlotContents(0, CraftingManager.getInstance()
 				.findMatchingRecipe(craftMatrix, worldObj));
-			this.tileEntity.setMode(2);
+			
+			this.tileEntity.setMode(3);
 		}
     }
 

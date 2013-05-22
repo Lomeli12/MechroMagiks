@@ -54,14 +54,6 @@ public class ModItemsMagiks
     
     //blueprints
     public static Item bluePrint;
-    /*
-    public static Item coilBluePrint;
-    public static Item weatherBluePrint;
-    public static Item maceratorBluePrint;
-    public static Item areaDetoxicBluePrint;
-    public static Item matterGeneratorBluePrint;
-    public static Item lavaGeneratorBluePrint;
-    public static Item matterCondenserBluePrint;*/
     
     // wands
     public static Item basicWand;
@@ -88,7 +80,7 @@ public class ModItemsMagiks
                 .setUnlocalizedName("ironBand");
         ironStick = new ItemGeneric(ItemIDs.ironStickID, "ironstick", false)
                 .setUnlocalizedName("ironStick");
-        emeraldAmulet = new ItemAmulets(ItemIDs.emeraldAmuletID, "amuletGold", true, 50000)
+        emeraldAmulet = new ItemAmulets(ItemIDs.emeraldAmuletID, "amuletGold", true, 1000)
                 .setUnlocalizedName("amulet");
         ingotStamatic = new ItemGeneric(ItemIDs.ingotStamaticID, "ingotstamatic",
                 false).setUnlocalizedName("ingotstamatic");
@@ -122,7 +114,8 @@ public class ModItemsMagiks
         advReciever = new ItemGeneric(ItemIDs.advRecieverID, Strings.NO_TEXTURE, true)
         	.setUnlocalizedName("advReciever");
         
-        weatherRockets = new ItemWeatherRockets(ItemIDs.weatherRocketsID, "rockets");
+        weatherRockets = new ItemWeatherRockets(ItemIDs.weatherRocketsID, "rockets")
+        	.setUnlocalizedName("rockets");
         
         wand = new ItemGeneric(ItemIDs.wandID, "magicianwand", false)
             .setCreativeTab(null).setUnlocalizedName("wand");
@@ -147,7 +140,7 @@ public class ModItemsMagiks
         		EnumWandStrength.IRON).setUnlocalizedName("diggersWandI");
         diggersWandD = new ItemMiningWands(ItemIDs.diggersWandDiamondID, "diggerswand",
         		EnumWandStrength.DIAMOND).setUnlocalizedName("diggersWandD");
-        bluePrint = new ItemMachineBluePrints(ItemIDs.bluePrintID);
+        bluePrint = new ItemMachineBluePrints(ItemIDs.bluePrintID).setUnlocalizedName("blueprints");
 
         LanguageRegistry.addName(flyingRing, "ShadowWing's Gale");
         LanguageRegistry.addName(neoniteGem, "Neonite Gem");
@@ -178,8 +171,7 @@ public class ModItemsMagiks
         LanguageRegistry.addName(chestLinker, "Chest Linker");
         LanguageRegistry.addName(electroicCircuit, "Electronic Circuit");
         LanguageRegistry.addName(copperWire, "Copper Wire");
-        LanguageRegistry.addName(wirelessReciever, "Wireless Reciever");
-        LanguageRegistry.addName(advReciever, "Advanced Wireless Reciever");
+        
         
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 0),  "Sunny Rocket");
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 1),  "Morning Rocket");
@@ -187,6 +179,9 @@ public class ModItemsMagiks
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 3),  "Dark Rocket");
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 4),  "Cloudy Rocket");
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 5),  "Ender Rocket");
+        
+        LanguageRegistry.addName(wirelessReciever, "Wireless Reciever");
+        LanguageRegistry.addName(advReciever, "Advanced Wireless Reciever");
         
         LanguageRegistry.addName(new ItemStack(bluePrint, 1, 0), "Small Coil BluePrint");
         LanguageRegistry.addName(new ItemStack(bluePrint, 1, 1), "Atmospheric Disruptor BluePrint");
@@ -196,9 +191,12 @@ public class ModItemsMagiks
         LanguageRegistry.addName(new ItemStack(bluePrint, 1, 5), "Lava Generator BluePrint");
         LanguageRegistry.addName(new ItemStack(bluePrint, 1, 6), "Matter Conderser BluePrint");
         
-        OreDictionary.registerOre("ingotCopper", new ItemStack(ingotCopper));
-        OreDictionary.registerOre("ingotTin", new ItemStack(ingotTin));
-        OreDictionary.registerOre("ingotSilver", new ItemStack(ingotSilver));
+        OreDictionary.registerOre("ingotCopper", ingotCopper);
+        OreDictionary.registerOre("ingotTin", ingotTin);
+        OreDictionary.registerOre("ingotSilver", ingotSilver);
+        OreDictionary.registerOre("copperIngot", ingotCopper);
+        OreDictionary.registerOre("tinIngot", ingotTin);
+        OreDictionary.registerOre("silverIngot", ingotSilver);
     }
 
     public static void addChargeableItems()

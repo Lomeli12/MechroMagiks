@@ -124,17 +124,31 @@ public class SlotMistCrafting extends Slot
     {
         GameRegistry.onItemCrafted(par1EntityPlayer, par2ItemStack, craftMatrix);
         this.onCrafting(par2ItemStack);
-        if(this.tileEntity.getCurrentMode() == 0)
+        switch(this.tileEntity.getCurrentMode())
         {
-        	if(this.tileEntity.getStackInSlot(17) != null 
-                			&& this.tileEntity.getStackInSlot(17).getItem() == Item.paper)
-        		this.tileEntity.decrStackSize(17, 1);
-        }
-        else if(this.tileEntity.getCurrentMode() == 1)
-        {
-        	if(this.tileEntity.getStackInSlot(17) != null 
-        			&& this.tileEntity.getStackInSlot(17).getItem() == ModItemsMagiks.electroicCircuit)
-        		this.tileEntity.decrStackSize(17, 1);
+        	case 0:
+        		if(this.tileEntity.getStackInSlot(17) != null 
+    			&& this.tileEntity.getStackInSlot(17).getItem() == Item.paper)
+        			this.tileEntity.decrStackSize(17, 1);
+        		break;
+        	case 1:
+        		if(this.tileEntity.getStackInSlot(17) != null 
+    			&& this.tileEntity.getStackInSlot(17).getItem() == ModItemsMagiks.electroicCircuit)
+        			this.tileEntity.decrStackSize(17, 1);
+        		break;
+        	case 2:
+        		if(this.tileEntity.getStackInSlot(17) != null)
+        		{
+        			ItemStack wand = this.tileEntity.getStackInSlot(17);
+        			if(wand.getItem() == ModItemsMagiks.basicWand
+        				|| wand.getItem() == ModItemsMagiks.chemistWand ||
+        				wand.getItem() == ModItemsMagiks.alchemistWand)
+        				this.tileEntity.getStackInSlot(17).setItemDamage
+        					(this.tileEntity.getStackInSlot(17).getItemDamage() + 5);
+        		}
+        		break;
+        	default:
+        		break;
         }
         
         for (int i = 0; i < this.craftMatrix.getSizeInventory(); ++i)

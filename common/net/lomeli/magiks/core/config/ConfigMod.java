@@ -124,11 +124,9 @@ public class ConfigMod
         ItemIDs.mancerWorkTableID = config.get("Machines", "mancerWT", 721).getInt(721);
         ItemIDs.hollowWoodID = config.get("Blocks", "hallowWood", 722).getInt(722);
         ItemIDs.linkingChestID = config.get("Blocks", "linkingChest", 723).getInt(723);
+        ItemIDs.oreCrusherID = config.get("Machines", "oreCrusher", 724).getInt(724);
         
         config.save();
-        
-        
-
     }
 
 	@SuppressWarnings("static-access")

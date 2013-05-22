@@ -26,4 +26,6 @@ public class Strings
     public static String hollowWoodName = "Hollow Wood";
     public static String containerLinkingChest = "container.linkingChest";
     public static String linkingChestName = "Linking Chest";
+    public static String containerOreCrusher = "container.orecrusher";
+    public static String oreCrusherName = "Ore Crusher";
 }

@@ -3,6 +3,7 @@ package net.lomeli.magiks.tileentity;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.lib.Strings;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -17,7 +18,8 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
 {	
 	public TileEntityMagiks connected;
     
-	public int maxMistLevel = 30000, mistLevel = 0, generationTime = 0;
+	public int maxMistLevel = 30000, mistLevel, generationTime = 0;
+	
     private ItemStack[] inventory;
 
     public TileEntitySolarMistCollector()
@@ -74,7 +76,12 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
             {
                 if (this.getMistLevel() <= this.getMaxMistLevel())
                 {
-                	this.addToMistLevel(1);
+                	this.generationTime++;
+                	if(this.generationTime >= 10)
+                	{
+                		this.addToMistLevel(1);
+                		this.generationTime = 0;
+                	}
                 	this.worldObj.spawnParticle("portal", (xCoord+0.5), (yCoord+1), (zCoord+0.5), 1F, 1F, 1F);
                 }
             }

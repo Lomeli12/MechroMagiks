@@ -10,4 +10,5 @@ public class GuiIDs
     public static final int mancerWT = 11;
     public static final int hallowWood = 12;
     public static final int chest = 13;
+    public static final int crusher = 14;
 }

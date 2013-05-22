@@ -15,6 +15,17 @@ public class MagiksRecipes
 {
 	public static final int WILDCARD_DAMAGE_VALUE = Short.MAX_VALUE;
 	
+	public static void registerRecipes()
+	{
+		registerBlockRecipes();
+		registerItemRecipes();
+		registerFurnaceRecipes();
+		registerMachineRecipes();
+		register4x4Recipes();
+		registerBlueprintRecipes();
+		registerOreCrusherRecipes();
+	}
+	
 	public static void registerBlockRecipes()
 	{
 		GameRegistry.addRecipe(new ItemStack(ModBlocksMagiks.neoniteBlock, 1), new Object[] {
@@ -133,8 +144,13 @@ public class MagiksRecipes
         GameRegistry.addSmelting(ModBlocksMagiks.silverOre.blockID, 
         		new ItemStack(ModItemsMagiks.ingotSilver), 5);
     }
+    
+    public static void registerOreCrusherRecipes()
+    {
+    	MechroMagiksAPI.addCrushableOre(Block.oreIron.blockID, new ItemStack(Item.diamond, 2));
+    }
 
-    public static void registerMistRecipes()
+    public static void registerMachineRecipes()
     {
     	MechroMagiksAPI.addMachineRecipe(new ItemStack(ModItemsMagiks.wirelessReciever), new Object[]
 			{"  T ", " TET", " IT ", "I   ", 'I',ModItemsMagiks.ironStick, 'E', Item.enderPearl,
@@ -143,8 +159,24 @@ public class MagiksRecipes
 			{ "  IE"," ISI", "IRI ", "II  ", 'I',ModItemsMagiks.ironPlate, 'R',Item.redstone,
 			'E',ModItemsMagiks.wirelessReciever, 'S',Block.stoneButton });
     	MechroMagiksAPI.addMachineRecipe(new ItemStack(ModBlocksMagiks.linkingChest, 1), new Object[]
-    			{ "BBBB","BRCB","BCRB","BBBB", 'B', ModBlocksMagiks.manceryBlock, 'R',Item.redstone,
+    		{ "BBBB","BRCB","BCRB","BBBB", 'B', ModBlocksMagiks.manceryBlock, 'R',Item.redstone,
     			'C',Block.chest });
+    	
+    }
+    
+    public static void register4x4Recipes()
+    {
+    	MechroMagiksAPI.add4x4Recipe(new ItemStack(ModItemsMagiks.emeraldAmulet), new Object[]
+    		{ " GGG", "G  G", "GN G", "EGG ", 'G',Item.ingotGold, 'N',ModItemsMagiks.neoniteGem,
+    		'E',Item.emerald });
+    }
+    
+    public static void registerBlueprintRecipes()
+    {
+    	MechroMagiksAPI.addBluePrintRecipe(new ItemStack(ModItemsMagiks.bluePrint, 1, 2), new Object[]
+    		{ "SIIS","PFFP","CTTC","JJJJ", 'S',Block.stone, 'P',Block.pistonBase, 'F', Item.flint, 
+    		'J',Item.ingotIron, 'I',ModItemsMagiks.ironPlate, 
+    		'C',ModItemsMagiks.copperWire, 'T',ModItemsMagiks.ingotTin});
     }
     
     public static void stairRecipes(Block ouput, Block input)

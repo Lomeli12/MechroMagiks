@@ -18,6 +18,7 @@ import net.lomeli.magiks.tileentity.TileEntityLinkingChest;
 import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceCore;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceDummy;
+import net.lomeli.magiks.tileentity.TileEntityOreCrusher;
 import net.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
 import net.lomeli.magiks.tileentity.renderer.TileEntityCoilRenderer;
 import net.lomeli.magiks.tileentity.renderer.TileEntityKineticGeneratorRenderer;
@@ -95,6 +96,7 @@ public class ClientProxy extends CommonProxy
                 "dupefurnace");
         GameRegistry.registerTileEntity(TileEntityMultiFurnaceDummy.class,
                 "dupedummy");
+        GameRegistry.registerTileEntity(TileEntityOreCrusher.class, "orecrusher");
 
         try
         {

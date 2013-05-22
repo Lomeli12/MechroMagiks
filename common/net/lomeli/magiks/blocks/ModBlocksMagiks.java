@@ -2,12 +2,14 @@ package net.lomeli.magiks.blocks;
 
 import net.lomeli.magiks.api.crafting.KineticGenFuel;
 import net.lomeli.magiks.api.libs.MagiksArrays;
+
 import net.lomeli.magiks.blocks.aesthetic.BlockMechroPanes;
 import net.lomeli.magiks.blocks.aesthetic.BlockMecroGlass;
 import net.lomeli.magiks.blocks.machine.BlockKineticGenerator;
 import net.lomeli.magiks.blocks.machine.BlockMancerWorkTable;
 import net.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
 import net.lomeli.magiks.blocks.machine.BlockSolarMistCollector;
+import net.lomeli.magiks.blocks.machine.BlockOreCrusher;
 import net.lomeli.magiks.blocks.machine.BlockCoil;
 import net.lomeli.magiks.blocks.machine.parts.BlockMecroBlock;
 import net.lomeli.magiks.blocks.machine.parts.BlockMultiFurnaceDummy;
@@ -29,7 +31,8 @@ public class ModBlocksMagiks
             solarMistCollector, dupeFurnace, burningStone,
             manceryBrick, obsidianStairs, manceryBlockStairs, manceryBrickStairs,
             burningStoneStairs, netherIgnious, copperOre, tinOre, silverOre,
-            smallCoil, mancerWorkTable, hollowWood, linkingChest, manceryPane;
+            smallCoil, mancerWorkTable, hollowWood, linkingChest, manceryPane,
+            oreCrusher;
 
     public static void registerBlocks()
     {
@@ -95,6 +98,7 @@ public class ModBlocksMagiks
         	.setHardness(0.5F).setResistance(5000F);
         manceryPane = new BlockMechroPanes(ItemIDs.manceryPaneID, "manceryglass")
         	.setUnlocalizedName("mancerypanes");
+        oreCrusher = new BlockOreCrusher(ItemIDs.oreCrusherID).setUnlocalizedName("oreCrusher");
 
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");
         GameRegistry.registerBlock(neoniteBlock, "Neonite Block");
@@ -121,6 +125,7 @@ public class ModBlocksMagiks
         GameRegistry.registerBlock(mancerWorkTable, "Mancer WorkTable");
         GameRegistry.registerBlock(hollowWood, "Hollow Wood");
         GameRegistry.registerBlock(linkingChest, "Linking Chest");
+        GameRegistry.registerBlock(oreCrusher, "Ore Crusher");
 
         LanguageRegistry.addName(neoniteOre, "Neonite Ore");
         LanguageRegistry.addName(neoniteBlock, "Neonite Block");
@@ -147,6 +152,7 @@ public class ModBlocksMagiks
         LanguageRegistry.addName(mancerWorkTable, "Mancer WorkTable");
         LanguageRegistry.addName(hollowWood, "Hollow Wood");
         LanguageRegistry.addName(linkingChest, "Linking Chest");
+        LanguageRegistry.addName(oreCrusher, "Ore Crusher");
 
         MinecraftForge.setBlockHarvestLevel(neoniteOre, "pickaxe", 2);
         MinecraftForge.setBlockHarvestLevel(neoniteBlock, "pickaxe", 2);

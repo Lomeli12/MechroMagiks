@@ -82,10 +82,7 @@ public class Magiks
         GameRegistry.registerWorldGenerator(new MagikWorldGen());
         GameRegistry.registerCraftingHandler(new WandCraftingHandler());
         
-        MagiksRecipes.registerBlockRecipes();
-        MagiksRecipes.registerItemRecipes();
-        MagiksRecipes.registerFurnaceRecipes();
-        MagiksRecipes.registerMistRecipes();
+        MagiksRecipes.registerRecipes();
         MagiksRecipes.addDoubleOres();
         
         MagiksArrays.canRecieveMist.add(new TileEntitySolarMistCollector());

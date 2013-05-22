@@ -5,18 +5,21 @@ import net.lomeli.magiks.client.gui.GuiKineticGenerator;
 import net.lomeli.magiks.client.gui.GuiLinkingChest;
 import net.lomeli.magiks.client.gui.GuiMancerWorkTable;
 import net.lomeli.magiks.client.gui.GuiMultiFurnace;
+import net.lomeli.magiks.client.gui.GuiOreCrusher;
 import net.lomeli.magiks.client.gui.GuiSolarMistCollector;
 import net.lomeli.magiks.inventory.ContainerHollowWood;
 import net.lomeli.magiks.inventory.ContainerKineticGenerator;
 import net.lomeli.magiks.inventory.ContainerLinkingChest;
 import net.lomeli.magiks.inventory.ContainerMancerWorkTable;
 import net.lomeli.magiks.inventory.ContainerMultiFurnace;
+import net.lomeli.magiks.inventory.ContainerOreCrusher;
 import net.lomeli.magiks.inventory.ContainerSolarMistCollector;
 import net.lomeli.magiks.tileentity.TileEntityHollowWood;
 import net.lomeli.magiks.tileentity.TileEntityKineticGenerator;
 import net.lomeli.magiks.tileentity.TileEntityLinkingChest;
 import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceCore;
+import net.lomeli.magiks.tileentity.TileEntityOreCrusher;
 import net.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -50,6 +53,9 @@ public class GuiHandler implements IGuiHandler
         else if(tile_entity instanceof TileEntityLinkingChest)
         	return new ContainerLinkingChest(player.inventory, 
         			(TileEntityLinkingChest)tile_entity);
+        else if(tile_entity instanceof TileEntityOreCrusher)
+        	return new ContainerOreCrusher(player.inventory,
+        			(TileEntityOreCrusher)tile_entity);
         return null;
     }
 
@@ -76,6 +82,9 @@ public class GuiHandler implements IGuiHandler
         else if(tile_entity instanceof TileEntityLinkingChest)
         	return new GuiLinkingChest(player.inventory, 
         			(TileEntityLinkingChest)tile_entity);
+        else if(tile_entity instanceof TileEntityOreCrusher)
+        	return new GuiOreCrusher(player.inventory,
+        			(TileEntityOreCrusher)tile_entity);
         return null;
     }
 }

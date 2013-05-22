@@ -60,6 +60,7 @@ public class ItemIDs
     public static int hollowWoodID;
     public static int linkingChestID;
     public static int manceryPaneID;
+    public static int oreCrusherID;
     
     //ores
     public static int stamaticOreID;

@@ -53,6 +53,7 @@ public class MagiksArrays
     public static List<ItemStack> doubledOres = new ArrayList<ItemStack>();
     
     
+    
     public static void addNewKinGenFuel(ItemStack itemStack, int amount, int slot)
     {
     	kineticGenFuel.add(slot, itemStack);
