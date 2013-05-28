@@ -4,6 +4,11 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityMagiks extends TileEntity implements IMagiks
 {
+	public EnumMagiksType getType()
+	{
+		return null;
+	}
+	
     public int getMistLevel()
     {
         return 0;

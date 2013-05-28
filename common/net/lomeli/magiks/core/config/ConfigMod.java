@@ -79,6 +79,16 @@ public class ConfigMod
         ItemIDs.wirelessRecieverID = config.get("Items", "wirelessReciever", 7036).getInt(7036);
         ItemIDs.advRecieverID = config.get("Items", "advReciever", 7037).getInt(7037);
         ItemIDs.bluePrintID = config.get("Items", "BluePrints", 7040).getInt(7038);
+        ItemIDs.ingotVesiID = config.get("Ingots", "vesiIngot", 7041).getInt(7041);
+        ItemIDs.dustIronID = config.get("Dusts", "ironDust", 7042).getInt(7042);
+        ItemIDs.dustGoldID = config.get("Dusts", "goldDust", 7043).getInt(7043);
+        ItemIDs.dustStamaticID = config.get("Dusts", "stamaticDust", 7044).getInt(7044);
+        ItemIDs.dustIgniousID = config.get("Dusts", "igniousDust", 7045).getInt(7045);
+        ItemIDs.dustCopperID = config.get("Dusts", "copperDust", 7046).getInt(7046);
+        ItemIDs.dustTinID = config.get("Dusts", "tinDust", 7047).getInt(7047);
+        ItemIDs.dustSilverID = config.get("Dusts", "silverDust", 7048).getInt(7048);
+        ItemIDs.dustLeadID = config.get("Dusts", "leadDust", 7049).getInt(7049);
+        ItemIDs.dustVesiID = config.get("Dusts", "vesiDust", 7050).getInt(7050);
 
         config.save();
     }

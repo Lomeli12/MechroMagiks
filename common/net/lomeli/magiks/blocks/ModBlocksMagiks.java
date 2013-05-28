@@ -88,7 +88,7 @@ public class ModBlocksMagiks
 				.setHardness(3F).setResistance(5F).setUnlocalizedName("tinOre");
         silverOre = new BlockMagiks(ItemIDs.silverOreID, Material.rock, "oreSilver")
 				.setHardness(3F).setResistance(5F).setUnlocalizedName("silverOre");
-        smallCoil = new BlockCoil(ItemIDs.smallCoilID, Material.rock, "oreSilver")
+        smallCoil = new BlockCoil(ItemIDs.smallCoilID, "oreSilver").setHardness(3F).setResistance(5F)
         	.setUnlocalizedName("smallcoil");
         mancerWorkTable = new BlockMancerWorkTable(ItemIDs.mancerWorkTableID, Material.wood, "wood")
         		.setHardness(2F).setResistance(5F).setUnlocalizedName("mancerWT");
@@ -175,12 +175,5 @@ public class ModBlocksMagiks
     {
     	KineticGenFuel.fuel().addFuel(0, new ItemStack(Block.tnt), 75);
     	MagiksArrays.addNewKinGenFuel(new ItemStack(Block.tnt), 75, 0);
-    }
-    
-    public static void addBreakableBlocks()
-    {
-    	//Block[]
-    	
-    	//MagiksArrays.stoneLvl.add(e);
     }
 }

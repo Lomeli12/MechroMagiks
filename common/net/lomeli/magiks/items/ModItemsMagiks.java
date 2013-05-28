@@ -43,27 +43,23 @@ public class ModItemsMagiks
     public static Item copperWire;
     public static Item wirelessReciever;
     public static Item advReciever;
-    public static Item testdye;
     
     // ores
-    public static Item ingotStamatic;
-    public static Item ingotIgnious;
-    public static Item ingotCopper;
-    public static Item ingotTin;
-    public static Item ingotSilver;
+    public static Item ingotStamatic, ingotIgnious, ingotCopper, 
+    	ingotTin, ingotSilver, ingotVesi;
+    
+    // dust
+    public static Item dustIron, dustGold, dustStamatic, dustIgnious, 
+    	dustCopper, dustTin, dustSilver, dustLead, dustVesi;
     
     //blueprints
     public static Item bluePrint;
     
     // wands
-    public static Item basicWand;
-    public static Item chemistWand;
-    public static Item alchemistWand;
+    public static Item basicWand, chemistWand, alchemistWand;
     public static Item pirasVarinha;
     
-    public static Item diggersWandS;
-    public static Item diggersWandI;
-    public static Item diggersWandD;
+    public static Item diggersWandS, diggersWandI, diggersWandD;
 
     public static Item wand;
 
@@ -140,7 +136,42 @@ public class ModItemsMagiks
         		EnumWandStrength.IRON).setUnlocalizedName("diggersWandI");
         diggersWandD = new ItemMiningWands(ItemIDs.diggersWandDiamondID, "diggerswand",
         		EnumWandStrength.DIAMOND).setUnlocalizedName("diggersWandD");
-        bluePrint = new ItemMachineBluePrints(ItemIDs.bluePrintID).setUnlocalizedName("blueprints");
+        bluePrint = new ItemMachineBluePrints(ItemIDs.bluePrintID)
+        	.setUnlocalizedName("blueprints");
+        ingotVesi = new ItemGeneric(ItemIDs.ingotVesiID, "ingotVesi", false)
+        	.setUnlocalizedName("vesiingot");
+        dustIron = new ItemGeneric(ItemIDs.dustIronID, "dusts/irondust", false)
+        	.setUnlocalizedName("dustiron");
+        dustGold = new ItemGeneric(ItemIDs.dustGoldID, "dusts/golddust", false)
+        	.setUnlocalizedName("dustgold");
+        dustStamatic = new ItemGeneric(ItemIDs.dustStamaticID, "dusts/stamaticdust", false)
+        	.setUnlocalizedName("duststamatic");
+        dustIgnious = new ItemGeneric(ItemIDs.dustIgniousID, "dusts/igniousdust", false)
+        	.setUnlocalizedName("dustignious");
+        dustCopper = new ItemGeneric(ItemIDs.dustCopperID, "dusts/copperdust", false)
+        	.setUnlocalizedName("dustcopper");
+        dustTin = new ItemGeneric(ItemIDs.dustTinID, "dusts/tindust", false)
+    		.setUnlocalizedName("dusttin");
+        dustSilver = new ItemGeneric(ItemIDs.dustSilverID, "dusts/silverdust", false)
+    		.setUnlocalizedName("dustsilver");
+        dustLead = new ItemGeneric(ItemIDs.dustLeadID, "dusts/leaddust", false)
+    		.setUnlocalizedName("dustlead");
+        dustVesi = new ItemGeneric(ItemIDs.dustVesiID, "dusts/vesidust", false)
+        	.setUnlocalizedName("dustvesi");
+        
+        OreDictionary.registerOre("ingotCopper", ingotCopper);
+        OreDictionary.registerOre("ingotTin", ingotTin);
+        OreDictionary.registerOre("ingotSilver", ingotSilver);
+        OreDictionary.registerOre("copperIngot", ingotCopper);
+        OreDictionary.registerOre("tinIngot", ingotTin);
+        OreDictionary.registerOre("silverIngot", ingotSilver);
+        
+        OreDictionary.registerOre("dustIron", dustIron);
+        OreDictionary.registerOre("dustGold", dustGold);
+        OreDictionary.registerOre("dustCopper", dustCopper);
+        OreDictionary.registerOre("dustTin", dustTin);
+        OreDictionary.registerOre("dustSilver", dustSilver);
+        OreDictionary.registerOre("dustLead", dustLead);
 
         LanguageRegistry.addName(flyingRing, "ShadowWing's Gale");
         LanguageRegistry.addName(neoniteGem, "Neonite Gem");
@@ -172,7 +203,6 @@ public class ModItemsMagiks
         LanguageRegistry.addName(electroicCircuit, "Electronic Circuit");
         LanguageRegistry.addName(copperWire, "Copper Wire");
         
-        
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 0),  "Sunny Rocket");
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 1),  "Morning Rocket");
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 2),  "Noctornal Rocket");
@@ -191,12 +221,16 @@ public class ModItemsMagiks
         LanguageRegistry.addName(new ItemStack(bluePrint, 1, 5), "Lava Generator BluePrint");
         LanguageRegistry.addName(new ItemStack(bluePrint, 1, 6), "Matter Conderser BluePrint");
         
-        OreDictionary.registerOre("ingotCopper", ingotCopper);
-        OreDictionary.registerOre("ingotTin", ingotTin);
-        OreDictionary.registerOre("ingotSilver", ingotSilver);
-        OreDictionary.registerOre("copperIngot", ingotCopper);
-        OreDictionary.registerOre("tinIngot", ingotTin);
-        OreDictionary.registerOre("silverIngot", ingotSilver);
+        LanguageRegistry.addName(ingotVesi, "Vesi Ingot");
+        LanguageRegistry.addName(dustIron, "Iron Dust");
+        LanguageRegistry.addName(dustGold, "Gold Dust");
+        LanguageRegistry.addName(dustStamatic, "Stamatic Dust");
+        LanguageRegistry.addName(dustIgnious, "Ignious Dust");
+        LanguageRegistry.addName(dustCopper, "Copper Dust");
+        LanguageRegistry.addName(dustTin, "Tin Dust");
+        LanguageRegistry.addName(dustSilver, "Silver Dust");
+        LanguageRegistry.addName(dustLead, "Lead Dust");
+        LanguageRegistry.addName(dustVesi, "Vesi Dust");
     }
 
     public static void addChargeableItems()

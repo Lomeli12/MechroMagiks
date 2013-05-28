@@ -28,4 +28,6 @@ public class Strings
     public static String linkingChestName = "Linking Chest";
     public static String containerOreCrusher = "container.orecrusher";
     public static String oreCrusherName = "Ore Crusher";
+    public static String containerBuilder = "container.builder";
+    public static String smallCoilName = "Small Coil";
 }

@@ -1,22 +1,33 @@
 package net.lomeli.magiks.tileentity;
 
+import net.lomeli.magiks.api.magiks.EnumMagiksType;
+import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.lib.Strings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityWeatherBlock extends TileEntity implements
+public class TileEntityWeatherBlock extends TileEntityMagiks implements
     IInventory
 {
     private ItemStack[] inventory;
     
+    private EnumMagiksType type;
+    
     public TileEntityWeatherBlock()
     {
         inventory = new ItemStack[1];
+        type = EnumMagiksType.MACHINE;
     }
+    
+    @Override
+	public EnumMagiksType getType()
+	{
+		return type;
+	}
+    
     @Override
     public int getSizeInventory()
     {

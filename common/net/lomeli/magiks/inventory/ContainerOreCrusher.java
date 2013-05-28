@@ -4,13 +4,13 @@ import net.lomeli.magiks.tileentity.TileEntityOreCrusher;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
+//import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class ContainerOreCrusher extends Container
 {
-    private TileEntityOreCrusher tileEntity;
+    public TileEntityOreCrusher tileEntity;
 
     public ContainerOreCrusher(InventoryPlayer playerInventory,
     		TileEntityOreCrusher tileEntity)
@@ -32,7 +32,7 @@ public class ContainerOreCrusher extends Container
         bindPlayerInventory(playerInventory);
     }
 
-    @Override
+    /*@Override
     public void addCraftingToCrafters(ICrafting par1ICrafting)
     {
         super.addCraftingToCrafters(par1ICrafting);
@@ -77,7 +77,7 @@ public class ContainerOreCrusher extends Container
         {
             tileEntity.currentItemBurnTime = par2;
         }*/
-    }
+    //}
 
     @Override
     public boolean canInteractWith(EntityPlayer entityPlayer)
@@ -124,12 +124,9 @@ public class ContainerOreCrusher extends Container
                 return null;
 
             if (stackInSlot.stackSize == 0)
-            {
                 slotObject.putStack(null);
-            } else
-            {
+            else
                 slotObject.onSlotChanged();
-            }
 
             if (stackInSlot.stackSize == stack.stackSize)
                 return null;

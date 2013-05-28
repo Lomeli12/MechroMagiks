@@ -1,5 +1,6 @@
 package net.lomeli.magiks.core.handler;
 
+import net.lomeli.magiks.client.gui.GuiCoil;
 import net.lomeli.magiks.client.gui.GuiHollowWood;
 import net.lomeli.magiks.client.gui.GuiKineticGenerator;
 import net.lomeli.magiks.client.gui.GuiLinkingChest;
@@ -7,6 +8,7 @@ import net.lomeli.magiks.client.gui.GuiMancerWorkTable;
 import net.lomeli.magiks.client.gui.GuiMultiFurnace;
 import net.lomeli.magiks.client.gui.GuiOreCrusher;
 import net.lomeli.magiks.client.gui.GuiSolarMistCollector;
+import net.lomeli.magiks.inventory.ContainerCoil;
 import net.lomeli.magiks.inventory.ContainerHollowWood;
 import net.lomeli.magiks.inventory.ContainerKineticGenerator;
 import net.lomeli.magiks.inventory.ContainerLinkingChest;
@@ -14,6 +16,7 @@ import net.lomeli.magiks.inventory.ContainerMancerWorkTable;
 import net.lomeli.magiks.inventory.ContainerMultiFurnace;
 import net.lomeli.magiks.inventory.ContainerOreCrusher;
 import net.lomeli.magiks.inventory.ContainerSolarMistCollector;
+import net.lomeli.magiks.tileentity.TileEntityCoil;
 import net.lomeli.magiks.tileentity.TileEntityHollowWood;
 import net.lomeli.magiks.tileentity.TileEntityKineticGenerator;
 import net.lomeli.magiks.tileentity.TileEntityLinkingChest;
@@ -21,6 +24,7 @@ import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceCore;
 import net.lomeli.magiks.tileentity.TileEntityOreCrusher;
 import net.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -56,6 +60,9 @@ public class GuiHandler implements IGuiHandler
         else if(tile_entity instanceof TileEntityOreCrusher)
         	return new ContainerOreCrusher(player.inventory,
         			(TileEntityOreCrusher)tile_entity);
+        else if(tile_entity instanceof TileEntityCoil)
+        	return new ContainerCoil(player.inventory,
+        			(TileEntityCoil)tile_entity);
         return null;
     }
 
@@ -85,6 +92,9 @@ public class GuiHandler implements IGuiHandler
         else if(tile_entity instanceof TileEntityOreCrusher)
         	return new GuiOreCrusher(player.inventory,
         			(TileEntityOreCrusher)tile_entity);
+        else if(tile_entity instanceof TileEntityCoil)
+        	return new GuiCoil(player.inventory,
+        			(TileEntityCoil)tile_entity);
         return null;
     }
 }

@@ -1,6 +1,7 @@
 package net.lomeli.magiks.tileentity;
 
 import net.lomeli.magiks.api.machines.OreCrusherManager;
+import net.lomeli.magiks.api.magiks.EnumMagiksType;
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.lib.Strings;
 
@@ -15,14 +16,21 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 {
 	private ItemStack[] inventory;
 	
-	private int mistLevel, maxMistLevel; 
+	private int mistLevel, maxMistLevel = 3000; 
+	
 	public int processingTime;
+	
+	private EnumMagiksType type;
 	
 	public TileEntityOreCrusher()
 	{
 		inventory = new ItemStack[4];
-		this.maxMistLevel = 3000;
-		this.mistLevel = 3000;
+		type = EnumMagiksType.MACHINE;
+	}
+	
+	public int getProgress()
+	{
+		return processingTime / 100;
 	}
 	
 	@Override
@@ -30,24 +38,29 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
     {
 		if(this.worldObj != null && !this.worldObj.isRemote)
 		{
-			if(canCrushOre())
+			if(mistLevel > 270 && canCrushOre())
 			{
+				System.out.println("Yay");
 				if(inventory[2] == null || getStackInSlot(2).stackSize < 64)
 				{
 					processingTime++;
-					if(processingTime >= 270)
+					if(this.processingTime >= 270)
 					{
 						addToStack();
 						decrStackSize(0, 1);
-						processingTime = 0;
+						this.processingTime = 0;
 					}
-					mistLevel--;
+					this.mistLevel--;
 				}
 			}
-			else
-				processingTime = 0;
 		}
     }
+	
+	@Override
+	public EnumMagiksType getType()
+	{
+		return type;
+	}
 	
 	public ItemStack addToStack()
 	{
@@ -75,12 +88,70 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 		{
 			ItemStack item = OreCrusherManager.getInstance().getCrushResult(this.inventory[0]);
 			if(item == null) { return false; }
-			if(this.mistLevel > 300) { return true; }
-			if(!this.inventory[2].isItemEqual(item)) { return false; }
-			int result = this.inventory[2].stackSize + item.stackSize;
+			if(this.mistLevel > 270) { return true; }
+			if(this.inventory[2] != null)
+			{ if(!this.inventory[2].isItemEqual(item)) { return false; } }
+			int result;
+			if(this.inventory[2] == null)
+				result = item.stackSize;
+			else
+				result = this.inventory[2].stackSize + item.stackSize;
+			
 			return (result <= getInventoryStackLimit() && result <= item.getMaxStackSize());
 		}
 	}
+	
+	public void readFromNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.readFromNBT(nbtTagCompound);
+        
+        loadNBT(nbtTagCompound);
+    }
+    
+    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.writeToNBT(nbtTagCompound);
+
+        addToNBT(nbtTagCompound);
+    }
+    
+    public void loadNBT(NBTTagCompound nbtTagCompound)
+    {
+    	mistLevel = nbtTagCompound.getInteger("Mist");
+        
+        NBTTagList tagList = nbtTagCompound.getTagList("Inventory");
+        for (int i = 0; i < tagList.tagCount(); ++i)
+        {
+            NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
+            
+            byte slot = tagCompound.getByte("Slot");
+            if (slot >= 0 && slot < 4)
+            {
+                inventory[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
+            }
+
+        }
+    }
+    
+    public void addToNBT(NBTTagCompound nbtTagCompound)
+    {
+    	nbtTagCompound.setInteger("Mist", mistLevel);
+        
+        NBTTagCompound tagCompound = new NBTTagCompound();
+
+        NBTTagList tagList = new NBTTagList();
+        for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
+        {
+            if (inventory[currentIndex] != null)
+            {
+                tagCompound.setByte("Slot", (byte) currentIndex);
+
+                inventory[currentIndex].writeToNBT(tagCompound);
+                tagList.appendTag(tagCompound);
+            }
+        }
+        nbtTagCompound.setTag("Inventory", tagList);
+    }
 	
 	@Override
 	public int getMistLevel()
@@ -105,44 +176,6 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 	{
 		return this.maxMistLevel;
 	}
-	
-	public void readFromNBT(NBTTagCompound nbtTagCompound)
-    {
-        super.readFromNBT(nbtTagCompound);
-        
-        NBTTagList tagList = nbtTagCompound.getTagList("Inventory");
-        for (int i = 0; i < tagList.tagCount(); ++i)
-        {
-            NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
-            
-            mistLevel = tagCompound.getInteger("Mist");
-            
-            byte slot = tagCompound.getByte("Slot");
-            if (slot >= 0 && slot < 4)
-                inventory[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
-        }
-    }
-	
-	public void writeToNBT(NBTTagCompound nbtTagCompound)
-    {
-		super.writeToNBT(nbtTagCompound);
-		
-		NBTTagCompound tagCompound = new NBTTagCompound();
-		
-		NBTTagList tagList = new NBTTagList();
-        for (int currentIndex = 0; currentIndex < 4; ++currentIndex)
-        {
-        	tagCompound.setInteger("Mist", mistLevel);
-            if (inventory[currentIndex] != null)
-            {
-                tagCompound.setByte("Slot", (byte) currentIndex);
-
-                inventory[currentIndex].writeToNBT(tagCompound);
-                tagList.appendTag(tagCompound);
-            }
-        }
-        nbtTagCompound.setTag("Inventory", tagList);
-    }
 
 	@Override
     public int getInventoryStackLimit()

@@ -8,7 +8,9 @@ import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
 import net.minecraftforge.oredict.OreDictionary;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MagiksRecipes 
@@ -62,7 +64,7 @@ public class MagiksRecipes
 	}
 	
     public static void registerItemRecipes()
-    {
+    {    	
         GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.enchantedDiamond, 1), 
         		new Object[] { "GEG", "EDE", "RER", 'G', Item.lightStoneDust, 'R',
                 Item.redstone, 'D', Item.diamond, 'E', ModItemsMagiks.neoniteGem });
@@ -119,14 +121,19 @@ public class MagiksRecipes
         GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.wand, 1), new Object[]
                 {" CB","CSC","BC ", 'S',Item.stick, 'C',Item.coal,
                     'B',(new ItemStack(Item.dyePowder, 1, 15)) });
-        
-        GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.copperWire, 4), new Object[]
-        		{" CS", "CIC", "SC ", 'S',Item.silk, 'C',ModItemsMagiks.ingotCopper,
+        for(ItemStack copperIngot : OreDictionary.getOres("ingotCopper"))
+    	{
+        	GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.copperWire, 4), new Object[]
+        		{" CS", "CIC", "SC ", 'S',Item.silk, 'C',copperIngot,
         		'I',ModItemsMagiks.ironStick});
-        GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.electroicCircuit, 1), 
+    	}
+        for(ItemStack silverIngot : OreDictionary.getOres("ingotSilver"))
+    	{
+        	GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.electroicCircuit, 1), 
         		new Object[]{ "DIG","CPC","GID", 'G',Item.goldNugget, 'I',ModItemsMagiks.ironPlate,
-        		'C',ModItemsMagiks.copperWire, 'P', ModItemsMagiks.ingotSilver, 
+        		'C',ModItemsMagiks.copperWire, 'P',silverIngot, 
         		'D', new ItemStack(Item.dyePowder, 1, 2)});
+    	}
     }
 
     public static void registerFurnaceRecipes()
@@ -136,18 +143,125 @@ public class MagiksRecipes
         GameRegistry.addSmelting(ModBlocksMagiks.igniousOre.blockID,
                 new ItemStack(ModItemsMagiks.ingotIgnious), 10);
         GameRegistry.addSmelting(ModBlocksMagiks.netherIgnious.blockID, 
-        		new ItemStack(ModItemsMagiks.ingotIgnious, 2), 10);
+        		new ItemStack(ModItemsMagiks.ingotIgnious), 10);
         GameRegistry.addSmelting(ModBlocksMagiks.copperOre.blockID,
                 new ItemStack(ModItemsMagiks.ingotCopper), 5);
         GameRegistry.addSmelting(ModBlocksMagiks.tinOre.blockID,
                 new ItemStack(ModItemsMagiks.ingotTin), 5);
         GameRegistry.addSmelting(ModBlocksMagiks.silverOre.blockID, 
         		new ItemStack(ModItemsMagiks.ingotSilver), 5);
+        GameRegistry.addSmelting(ModItemsMagiks.dustIron.itemID, 
+        		new ItemStack(Item.ingotIron), 5);
+        GameRegistry.addSmelting(ModItemsMagiks.dustGold.itemID, 
+        		new ItemStack(Item.ingotGold), 5);
+        GameRegistry.addSmelting(ModItemsMagiks.dustStamatic.itemID, 
+        		new ItemStack(ModItemsMagiks.ingotStamatic), 5);
+        GameRegistry.addSmelting(ModItemsMagiks.dustIgnious.itemID, 
+        		new ItemStack(ModItemsMagiks.ingotIgnious), 5);
+        GameRegistry.addSmelting(ModItemsMagiks.dustVesi.itemID, 
+        		new ItemStack(ModItemsMagiks.ingotVesi), 5);
+        
+        for(ItemStack copper : OreDictionary.getOres("ingotCopper"))
+    	{
+        	GameRegistry.addSmelting(ModItemsMagiks.dustCopper.itemID, 
+            	copper, 5);
+    	}
+    	for(ItemStack tin : OreDictionary.getOres("ingotTin"))
+    	{
+    		GameRegistry.addSmelting(ModItemsMagiks.dustTin.itemID, 
+            	tin, 5);
+    	}
+    	for(ItemStack silver : OreDictionary.getOres("ingotSilver"))
+    	{
+    		GameRegistry.addSmelting(ModItemsMagiks.dustSilver.itemID, 
+            	silver, 5);
+    	}
+    	for(ItemStack lead : OreDictionary.getOres("ingotLead"))
+    	{
+    		if(lead != null)
+    			GameRegistry.addSmelting(ModItemsMagiks.dustLead.itemID, 
+    	        	lead, 5);
+    	}
     }
     
     public static void registerOreCrusherRecipes()
     {
-    	MechroMagiksAPI.addCrushableOre(Block.oreIron.blockID, new ItemStack(Item.diamond, 2));
+    	MechroMagiksAPI.addCrushableOre(Block.oreIron.blockID, new ItemStack(ModItemsMagiks.dustIron, 2));
+    	MechroMagiksAPI.addCrushableOre(Block.oreGold.blockID, new ItemStack(ModItemsMagiks.dustGold, 2));
+    	MechroMagiksAPI.addCrushableOre(ModBlocksMagiks.stamaticOre.blockID, 
+    		new ItemStack(ModItemsMagiks.dustStamatic, 2));
+    	MechroMagiksAPI.addCrushableOre(ModBlocksMagiks.igniousOre.blockID, 
+    		new ItemStack(ModItemsMagiks.dustIgnious, 2));
+    	
+    	MechroMagiksAPI.addCrushableOre(Item.ingotIron.itemID, new ItemStack(ModItemsMagiks.dustIron));
+    	MechroMagiksAPI.addCrushableOre(Item.ingotGold.itemID, new ItemStack(ModItemsMagiks.dustGold));
+    	MechroMagiksAPI.addCrushableOre(ModItemsMagiks.ingotStamatic.itemID, 
+    		new ItemStack(ModItemsMagiks.dustStamatic));
+    	MechroMagiksAPI.addCrushableOre(ModItemsMagiks.ingotIgnious.itemID, 
+        		new ItemStack(ModItemsMagiks.dustIgnious));
+    	MechroMagiksAPI.addCrushableOre(ModItemsMagiks.ingotVesi.itemID, 
+    		new ItemStack(ModItemsMagiks.dustVesi));
+    	
+    	for(ItemStack copper : OreDictionary.getOres("ingotCopper"))
+    	{
+    		MechroMagiksAPI.addCrushableOre(copper.itemID, copper.getItemDamage(),
+    	    	new ItemStack(ModItemsMagiks.dustCopper));
+    	}
+    	for(ItemStack tin : OreDictionary.getOres("ingotTin"))
+    	{
+    		MechroMagiksAPI.addCrushableOre(tin.itemID, tin.getItemDamage(),
+    	    	new ItemStack(ModItemsMagiks.dustTin));
+    	}
+    	for(ItemStack silver : OreDictionary.getOres("ingotSilver"))
+    	{
+    		MechroMagiksAPI.addCrushableOre(silver.itemID, silver.getItemDamage(),
+    	    	new ItemStack(ModItemsMagiks.dustSilver));
+    	}
+    	for(ItemStack lead : OreDictionary.getOres("ingotLead"))
+    	{
+    		if(lead != null)
+    			MechroMagiksAPI.addCrushableOre(lead.itemID, lead.getItemDamage(),
+    				new ItemStack(ModItemsMagiks.dustLead));
+    	}
+    	
+    	for(ItemStack copper : OreDictionary.getOres("oreCopper"))
+    	{
+    		MechroMagiksAPI.addCrushableOre(copper.itemID, copper.getItemDamage(),
+    	    	new ItemStack(ModItemsMagiks.dustCopper, 2));
+    	}
+    	for(ItemStack tin : OreDictionary.getOres("oreTin"))
+    	{
+    		MechroMagiksAPI.addCrushableOre(tin.itemID, tin.getItemDamage(),
+    	    	new ItemStack(ModItemsMagiks.dustTin, 2));
+    	}
+    	for(ItemStack silver : OreDictionary.getOres("oreSilver"))
+    	{
+    		MechroMagiksAPI.addCrushableOre(silver.itemID, silver.getItemDamage(),
+    	    	new ItemStack(ModItemsMagiks.dustSilver, 2));
+    	}
+    	for(ItemStack lead : OreDictionary.getOres("oreLead"))
+    	{
+    		if(lead != null)
+    			MechroMagiksAPI.addCrushableOre(lead.itemID, lead.getItemDamage(),
+    				new ItemStack(ModItemsMagiks.dustLead, 2));
+    	}
+    	/*
+    	if(ModLoaded.isModInstalled("ThermalExpansion"))
+    	{
+    		String blockOre = "blockOre";
+    		String blockClass = "thermalexpansion.block.TEBlocks";
+    		ItemStack copperIngot = ItemRegistry.getItem("ingotCopper", 1);
+    		ItemStack tinIngot = ItemRegistry.getItem("ingotTin", 1);
+    		ItemStack silverIngot = ItemRegistry.getItem("ingotSilver", 1);
+    		ItemStack leadIngot = ItemRegistry.getItem("ingotLead", 1);
+    		
+    		ItemStack copperOre = BlockUtil.getBlockFromModWithMeta(blockOre, 0, blockClass);
+    		ItemStack tinOre = BlockUtil.getBlockFromModWithMeta(blockOre, 1, blockClass);
+    		ItemStack silverOre = BlockUtil.getBlockFromModWithMeta(blockOre, 2, blockClass);
+    		ItemStack leadOre = BlockUtil.getBlockFromModWithMeta(blockOre, 3, blockClass);
+    		
+    		
+    	}*/
     }
 
     public static void registerMachineRecipes()

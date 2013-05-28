@@ -1,6 +1,7 @@
 package net.lomeli.magiks.tileentity;
 
 import net.lomeli.magiks.api.libs.MagiksArrays;
+import net.lomeli.magiks.api.magiks.EnumMagiksType;
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.lib.Strings;
 
@@ -18,14 +19,16 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
 {	
 	public TileEntityMagiks connected;
     
-	public int maxMistLevel = 30000, mistLevel, generationTime = 0;
+	public int maxMistLevel = 2000, mistLevel, generationTime = 0;
+	
+	private EnumMagiksType type;
 	
     private ItemStack[] inventory;
 
     public TileEntitySolarMistCollector()
     {
         inventory = new ItemStack[1];
-        this.maxMistLevel = 30000;
+        type = EnumMagiksType.GENERATOR;
     }
 
     @Override
@@ -88,6 +91,11 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
         }
     }
     
+    @Override
+	public EnumMagiksType getType()
+	{
+		return type;
+	}
 
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {

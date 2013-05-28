@@ -1,6 +1,7 @@
 package net.lomeli.magiks.client.gui;
 
 import net.lomeli.magiks.inventory.ContainerOreCrusher;
+import net.lomeli.magiks.lib.Strings;
 import net.lomeli.magiks.tileentity.TileEntityOreCrusher;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -23,12 +24,22 @@ public class GuiOreCrusher extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-    	String containerName = tileEntity.isInvNameLocalized() ? tileEntity.getInvName() :
-    		StatCollector.translateToLocal(tileEntity.getInvName());
-    	fontRenderer.drawString(containerName, xSize / 2 - 
-    			fontRenderer.getStringWidth(containerName) / 2, 6, 4210752);
+    	int xStart = xSize / 2;
+    	int yStart = ySize / 2;
+    	fontRenderer.drawString(Strings.oreCrusherName, xSize / 2 - 
+    		fontRenderer.getStringWidth(Strings.oreCrusherName) / 2, 6, 4210752);
     	fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, 
-    			ySize - 104, 4210752);
+    		ySize - 104, 4210752);
+    	
+    	int e = this.tileEntity.getProgress();
+    	int i = this.tileEntity.getMistLevel();
+    	
+    	fontRenderer.drawString("Progress: ", xSize - 95, ySize - 118, 4210752);
+    	fontRenderer.drawString("" + (this.tileEntity.processingTime / 100),
+    		xSize - (85 - fontRenderer.getStringWidth("Progress: ")), ySize - 118, 4210752);
+    	fontRenderer.drawString("Mist:", 8, 6, 4210752);
+    	fontRenderer.drawString("" + i, 8, 16, 4210752);
+    	fontRenderer.drawString("/" + this.tileEntity.getMaxMistLevel(), 8, 26, 4210752);
         
     }
 
@@ -39,17 +50,17 @@ public class GuiOreCrusher extends GuiContainer
         GL11.glColor4f(1f, 1f, 1f, 1f);
 
         mc.renderEngine
-                .bindTexture("/mods/magiks/textures/gui/dupefurnace.png");
+                .bindTexture("/mods/magiks/textures/gui/orecrusher.png");
 
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-        int il;
+        /*int il;
         
         if(tileEntity.processingTime > 0)
         {
         	il = tileEntity.processingTime / 12;
         	drawTexturedModalRect(x + 56, y + 36 + 12 - il, 176, 12 - il, 14, il + 2);
-        }
+        }*/
     }
 }

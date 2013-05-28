@@ -5,25 +5,23 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 
-@SuppressWarnings({"rawtypes", "unused"})
+@SuppressWarnings({"rawtypes"})
 public class BasicRecipeManager 
 {
 	private static final BasicRecipeManager instance = new BasicRecipeManager();
-	private static TileEntityMancerWorkTable tileEntity;
 	
-	private List recipes = new ArrayList();
+	public List recipes = new ArrayList();
 	
-	public static final BasicRecipeManager getInstance(TileEntityMancerWorkTable tileentity)
+	public static final BasicRecipeManager getInstance()
 	{
-		tileEntity = tileentity;
 		return instance;
 	}
 	
@@ -32,8 +30,8 @@ public class BasicRecipeManager
 	{
 		recipes = new ArrayList();
 		
-		recipes = BasicRecipes.getRecipeList();
-		
+		recipes = CraftingManager.getInstance().getRecipeList();
+	
 		Collections.sort(recipes, new BasicRecipeSorter(this));
     }  
 

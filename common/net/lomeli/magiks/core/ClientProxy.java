@@ -97,6 +97,7 @@ public class ClientProxy extends CommonProxy
         GameRegistry.registerTileEntity(TileEntityMultiFurnaceDummy.class,
                 "dupedummy");
         GameRegistry.registerTileEntity(TileEntityOreCrusher.class, "orecrusher");
+        //GameRegistry.registerTileEntity(TileEntityCoil.class, "smallcoil");
 
         try
         {

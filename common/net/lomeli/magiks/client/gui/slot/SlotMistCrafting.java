@@ -136,17 +136,6 @@ public class SlotMistCrafting extends Slot
     			&& this.tileEntity.getStackInSlot(17).getItem() == ModItemsMagiks.electroicCircuit)
         			this.tileEntity.decrStackSize(17, 1);
         		break;
-        	case 2:
-        		if(this.tileEntity.getStackInSlot(17) != null)
-        		{
-        			ItemStack wand = this.tileEntity.getStackInSlot(17);
-        			if(wand.getItem() == ModItemsMagiks.basicWand
-        				|| wand.getItem() == ModItemsMagiks.chemistWand ||
-        				wand.getItem() == ModItemsMagiks.alchemistWand)
-        				this.tileEntity.getStackInSlot(17).setItemDamage
-        					(this.tileEntity.getStackInSlot(17).getItemDamage() + 5);
-        		}
-        		break;
         	default:
         		break;
         }

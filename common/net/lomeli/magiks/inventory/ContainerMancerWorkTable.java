@@ -14,7 +14,6 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.world.World;
 
 import net.lomeli.magiks.api.crafting.BluePrintRecipeManager;
@@ -87,24 +86,11 @@ public class ContainerMancerWorkTable extends Container
 					.findMatchingRecipe(craftMatrix, worldObj));
 				this.tileEntity.setMode(1);
 		}
-		else if(this.tileEntity.getStackInSlot(17) != null)
-		{
-			ItemStack wand = this.tileEntity.getStackInSlot(17);
-			if(wand.getItem() == ModItemsMagiks.basicWand
-    				|| wand.getItem() == ModItemsMagiks.chemistWand ||
-    				wand.getItem() == ModItemsMagiks.alchemistWand)
-			{
-				craftResult.setInventorySlotContents(0, BasicRecipeManager.getInstance(this.tileEntity)
-					.findMatchingRecipe(craftMatrix, worldObj));
-				this.tileEntity.setMode(2);
-			}
-		}
 		else
 		{
-			craftResult.setInventorySlotContents(0, CraftingManager.getInstance()
+			craftResult.setInventorySlotContents(0, BasicRecipeManager.getInstance()
 				.findMatchingRecipe(craftMatrix, worldObj));
-			
-			this.tileEntity.setMode(3);
+			this.tileEntity.setMode(2);
 		}
     }
 

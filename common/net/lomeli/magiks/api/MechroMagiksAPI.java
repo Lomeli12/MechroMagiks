@@ -1,6 +1,6 @@
 package net.lomeli.magiks.api;
 
-import net.lomeli.magiks.api.crafting.BasicRecipes;
+import net.lomeli.magiks.api.crafting.BasicRecipeManager;
 import net.lomeli.magiks.api.crafting.BluePrintRecipes;
 import net.lomeli.magiks.api.crafting.MachineRecipes;
 import net.lomeli.magiks.api.machines.OreCrusherManager;
@@ -20,13 +20,14 @@ public class MechroMagiksAPI
 	
 	public static void add4x4Recipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
 	{
-		BasicRecipes.addRecipe(par1ItemStack, par2ArrayOfObj);
+		BasicRecipeManager.getInstance().addRecipe(par1ItemStack, par2ArrayOfObj);
 	}
 	
 	public static void add4x4ShapelessRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
 	{
-		BasicRecipes.addShapelessRecipe(par1ItemStack, par2ArrayOfObj);
+		BasicRecipeManager.getInstance().addShapelessRecipe(par1ItemStack, par2ArrayOfObj);
 	}
+	
 	/**
 	 * Adds new 4x4 recipe to the WorkTable.
 	 * Recipes added will also require a electronic circuit
