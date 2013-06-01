@@ -3,41 +3,74 @@ package net.lomeli.magiks.tileentity;
 import java.util.Random;
 
 import net.lomeli.magiks.api.libs.MagiksArrays;
+import net.lomeli.magiks.api.magiks.EnumMagiksType;
+import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
 import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.lib.Strings;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntityFurnace;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityMultiFurnaceCore extends TileEntity implements
+public class TileEntityMultiFurnaceCore extends TileEntityMagiks implements
         ISidedInventory
 {
     public static final int[] sidedSlotSides = new int[] { 0 };
     public static final int[] sidedSlotBottom = new int[] { 2, 1 };
     public static final int[] sidedSlotTop = new int[] { 1 };
-    public static boolean valid;
 
     private ItemStack[] furnaceItems = new ItemStack[6];
     public int furnaceBurnTime = 0;
     public int currentItemBurnTime = 0;
     public int furnaceCookTime = 0;
     public int upgrades = 1;
+    
+    private int mistLevel, maxMistLevel = 2000;
 
-    private boolean isValidMultiblock = false;
+    private boolean isValidMultiblock;
 
+    private EnumMagiksType type;
+    
     public TileEntityMultiFurnaceCore()
     {
+    	type = EnumMagiksType.MACHINE;
+    }
+    
+    @Override
+	public int getMistLevel()
+    {
+		return mistLevel;
+    }
+	
+	@Override
+	public int getMaxMistLevel()
+    {
+		return maxMistLevel;
+    }
+	
+	@Override
+	public EnumMagiksType getType()
+	{
+		return type;
+	}
+	
+	@Override
+	public void addToMistLevel(int value)
+    {
+		mistLevel += value;
     }
 
     public boolean getIsValid()
@@ -260,7 +293,7 @@ public class TileEntityMultiFurnaceCore extends TileEntity implements
             {
                 furnaceCookTime++;
 
-                if (furnaceCookTime == 100)
+                if (furnaceCookTime == cookingTime())
                 {
                     furnaceCookTime = 0;
                     smeltItem(chance);
@@ -300,6 +333,24 @@ public class TileEntityMultiFurnaceCore extends TileEntity implements
     public ItemStack getStackInSlot(int slot)
     {
         return furnaceItems[slot];
+    }
+    
+    public int cookingTime()
+    {
+    	int time = 100;
+    	
+    	for(int i = 3; i < 6; i++)
+    	{
+    		if(furnaceItems[i] != null)
+    		{
+    			if(getStackInSlot(i).itemID == ModItemsMagiks.smeltingUpgrade.itemID)
+    			{
+    				time -= (5 * getStackInSlot(i).stackSize);
+    			}
+    		}
+    	}
+    	
+    	return time;
     }
 
     @Override
@@ -389,14 +440,20 @@ public class TileEntityMultiFurnaceCore extends TileEntity implements
                 .isItemFuel(itemStack) : true;
     }
 
-    @SuppressWarnings("unused")
     @Override
     public void readFromNBT(NBTTagCompound tagCompound)
     {
         super.readFromNBT(tagCompound);
 
+        loadNBT(tagCompound);
+    }
+    
+    public void loadNBT(NBTTagCompound tagCompound)
+    {
+    	@SuppressWarnings("unused")
         int md = tagCompound.getInteger("BlockMeta");
-        isValidMultiblock = tagCompound.getBoolean("isValidMultiblock");
+    	isValidMultiblock = tagCompound.getBoolean("isValidMultiblock");
+        mistLevel = tagCompound.getInteger("Mist");
 
         NBTTagList itemsTag = tagCompound.getTagList("Items");
         furnaceItems = new ItemStack[getSizeInventory()];
@@ -422,9 +479,15 @@ public class TileEntityMultiFurnaceCore extends TileEntity implements
     {
         super.writeToNBT(tagCompound);
 
-        tagCompound.setBoolean("isValidMultiblock", isValidMultiblock);
+        addToNBT(tagCompound);
+    }
+    
+    public void addToNBT(NBTTagCompound tagCompound)
+    {
+    	tagCompound.setBoolean("isValidMultiblock", isValidMultiblock);
         System.out.println("Is valid? " + (isValidMultiblock ? "Yes" : "No"));
 
+        tagCompound.setInteger("Mist", mistLevel);
         tagCompound.setShort("BurnTime", (short) furnaceBurnTime);
         tagCompound.setShort("CookTime", (short) furnaceCookTime);
         NBTTagList itemsList = new NBTTagList();
@@ -454,12 +517,31 @@ public class TileEntityMultiFurnaceCore extends TileEntity implements
     {
         if (currentItemBurnTime == 0)
         {
-            currentItemBurnTime = 100;
+            currentItemBurnTime = cookingTime();
         }
 
         return furnaceBurnTime * scaleVal / currentItemBurnTime;
     }
 
+    @Override
+    public Packet getDescriptionPacket() 
+    {
+        Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
+        NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
+
+        addToNBT(tag);
+
+        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+    }
+
+    @Override
+    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) 
+    {
+        super.onDataPacket(net, pkt);
+        NBTTagCompound tag = pkt.customParam1;
+        loadNBT(tag);
+    }
+    
     public boolean isBurning()
     {
         return furnaceBurnTime > 0;
@@ -497,13 +579,22 @@ public class TileEntityMultiFurnaceCore extends TileEntity implements
             if (furnaceItems[2] == null)
             {
                 furnaceItems[2] = itemStack.copy();
+                if(furnaceItems[2].itemID == Block.oreRedstone.blockID || 
+                	furnaceItems[2].itemID == Block.oreLapis.blockID)
+                	furnaceItems[2].stackSize += 3; 
+                
                 for(ItemStack ore : MagiksArrays.doubledOres)
                 {
                 	if(furnaceItems[0].isItemEqual(ore))
-                	{
-                		++furnaceItems[2].stackSize;
-                		if (luck <= 800 + upgrades * 20)
+                	{	if(mistLevel >= 75)
+                		{
                 			++furnaceItems[2].stackSize;
+                			if (luck <= 800 + (20 * upgrades))
+                			{
+                				++furnaceItems[2].stackSize;
+                				mistLevel -= 75;
+                			}
+                		}
                 	}
                 }
                 
@@ -514,9 +605,15 @@ public class TileEntityMultiFurnaceCore extends TileEntity implements
                 {
                 	if(furnaceItems[0].isItemEqual(ore))
                 	{
-                		++furnaceItems[2].stackSize;
-                		if (luck <= 800 + upgrades * 20)
-                			++furnaceItems[2].stackSize;
+                		if(mistLevel >= 75)
+                		{
+                    		++furnaceItems[2].stackSize;
+                			if (luck <= 800 + upgrades * 20)
+                			{
+                				++furnaceItems[2].stackSize;
+                				mistLevel -= 75;
+                			}
+                		}
                 	}
                 }
             }
@@ -529,29 +626,14 @@ public class TileEntityMultiFurnaceCore extends TileEntity implements
 
     public void upgradeAmount()
     {
-        if (getStackInSlot(3) != null)
-        {
-            if (getStackInSlot(3).itemID == ModItemsMagiks.burningUpgrade.itemID)
+    	for(int i = 3; i < 6; i++)
+    	{
+    		if (getStackInSlot(i) != null)
             {
-                upgrades += getStackInSlot(3).stackSize;
+    			if (getStackInSlot(i).itemID == ModItemsMagiks.burningUpgrade.itemID)
+                    upgrades += getStackInSlot(i).stackSize;
             }
-        }
-
-        if (getStackInSlot(4) != null)
-        {
-            if (getStackInSlot(4).itemID == ModItemsMagiks.burningUpgrade.itemID)
-            {
-                upgrades += getStackInSlot(4).stackSize;
-            }
-        }
-
-        if (getStackInSlot(5) != null)
-        {
-            if (getStackInSlot(5).itemID == ModItemsMagiks.burningUpgrade.itemID)
-            {
-                upgrades += getStackInSlot(5).stackSize;
-            }
-        }
+    	}
     }
 
 	@Override

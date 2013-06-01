@@ -35,7 +35,7 @@ public class GuiCoil extends GuiContainer
         String containerName = tileEntity.isInvNameLocalized() ? tileEntity
                 .getInvName() : StatCollector.translateToLocal(tileEntity
                 .getInvName());
-        fontRenderer.drawString(Strings.smallCoilName , 6 + xStart
+        fontRenderer.drawString(Strings.smallCoilName , xStart
                 - fontRenderer.getStringWidth(containerName) / 2, 6, 4210752);
         fontRenderer.drawString(
                 StatCollector.translateToLocal("container.inventory"), 8,
@@ -49,12 +49,14 @@ public class GuiCoil extends GuiContainer
         }
         
         fontRenderer.drawString("Mist Level:",
-        		xStart + 5, yStart - 68, 4210752);
-        fontRenderer.drawString(""+e,  xStart + 5 , yStart - 52, 4210752);
+        		xStart + 5, yStart - 70, 4210752);
+        fontRenderer.drawString(""+e,  xStart + 5 , yStart - 60, 4210752);
         fontRenderer.drawString("/" + tileEntity.getMaxMistLevel(), 
-                xStart + 10, yStart - 42, 4210752);
-        fontRenderer.drawString("Connected Generators: " + tileEntity.connectedGen, 
-        		xStart - 45, yStart - 22, 4210752);
+                xStart + 10, yStart - 50, 4210752);
+        fontRenderer.drawString("Generators: " + tileEntity.connectedGen, 
+        		xStart, yStart-45, 4210752);
+        fontRenderer.drawString("Machines:    " + tileEntity.connectedMachine, 
+        		xStart, yStart-35, 4210752);
     }
 	
 	@Override

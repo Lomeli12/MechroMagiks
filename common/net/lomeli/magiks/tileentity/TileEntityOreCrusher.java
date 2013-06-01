@@ -6,17 +6,23 @@ import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.lib.Strings;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 
 public class TileEntityOreCrusher extends TileEntityMagiks implements
-	IInventory
+	ISidedInventory
 {
+	public static final int[] sidedTop = new int[] { 0 };
+	public static final int[] sidedOther = new int[] { 1, 2};
+	
 	private ItemStack[] inventory;
 	
-	private int mistLevel, maxMistLevel = 3000; 
+	private int mistLevel, maxMistLevel; 
 	
 	public int processingTime;
 	
@@ -24,35 +30,38 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 	
 	public TileEntityOreCrusher()
 	{
-		inventory = new ItemStack[4];
+		inventory = new ItemStack[3];
+		this.maxMistLevel = 3000;
 		type = EnumMagiksType.MACHINE;
 	}
 	
 	public int getProgress()
 	{
-		return processingTime / 100;
+		return (int)((processingTime / 269D) * 100D);
 	}
 	
 	@Override
     public void updateEntity()
     {
-		if(this.worldObj != null && !this.worldObj.isRemote)
+		super.updateEntity();
+		if(this.worldObj != null)
 		{
 			if(mistLevel > 270 && canCrushOre())
 			{
-				System.out.println("Yay");
-				if(inventory[2] == null || getStackInSlot(2).stackSize < 64)
-				{
-					processingTime++;
+				this.processingTime++;
+				this.mistLevel--;
+				if(inventory[1] == null || getStackInSlot(1).stackSize < 64)
+				{	
 					if(this.processingTime >= 270)
 					{
 						addToStack();
 						decrStackSize(0, 1);
 						this.processingTime = 0;
 					}
-					this.mistLevel--;
 				}
 			}
+			else
+				this.processingTime = 0;
 		}
     }
 	
@@ -67,14 +76,14 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 		ItemStack itemStack = OreCrusherManager.getInstance().getCrushResult(this.inventory[0]);
 		if(itemStack != null)
 		{
-			if(inventory[2] == null)
+			if(inventory[1] == null)
+				inventory[1] = itemStack.copy();
+			else if(inventory[1].isItemEqual(itemStack) && inventory[1].stackSize <= 64)
+				inventory[1].stackSize += itemStack.stackSize;
+			else if(inventory[2] == null)
 				inventory[2] = itemStack.copy();
 			else if(inventory[2].isItemEqual(itemStack) && inventory[2].stackSize <= 64)
 				inventory[2].stackSize += itemStack.stackSize;
-			else if(inventory[3] == null)
-				inventory[3] = itemStack.copy();
-			else if(inventory[3].isItemEqual(itemStack) && inventory[3].stackSize <= 64)
-				inventory[3].stackSize += itemStack.stackSize;
 		}
 		
 		return itemStack;
@@ -89,13 +98,13 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 			ItemStack item = OreCrusherManager.getInstance().getCrushResult(this.inventory[0]);
 			if(item == null) { return false; }
 			if(this.mistLevel > 270) { return true; }
-			if(this.inventory[2] != null)
-			{ if(!this.inventory[2].isItemEqual(item)) { return false; } }
+			if(this.inventory[1] != null)
+			{ if(!this.inventory[1].isItemEqual(item)) { return false; } }
 			int result;
-			if(this.inventory[2] == null)
+			if(this.inventory[1] == null)
 				result = item.stackSize;
 			else
-				result = this.inventory[2].stackSize + item.stackSize;
+				result = this.inventory[1].stackSize + item.stackSize;
 			
 			return (result <= getInventoryStackLimit() && result <= item.getMaxStackSize());
 		}
@@ -125,7 +134,7 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
             NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
             
             byte slot = tagCompound.getByte("Slot");
-            if (slot >= 0 && slot < 4)
+            if (slot >= 0 && slot < 3)
             {
                 inventory[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
             }
@@ -153,6 +162,25 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
         nbtTagCompound.setTag("Inventory", tagList);
     }
 	
+    @Override
+    public Packet getDescriptionPacket() 
+    {
+        Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
+        NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
+
+        addToNBT(tag);
+
+        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+    }
+
+    @Override
+    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) 
+    {
+        super.onDataPacket(net, pkt);
+        NBTTagCompound tag = pkt.customParam1;
+        loadNBT(tag);
+    }
+    
 	@Override
 	public int getMistLevel()
 	{
@@ -262,10 +290,10 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 			return true;
 		else
 		{
-			if(slotItem != itemstack)
-				return false;
-			else
+			if(slotItem.isItemEqual(itemstack))
 				return true;
+			else
+				return false;
 		}
 	}
 
@@ -274,4 +302,25 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
     {
 	    return Strings.containerOreCrusher;
     }
+	
+	@Override
+	public int[] getAccessibleSlotsFromSide(int var1) 
+	{
+		return var1 == 1 ? sidedTop : sidedOther;
+	}
+	
+	@Override
+	public boolean canInsertItem(int slot, ItemStack itemstack, int side)
+	{
+		if(side == 1)
+			return this.isStackValidForSlot(0, itemstack);
+		else
+			return false;
+	}
+	
+	@Override
+	public boolean canExtractItem(int slot, ItemStack itemStack, int side) 
+	{
+		return true;
+	}
 }

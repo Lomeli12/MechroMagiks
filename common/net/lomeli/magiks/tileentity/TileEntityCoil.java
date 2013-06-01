@@ -11,6 +11,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityCoil extends TileEntityMagiks
@@ -27,7 +30,7 @@ public class TileEntityCoil extends TileEntityMagiks
 	public TileEntityCoil()
 	{
 		inventory = new ItemStack[1];
-		maxMistLevel = 4000;
+		maxMistLevel = 7000;
 		scanRadius = 10;
 		type = EnumMagiksType.BATBOX;
 	}
@@ -279,5 +282,24 @@ public class TileEntityCoil extends TileEntityMagiks
             }
         }
         nbtTagCompound.setTag("Inventory", tagList);
+    }
+    
+    @Override
+    public Packet getDescriptionPacket() 
+    {
+        Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
+        NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
+
+        addToNBT(tag);
+
+        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+    }
+
+    @Override
+    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) 
+    {
+        super.onDataPacket(net, pkt);
+        NBTTagCompound tag = pkt.customParam1;
+        loadNBT(tag);
     }
 }

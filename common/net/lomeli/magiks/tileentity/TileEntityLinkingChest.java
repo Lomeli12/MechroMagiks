@@ -2,12 +2,16 @@ package net.lomeli.magiks.tileentity;
 
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.lib.Strings;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
@@ -28,8 +32,7 @@ public class TileEntityLinkingChest extends TileEntity implements
     
 	public TileEntityLinkingChest()
 	{
-		super();
-		inventory = new ItemStack[54];
+		inventory = new ItemStack[55];
 		orientation = ForgeDirection.SOUTH;
 	}
 	
@@ -127,15 +130,56 @@ public class TileEntityLinkingChest extends TileEntity implements
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-        return worldObj.getBlockTileEntity(xCoord, yCoord, zCoord) == this
-                && player.getDistanceSq(xCoord + 0.5, yCoord + 0.5,
-                        zCoord + 0.5) < 64;
+        return true;
     }
 
+    @Override
+    public void updateEntity() 
+    {
+        super.updateEntity();
+
+        if (++ticksSinceSync % 20 * 4 == 0)
+            worldObj.addBlockEvent(xCoord, yCoord, zCoord, Block.enderChest.blockID, 1, numUsingPlayers);
+
+        prevLidAngle = lidAngle;
+        float angleIncrement = 0.1F;
+        double adjustedXCoord, adjustedZCoord;
+
+        if (numUsingPlayers > 0 && lidAngle == 0.0F) 
+        {
+            adjustedXCoord = xCoord + 0.5D;
+            adjustedZCoord = zCoord + 0.5D;
+            worldObj.playSoundEffect(adjustedXCoord, yCoord + 0.5D, adjustedZCoord, "random.chestopen", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
+        }
+
+        if (numUsingPlayers == 0 && lidAngle > 0.0F || numUsingPlayers > 0 && lidAngle < 1.0F) {
+            float var8 = lidAngle;
+
+            if (numUsingPlayers > 0)
+                lidAngle += angleIncrement;
+            else 
+                lidAngle -= angleIncrement;
+
+            if (lidAngle > 1.0F) 
+                lidAngle = 1.0F;
+
+            if (lidAngle < 0.5F && var8 >= 0.5F) 
+            {
+                adjustedXCoord = xCoord + 0.5D;
+                adjustedZCoord = zCoord + 0.5D;
+                worldObj.playSoundEffect(adjustedXCoord, yCoord + 0.5D, adjustedZCoord, "random.chestclosed", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
+            }
+
+            if (lidAngle < 0.0F)
+                lidAngle = 0.0F;
+        }
+    }
+    
+    @Override
     public boolean receiveClientEvent(int eventID, int numUsingPlayers) 
     {
-    	if (eventID == 1) 
-    	{
+        if (eventID == 1)
+        {
             this.numUsingPlayers = numUsingPlayers;
             return true;
         }
@@ -158,54 +202,6 @@ public class TileEntityLinkingChest extends TileEntity implements
     }
 
     @Override
-    public void updateEntity() 
-    {
-        super.updateEntity();
-
-        if (++ticksSinceSync % 20 * 4 == 0)
-        {
-            worldObj.addBlockEvent(xCoord, yCoord, zCoord, Block.enderChest.blockID, 1, numUsingPlayers);
-        }
-
-        prevLidAngle = lidAngle;
-        float angleIncrement = 0.1F;
-        double adjustedXCoord, adjustedZCoord;
-
-        if (numUsingPlayers > 0 && lidAngle == 0.0F) 
-        {
-            adjustedXCoord = xCoord + 0.5D;
-            adjustedZCoord = zCoord + 0.5D;
-            worldObj.playSoundEffect(adjustedXCoord, yCoord + 0.5D, adjustedZCoord, "random.chestopen", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
-        }
-
-        if (numUsingPlayers == 0 && lidAngle > 0.0F || numUsingPlayers > 0 && lidAngle < 1.0F) 
-        {
-            float var8 = lidAngle;
-
-            if (numUsingPlayers > 0) {
-                lidAngle += angleIncrement;
-            }
-            else {
-                lidAngle -= angleIncrement;
-            }
-
-            if (lidAngle > 1.0F) {
-                lidAngle = 1.0F;
-            }
-
-            if (lidAngle < 0.5F && var8 >= 0.5F) {
-                adjustedXCoord = xCoord + 0.5D;
-                adjustedZCoord = zCoord + 0.5D;
-                worldObj.playSoundEffect(adjustedXCoord, yCoord + 0.5D, adjustedZCoord, "random.chestclosed", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
-            }
-
-            if (lidAngle < 0.0F) {
-                lidAngle = 0.0F;
-            }
-        }
-    }
-
-    @Override
     public boolean isStackValidForSlot(int slot, ItemStack itemstack)
     {
         return true;
@@ -215,7 +211,19 @@ public class TileEntityLinkingChest extends TileEntity implements
     {
         super.readFromNBT(nbtTagCompound);
 
-        NBTTagList tagList = nbtTagCompound.getTagList("Inventory");
+        addToNBT(nbtTagCompound);
+    }
+
+    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.writeToNBT(nbtTagCompound);
+
+        loadNBT(nbtTagCompound);
+    }
+    
+    public void addToNBT(NBTTagCompound nbtTagCompound)
+    {
+    	NBTTagList tagList = nbtTagCompound.getTagList("Inventory");
         for (int i = 0; i < tagList.tagCount(); ++i)
         {
             NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
@@ -227,12 +235,10 @@ public class TileEntityLinkingChest extends TileEntity implements
 
         }
     }
-
-    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    
+    public void loadNBT(NBTTagCompound nbtTagCompound)
     {
-        super.writeToNBT(nbtTagCompound);
-
-        NBTTagList tagList = new NBTTagList();
+    	NBTTagList tagList = new NBTTagList();
         for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
         {
             if (inventory[currentIndex] != null)
@@ -245,6 +251,25 @@ public class TileEntityLinkingChest extends TileEntity implements
             }
         }
         nbtTagCompound.setTag("Inventory", tagList);
+    }
+    
+    @Override
+    public Packet getDescriptionPacket() 
+    {
+        Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
+        NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
+
+        addToNBT(tag);
+
+        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+    }
+
+    @Override
+    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) 
+    {
+        super.onDataPacket(net, pkt);
+        NBTTagCompound tag = pkt.customParam1;
+        loadNBT(tag);
     }
 
 }

@@ -14,6 +14,7 @@ public class ContainerLinkingChest extends Container
 	public ContainerLinkingChest(InventoryPlayer playerInventory, TileEntityLinkingChest tileEntity)
 	{
 		this.tileEntity = tileEntity;
+		tileEntity.openChest();
 		
 		int c = 0;
 		for(int i = 0; i < 6; i++)
@@ -43,6 +44,14 @@ public class ContainerLinkingChest extends Container
         }
 	}
 	
+	
+	@Override
+    public void onCraftGuiClosed(EntityPlayer entityPlayer) 
+	{
+        super.onCraftGuiClosed(entityPlayer);
+        tileEntity.closeChest();
+	}
+	
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) 
 	{
@@ -59,14 +68,14 @@ public class ContainerLinkingChest extends Container
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (par2 < 6 * 7)
+            if (par2 < 6 * 9)
             {
                 if (!this.mergeItemStack(itemstack1, 6 * 9, this.inventorySlots.size(), true))
                 {
                     return null;
                 }
             }
-            else if (!this.mergeItemStack(itemstack1, 0, 2 * 7, false))
+            else if (!this.mergeItemStack(itemstack1, 0, 6 * 9, false))
             {
                 return null;
             }

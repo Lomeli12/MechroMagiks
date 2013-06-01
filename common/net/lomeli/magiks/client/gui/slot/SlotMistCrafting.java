@@ -1,7 +1,7 @@
 package net.lomeli.magiks.client.gui.slot;
 
-import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -9,8 +9,11 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.AchievementList;
+
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
+import net.minecraftforge.oredict.OreDictionary;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 
 //Just copied the code for regular crafting table, will change when i need to
@@ -132,9 +135,14 @@ public class SlotMistCrafting extends Slot
         			this.tileEntity.decrStackSize(17, 1);
         		break;
         	case 1:
-        		if(this.tileEntity.getStackInSlot(17) != null 
-    			&& this.tileEntity.getStackInSlot(17).getItem() == ModItemsMagiks.electroicCircuit)
-        			this.tileEntity.decrStackSize(17, 1);
+        		if(this.tileEntity.getStackInSlot(17) != null)
+        		{
+        			for(ItemStack circut : OreDictionary.getOres("electronicCircuit"))
+        			{
+        				if(this.tileEntity.getStackInSlot(17).isItemEqual(circut))
+        					this.tileEntity.decrStackSize(17, 1);	
+        			}
+        		}
         		break;
         	default:
         		break;

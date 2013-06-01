@@ -113,8 +113,14 @@ public class BlockMultiFurnaceCore extends BlockContainer
                 .getBlockTileEntity(x, y, z);
         if (tileEntity != null)
         {
+        	System.out.println(tileEntity.getIsValid());
             // Determine if the Multiblock is currently known to be valid
-            if (!tileEntity.getIsValid())
+            if (tileEntity.getIsValid())
+            {
+            	player.openGui(Magiks.instance, GuiIDs.dupeFurnace, world, x,
+                		y, z);
+            }
+            else
             {
                 for (ItemStack wand : MagiksArrays.wands)
                 {
@@ -150,11 +156,6 @@ public class BlockMultiFurnaceCore extends BlockContainer
                     }
                 }
             }
-
-            // Check if the multi-block structure has been formed.
-            if (tileEntity.getIsValid())
-            	player.openGui(Magiks.instance, GuiIDs.dupeFurnace, world, x,
-            		y, z);
         }
         return true;
     }

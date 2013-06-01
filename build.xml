@@ -46,6 +46,16 @@
 			<arg line="reobfuscate_srg.sh" />
 		</exec>
 	</target>
+    
+    <!-- Build the jar -->
+    <target name="buildjar">
+        <mkdir dir="..\..\releases\${dir.modname}\${release.minecraft.version}\${release.mod.version}" />
+		<jar destfile="..\..\releases\${dir.modname}\${release.minecraft.version}\${release.mod.version}\${release.mod.name}-universal-${release.mod.version}-build-${build_number.build_number}.jar" >
+			<fileset dir="${dir.development}\mcp\src\minecraft\" includes="mcmod.info" />
+			<fileset dir="${dir.development}\mcp\reobf\minecraft" excludes="**/lomlib/**" />
+			<fileset dir="${dir.development}\source\${dir.modname}\resources" excludes="**/xcf/**" />
+		</jar>
+    </target>
 	
 	<target name="release-shared">
 		<!-- Prep for the release -->
@@ -58,8 +68,8 @@
 		<mkdir dir="..\..\${dir.share}\${dir.modname}\${release.minecraft.version}\${release.mod.version}" />
 		<jar destfile="..\..\${dir.share}\${dir.modname}\${release.minecraft.version}\${release.mod.version}\${release.mod.name}-universal-${release.mod.version}-build-${build_number.build_number}.jar">
 			<fileset dir="${dir.development}\mcp\src\common\"	includes="mcmod.info" />
-			<fileset dir="${dir.development}\mcp\reobf\minecraft" />
-			<fileset dir="${dir.development}\source\${dir.modname}\resources" />
+			<fileset dir="${dir.development}\mcp\reobf\minecraft" excludes="**/lomlib/**" />
+			<fileset dir="${dir.development}\source\${dir.modname}\resources" excludes="**/xcf/**" />
 		</jar>
 		
 		<!-- Clean up the MCP source now that we are done -->
@@ -73,14 +83,7 @@
 		<antcall target="build" />
 		<antcall target="recompile" />		
 		<antcall target="reobfuscate" />
-		
-		<!-- Build the jar -->
-		<mkdir dir="..\..\${dir.release}\${dir.modname}\${release.minecraft.version}\${release.mod.version}" />
-		<jar destfile="..\..\${dir.release}\${dir.modname}\${release.minecraft.version}\${release.mod.version}\${release.mod.name}-universal-${release.mod.version}-build-${build_number.build_number}.jar">
-			<fileset dir="${dir.development}\mcp\src\minecraft\" includes="mcmod.info" />
-			<fileset dir="${dir.development}\mcp\reobf\minecraft" />
-			<fileset dir="${dir.development}\source\${dir.modname}\resources" />
-		</jar>
+		<antcall target="buildjar" />
 		
 		<!-- Clean up the MCP source now that we are done -->
 		<antcall target="clean" />

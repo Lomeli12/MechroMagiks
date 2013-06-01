@@ -1,19 +1,24 @@
 package net.lomeli.magiks.blocks;
 
+import net.lomeli.lomlib.block.BlockGeneric;
+import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.api.crafting.KineticGenFuel;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 
 import net.lomeli.magiks.blocks.aesthetic.BlockMechroPanes;
 import net.lomeli.magiks.blocks.aesthetic.BlockMecroGlass;
+import net.lomeli.magiks.blocks.machine.BlockBuilderCore;
 import net.lomeli.magiks.blocks.machine.BlockKineticGenerator;
 import net.lomeli.magiks.blocks.machine.BlockMancerWorkTable;
 import net.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
 import net.lomeli.magiks.blocks.machine.BlockSolarMistCollector;
 import net.lomeli.magiks.blocks.machine.BlockOreCrusher;
 import net.lomeli.magiks.blocks.machine.BlockCoil;
+import net.lomeli.magiks.blocks.machine.parts.BlockBuilderDummy;
 import net.lomeli.magiks.blocks.machine.parts.BlockMecroBlock;
 import net.lomeli.magiks.blocks.machine.parts.BlockMultiFurnaceDummy;
 import net.lomeli.magiks.lib.ItemIDs;
+import net.lomeli.magiks.lib.Strings;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -32,7 +37,7 @@ public class ModBlocksMagiks
             manceryBrick, obsidianStairs, manceryBlockStairs, manceryBrickStairs,
             burningStoneStairs, netherIgnious, copperOre, tinOre, silverOre,
             smallCoil, mancerWorkTable, hollowWood, linkingChest, manceryPane,
-            oreCrusher;
+            oreCrusher, stamaticBlock, igniousBlock, builderBlock, builderCore;
 
     public static void registerBlocks()
     {
@@ -95,11 +100,19 @@ public class ModBlocksMagiks
         hollowWood = new BlockHollowWood(ItemIDs.hollowWoodID, Material.wood, "wood")
         		.setHardness(2F).setResistance(5F).setUnlocalizedName("hallowWood");
         linkingChest = new BlockLinkingChest(ItemIDs.linkingChestID, "mancerybricks")
-        	.setHardness(0.5F).setResistance(5000F);
+        	.setHardness(0.5F).setResistance(5000F).setUnlocalizedName("linkingChest");
         manceryPane = new BlockMechroPanes(ItemIDs.manceryPaneID, "manceryglass")
         	.setUnlocalizedName("mancerypanes");
         oreCrusher = new BlockOreCrusher(ItemIDs.oreCrusherID).setUnlocalizedName("oreCrusher");
-
+        stamaticBlock = new BlockGeneric(ItemIDs.stamaticBlockID, Material.iron, Strings.MOD_ID, 
+        	"blockStamatic").setHardness(0.5F).setResistance(5000F)
+        	.setUnlocalizedName("stamaticBlock").setCreativeTab(Magiks.modTab);
+        igniousBlock = new BlockGeneric(ItemIDs.igniousBlockID, Material.iron, Strings.MOD_ID, 
+            "blockIgnious").setHardness(0.5F).setResistance(5000F)
+            .setUnlocalizedName("igniousBlock").setCreativeTab(Magiks.modTab);
+        builderCore = new BlockBuilderCore(ItemIDs.builderCoreID).setUnlocalizedName("builderCore");
+        builderBlock = new BlockBuilderDummy(ItemIDs.builderDummyID);
+        
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");
         GameRegistry.registerBlock(neoniteBlock, "Neonite Block");
         GameRegistry.registerBlock(kineticGenerator, "Kinetic Generator");
@@ -115,8 +128,12 @@ public class ModBlocksMagiks
         GameRegistry.registerBlock(copperOre, "Copper Ore");
         GameRegistry.registerBlock(tinOre, "Tin Ore");
         GameRegistry.registerBlock(silverOre, "Silver Ore");
-        GameRegistry.registerBlock(smallCoil, "Small Coil");
+        GameRegistry.registerBlock(smallCoil, "Small Mist Coil");
         GameRegistry.registerBlock(manceryPane, "Mancery Pane");
+        GameRegistry.registerBlock(stamaticBlock, "Stamatic Block");
+        GameRegistry.registerBlock(igniousBlock, "Ignious Block");
+        GameRegistry.registerBlock(builderCore, "Builder");
+        GameRegistry.registerBlock(builderBlock, "BuilderBlock");
         
         GameRegistry.registerBlock(obsidianStairs, "Obsidian Stairs");
         GameRegistry.registerBlock(manceryBlockStairs, "Mancery Stone Stairs");
@@ -144,6 +161,10 @@ public class ModBlocksMagiks
         LanguageRegistry.addName(silverOre, "Silver Ore");
         LanguageRegistry.addName(smallCoil, "Small Coil");
         LanguageRegistry.addName(manceryPane, "Mancery Pane");
+        LanguageRegistry.addName(stamaticBlock, "Stamatic Block");
+        LanguageRegistry.addName(igniousBlock, "Ignious Block");
+        LanguageRegistry.addName(builderCore, "Builder (In development, DO NOT USE)");
+        LanguageRegistry.addName(builderBlock, "Builder (In development, DO NOT USE)");
         
         LanguageRegistry.addName(obsidianStairs, "Obsidian Stairs");
         LanguageRegistry.addName(manceryBlockStairs, "Mancery Stone Stairs");

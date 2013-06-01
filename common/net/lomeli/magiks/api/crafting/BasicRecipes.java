@@ -1,7 +1,6 @@
 package net.lomeli.magiks.api.crafting;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,33 +8,16 @@ import net.minecraft.block.Block;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 
-@SuppressWarnings({"rawtypes"})
-public class BasicRecipeManager 
+public class BasicRecipes 
 {
-	private static final BasicRecipeManager instance = new BasicRecipeManager();
+	@SuppressWarnings("rawtypes")
+	public static List recipes = new ArrayList();
 	
-	public List recipes = new ArrayList();
-	
-	public static final BasicRecipeManager getInstance()
-	{
-		return instance;
-	}
-	
-	@SuppressWarnings("unchecked")
-	private BasicRecipeManager()
-	{
-		recipes = new ArrayList();
-		recipes = BasicRecipes.getRecipeList();
-
-		Collections.sort(recipes, new BasicRecipeSorter(this));
-    }  
-
-    @SuppressWarnings("unchecked")
-	public MancerShapedRecipes addRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static MancerShapedRecipes addRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
     {
     	String var3 = "";
         int var4 = 0;
@@ -95,12 +77,12 @@ public class BasicRecipeManager
         }
         
         MancerShapedRecipes var17 = new MancerShapedRecipes(var5, var6, var15, par1ItemStack);
-        this.recipes.add(var17);
+        recipes.add(var17);
         return var17;
     }
 
-    @SuppressWarnings("unchecked")
-	public void addShapelessRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public static void addShapelessRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
     {
     	ArrayList var3 = new ArrayList();
     	Object[] var4 = par2ArrayOfObj;
@@ -122,10 +104,10 @@ public class BasicRecipeManager
         		var3.add(new ItemStack((Block)var7));
         	}
         }
-        this.recipes.add(new MancerShapelessRecipes(par1ItemStack, var3));
+        recipes.add(new MancerShapelessRecipes(par1ItemStack, var3));
     }
 
-    public ItemStack findMatchingRecipe(InventoryCrafting par1InventoryCrafting, World par2World)
+    public static ItemStack findMatchingRecipe(InventoryCrafting par1InventoryCrafting, World par2World)
     {
     	int var3 = 0;
         ItemStack var4 = null;
@@ -164,9 +146,9 @@ public class BasicRecipeManager
         }
         else
         {
-        	for (var6 = 0; var6 < this.recipes.size(); ++var6)
+        	for (var6 = 0; var6 < recipes.size(); ++var6)
         	{
-        		IRecipe var12 = (IRecipe)this.recipes.get(var6);
+        		IRecipe var12 = (IRecipe)recipes.get(var6);
         		if (var12.matches(par1InventoryCrafting, par2World))
         			return var12.getCraftingResult(par1InventoryCrafting);
         	}
@@ -177,8 +159,9 @@ public class BasicRecipeManager
     /**
      * returns the List<> of all recipes
      */
-    public List getRecipeList()
+    @SuppressWarnings("rawtypes")
+	public static List getRecipeList()
     {
-        return this.recipes;
+        return recipes;
     }
 }

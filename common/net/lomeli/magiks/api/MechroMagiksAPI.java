@@ -1,11 +1,14 @@
 package net.lomeli.magiks.api;
 
-import net.lomeli.magiks.api.crafting.BasicRecipeManager;
+import net.lomeli.magiks.api.crafting.BasicRecipes;
 import net.lomeli.magiks.api.crafting.BluePrintRecipes;
 import net.lomeli.magiks.api.crafting.MachineRecipes;
 import net.lomeli.magiks.api.machines.OreCrusherManager;
-import net.minecraft.item.ItemStack;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+
+@SuppressWarnings("unchecked")
 public class MechroMagiksAPI 
 {
 	public static void addCrushableOre(int itemID, ItemStack output)
@@ -20,12 +23,22 @@ public class MechroMagiksAPI
 	
 	public static void add4x4Recipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
 	{
-		BasicRecipeManager.getInstance().addRecipe(par1ItemStack, par2ArrayOfObj);
+		BasicRecipes.addRecipe(par1ItemStack, par2ArrayOfObj);
+	}
+	
+	public static void add4x4Recipe(IRecipe recipe)
+	{
+		BasicRecipes.getRecipeList().add(recipe);
 	}
 	
 	public static void add4x4ShapelessRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
 	{
-		BasicRecipeManager.getInstance().addShapelessRecipe(par1ItemStack, par2ArrayOfObj);
+		BasicRecipes.addShapelessRecipe(par1ItemStack, par2ArrayOfObj);
+	}
+	
+	public static void add4x4ShapelessRecipe(IRecipe recipe)
+	{
+		BasicRecipes.getRecipeList().add(recipe);
 	}
 	
 	/**
@@ -42,6 +55,11 @@ public class MechroMagiksAPI
 		MachineRecipes.addRecipe(par1ItemStack, par2ArrayOfObj);
 	}
 	
+	public static void addMachineRecipe(IRecipe recipe)
+	{
+		MachineRecipes.getRecipeList().add(recipe);
+	}
+	
 	/**
 	 * Adds a shapeless recipe to the Worktable
 	 * this recipe can have up to 16 items and will also
@@ -54,6 +72,11 @@ public class MechroMagiksAPI
 	public static void addMachineShapelessRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
 	{
 		MachineRecipes.addRecipe(par1ItemStack, par2ArrayOfObj);
+	}
+	
+	public static void addMachineShapelessRecipe(IRecipe recipe)
+	{
+		MachineRecipes.getRecipeList().add(recipe);
 	}
 	
 	/**
@@ -69,6 +92,10 @@ public class MechroMagiksAPI
 		BluePrintRecipes.addRecipe(par1ItemStack, par2ArrayOfObj);
 	}
 	
+    public static void addBluePrintRecipe(IRecipe recipe)
+    {
+		BluePrintRecipes.getRecipeList().add(recipe);
+    }
 	/**
 	 * Adds an output for when the blueprint is put into a machine builder 
 	 * @param blueprint The blueprint

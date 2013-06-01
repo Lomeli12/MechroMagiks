@@ -24,8 +24,6 @@ public class GuiOreCrusher extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-    	int xStart = xSize / 2;
-    	int yStart = ySize / 2;
     	fontRenderer.drawString(Strings.oreCrusherName, xSize / 2 - 
     		fontRenderer.getStringWidth(Strings.oreCrusherName) / 2, 6, 4210752);
     	fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, 
@@ -35,12 +33,11 @@ public class GuiOreCrusher extends GuiContainer
     	int i = this.tileEntity.getMistLevel();
     	
     	fontRenderer.drawString("Progress: ", xSize - 95, ySize - 118, 4210752);
-    	fontRenderer.drawString("" + (this.tileEntity.processingTime / 100),
-    		xSize - (85 - fontRenderer.getStringWidth("Progress: ")), ySize - 118, 4210752);
+    	fontRenderer.drawString(e + "%",
+    		xSize - (95 - fontRenderer.getStringWidth("Progress: ")), ySize - 118, 4210752);
     	fontRenderer.drawString("Mist:", 8, 6, 4210752);
     	fontRenderer.drawString("" + i, 8, 16, 4210752);
-    	fontRenderer.drawString("/" + this.tileEntity.getMaxMistLevel(), 8, 26, 4210752);
-        
+    	fontRenderer.drawString("/" + this.tileEntity.getMaxMistLevel(), 8, 26, 4210752);   
     }
 
     @Override

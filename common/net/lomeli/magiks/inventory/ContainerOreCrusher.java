@@ -18,16 +18,13 @@ public class ContainerOreCrusher extends Container
         this.tileEntity = tileEntity;
 
         // Input
-        addSlotToContainer(new Slot(tileEntity, 0, 56, 17));
-
-        // Fuel
-        addSlotToContainer(new Slot(tileEntity, 1, 56, 53));
+        addSlotToContainer(new Slot(tileEntity, 0, 56, 35));
 
         // Output 1
-        addSlotToContainer(new Slot(tileEntity, 2, 116, 35));
+        addSlotToContainer(new Slot(tileEntity, 1, 116, 35));
 
         // Output 2
-        addSlotToContainer(new Slot(tileEntity, 3, 134, 35));
+        addSlotToContainer(new Slot(tileEntity, 2, 134, 35));
 
         bindPlayerInventory(playerInventory);
     }

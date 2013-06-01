@@ -33,6 +33,12 @@ public class GuiMultiFurnace extends GuiContainer
         fontRenderer.drawString(
                 StatCollector.translateToLocal("container.inventory"), 8,
                 ySize - 104, 4210752);
+        
+        int i = this.tileEntity.getMistLevel();
+        
+        fontRenderer.drawString("Mist:", 8, 6, 4210752);
+    	fontRenderer.drawString("" + i, 8, 16, 4210752);
+    	fontRenderer.drawString("/" + this.tileEntity.getMaxMistLevel(), 8, 26, 4210752);   
     }
 
     @Override

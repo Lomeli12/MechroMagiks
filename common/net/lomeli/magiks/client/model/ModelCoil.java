@@ -30,7 +30,7 @@ public class ModelCoil extends ModelBase
     public ModelCoil()
     {
     	textureWidth = 128;
-        textureHeight = 128;
+        textureHeight = 32;
         
         base = new ModelRenderer(this, 65, 0);
         base.addBox(0F, 0F, 0F, 12, 4, 12);

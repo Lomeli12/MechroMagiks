@@ -36,7 +36,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, 
-	version = Strings.VERSION, dependencies="required-after:LomLib@[1.0.1,)")
+	version = Strings.VERSION, dependencies="required-after:LomLib@[1.0.2,)")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class Magiks
 {
@@ -58,7 +58,7 @@ public class Magiks
     @PreInit
     public void preInit(FMLPreInitializationEvent event)
     {
-        configDir = event.getModConfigurationDirectory() + "\\Magiks\\";
+        configDir = event.getModConfigurationDirectory() + "/Magiks/";
 
         ConfigMod.configureMod(configDir);
         

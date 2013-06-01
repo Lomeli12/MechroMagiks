@@ -1,7 +1,10 @@
 package net.lomeli.magiks.inventory;
 
+import net.lomeli.lomlib.item.ItemUtil;
+import net.lomeli.lomlib.util.ModLoaded;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.client.gui.slot.SlotMistCrafting;
+import net.lomeli.magiks.client.gui.slot.RestrictedSlot;
 import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
 
@@ -52,7 +55,7 @@ public class ContainerMancerWorkTable extends Container
         	}
         }
         
-        this.addSlotToContainer(new Slot(this.tileEntity, 17, 124, 71));
+        this.addSlotToContainer(new RestrictedSlot(this.tileEntity, 17, 124, 71, this.tileEntity));
         
         for(int i1 = 0; i1 < 3; i1++)
         {
@@ -86,6 +89,17 @@ public class ContainerMancerWorkTable extends Container
 					.findMatchingRecipe(craftMatrix, worldObj));
 				this.tileEntity.setMode(1);
 		}
+		else if(ModLoaded.isModInstalled("IC2", false))
+    	{
+			ItemStack electronicCircuit = ItemUtil.getItem("electronicCircuit", "ic2.core.Ic2Items");
+			if(this.tileEntity.getStackInSlot(17) != null 
+				&& this.tileEntity.getStackInSlot(17).getItem() == electronicCircuit.getItem())
+			{
+				craftResult.setInventorySlotContents(0, MachineRecipeManager.getInstance(this.tileEntity)
+						.findMatchingRecipe(craftMatrix, worldObj));
+					this.tileEntity.setMode(1);
+			}
+    	}
 		else
 		{
 			craftResult.setInventorySlotContents(0, BasicRecipeManager.getInstance()

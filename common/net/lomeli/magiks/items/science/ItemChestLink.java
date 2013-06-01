@@ -1,4 +1,4 @@
-package net.lomeli.magiks.items.magik;
+package net.lomeli.magiks.items.science;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProvider;
 
 public class ItemChestLink extends ItemGeneric
 {
@@ -136,14 +137,7 @@ public class ItemChestLink extends ItemGeneric
 		{
 			if(ToolTipUtil.doAdditionalInfo())
 			{
-				if(getWorld(itemStack) == 0)
-					infoList.add("World: Overworld");
-				else if(getWorld(itemStack) == -1)
-					infoList.add("World: Nether");
-				else if(getWorld(itemStack) == 1)
-					infoList.add("World: End");
-				else 
-					infoList.add("World ID: " + getWorld(itemStack));
+				infoList.add("World: " + WorldProvider.getProviderForDimension(getWorld(itemStack)).getDimensionName());
 				infoList.add("Container Type: " + getType(itemStack));
 				infoList.add("Chest X-Coord: " + getChestX(itemStack));
 				infoList.add("Chest Y-Coord: " + getChestY(itemStack));

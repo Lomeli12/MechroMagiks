@@ -1,6 +1,8 @@
 package net.lomeli.magiks.inventory;
 
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceCore;
+import net.lomeli.magiks.client.gui.slot.RestrictedSlot;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -8,7 +10,6 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
-
 
 public class ContainerMultiFurnace extends Container
 {
@@ -33,9 +34,9 @@ public class ContainerMultiFurnace extends Container
                 2, 116, 35));
 
         // Upgrades
-        addSlotToContainer(new Slot(tileEntity, 3, 150, 15));
-        addSlotToContainer(new Slot(tileEntity, 4, 150, 35));
-        addSlotToContainer(new Slot(tileEntity, 5, 150, 55));
+        addSlotToContainer(new RestrictedSlot(tileEntity, 3, 150, 15, tileEntity));
+        addSlotToContainer(new RestrictedSlot(tileEntity, 4, 150, 35, tileEntity));
+        addSlotToContainer(new RestrictedSlot(tileEntity, 5, 150, 55, tileEntity));
 
         bindPlayerInventory(playerInventory);
     }

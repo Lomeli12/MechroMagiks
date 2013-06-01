@@ -1,19 +1,20 @@
 package net.lomeli.magiks.items;
 
+import net.lomeli.lomlib.util.ToolTipUtil;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.items.magik.ItemAmulets;
-import net.lomeli.magiks.items.magik.ItemChestLink;
 import net.lomeli.magiks.items.magik.ItemFlyingRing;
 import net.lomeli.magiks.items.magik.ItemPirasVarinha;
 import net.lomeli.magiks.items.magik.ItemWands;
+import net.lomeli.magiks.items.science.ItemChestLink;
 import net.lomeli.magiks.items.science.ItemMachineBluePrints;
+import net.lomeli.magiks.items.science.ItemUpgrades;
 import net.lomeli.magiks.items.science.ItemWeatherRockets;
 import net.lomeli.magiks.items.tools.EnumWandStrength;
 import net.lomeli.magiks.items.tools.ItemEmpoweredPick;
 import net.lomeli.magiks.items.tools.ItemLevelingSword;
 import net.lomeli.magiks.items.tools.ItemMiningWands;
 import net.lomeli.magiks.lib.ItemIDs;
-import net.lomeli.magiks.lib.Strings;
 
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
@@ -24,29 +25,22 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ModItemsMagiks
 {	
-    public static Item flyingRing;
-    public static Item neoniteGem;
-    public static Item neonitePick;
-    public static Item enchantedDiamond;
-    public static Item levelingSword;
-    public static Item ironBand;
-    public static Item ironStick;
-    public static Item emeraldAmulet;
-    public static Item darkMatter;
-    public static Item mistPanel;
-    public static Item deprivedDust;
-    public static Item burningUpgrade;
-    public static Item ironPlate;
-    public static Item weatherRockets;
-    public static Item chestLinker;
-    public static Item electroicCircuit;
-    public static Item copperWire;
-    public static Item wirelessReciever;
-    public static Item advReciever;
+    //Tools
+    public static Item neonitePick, chestLinker, weatherRockets, 
+    	burningUpgrade, smeltingUpgrade;
+    
+    //crafting materails
+    public static Item mistPanel, deprivedDust, electroicCircuit, 
+    	ironBand, ironStick, ironPlate, copperWire, wirelessReciever,
+    	advReciever;
+    
+    //Magik items
+    public static Item darkMatter, emeraldAmulet, levelingSword,
+    	enchantedDiamond, flyingRing;
     
     // ores
     public static Item ingotStamatic, ingotIgnious, ingotCopper, 
-    	ingotTin, ingotSilver, ingotVesi;
+    	ingotTin, ingotSilver, ingotVesi, neoniteGem;
     
     // dust
     public static Item dustIron, dustGold, dustStamatic, dustIgnious, 
@@ -88,9 +82,8 @@ public class ModItemsMagiks
                 .setUnlocalizedName("darkmatter");
         deprivedDust = new ItemGeneric(ItemIDs.deprivedDustID,
                 "deprivedglowstone", false).setUnlocalizedName("deprivedDust");
-        burningUpgrade = new ItemGeneric(ItemIDs.burningUpgradeID,
-                "burningupgrade", false).setUnlocalizedName("burningupgrade")
-                .setMaxStackSize(2);
+        burningUpgrade = new ItemUpgrades(ItemIDs.burningUpgradeID,
+                "burningupgrade").setDescription("Increase smelting luck by 2.5%").setUnlocalizedName("burningupgrade");
         ironPlate = new ItemGeneric(ItemIDs.ironPlateID, "ironplate", false)
                 .setUnlocalizedName("ironplate");
         ingotCopper = new ItemGeneric(ItemIDs.ingotCopperID, "ingotCopper", false)
@@ -105,10 +98,12 @@ public class ModItemsMagiks
         	.setUnlocalizedName("electronicCircuit");
         copperWire = new ItemGeneric(ItemIDs.copperWireID, "copperWire", false)
         	.setUnlocalizedName("copperWire");
-        wirelessReciever = new ItemGeneric(ItemIDs.wirelessRecieverID, Strings.NO_TEXTURE, false)
+        wirelessReciever = new ItemGeneric(ItemIDs.wirelessRecieverID, "wirelessReciever", false)
         	.setUnlocalizedName("wirelessReciever");
-        advReciever = new ItemGeneric(ItemIDs.advRecieverID, Strings.NO_TEXTURE, true)
+        advReciever = new ItemGeneric(ItemIDs.advRecieverID, "advWirelessReciever", true)
         	.setUnlocalizedName("advReciever");
+        smeltingUpgrade = new ItemUpgrades(ItemIDs.smeltingUpgradeID, "speedUpgrade")
+        	.setDescription("Speeds up smelting by 5 ticks").setUnlocalizedName("speed");
         
         weatherRockets = new ItemWeatherRockets(ItemIDs.weatherRocketsID, "rockets")
         	.setUnlocalizedName("rockets");
@@ -162,9 +157,9 @@ public class ModItemsMagiks
         OreDictionary.registerOre("ingotCopper", ingotCopper);
         OreDictionary.registerOre("ingotTin", ingotTin);
         OreDictionary.registerOre("ingotSilver", ingotSilver);
-        OreDictionary.registerOre("copperIngot", ingotCopper);
-        OreDictionary.registerOre("tinIngot", ingotTin);
-        OreDictionary.registerOre("silverIngot", ingotSilver);
+        
+        OreDictionary.registerOre("copperWire", copperWire);
+        OreDictionary.registerOre("electronicCircuit", electroicCircuit);
         
         OreDictionary.registerOre("dustIron", dustIron);
         OreDictionary.registerOre("dustGold", dustGold);
@@ -182,11 +177,11 @@ public class ModItemsMagiks
         LanguageRegistry.addName(ironStick, "Iron Stick");
         LanguageRegistry.addName(emeraldAmulet, "Emerald Amulet");
         LanguageRegistry.addName(ingotStamatic, "Stamatic Ingot");
-        LanguageRegistry.addName(ingotIgnious, "\u00a74Ignious Ingot");
-        LanguageRegistry.addName(pirasVarinha, "\u00a74Piras Varinha");
-        LanguageRegistry.addName(diggersWandS, "\u00a7eDigger's Wand");
-        LanguageRegistry.addName(diggersWandI, "\u00a76Digger's Wand");
-        LanguageRegistry.addName(diggersWandD, "\u00a7bDigger's Wand");
+        LanguageRegistry.addName(ingotIgnious, ToolTipUtil.RED + "Ignious Ingot");
+        LanguageRegistry.addName(pirasVarinha, ToolTipUtil.RED + "Piras Varinha");
+        LanguageRegistry.addName(diggersWandS, ToolTipUtil.YELLOW + "Digger's Wand");
+        LanguageRegistry.addName(diggersWandI, ToolTipUtil.ORANGE + "Digger's Wand");
+        LanguageRegistry.addName(diggersWandD, ToolTipUtil.CYAN + "Digger's Wand");
         LanguageRegistry.addName(mistPanel, "Light Hungry Plates");
         LanguageRegistry.addName(darkMatter, "Dark Matter");
         LanguageRegistry.addName(deprivedDust, "Deprived Glowstone");
@@ -194,7 +189,7 @@ public class ModItemsMagiks
         LanguageRegistry.addName(chemistWand, "Chemist's Wand");
         LanguageRegistry.addName(alchemistWand, "Alchemist's Wand");
         LanguageRegistry.addName(ironPlate, "Iron Plate");
-        LanguageRegistry.addName(burningUpgrade, "Burning Upgrade");
+        LanguageRegistry.addName(burningUpgrade, ToolTipUtil.LIGHT_RED + "Burning Upgrade");
         LanguageRegistry.addName(wand, "Magician's Wand");
         LanguageRegistry.addName(ingotCopper, "Copper Ingot");
         LanguageRegistry.addName(ingotTin, "Tin Ingot");
@@ -202,6 +197,7 @@ public class ModItemsMagiks
         LanguageRegistry.addName(chestLinker, "Chest Linker");
         LanguageRegistry.addName(electroicCircuit, "Electronic Circuit");
         LanguageRegistry.addName(copperWire, "Copper Wire");
+        LanguageRegistry.addName(smeltingUpgrade, ToolTipUtil.CYAN + "Smelting Upgrade");
         
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 0),  "Sunny Rocket");
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 1),  "Morning Rocket");
@@ -213,13 +209,13 @@ public class ModItemsMagiks
         LanguageRegistry.addName(wirelessReciever, "Wireless Reciever");
         LanguageRegistry.addName(advReciever, "Advanced Wireless Reciever");
         
-        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 0), "Small Coil BluePrint");
+        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 0), "Large Mist Coil BluePrint");
         LanguageRegistry.addName(new ItemStack(bluePrint, 1, 1), "Atmospheric Disruptor BluePrint");
-        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 2), "Ore Crusher BluePrint");
+        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 2), "Adv. Ore Crusher BluePrint");
         LanguageRegistry.addName(new ItemStack(bluePrint, 1, 3), "Area Detoxifier BluePrint");
         LanguageRegistry.addName(new ItemStack(bluePrint, 1, 4), "Matter Generator BluePrint");
         LanguageRegistry.addName(new ItemStack(bluePrint, 1, 5), "Lava Generator BluePrint");
-        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 6), "Matter Conderser BluePrint");
+        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 6), "Matter Condenser BluePrint");
         
         LanguageRegistry.addName(ingotVesi, "Vesi Ingot");
         LanguageRegistry.addName(dustIron, "Iron Dust");
@@ -247,9 +243,10 @@ public class ModItemsMagiks
         MagiksArrays.rechargeableItems.add(new ItemStack(chemistWand));
         MagiksArrays.rechargeableItems.add(new ItemStack(alchemistWand));
 
+        /*
         MagiksArrays.damageOnCraft.add(new ItemStack(basicWand));
         MagiksArrays.damageOnCraft.add(new ItemStack(chemistWand));
-        MagiksArrays.damageOnCraft.add(new ItemStack(alchemistWand));
+        MagiksArrays.damageOnCraft.add(new ItemStack(alchemistWand));*/
 
         MagiksArrays.wands.add(new ItemStack(basicWand));
         MagiksArrays.wands.add(new ItemStack(chemistWand));

@@ -11,6 +11,7 @@ import net.lomeli.magiks.client.render.item.ItemSolarMistCollectorRenderer;
 import net.lomeli.magiks.core.config.ConfigMod;
 import net.lomeli.magiks.lib.ItemIDs;
 import net.lomeli.magiks.lib.RenderIDs;
+import net.lomeli.magiks.tileentity.TileEntityBuilder;
 import net.lomeli.magiks.tileentity.TileEntityCoil;
 import net.lomeli.magiks.tileentity.TileEntityHollowWood;
 import net.lomeli.magiks.tileentity.TileEntityKineticGenerator;
@@ -97,7 +98,7 @@ public class ClientProxy extends CommonProxy
         GameRegistry.registerTileEntity(TileEntityMultiFurnaceDummy.class,
                 "dupedummy");
         GameRegistry.registerTileEntity(TileEntityOreCrusher.class, "orecrusher");
-        //GameRegistry.registerTileEntity(TileEntityCoil.class, "smallcoil");
+        GameRegistry.registerTileEntity(TileEntityBuilder.class, "builder");
 
         try
         {
