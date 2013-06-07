@@ -1,7 +1,5 @@
 package net.lomeli.magiks.recipes;
 
-import net.lomeli.lomlib.item.ItemUtil;
-import net.lomeli.lomlib.util.ModLoaded;
 import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.api.MechroMagiksAPI;
 import net.lomeli.magiks.api.crafting.BasicRecipeManager;
@@ -20,16 +18,12 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-import ic2.api.recipe.ICraftingRecipeManager;
-import ic2.api.recipe.Recipes;
-
 public class MagiksRecipes 
 {
 	public static final int WILDCARD_DAMAGE_VALUE = Short.MAX_VALUE;
 	
 	public static void registerRecipes()
 	{
-		ic2Compatibility();
 		registerBlockRecipes();
 		registerItemRecipes();
 		registerFurnaceRecipes();
@@ -72,7 +66,15 @@ public class MagiksRecipes
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocksMagiks.mancerWorkTable, 1),
 			new Object[]{"RPR","WCW", "S S", 'S', Item.stick, 'W',Block.planks, 'C', Block.workbench,
 			'P',Item.paper, 'R',Item.redstone});
-		
+		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocksMagiks.stamaticBlock), new Object[]
+        	{ ModItemsMagiks.ingotStamatic, ModItemsMagiks.ingotStamatic, ModItemsMagiks.ingotStamatic,
+        	ModItemsMagiks.ingotStamatic, ModItemsMagiks.ingotStamatic, ModItemsMagiks.ingotStamatic,
+        	ModItemsMagiks.ingotStamatic, ModItemsMagiks.ingotStamatic, ModItemsMagiks.ingotStamatic});
+        
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocksMagiks.igniousBlock), new Object[]
+        	{ ModItemsMagiks.ingotIgnious, ModItemsMagiks.ingotIgnious, ModItemsMagiks.ingotIgnious,
+        	ModItemsMagiks.ingotIgnious, ModItemsMagiks.ingotIgnious, ModItemsMagiks.ingotIgnious,
+        	ModItemsMagiks.ingotIgnious, ModItemsMagiks.ingotIgnious, ModItemsMagiks.ingotIgnious});
 	}
 	
     public static void registerItemRecipes()
@@ -145,15 +147,8 @@ public class MagiksRecipes
         		'P',new ItemStack(Item.potion, 1,8194)});
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustVesi, 4), "dustTin",
     			ModItemsMagiks.dustStamatic, "dustSilver", "dustSilver"));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocksMagiks.stamaticBlock), new Object[]
-        		{ ModItemsMagiks.ingotStamatic, ModItemsMagiks.ingotStamatic, ModItemsMagiks.ingotStamatic,
-        		ModItemsMagiks.ingotStamatic, ModItemsMagiks.ingotStamatic, ModItemsMagiks.ingotStamatic,
-        		ModItemsMagiks.ingotStamatic, ModItemsMagiks.ingotStamatic, ModItemsMagiks.ingotStamatic});
-        
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocksMagiks.igniousBlock), new Object[]
-        		{ ModItemsMagiks.ingotIgnious, ModItemsMagiks.ingotIgnious, ModItemsMagiks.ingotIgnious,
-        		ModItemsMagiks.ingotIgnious, ModItemsMagiks.ingotIgnious, ModItemsMagiks.ingotIgnious,
-        		ModItemsMagiks.ingotIgnious, ModItemsMagiks.ingotIgnious, ModItemsMagiks.ingotIgnious});
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItemsMagiks.grindingPick), true, "TTF",
+        		" ST", "S T", 'S',Item.stick, 'F',Item.flint, 'T',"ingotTin"));
     }
 
     public static void registerFurnaceRecipes()
@@ -198,6 +193,7 @@ public class MagiksRecipes
     
     public static void registerOreCrusherRecipes()
     {
+    	MechroMagiksAPI.addCrushableOre(Block.cobblestone.blockID, new ItemStack(Block.sand));
     	MechroMagiksAPI.addCrushableOre(Block.oreIron.blockID, new ItemStack(ModItemsMagiks.dustIron, 2));
     	MechroMagiksAPI.addCrushableOre(Block.oreGold.blockID, new ItemStack(ModItemsMagiks.dustGold, 2));
     	MechroMagiksAPI.addCrushableOre(ModBlocksMagiks.stamaticOre.blockID, 
@@ -232,8 +228,12 @@ public class MagiksRecipes
     	for(ItemStack lead : OreDictionary.getOres("ingotLead"))
     	{
     		if(lead != null)
+    		{
     			MechroMagiksAPI.addCrushableOre(lead.itemID, lead.getItemDamage(),
     				new ItemStack(ModItemsMagiks.dustLead));
+    			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustLead), 
+        			"ingotLead", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+    		}
     	}
     	
     	for(ItemStack copper : OreDictionary.getOres("oreCopper"))
@@ -254,9 +254,45 @@ public class MagiksRecipes
     	for(ItemStack lead : OreDictionary.getOres("oreLead"))
     	{
     		if(lead != null)
+    		{
     			MechroMagiksAPI.addCrushableOre(lead.itemID, lead.getItemDamage(),
-    				new ItemStack(ModItemsMagiks.dustLead, 2));
+    				new ItemStack(ModItemsMagiks.dustLead));
+    			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustLead, 2), 
+    				"oreLead", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+    		}
     	}
+    	
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustCopper), 
+			"ingotCopper", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustTin), 
+			"ingotTin", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustSilver), 
+			"ingotSilver", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustIgnious), 
+			ModItemsMagiks.ingotIgnious, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustStamatic), 
+    		ModItemsMagiks.ingotStamatic, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustVesi), 
+			ModItemsMagiks.ingotVesi, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustIron), 
+			Item.ingotIron, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustGold), 
+			Item.ingotGold, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+    	
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustCopper, 2), 
+    		"oreCopper", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustTin, 2), 
+    		"oreTin", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustSilver, 2), 
+    		"oreSilver", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustIgnious, 2), 
+    		ModBlocksMagiks.igniousOre, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustStamatic, 2), 
+        	ModBlocksMagiks.stamaticOre, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustIron, 2), 
+    		Block.oreIron, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustGold, 2), 
+    		Block.oreGold, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
     }
 
     public static void registerMachineRecipes()
@@ -357,136 +393,4 @@ public class MagiksRecipes
     	}
     }
     
-    public static void ic2Compatibility()
-    {
-    	String ic2ID = "IC2";
-    	String itemClassLoc = "ic2.core.Ic2Items";
-    	if(ModLoaded.isModInstalled(ic2ID))
-    	{
-    		ICraftingRecipeManager advRecipes = Recipes.advRecipes;
-    				
-    		ItemStack ironFurnace = ItemUtil.getItem("ironFurnace", itemClassLoc);
-    		ItemStack electroFurnace = ItemUtil.getItem("electroFurnace", itemClassLoc);
-    		ItemStack copperWire = ItemUtil.getItem("insulatedCopperCableItem", itemClassLoc);
-    		ItemStack macerator = ItemUtil.getItem("macerator", itemClassLoc);
-    		ItemStack machineBlock = ItemUtil.getItem("machine", itemClassLoc);
-    		ItemStack electronicCircuit = ItemUtil.getItem("electronicCircuit", itemClassLoc);
-    		ItemStack extractor = ItemUtil.getItem("extractor", itemClassLoc);
-    		ItemStack treetap = ItemUtil.getItem("treetap", itemClassLoc);
-    		ItemStack compressor = ItemUtil.getItem("compressor", itemClassLoc);
-    		ItemStack miner = ItemUtil.getItem("miner", itemClassLoc);
-    		ItemStack miningPipe = ItemUtil.getItem("miningPipe", itemClassLoc);
-    		ItemStack pump = ItemUtil.getItem("pump", itemClassLoc);
-    		ItemStack cell = ItemUtil.getItem("cell", itemClassLoc);
-    		ItemStack electrolyzer = ItemUtil.getItem("electrolyzer", itemClassLoc);
-    		ItemStack personalSafe = ItemUtil.getItem("personalSafe", itemClassLoc);
-    		ItemStack energyOMat = ItemUtil.getItem("energyOMat", itemClassLoc);
-    		ItemStack reBattery = ItemUtil.getItem("reBattery", itemClassLoc);
-    		ItemStack canner = ItemUtil.getItem("canner", itemClassLoc);
-    		ItemStack teslaCoil = ItemUtil.getItem("teslaCoil", itemClassLoc);
-    		ItemStack mvTransformer = ItemUtil.getItem("mvTransformer", itemClassLoc);
-    		ItemStack solarPanel = ItemUtil.getItem("solarPanel", itemClassLoc);
-    		ItemStack generator = ItemUtil.getItem("generator", itemClassLoc);
-    		ItemStack reactorHeatSwitch = ItemUtil.getItem("reactorHeatSwitch", itemClassLoc);
-    		ItemStack denseCopperPlate = ItemUtil.getItem("denseCopperPlate", itemClassLoc);
-    		ItemStack reactorHeatpack = ItemUtil.getItem("reactorHeatpack", itemClassLoc);
-    		ItemStack lavaCell = ItemUtil.getItem("lavaCell", itemClassLoc);
-    		ItemStack hvTransformer = ItemUtil.getItem("hvTransformer", itemClassLoc);
-    		ItemStack trippleInsulatedIronCableItem = ItemUtil.getItem("trippleInsulatedIronCableItem", itemClassLoc);
-    		ItemStack energyCrystal = ItemUtil.getItem("energyCrystal", itemClassLoc);
-    		ItemStack remote = ItemUtil.getItem("remote", itemClassLoc);
-    		ItemStack detectorCableItem = ItemUtil.getItem("detectorCableItem", itemClassLoc);
-    		ItemStack lapotronCrystal = ItemUtil.getItem("lapotronCrystal", itemClassLoc);
-    		ItemStack miningDrill = ItemUtil.getItem("miningDrill", itemClassLoc);
-    		ItemStack chargedReBattery = ItemUtil.getItem("chargedReBattery", itemClassLoc);
-    		ItemStack chainsaw = ItemUtil.getItem("chainsaw", itemClassLoc);
-    		ItemStack odScanner = ItemUtil.getItem("odScanner", itemClassLoc);
-    		ItemStack electricWrench = ItemUtil.getItem("electricWrench", itemClassLoc);
-    		ItemStack wrench = ItemUtil.getItem("wrench", itemClassLoc);
-    		ItemStack electricTreetap = ItemUtil.getItem("electricTreetap", itemClassLoc);
-    		ItemStack ecMeter = ItemUtil.getItem("ecMeter", itemClassLoc);
-    		ItemStack electricHoe = ItemUtil.getItem("electricHoe", itemClassLoc);
-    		ItemStack frequencyTransmitter = ItemUtil.getItem("frequencyTransmitter", itemClassLoc);
-    		ItemStack advancedCircuit = ItemUtil.getItem("advancedCircuit", itemClassLoc);
-    		ItemStack batPack = ItemUtil.getItem("batPack", itemClassLoc);
-    		
-    		OreDictionary.registerOre("copperWire", copperWire);
-            OreDictionary.registerOre("electronicCircuit", electronicCircuit);
-    		
-    		advRecipes.addRecipe(electroFurnace, new Object[]{ " C ", "RFR", 'C', 
-    		"electronicCircuit", 'R', Item.redstone, 'F', ironFurnace});
-    		advRecipes.addRecipe(macerator, new Object[] { "FFF", "SMS", " C ", 'F',Item.flint, 
-    		'S',Block.cobblestone, 'M',machineBlock, 'C',"electronicCircuit"});
-    		advRecipes.addRecipe(extractor, new Object[] { "TMT", "TCT", 'T', treetap, 
-    		'M', machineBlock, 'C', "electronicCircuit" });
-    		advRecipes.addRecipe(compressor, new Object[] { "S S", "SMS", "SCS", 'S', Block.stone, 
-    		'M', machineBlock, 'C', "electronicCircuit" });
-    		advRecipes.addRecipe(miner, new Object[] { "CMC", " P ", " P ", 'P', miningPipe, 
-    		'M', machineBlock, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(pump, new Object[] { "cCc", "cMc", "PTP", 'c', cell, 'T', treetap, 
-    	    'P', miningPipe, 'M', machineBlock, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(electrolyzer, new Object[] { "c c", "cCc", "EME", 'E', cell, 'c', "copperWire", 
-    	    'M', machineBlock, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(personalSafe, new Object[] { "c", "M", "C",'c', "electronicCircuit", 
-    	    'C', Block.chest, 'M', machineBlock });
-    	    advRecipes.addRecipe(energyOMat, new Object[] { "RBR", "CMC", 'R', Item.redstone, 'C', "copperWire", 
-    	    'M', machineBlock, 'B', reBattery });
-    	    advRecipes.addRecipe(canner, new Object[] { "TCT", "TMT", "TTT", 'T', "ingotTin", 'M', machineBlock, 
-    	    'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(teslaCoil, new Object[] { "RRR", "RMR", "ICI", 'M', mvTransformer, 'R', Item.redstone, 
-    	    'C', "electronicCircuit", 'I', "ingotRefinedIron" });
-    	    advRecipes.addRecipe(solarPanel, new Object[] { "CgC", "gCg", "cGc", 'G', generator, 'C', "dustCoal", 
-    	    'g', Block.glass, 'c', "electronicCircuit" });
-    	    advRecipes.addRecipe(reactorHeatSwitch, new Object[] { " c ", "TCT", " T ", 'c', "electronicCircuit", 'T', "ingotTin", 
-    	    'C', denseCopperPlate });
-    	    advRecipes.addRecipe(reactorHeatpack, new Object[] { "c", "L", "C", 'c', "electronicCircuit", 'C', denseCopperPlate, 
-    	    'L', lavaCell });
-    	    advRecipes.addRecipe(hvTransformer, new Object[] { " c ", "CED", " c ", 'E', mvTransformer, 'c', 
-    	    trippleInsulatedIronCableItem, 'D', energyCrystal, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(remote, new Object[] { " c ", "GCG", "TTT", 'c', "copperWire", 'G', Item.lightStoneDust, 
-    	    'C', "electronicCircuit", 'T', Block.tnt });
-    	    advRecipes.addRecipe(detectorCableItem, new Object[] { " C ", "RIR", " R ", 'R', Item.redstone, 
-    	    'I', trippleInsulatedIronCableItem, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(lapotronCrystal, new Object[] { "LCL", "LDL", "LCL", 'D', energyCrystal, 'C', "electronicCircuit", 
-    	    'L', new ItemStack(Item.dyePowder, 1, 4) });
-    	    advRecipes.addRecipe(miningDrill, new Object[] { " I ", "ICI", "IBI", 'I', "ingotRefinedIron", 
-    	    'B', reBattery, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(miningDrill, new Object[] { " I ", "ICI", "IBI", 'I', "ingotRefinedIron", 
-    	    'B', chargedReBattery, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(chainsaw, new Object[] { " II", "ICI", "BI ", 'I', "ingotRefinedIron", 
-    	    'B', reBattery, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(chainsaw, new Object[] { " II", "ICI", "BI ", 'I', "ingotRefinedIron", 
-    	    'B', chargedReBattery, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(odScanner, new Object[] { " G ", "CBC", "ccc", 'B', reBattery, 
-    	    'c', "copperWire", 'G', Item.lightStoneDust, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(odScanner, new Object[] { " G ", "CBC", "ccc", 'B', chargedReBattery, 
-    	    'c', "copperWire", 'G', Item.lightStoneDust, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(electricWrench, new Object[] { "  W", " C ", "B  ", 'W', wrench, 
-    	    'B', reBattery, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(electricWrench, new Object[] { "  W", " C ", "B  ", 'W', wrench, 
-    	    'B', chargedReBattery, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(electricTreetap, new Object[] { "  W", " C ", "B  ", 'W', treetap, 
-    	    'B', reBattery, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(electricTreetap, new Object[] { "  W", " C ", "B  ", 'W', treetap, 
-    	    'B', chargedReBattery, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(ecMeter, new Object[] { " G ", "cCc", "c c", 'G', Item.lightStoneDust, 
-    	    'c', "copperWire", 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(electricHoe, new Object[] { "II ", " C ", " B ", 'I', "ingotRefinedIron", 
-    	    'B', reBattery, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(electricHoe, new Object[] { "II ", " C ", " B ", 'I', "ingotRefinedIron", 
-    	    'B', chargedReBattery, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(advancedCircuit, new Object[] { "RGR", "LCL", "RGR", 'L', new ItemStack(Item.dyePowder, 1, 4), 
-    	    'G', Item.lightStoneDust, 'R', Item.redstone, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(advancedCircuit, new Object[] { "RLR", "GCG", "RLR", 'L', new ItemStack(Item.dyePowder, 1, 4), 
-    	    'G', Item.lightStoneDust, 'R', Item.redstone, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(electronicCircuit, new Object[] { "CCC", "RIR", "CCC", 'I', "ingotRefinedIron", 
-    	    'R', Item.redstone, 'C', "copperWire" });
-    	    advRecipes.addRecipe(electronicCircuit, new Object[] { "CRC", "CIC", "CRC", 'I', "ingotRefinedIron", 
-    	    'R', Item.redstone, 'C', "copperWire" });
-    	    advRecipes.addRecipe(batPack, new Object[] { "BCB", "BTB", "B B", 'T', "ingotTin", 'C', "electronicCircuit", 'B', chargedReBattery });
-    	    advRecipes.addRecipe(batPack, new Object[] { "BCB", "BTB", "B B", 'T', "ingotTin", 'C', "electronicCircuit", 'B', reBattery });
-    	    
-    	    advRecipes.addShapelessRecipe(frequencyTransmitter, new Object[] { "electronicCircuit", "copperWire" });
-    	}
-    }
 }

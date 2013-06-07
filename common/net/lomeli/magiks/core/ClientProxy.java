@@ -45,6 +45,8 @@ public class ClientProxy extends CommonProxy
         RenderIDs.mancerWTID = RenderingRegistry.getNextAvailableRenderId();
         RenderIDs.hollowWoodID = RenderingRegistry.getNextAvailableRenderId();
         RenderIDs.chestID = RenderingRegistry.getNextAvailableRenderId();
+        
+        RenderIDs.liquidNeoStillID = RenderingRegistry.getNextAvailableRenderId();
 
         ClientRegistry.bindTileEntitySpecialRenderer(
                 TileEntityKineticGenerator.class,

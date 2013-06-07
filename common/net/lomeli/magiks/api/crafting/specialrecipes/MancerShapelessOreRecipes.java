@@ -16,6 +16,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import net.lomeli.magiks.api.crafting.MancerShapelessRecipes;
 
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class MancerShapelessOreRecipes implements IRecipe
 {
 	private ItemStack output = null;

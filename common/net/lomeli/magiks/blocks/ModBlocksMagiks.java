@@ -7,6 +7,7 @@ import net.lomeli.magiks.api.libs.MagiksArrays;
 
 import net.lomeli.magiks.blocks.aesthetic.BlockMechroPanes;
 import net.lomeli.magiks.blocks.aesthetic.BlockMecroGlass;
+import net.lomeli.magiks.blocks.liquids.BlockNeoStill;
 import net.lomeli.magiks.blocks.machine.BlockBuilderCore;
 import net.lomeli.magiks.blocks.machine.BlockKineticGenerator;
 import net.lomeli.magiks.blocks.machine.BlockMancerWorkTable;
@@ -31,13 +32,21 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ModBlocksMagiks
 {
-    public static Block neoniteOre, neoniteBlock, kineticGenerator,
-            manceryBlock, manceryGlass, stamaticOre, igniousOre,
-            solarMistCollector, dupeFurnace, burningStone,
-            manceryBrick, obsidianStairs, manceryBlockStairs, manceryBrickStairs,
-            burningStoneStairs, netherIgnious, copperOre, tinOre, silverOre,
-            smallCoil, mancerWorkTable, hollowWood, linkingChest, manceryPane,
-            oreCrusher, stamaticBlock, igniousBlock, builderBlock, builderCore;
+	//Others
+    public static Block manceryBlock, manceryGlass, burningStone, manceryBrick,
+    	obsidianStairs, manceryBlockStairs, manceryBrickStairs, burningStoneStairs, 
+        mancerWorkTable, hollowWood, linkingChest, manceryPane;
+    
+    //Ores
+    public static Block neoniteOre, copperOre, tinOre, silverOre, igniousOre, 
+    	neoniteBlock, netherIgnious, stamaticOre, stamaticBlock, igniousBlock;
+    
+    //Machines
+    public static Block kineticGenerator, solarMistCollector, oreCrusher, 
+    	smallCoil, builderBlock, builderCore, dupeFurnace;
+    
+    //Liquids
+    public static Block neoStill;//, neoMoving;
 
     public static void registerBlocks()
     {
@@ -112,6 +121,7 @@ public class ModBlocksMagiks
             .setUnlocalizedName("igniousBlock").setCreativeTab(Magiks.modTab);
         builderCore = new BlockBuilderCore(ItemIDs.builderCoreID).setUnlocalizedName("builderCore");
         builderBlock = new BlockBuilderDummy(ItemIDs.builderDummyID);
+        neoStill = new BlockNeoStill(ItemIDs.neoStillID);
         
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");
         GameRegistry.registerBlock(neoniteBlock, "Neonite Block");
@@ -134,6 +144,7 @@ public class ModBlocksMagiks
         GameRegistry.registerBlock(igniousBlock, "Ignious Block");
         GameRegistry.registerBlock(builderCore, "Builder");
         GameRegistry.registerBlock(builderBlock, "BuilderBlock");
+        GameRegistry.registerBlock(neoStill, "Liquid Neonite");
         
         GameRegistry.registerBlock(obsidianStairs, "Obsidian Stairs");
         GameRegistry.registerBlock(manceryBlockStairs, "Mancery Stone Stairs");
@@ -165,6 +176,7 @@ public class ModBlocksMagiks
         LanguageRegistry.addName(igniousBlock, "Ignious Block");
         LanguageRegistry.addName(builderCore, "Builder (In development, DO NOT USE)");
         LanguageRegistry.addName(builderBlock, "Builder (In development, DO NOT USE)");
+        LanguageRegistry.addName(neoStill, "Liquid Neonite");
         
         LanguageRegistry.addName(obsidianStairs, "Obsidian Stairs");
         LanguageRegistry.addName(manceryBlockStairs, "Mancery Stone Stairs");

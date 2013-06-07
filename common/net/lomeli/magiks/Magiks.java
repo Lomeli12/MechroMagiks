@@ -1,7 +1,9 @@
 package net.lomeli.magiks;
 
+import java.io.IOException;
+
 import net.lomeli.lomlib.util.LogHelper;
-import net.lomeli.magiks.addons.AddonCheck;
+
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.blocks.worldgen.MagikWorldGen;
@@ -11,10 +13,11 @@ import net.lomeli.magiks.core.config.ConfigMod;
 import net.lomeli.magiks.core.handler.GuiHandler;
 import net.lomeli.magiks.core.handler.ItemDroppedHandler;
 import net.lomeli.magiks.core.handler.PlayerInteractHandler;
-import net.lomeli.magiks.core.handler.WandCraftingHandler;
-//import net.lomeli.magiks.core.helper.UpdateHelper;
+import net.lomeli.magiks.core.handler.MagiksCraftingHandler;
+import net.lomeli.magiks.core.helper.UpdateHelper;
 import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.recipes.AddonRecipes;
 import net.lomeli.magiks.recipes.MagiksRecipes;
 import net.lomeli.magiks.tileentity.TileEntityKineticGenerator;
 import net.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
@@ -31,6 +34,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+//import cpw.mods.fml.common.event.
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -80,7 +84,7 @@ public class Magiks
         ModItemsMagiks.addChargeableItems();
 
         GameRegistry.registerWorldGenerator(new MagikWorldGen());
-        GameRegistry.registerCraftingHandler(new WandCraftingHandler());
+        GameRegistry.registerCraftingHandler(new MagiksCraftingHandler());
         
         MagiksRecipes.registerRecipes();
         MagiksRecipes.addDoubleOres();
@@ -93,9 +97,9 @@ public class Magiks
     }
 
     @PostInit
-    public void postLoad(FMLPostInitializationEvent event)
+    public void postLoad(FMLPostInitializationEvent event) throws IOException
     {
-    	//UpdateHelper.isUpdated(Strings.XML_URL);
-    	AddonCheck.checkAddons();
+    	UpdateHelper.execute(Strings.FILE_URL);
+    	AddonRecipes.getInstance().loadAddons();   
     }
 }

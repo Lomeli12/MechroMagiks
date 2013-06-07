@@ -27,7 +27,7 @@ public class ModItemsMagiks
 {	
     //Tools
     public static Item neonitePick, chestLinker, weatherRockets, 
-    	burningUpgrade, smeltingUpgrade;
+    	burningUpgrade, smeltingUpgrade, grindingPick;
     
     //crafting materails
     public static Item mistPanel, deprivedDust, electroicCircuit, 
@@ -59,9 +59,9 @@ public class ModItemsMagiks
 
     public static void registerItems()
     {
-        flyingRing = new ItemFlyingRing(ItemIDs.flyingRingID, "flyingring")
+        flyingRing = new ItemFlyingRing(ItemIDs.flyingRingID, "tools/flyingring")
                 .setUnlocalizedName("flyingring");
-        neoniteGem = new ItemGeneric(ItemIDs.enchantedGemID, "neoniteGem", true)
+        neoniteGem = new ItemGeneric(ItemIDs.enchantedGemID, "ingots/neoniteGem", true)
                 .setUnlocalizedName("enchantedGem");
         enchantedDiamond = new ItemGeneric(ItemIDs.enchantedDiamondID,
                 "empowereddiamond", true)
@@ -70,11 +70,11 @@ public class ModItemsMagiks
                 .setUnlocalizedName("ironBand");
         ironStick = new ItemGeneric(ItemIDs.ironStickID, "ironstick", false)
                 .setUnlocalizedName("ironStick");
-        emeraldAmulet = new ItemAmulets(ItemIDs.emeraldAmuletID, "amuletGold", true, 1000)
+        emeraldAmulet = new ItemAmulets(ItemIDs.emeraldAmuletID, "tools/amuletGold", true, 1000)
                 .setUnlocalizedName("amulet");
-        ingotStamatic = new ItemGeneric(ItemIDs.ingotStamaticID, "ingotstamatic",
+        ingotStamatic = new ItemGeneric(ItemIDs.ingotStamaticID, "ingots/ingotstamatic",
                 false).setUnlocalizedName("ingotstamatic");
-        ingotIgnious = new ItemGeneric(ItemIDs.ingotIgniousID, "ingotignious",
+        ingotIgnious = new ItemGeneric(ItemIDs.ingotIgniousID, "ingots/ingotignious",
                 false).setUnlocalizedName("ingotignious");
         mistPanel = new ItemGeneric(ItemIDs.mistPanelID, "lighthungryplates",
                 false).setUnlocalizedName("mistPanel");
@@ -86,13 +86,13 @@ public class ModItemsMagiks
                 "burningupgrade").setDescription("Increase smelting luck by 2.5%").setUnlocalizedName("burningupgrade");
         ironPlate = new ItemGeneric(ItemIDs.ironPlateID, "ironplate", false)
                 .setUnlocalizedName("ironplate");
-        ingotCopper = new ItemGeneric(ItemIDs.ingotCopperID, "ingotCopper", false)
+        ingotCopper = new ItemGeneric(ItemIDs.ingotCopperID, "ingots/ingotCopper", false)
         		.setUnlocalizedName("ingotCopper");
-        ingotTin = new ItemGeneric(ItemIDs.ingotTinID, "ingotTin", false)
+        ingotTin = new ItemGeneric(ItemIDs.ingotTinID, "ingots/ingotTin", false)
 			.setUnlocalizedName("ingotTin");
-        ingotSilver = new ItemGeneric(ItemIDs.ingotSilverID, "ingotSilver", false)
+        ingotSilver = new ItemGeneric(ItemIDs.ingotSilverID, "ingots/ingotSilver", false)
 			.setUnlocalizedName("ingotSilver");
-        chestLinker = new ItemChestLink(ItemIDs.chestLinkerID, "chestLinker")
+        chestLinker = new ItemChestLink(ItemIDs.chestLinkerID, "tools/chestLinker")
         	.setUnlocalizedName("chestLinker");
         electroicCircuit = new ItemGeneric(ItemIDs.circuitID, "electronicCircuit", false)
         	.setUnlocalizedName("electronicCircuit");
@@ -111,29 +111,29 @@ public class ModItemsMagiks
         wand = new ItemGeneric(ItemIDs.wandID, "magicianwand", false)
             .setCreativeTab(null).setUnlocalizedName("wand");
 
-        basicWand = new ItemWands(ItemIDs.basicWandID, "basicwand", false, 50)
+        basicWand = new ItemWands(ItemIDs.basicWandID, "tools/basicwand", false, 50)
                 .setUnlocalizedName("basicwand");
-        chemistWand = new ItemWands(ItemIDs.chemistWandID, "chemistwand", false,
+        chemistWand = new ItemWands(ItemIDs.chemistWandID, "tools/chemistwand", false,
                 100).setUnlocalizedName("chemistwand");
-        alchemistWand = new ItemWands(ItemIDs.alchemistWandID, "alchemistwand",
+        alchemistWand = new ItemWands(ItemIDs.alchemistWandID, "tools/alchemistwand",
                 true, 300).setUnlocalizedName("alchemistwand");
 
         neonitePick = new ItemEmpoweredPick(ItemIDs.empoweredPickID,
-                EnumToolMaterial.IRON, "pickaxeEmpowered")
+                EnumToolMaterial.IRON, "tools/pickaxeEmpowered")
                 .setUnlocalizedName("empoweredPick");
         levelingSword = new ItemLevelingSword(ItemIDs.spencerSwordID, EnumToolMaterial.IRON,
-                "levelingsword").setUnlocalizedName("lvlSword");
+                "tools/levelingsword").setUnlocalizedName("lvlSword");
         pirasVarinha = new ItemPirasVarinha(ItemIDs.pirasVarinhaID,
-                "pirasvarinha", false).setUnlocalizedName("pirasvarinha");
-        diggersWandS = new ItemMiningWands(ItemIDs.diggersWandID, "diggerswand",
+                "tools/pirasvarinha", false).setUnlocalizedName("pirasvarinha");
+        diggersWandS = new ItemMiningWands(ItemIDs.diggersWandID, "tools/diggerswand",
                 EnumWandStrength.STONE).setUnlocalizedName("diggerswandS");
-        diggersWandI = new ItemMiningWands(ItemIDs.diggersWandIronID, "diggerswand",
+        diggersWandI = new ItemMiningWands(ItemIDs.diggersWandIronID, "tools/diggerswand",
         		EnumWandStrength.IRON).setUnlocalizedName("diggersWandI");
-        diggersWandD = new ItemMiningWands(ItemIDs.diggersWandDiamondID, "diggerswand",
+        diggersWandD = new ItemMiningWands(ItemIDs.diggersWandDiamondID, "tools/diggerswand",
         		EnumWandStrength.DIAMOND).setUnlocalizedName("diggersWandD");
         bluePrint = new ItemMachineBluePrints(ItemIDs.bluePrintID)
         	.setUnlocalizedName("blueprints");
-        ingotVesi = new ItemGeneric(ItemIDs.ingotVesiID, "ingotVesi", false)
+        ingotVesi = new ItemGeneric(ItemIDs.ingotVesiID, "ingots/ingotVesi", false)
         	.setUnlocalizedName("vesiingot");
         dustIron = new ItemGeneric(ItemIDs.dustIronID, "dusts/irondust", false)
         	.setUnlocalizedName("dustiron");
@@ -153,6 +153,8 @@ public class ModItemsMagiks
     		.setUnlocalizedName("dustlead");
         dustVesi = new ItemGeneric(ItemIDs.dustVesiID, "dusts/vesidust", false)
         	.setUnlocalizedName("dustvesi");
+        grindingPick = new ItemGeneric(ItemIDs.grindingPickID, "tools/grindingPick", false)
+        	.setMaxDamage(5).setMaxStackSize(1).setUnlocalizedName("grindingPick");
         
         OreDictionary.registerOre("ingotCopper", ingotCopper);
         OreDictionary.registerOre("ingotTin", ingotTin);
@@ -198,6 +200,7 @@ public class ModItemsMagiks
         LanguageRegistry.addName(electroicCircuit, "Electronic Circuit");
         LanguageRegistry.addName(copperWire, "Copper Wire");
         LanguageRegistry.addName(smeltingUpgrade, ToolTipUtil.CYAN + "Smelting Upgrade");
+        LanguageRegistry.addName(grindingPick, "Grinding Pick");
         
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 0),  "Sunny Rocket");
         LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 1),  "Morning Rocket");
@@ -243,10 +246,10 @@ public class ModItemsMagiks
         MagiksArrays.rechargeableItems.add(new ItemStack(chemistWand));
         MagiksArrays.rechargeableItems.add(new ItemStack(alchemistWand));
 
-        /*
         MagiksArrays.damageOnCraft.add(new ItemStack(basicWand));
         MagiksArrays.damageOnCraft.add(new ItemStack(chemistWand));
-        MagiksArrays.damageOnCraft.add(new ItemStack(alchemistWand));*/
+        MagiksArrays.damageOnCraft.add(new ItemStack(alchemistWand));
+        MagiksArrays.damageOnCraft.add(new ItemStack(grindingPick));
 
         MagiksArrays.wands.add(new ItemStack(basicWand));
         MagiksArrays.wands.add(new ItemStack(chemistWand));

@@ -1,80 +1,73 @@
 package net.lomeli.magiks.core.helper;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.ConnectException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Properties;
+import java.net.InetAddress;
+import java.util.Scanner;
 import java.util.logging.Level;
-
-import javax.xml.parsers.*;
 
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.lib.Strings;
 
-import org.xml.sax.*;
-import org.w3c.dom.*;
-
 public class UpdateHelper 
-{
-	private static Properties xmlProperties = new Properties();
+{	
+	public static UpdateHelper instance = new UpdateHelper();
 	
-	public static void isUpdated(String xml)
+	public static void execute(String textURL) throws IOException
 	{
-		double installedVersion = Double.parseDouble(Strings.VERSION);
-		String updatedVersion = null;
-		
-		Magiks.logger.log(Level.INFO, "Checking for newer versions.");
-		try {
-			URL xmlURL = new URL(xml);
-			InputStream xmlStream = xmlURL.openStream();
-			xmlProperties.loadFromXML(xmlStream);
+		new Thread(run(textURL));
+	}
+	
+	public static Runnable run(String textURL) throws IOException
+	{
+		int trys = 0;
+		while(trys < 5)
+		{
+			if(instance.isUpdated(textURL))
+				break;
+			else
+				Magiks.logger.log(Level.INFO, "Failed to update, trying again. Attempt:" + (trys + 1));
 			
-			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			
-			dbf.setValidating(false);
-			dbf.setFeature("http://xml.org/sax/features/namespaces", false);
-			dbf.setFeature("http://xml.org/sax/features/validation", false);
-			dbf.setFeature("http://apache.org/xml/features/nonvalidating/load-dtd-grammar", false);
-			dbf.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
-			
-			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document doc = null;
-			try
-			{
-				doc = db.parse(xmlStream);
-			}catch (ConnectException ce)
-			{
-				Magiks.logger.log(Level.INFO, "");
-			}
-			
-			doc.getDocumentElement().normalize();
-			
-			NodeList nodeList = doc.getElementsByTagName("version");
-			updatedVersion = nodeList.toString();
-			
-			if(updatedVersion != null)
-			{
-				if(installedVersion >= Double.parseDouble(updatedVersion))
-				{
-					Magiks.logger.log(Level.INFO, Strings.MOD_NAME + " is up-to-date.");
-				}
-				else
-				{
-					Magiks.logger.log(Level.INFO, " A new version of " + Strings.MOD_ID + ", " +
-						updatedVersion + " has been found. Download it at: bit.ly/ZIj6I9");
-				}
-			}
-			xmlStream.close();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (ParserConfigurationException pce) {
-            System.out.println(pce.getMessage());
-        } catch (SAXException se) {
-            System.out.println(se.getMessage());
-        } catch (IOException ioe) {
-            System.err.println(ioe.getMessage());
+			trys++;
+		}
+		return null;
+	}
+	
+	public boolean isUpdated(String textURL) throws IOException
+	{
+		boolean bool = false;
+		try
+        {
+			InetAddress iAdd = InetAddress.getByName("127.0.0.1");
+	        URL url = new URL(textURL);
+	        if(!iAdd.isReachable(10))
+	        {
+	        	@SuppressWarnings("resource")
+                Scanner scan = new Scanner(url.openStream());
+	        
+	        	double currentVersion = Double.parseDouble(Strings.VERSION_AS_DOUBLE);
+	        	double latestVersion = scan.nextDouble();
+	        
+	        	if(latestVersion > currentVersion)
+	        		Magiks.logger.log(Level.WARNING, "A new version of MechroMagiks (version " + 
+	        			scan.next() + ") is avaliable: " + scan.next());
+	        	else
+	        		Magiks.logger.log(Level.INFO, "Using latest version.");
+	        	
+	        	bool = true;
+	        }
+	        else
+	        {
+	        	Magiks.logger.log(Level.WARNING, "Could not connect to update server.");
+	        	bool = false;
+	        }
+
+        } 
+		catch (IOException e)
+        {
+	        e.printStackTrace();
         }
+		
+		return bool;
 	}
 }

@@ -15,6 +15,7 @@ public class ItemIDs
     public static int copperWireID;
     public static int wirelessRecieverID;
     public static int advRecieverID;
+    public static int grindingPickID;
     
     public static int darkMatterID;
     public static int deprivedDustID;
@@ -77,6 +78,7 @@ public class ItemIDs
     public static int igniousBlockID;
     public static int builderCoreID;
     public static int builderDummyID;
+    public static int neoStillID;
     
     //ores
     public static int stamaticOreID;

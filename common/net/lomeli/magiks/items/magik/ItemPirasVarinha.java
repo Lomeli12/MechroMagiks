@@ -38,10 +38,8 @@ public class ItemPirasVarinha extends ItemGeneric
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world,
-            EntityPlayer player)
+    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
     {
-
         if (itemStack.getItemDamage() <= itemStack.getMaxDamage() - 11)
         {
             if (!ConfigMod.disablePiras)
@@ -64,7 +62,7 @@ public class ItemPirasVarinha extends ItemGeneric
         {
             player.sendChatToPlayer("Not enough Mist!");
         }
-        return itemStack;
+        return true;
     }
 
     @Override

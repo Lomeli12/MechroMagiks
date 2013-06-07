@@ -5,12 +5,13 @@ public class Strings
     public static final String MOD_ID = "magiks";
     public static final String MOD_NAME = "MechroMagiks";
     public static final String VERSION = "0.0.8";
+    public static final String VERSION_AS_DOUBLE = "0.08";
     public static final String NO_TEXTURE = "missingNo";
 
     public static final String COMMON_PROXY = "net.lomeli.magiks.core.CommonProxy";
     public static final String CLIENT_PROXY = "net.lomeli.magiks.core.ClientProxy";
     
-    public static final String XML_URL = "https://dl.dropboxusercontent.com/u/17430088/Minecraft%20Mods/Magiks/update.xml";
+    public static final String FILE_URL = "https://dl.dropboxusercontent.com/u/17430088/Minecraft%20Mods/Magiks/update.txt";
 
     public static String containterKineticGen = "container.kineticgen";
     public static String kineticGenName = "Kinetic Generator";

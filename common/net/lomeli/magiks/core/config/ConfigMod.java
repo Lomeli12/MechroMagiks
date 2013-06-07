@@ -90,6 +90,7 @@ public class ConfigMod
         ItemIDs.dustLeadID = config.get("Dusts", "leadDust", 7049).getInt(7049);
         ItemIDs.dustVesiID = config.get("Dusts", "vesiDust", 7050).getInt(7050);
         ItemIDs.smeltingUpgradeID = config.get("Itmes", "smeltingUpgrade", 7051).getInt(7051);
+        ItemIDs.grindingPickID = config.get("Tools", "grindingPick", 7052).getInt(7052);
 
         config.save();
     }
@@ -140,6 +141,7 @@ public class ConfigMod
         ItemIDs.igniousBlockID = config.get("Blocks", "igniousBlock", 726).getInt(726);
         ItemIDs.builderCoreID = config.get("Machines", "builderCore", 727).getInt(727);
         ItemIDs.builderDummyID = config.get("Machines", "builderDummy", 728).getInt(728);
+        ItemIDs.neoStillID = config.get("Liquids", "liquidNeoniteStll", 729).getInt(729);
         
         config.save();
     }

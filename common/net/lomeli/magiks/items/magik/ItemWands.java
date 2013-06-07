@@ -2,15 +2,16 @@ package net.lomeli.magiks.items.magik;
 
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.items.ItemGeneric;
+import net.lomeli.magiks.items.ModItemsMagiks;
 
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class ItemWands extends ItemGeneric
 {
-	//private static TileEntityMagiks connection;
     public ItemWands(int par1, String Texture, boolean special, int damage)
     {
         super(par1, Texture, special);
@@ -21,7 +22,12 @@ public class ItemWands extends ItemGeneric
     @Override
     public boolean doesContainerItemLeaveCraftingGrid(ItemStack itemstack)
     {
-        return true;
+    	if(itemstack.getItem() instanceof ItemWands)
+    		return false;
+    	else if(itemstack.getItem() == ModItemsMagiks.pirasVarinha)
+    		return false;
+    	else
+    		return true;
     }
 
     @Override
@@ -35,8 +41,18 @@ public class ItemWands extends ItemGeneric
     public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
     {
     	int regBlock = world.getBlockId(x, y, z);
-    	System.out.println(regBlock);
+    	
+    	double newPosX = hitX;
+    	double newPosY = hitY + player.getYOffset();
+    	double newPosZ = hitZ;
+    	
+    	AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(newPosX - 0.5D, newPosY - 0.5D, newPosZ - 0.5D, newPosX + 0.5D, newPosY + 0.5D, newPosZ + 0.5D);
+    	EntityItem entity = (EntityItem)world.findNearestEntityWithinAABB(EntityItem.class, bb, player);
+    	
     	boolean result = false;
+    	
+    	if(entity != null)
+    		player.sendChatToPlayer(entity.getTranslatedEntityName());
     	
     	if(regBlock == 5)
     	{
@@ -53,10 +69,5 @@ public class ItemWands extends ItemGeneric
     		}
     	}
     	return result;
-    }
-    
-    public static void setTile(TileEntity tile)
-    {
-    	//connection = tile;
     }
 }

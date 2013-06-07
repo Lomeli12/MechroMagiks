@@ -9,4 +9,7 @@ public class RenderIDs
     public static int largeCoilID;
     public static int hollowWoodID;
     public static int chestID;
+    
+    
+    public static int liquidNeoStillID;
 }
