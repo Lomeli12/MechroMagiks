@@ -43,7 +43,7 @@ public class ModBlocksMagiks
     
     //Machines
     public static Block kineticGenerator, solarMistCollector, oreCrusher, 
-    	smallCoil, builderBlock, builderCore, dupeFurnace;
+    	smallCoil, builderBlock, builderCore, dupeFurnace, updateDetector;
     
     //Liquids
     public static Block neoStill;//, neoMoving;

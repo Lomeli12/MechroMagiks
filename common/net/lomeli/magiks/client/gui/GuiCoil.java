@@ -54,9 +54,9 @@ public class GuiCoil extends GuiContainer
         fontRenderer.drawString("/" + tileEntity.getMaxMistLevel(), 
                 xStart + 10, yStart - 50, 4210752);
         fontRenderer.drawString("Generators: " + tileEntity.connectedGen, 
-        		xStart, yStart-45, 4210752);
-        fontRenderer.drawString("Machines:    " + tileEntity.connectedMachine, 
         		xStart, yStart-35, 4210752);
+        fontRenderer.drawString("Machines:    " + tileEntity.connectedMachine, 
+        		xStart, yStart-25, 4210752);
     }
 	
 	@Override

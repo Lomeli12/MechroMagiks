@@ -34,7 +34,7 @@ public class ItemSolarMistCollectorRenderer implements IItemRenderer
     public void renderItem(ItemRenderType type, ItemStack item, Object... data)
     {
     	if(type == ItemRenderType.EQUIPPED)
-			renderSMC(0.25F, 1.5F, 0.25F, 1.25F);
+			renderSMC(0.25F, 2F, 0.25F, 1.25F);
 		else
 			renderSMC(0F, 1F, 0F, 1.0F);
     }

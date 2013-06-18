@@ -1,8 +1,5 @@
 package net.lomeli.magiks.client.gui.slot;
 
-import net.lomeli.lomlib.item.ItemUtil;
-import net.lomeli.lomlib.util.ModLoaded;
-import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
 
 import net.minecraft.block.Block;
@@ -15,6 +12,7 @@ import net.minecraft.stats.AchievementList;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
+import net.minecraftforge.oredict.OreDictionary;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -48,7 +46,7 @@ public class SlotMistCrafting extends Slot
      */
     public boolean isItemValid(ItemStack par1ItemStack)
     {
-        return false;
+        return true;
     }
 
     /**
@@ -139,6 +137,15 @@ public class SlotMistCrafting extends Slot
         	case 1:
         		if(this.tileEntity.getStackInSlot(17) != null)
         		{
+        			for(ItemStack circut : OreDictionary.getOres("electronicCircuit"))
+        			{
+        				if(this.tileEntity.getStackInSlot(17).isItemEqual(circut))
+        					this.tileEntity.decrStackSize(17, 1);
+        			}
+        		}
+        		/*
+        		if(this.tileEntity.getStackInSlot(17) != null)
+        		{
         			if(this.tileEntity.getStackInSlot(17).isItemEqual(new ItemStack(ModItemsMagiks.electroicCircuit)))
         				this.tileEntity.decrStackSize(17, 1);
         			if(ModLoaded.isModInstalled("IC2", false))
@@ -146,7 +153,7 @@ public class SlotMistCrafting extends Slot
         				if(this.tileEntity.getStackInSlot(17).isItemEqual(ItemUtil.getItem("electronicCircuit", "ic2.core.Ic2Items")))
         					this.tileEntity.decrStackSize(17, 1);
         			}
-        		}
+        		}*/
         		break;
         	default:
         		break;

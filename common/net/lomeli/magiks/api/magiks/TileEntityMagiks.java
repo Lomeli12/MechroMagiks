@@ -4,7 +4,7 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityMagiks extends TileEntity implements IMagiks
 {
-	public EnumMagiksType getType()
+	public EnumMachineTypes getType()
 	{
 		return null;
 	}

@@ -1,7 +1,7 @@
 package net.lomeli.magiks.tileentity;
 
 import net.lomeli.magiks.api.libs.MagiksArrays;
-import net.lomeli.magiks.api.magiks.EnumMagiksType;
+import net.lomeli.magiks.api.magiks.EnumMachineTypes;
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.core.handler.ErrorHandler;
 import net.lomeli.magiks.lib.Strings;
@@ -25,14 +25,14 @@ public class TileEntityCoil extends TileEntityMagiks
 	
 	public int connectedGen, connectedMachine, localBatboxs;
 	
-	private EnumMagiksType type;
+	private EnumMachineTypes type;
 	
 	public TileEntityCoil()
 	{
 		inventory = new ItemStack[1];
 		maxMistLevel = 7000;
 		scanRadius = 10;
-		type = EnumMagiksType.BATBOX;
+		type = EnumMachineTypes.BATBOX;
 	}
 	
 	@Override
@@ -82,7 +82,7 @@ public class TileEntityCoil extends TileEntityMagiks
 					if(tile != null && tile.getClass().getSuperclass().equals(TileEntityMagiks.class))
 					{
 						TileEntityMagiks mistMachine = (TileEntityMagiks)tile;
-						if(mistMachine.getType().equals(EnumMagiksType.MACHINE))
+						if(mistMachine.getType().equals(EnumMachineTypes.MACHINE))
 						{
 							connectedMachine++;
 							if(mistLevel > 0 && mistMachine.getMistLevel() < mistMachine.getMaxMistLevel())
@@ -91,7 +91,7 @@ public class TileEntityCoil extends TileEntityMagiks
 								mistMachine.addToMistLevel(1);
 							}
 						}
-						else if(mistMachine.getType().equals(EnumMagiksType.GENERATOR))
+						else if(mistMachine.getType().equals(EnumMachineTypes.GENERATOR))
 						{
 							connectedGen++;
 							if(mistLevel < maxMistLevel && mistMachine.getMistLevel() > 0)
@@ -100,7 +100,7 @@ public class TileEntityCoil extends TileEntityMagiks
 								mistLevel++;
 							}
 						}
-						else if(mistMachine.getType().equals(EnumMagiksType.BATBOX))
+						else if(mistMachine.getType().equals(EnumMachineTypes.BATBOX))
 						{
 							localBatboxs++;
 							if(mistLevel < 100 && mistMachine.getMistLevel() > 0)
@@ -130,7 +130,7 @@ public class TileEntityCoil extends TileEntityMagiks
     }
 	
 	@Override
-	public EnumMagiksType getType()
+	public EnumMachineTypes getType()
 	{
 		return type;
 	}

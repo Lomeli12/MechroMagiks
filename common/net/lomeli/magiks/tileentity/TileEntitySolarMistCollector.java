@@ -1,7 +1,7 @@
 package net.lomeli.magiks.tileentity;
 
 import net.lomeli.magiks.api.libs.MagiksArrays;
-import net.lomeli.magiks.api.magiks.EnumMagiksType;
+import net.lomeli.magiks.api.magiks.EnumMachineTypes;
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.lib.Strings;
 
@@ -19,16 +19,18 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
 {	
 	public TileEntityMagiks connected;
     
-	public int maxMistLevel = 2000, mistLevel, generationTime = 0;
+	public int maxMistLevel = 2000, 
+			mistLevel, 
+			generationTime = 0;
 	
-	private EnumMagiksType type;
+	private EnumMachineTypes type;
 	
     private ItemStack[] inventory;
 
     public TileEntitySolarMistCollector()
     {
         inventory = new ItemStack[1];
-        type = EnumMagiksType.GENERATOR;
+        type = EnumMachineTypes.GENERATOR;
     }
 
     @Override
@@ -75,12 +77,12 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
                 }
             }
             if (this.worldObj.canBlockSeeTheSky(xCoord, yCoord, zCoord) && this.worldObj.isDaytime()
-            		&& !this.worldObj.isRaining() && !this.worldObj.isThundering())
+            	&& !this.worldObj.isRaining() && !this.worldObj.isThundering())
             {
                 if (this.getMistLevel() <= this.getMaxMistLevel())
                 {
                 	this.generationTime++;
-                	if(this.generationTime >= 10)
+                	if(this.generationTime >= 30)
                 	{
                 		this.addToMistLevel(1);
                 		this.generationTime = 0;
@@ -92,7 +94,7 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
     }
     
     @Override
-	public EnumMagiksType getType()
+	public EnumMachineTypes getType()
 	{
 		return type;
 	}
@@ -206,9 +208,8 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
     {
         ItemStack itemStack = getStackInSlot(slot);
         if (itemStack != null)
-        {
             setInventorySlotContents(slot, null);
-        }
+        
         return itemStack;
     }
 
@@ -217,9 +218,8 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
     {
         inventory[slot] = itemStack;
         if (itemStack != null && itemStack.stackSize > getInventoryStackLimit())
-        {
             itemStack.stackSize = getInventoryStackLimit();
-        }
+        
     }
 
 	@Override
@@ -234,7 +234,7 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
 	public void closeChest() {}
 
 	@Override
-	public boolean isStackValidForSlot(int i, ItemStack itemstack) 
+	public boolean isStackValidForSlot(int i, ItemStack itemstack)
 	{
 		ItemStack slotItem = this.inventory[i];
 		if(slotItem == null)

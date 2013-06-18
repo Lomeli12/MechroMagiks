@@ -1,6 +1,6 @@
 package net.lomeli.magiks.tileentity;
 
-import net.lomeli.magiks.api.magiks.EnumMagiksType;
+import net.lomeli.magiks.api.magiks.EnumMachineTypes;
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.lib.Strings;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,16 +14,16 @@ public class TileEntityWeatherBlock extends TileEntityMagiks implements
 {
     private ItemStack[] inventory;
     
-    private EnumMagiksType type;
+    private EnumMachineTypes type;
     
     public TileEntityWeatherBlock()
     {
         inventory = new ItemStack[1];
-        type = EnumMagiksType.MACHINE;
+        type = EnumMachineTypes.MACHINE;
     }
     
     @Override
-	public EnumMagiksType getType()
+	public EnumMachineTypes getType()
 	{
 		return type;
 	}

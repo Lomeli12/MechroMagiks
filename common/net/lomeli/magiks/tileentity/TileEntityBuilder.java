@@ -1,6 +1,6 @@
 package net.lomeli.magiks.tileentity;
 
-import net.lomeli.magiks.api.magiks.EnumMagiksType;
+import net.lomeli.magiks.api.magiks.EnumMachineTypes;
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.lib.Strings;
@@ -17,14 +17,14 @@ public class TileEntityBuilder extends TileEntityMagiks
 	@SuppressWarnings("unused")
     private int mistLevel, maxMistLevel, processingTime, formationDir;
 	
-	private EnumMagiksType type;
+	private EnumMachineTypes type;
 	
 	private boolean valid;
 	
 	public TileEntityBuilder()
 	{
 		inventory = new ItemStack[2];
-		type = EnumMagiksType.MACHINE;
+		type = EnumMachineTypes.MACHINE;
 		maxMistLevel = 1000;
 	}
 	
@@ -187,7 +187,7 @@ public class TileEntityBuilder extends TileEntityMagiks
     }
 
 	@Override
-	public EnumMagiksType getType()
+	public EnumMachineTypes getType()
 	{
 		return type;
 	}

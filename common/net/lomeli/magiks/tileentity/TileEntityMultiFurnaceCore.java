@@ -3,7 +3,7 @@ package net.lomeli.magiks.tileentity;
 import java.util.Random;
 
 import net.lomeli.magiks.api.libs.MagiksArrays;
-import net.lomeli.magiks.api.magiks.EnumMagiksType;
+import net.lomeli.magiks.api.magiks.EnumMachineTypes;
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
@@ -42,11 +42,11 @@ public class TileEntityMultiFurnaceCore extends TileEntityMagiks implements
 
     private boolean isValidMultiblock;
 
-    private EnumMagiksType type;
+    private EnumMachineTypes type;
     
     public TileEntityMultiFurnaceCore()
     {
-    	type = EnumMagiksType.MACHINE;
+    	type = EnumMachineTypes.MACHINE;
     }
     
     @Override
@@ -62,7 +62,7 @@ public class TileEntityMultiFurnaceCore extends TileEntityMagiks implements
     }
 	
 	@Override
-	public EnumMagiksType getType()
+	public EnumMachineTypes getType()
 	{
 		return type;
 	}

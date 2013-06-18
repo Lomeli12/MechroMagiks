@@ -1,7 +1,7 @@
 package net.lomeli.magiks.tileentity;
 
 import net.lomeli.magiks.api.machines.OreCrusherManager;
-import net.lomeli.magiks.api.magiks.EnumMagiksType;
+import net.lomeli.magiks.api.magiks.EnumMachineTypes;
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.lib.Strings;
 
@@ -26,13 +26,13 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 	
 	public int processingTime;
 	
-	private EnumMagiksType type;
+	private EnumMachineTypes type;
 	
 	public TileEntityOreCrusher()
 	{
 		inventory = new ItemStack[3];
 		this.maxMistLevel = 3000;
-		type = EnumMagiksType.MACHINE;
+		type = EnumMachineTypes.MACHINE;
 	}
 	
 	public int getProgress()
@@ -66,7 +66,7 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
     }
 	
 	@Override
-	public EnumMagiksType getType()
+	public EnumMachineTypes getType()
 	{
 		return type;
 	}

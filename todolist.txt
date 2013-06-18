@@ -1,0 +1,11 @@
+MechroMagiks ToDo list
+ - Update comments for Item/Block API to list all metadata items/blocks
+ - Update API javadoc
+ - Clean up older sections of the code
+ - Work on GUI for Solar Mist Gen, Small Coil, and Ore Crusher
+ - Work on Machine Builder multi-Block
+ - Work on Atmosphere Sheild
+ - Work on "Weather Block"
+ - Work on Food Processor
+ - Work on Heaven's Wrath
+ - Work on Coal Generator

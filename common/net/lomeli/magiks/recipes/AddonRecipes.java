@@ -1,10 +1,12 @@
 package net.lomeli.magiks.recipes;
 
+import net.lomeli.lomlib.block.BlockUtil;
 import net.lomeli.lomlib.item.ItemUtil;
 import net.lomeli.lomlib.util.ModLoaded;
 
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.items.ModItemsMagiks;
+import net.lomeli.magiks.api.MechroMagiksAPI;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -15,6 +17,7 @@ import ic2.api.recipe.ICraftingRecipeManager;
 import ic2.api.recipe.Recipes;
 
 import thermalexpansion.api.crafting.CraftingManagers;
+import thermalexpansion.api.item.ItemRegistry;
 
 public class AddonRecipes
 {
@@ -35,16 +38,46 @@ public class AddonRecipes
 	{
 		if(ModLoaded.isModInstalled("ThermalExpansion", false))
 		{
+			ItemStack richSlag = ItemRegistry.getItem("slagRich", 1);
+			ItemStack dustObsidian = ItemRegistry.getItem("dustObsidian", 1);
+			ItemStack dustNickel = ItemRegistry.getItem("dustNickel", 1);
+			ItemStack dustNickel2 = ItemRegistry.getItem("dustNickel", 2);
+			ItemStack dustPlatinum = ItemRegistry.getItem("dustPlatinum", 1);
+			ItemStack dustElectrum = ItemRegistry.getItem("dustElectrum", 1);
+			ItemStack dustInvar = ItemRegistry.getItem("dustInvar", 1);
+			
+			ItemStack ingots = ItemRegistry.getItem("ingotNickel", 1);
+			
+			ItemStack ferrousOre = BlockUtil.getBlockFromModWithMeta("blockOre", 4, "thermalexpansion.block.TEBlocks");
+			
 			CraftingManagers.pulverizerManager.addRecipe(400, 
-				new ItemStack(ModBlocksMagiks.stamaticOre), new ItemStack(ModItemsMagiks.dustStamatic, 2));
+				new ItemStack(ModBlocksMagiks.stamaticOre), new ItemStack(ModItemsMagiks.ingotDust, 2, 2));
 			CraftingManagers.pulverizerManager.addRecipe(400, 
-				new ItemStack(ModBlocksMagiks.igniousOre), new ItemStack(ModItemsMagiks.dustIgnious, 2));
+				new ItemStack(ModBlocksMagiks.igniousOre), new ItemStack(ModItemsMagiks.ingotDust, 2, 3));
 			CraftingManagers.pulverizerManager.addRecipe(200, 
-				new ItemStack(ModItemsMagiks.ingotStamatic), new ItemStack(ModItemsMagiks.dustStamatic));
+				new ItemStack(ModItemsMagiks.ingotStamatic), ModItemsMagiks.dustStamatic);
 			CraftingManagers.pulverizerManager.addRecipe(200, 
-				new ItemStack(ModItemsMagiks.ingotIgnious), new ItemStack(ModItemsMagiks.dustIgnious));
+				new ItemStack(ModItemsMagiks.ingotIgnious), ModItemsMagiks.dustIgnious);
 			CraftingManagers.pulverizerManager.addRecipe(200, 
-					new ItemStack(ModItemsMagiks.ingotVesi), new ItemStack(ModItemsMagiks.dustVesi));
+				new ItemStack(ModItemsMagiks.ingotVesi), ModItemsMagiks.dustVesi);
+			
+			CraftingManagers.smelterManager.addRecipe(320, new ItemStack(ModBlocksMagiks.stamaticOre), 
+					new ItemStack(Block.sand), new ItemStack(ModItemsMagiks.ingotStamatic, 2));
+			CraftingManagers.smelterManager.addRecipe(360, new ItemStack(ModBlocksMagiks.stamaticOre), 
+					richSlag, new ItemStack(ModItemsMagiks.ingotStamatic, 2), 
+					ModItemsMagiks.dustVesi, 75);
+			CraftingManagers.smelterManager.addRecipe(400, new ItemStack(ModBlocksMagiks.stamaticOre), 
+				new ItemStack(Block.sand), new ItemStack(ModItemsMagiks.ingotStamatic, 2), 
+				ModItemsMagiks.dustVesi, 10);
+			CraftingManagers.smelterManager.addRecipe(320, new ItemStack(ModBlocksMagiks.igniousOre), 
+					new ItemStack(Block.sand), new ItemStack(ModItemsMagiks.ingotIgnious, 2));
+			
+			MechroMagiksAPI.addCrushableOre(Block.obsidian.blockID, dustObsidian);
+			MechroMagiksAPI.addCrushableOre(ferrousOre.itemID, dustNickel2, 4);
+			MechroMagiksAPI.addCrushableOre(ingots.itemID, dustNickel, 40);
+			MechroMagiksAPI.addCrushableOre(ingots.itemID, dustPlatinum, 41);
+			MechroMagiksAPI.addCrushableOre(ingots.itemID, dustElectrum, 38);
+			MechroMagiksAPI.addCrushableOre(ingots.itemID, dustInvar, 39);
 		}
 	}
 	
@@ -54,15 +87,15 @@ public class AddonRecipes
 		if(ModLoaded.isModInstalled("IC2", false))
 		{
 			Recipes.macerator.addRecipe(new ItemStack(ModBlocksMagiks.stamaticOre), 
-				new ItemStack(ModItemsMagiks.dustStamatic, 2));
+				new ItemStack(ModItemsMagiks.ingotDust, 2, 2));
 			Recipes.macerator.addRecipe(new ItemStack(ModBlocksMagiks.igniousOre), 
-				new ItemStack(ModItemsMagiks.dustIgnious, 2));
+				new ItemStack(ModItemsMagiks.ingotDust, 2, 3));
 			Recipes.macerator.addRecipe(new ItemStack(ModItemsMagiks.ingotStamatic), 
-				new ItemStack(ModItemsMagiks.dustStamatic));
+				ModItemsMagiks.dustStamatic);
 			Recipes.macerator.addRecipe(new ItemStack(ModItemsMagiks.ingotIgnious), 
-				new ItemStack(ModItemsMagiks.dustIgnious));
+				ModItemsMagiks.dustIgnious);
 			Recipes.macerator.addRecipe(new ItemStack(ModItemsMagiks.ingotVesi), 
-					new ItemStack(ModItemsMagiks.dustVesi));
+				ModItemsMagiks.dustVesi);
 			
 			ICraftingRecipeManager advRecipes = Recipes.advRecipes;
 			

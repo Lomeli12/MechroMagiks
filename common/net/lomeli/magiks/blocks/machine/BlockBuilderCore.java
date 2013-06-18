@@ -1,9 +1,13 @@
 package net.lomeli.magiks.blocks.machine;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.lomeli.magiks.Magiks;
+import net.lomeli.magiks.lib.Strings;
 import net.lomeli.magiks.tileentity.TileEntityBuilder;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -24,6 +28,13 @@ public class BlockBuilderCore extends BlockContainer
     {
 	    super(par1, Material.iron);
 	    this.setCreativeTab(Magiks.modTab);
+    }
+	
+	@Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister iconRegister)
+    {
+        blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":" + Strings.NO_TEXTURE);
     }
 	
 	@Override

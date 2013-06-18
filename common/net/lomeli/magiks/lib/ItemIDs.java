@@ -16,6 +16,7 @@ public class ItemIDs
     public static int wirelessRecieverID;
     public static int advRecieverID;
     public static int grindingPickID;
+    public static int processedFoodID;
     
     public static int darkMatterID;
     public static int deprivedDustID;
@@ -43,15 +44,7 @@ public class ItemIDs
     public static int ingotSilverID;
     public static int ingotVesiID;
     
-    public static int dustIronID;
-    public static int dustGoldID;
-    public static int dustStamaticID;
-    public static int dustIgniousID;
-    public static int dustCopperID;
-    public static int dustTinID;
-    public static int dustSilverID;
-    public static int dustLeadID;
-    public static int dustVesiID;
+    public static int dustIngotsID;
 
     public static int enchantedOreID;
     public static int enchantedBlockID;

@@ -145,7 +145,7 @@ public class MagiksRecipes
         GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.smeltingUpgrade, 1), new Object[]
         		{ " G ", "SPS", "III", 'G', Item.ingotGold, 'S', Item.sugar, 'I',ModItemsMagiks.ironPlate,
         		'P',new ItemStack(Item.potion, 1,8194)});
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustVesi, 4), "dustTin",
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustVesi.getItem(), 4, 8), "dustTin",
     			ModItemsMagiks.dustStamatic, "dustSilver", "dustSilver"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItemsMagiks.grindingPick), true, "TTF",
         		" ST", "S T", 'S',Item.stick, 'F',Item.flint, 'T',"ingotTin"));
@@ -194,44 +194,44 @@ public class MagiksRecipes
     public static void registerOreCrusherRecipes()
     {
     	MechroMagiksAPI.addCrushableOre(Block.cobblestone.blockID, new ItemStack(Block.sand));
-    	MechroMagiksAPI.addCrushableOre(Block.oreIron.blockID, new ItemStack(ModItemsMagiks.dustIron, 2));
-    	MechroMagiksAPI.addCrushableOre(Block.oreGold.blockID, new ItemStack(ModItemsMagiks.dustGold, 2));
+    	MechroMagiksAPI.addCrushableOre(Block.oreIron.blockID, new ItemStack(ModItemsMagiks.ingotDust, 2, 0));
+    	MechroMagiksAPI.addCrushableOre(Block.oreGold.blockID, new ItemStack(ModItemsMagiks.ingotDust, 2, 1));
     	MechroMagiksAPI.addCrushableOre(ModBlocksMagiks.stamaticOre.blockID, 
-    		new ItemStack(ModItemsMagiks.dustStamatic, 2));
+    		new ItemStack(ModItemsMagiks.ingotDust, 2, 2));
     	MechroMagiksAPI.addCrushableOre(ModBlocksMagiks.igniousOre.blockID, 
-    		new ItemStack(ModItemsMagiks.dustIgnious, 2));
+    		new ItemStack(ModItemsMagiks.ingotDust, 2, 3));
     	
-    	MechroMagiksAPI.addCrushableOre(Item.ingotIron.itemID, new ItemStack(ModItemsMagiks.dustIron));
-    	MechroMagiksAPI.addCrushableOre(Item.ingotGold.itemID, new ItemStack(ModItemsMagiks.dustGold));
+    	MechroMagiksAPI.addCrushableOre(Item.ingotIron.itemID, ModItemsMagiks.dustIron);
+    	MechroMagiksAPI.addCrushableOre(Item.ingotGold.itemID, ModItemsMagiks.dustGold);
     	MechroMagiksAPI.addCrushableOre(ModItemsMagiks.ingotStamatic.itemID, 
-    		new ItemStack(ModItemsMagiks.dustStamatic));
+    		ModItemsMagiks.dustStamatic);
     	MechroMagiksAPI.addCrushableOre(ModItemsMagiks.ingotIgnious.itemID, 
-        		new ItemStack(ModItemsMagiks.dustIgnious));
+        	ModItemsMagiks.dustIgnious);
     	MechroMagiksAPI.addCrushableOre(ModItemsMagiks.ingotVesi.itemID, 
-    		new ItemStack(ModItemsMagiks.dustVesi));
+    		ModItemsMagiks.dustVesi);
     	
     	for(ItemStack copper : OreDictionary.getOres("ingotCopper"))
     	{
     		MechroMagiksAPI.addCrushableOre(copper.itemID, copper.getItemDamage(),
-    	    	new ItemStack(ModItemsMagiks.dustCopper));
+    	    	ModItemsMagiks.dustCopper);
     	}
     	for(ItemStack tin : OreDictionary.getOres("ingotTin"))
     	{
     		MechroMagiksAPI.addCrushableOre(tin.itemID, tin.getItemDamage(),
-    	    	new ItemStack(ModItemsMagiks.dustTin));
+    	    	ModItemsMagiks.dustTin);
     	}
     	for(ItemStack silver : OreDictionary.getOres("ingotSilver"))
     	{
     		MechroMagiksAPI.addCrushableOre(silver.itemID, silver.getItemDamage(),
-    	    	new ItemStack(ModItemsMagiks.dustSilver));
+    	    	ModItemsMagiks.dustSilver);
     	}
     	for(ItemStack lead : OreDictionary.getOres("ingotLead"))
     	{
     		if(lead != null)
     		{
     			MechroMagiksAPI.addCrushableOre(lead.itemID, lead.getItemDamage(),
-    				new ItemStack(ModItemsMagiks.dustLead));
-    			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustLead), 
+    				ModItemsMagiks.dustLead);
+    			GameRegistry.addRecipe(new ShapelessOreRecipe(ModItemsMagiks.dustLead, 
         			"ingotLead", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
     		}
     	}
@@ -239,59 +239,59 @@ public class MagiksRecipes
     	for(ItemStack copper : OreDictionary.getOres("oreCopper"))
     	{
     		MechroMagiksAPI.addCrushableOre(copper.itemID, copper.getItemDamage(),
-    	    	new ItemStack(ModItemsMagiks.dustCopper, 2));
+    	    	new ItemStack(ModItemsMagiks.ingotDust, 2, 4));
     	}
     	for(ItemStack tin : OreDictionary.getOres("oreTin"))
     	{
     		MechroMagiksAPI.addCrushableOre(tin.itemID, tin.getItemDamage(),
-    	    	new ItemStack(ModItemsMagiks.dustTin, 2));
+    	    	new ItemStack(ModItemsMagiks.ingotDust, 2, 5));
     	}
     	for(ItemStack silver : OreDictionary.getOres("oreSilver"))
     	{
     		MechroMagiksAPI.addCrushableOre(silver.itemID, silver.getItemDamage(),
-    	    	new ItemStack(ModItemsMagiks.dustSilver, 2));
+    	    	new ItemStack(ModItemsMagiks.ingotDust, 2, 6));
     	}
     	for(ItemStack lead : OreDictionary.getOres("oreLead"))
     	{
     		if(lead != null)
     		{
     			MechroMagiksAPI.addCrushableOre(lead.itemID, lead.getItemDamage(),
-    				new ItemStack(ModItemsMagiks.dustLead));
-    			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustLead, 2), 
+    				ModItemsMagiks.dustLead);
+    			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.ingotDust, 2, 7), 
     				"oreLead", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
     		}
     	}
     	
-    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustCopper), 
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(ModItemsMagiks.dustCopper, 
 			"ingotCopper", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
-    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustTin), 
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(ModItemsMagiks.dustTin, 
 			"ingotTin", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
-    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustSilver), 
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(ModItemsMagiks.dustSilver, 
 			"ingotSilver", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
-    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustIgnious), 
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(ModItemsMagiks.dustIgnious, 
 			ModItemsMagiks.ingotIgnious, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
-    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustStamatic), 
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(ModItemsMagiks.dustStamatic, 
     		ModItemsMagiks.ingotStamatic, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
-    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustVesi), 
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(ModItemsMagiks.dustVesi, 
 			ModItemsMagiks.ingotVesi, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
-    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustIron), 
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(ModItemsMagiks.dustIron, 
 			Item.ingotIron, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
-    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustGold), 
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(ModItemsMagiks.dustGold, 
 			Item.ingotGold, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
     	
-    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustCopper, 2), 
+    	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.ingotDust, 2, 4), 
     		"oreCopper", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustTin, 2), 
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.ingotDust, 2, 5), 
     		"oreTin", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustSilver, 2), 
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.ingotDust, 2, 6), 
     		"oreSilver", new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustIgnious, 2), 
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.ingotDust, 2, 3), 
     		ModBlocksMagiks.igniousOre, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustStamatic, 2), 
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.ingotDust, 2, 2), 
         	ModBlocksMagiks.stamaticOre, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustIron, 2), 
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.ingotDust, 2, 0), 
     		Block.oreIron, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.dustGold, 2), 
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItemsMagiks.ingotDust, 2, 1), 
     		Block.oreGold, new ItemStack(ModItemsMagiks.grindingPick, 1, WILDCARD_DAMAGE_VALUE)));
     }
 

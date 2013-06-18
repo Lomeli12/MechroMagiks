@@ -100,11 +100,13 @@ public class ItemAPI
      * ingotCopper
      * ingotTin;
      * ingotSilver
+     * ingotVesi
      * basicWand
      * chemistWand
      * alchemistWand
      * pirasVarinha
      * diggersWand
      * wand
+     * ingotDust - 0 for Iron Dust, 1 for Gold Dust, 2 for Stamatic Dust, 3 for Ignious Dust, 4 for Copper Dust, 5 for Tin Dust, 6 for Silver Dust, 7 for Lead Dust, 8 for Vesi Dust
      */
 }

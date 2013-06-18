@@ -1,6 +1,6 @@
 package net.lomeli.magiks.api.magiks;
 
-public enum EnumMagiksType
+public enum EnumMachineTypes
 {
 	GENERATOR	(0),
 	MACHINE		(1),
@@ -9,7 +9,7 @@ public enum EnumMagiksType
 	
 	private final int type;
 	
-	private EnumMagiksType(int types)
+	private EnumMachineTypes(int types)
 	{
 		type = types;
 	}

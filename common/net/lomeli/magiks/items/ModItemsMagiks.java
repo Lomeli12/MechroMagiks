@@ -21,12 +21,24 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ModItemsMagiks
 {	
+	public static String[] foodNames = { "Lean Steak", "Lean Pork", "Lean Chicken", "DeBoned Fish", 
+    	"Enriched Apple", "Seedless Melon", "Peeled Carrot", "Peeled Potato", "Pink Sludge", "Pumken Slice", 
+    	"Soylent Green" };
+	public static String[] rockets = { "Sunny Rocket", "Morning Rocket", 
+    	"Noctornal Rocket", "Dark Rocket", "Cloudy Rocket", "Ender Rocket"};
+	public static String[] bluePrints = { "Large Mist Coil BluePrint", "Atmospheric Disruptor BluePrint", 
+		"Adv. Ore Crusher BluePrint", "Area Detoxifier BluePrint", "Matter Generator BluePrint", 
+		"Lava Generator BluePrint", "Matter Condenser BluePrint" };
+	public static String[] dustNames = { "Iron Dust", "Gold Dust", "Stamatic Dust", "Ignious Dust", 
+		"Copper Dust", "Tin Dust", "Silver Dust", "Lead Dust", "Vesi Dust"};
+	
     //Tools
-    public static Item neonitePick, chestLinker, weatherRockets, 
+    public static Item neonitePick, chestLinker, 
     	burningUpgrade, smeltingUpgrade, grindingPick;
     
     //crafting materails
@@ -43,11 +55,19 @@ public class ModItemsMagiks
     	ingotTin, ingotSilver, ingotVesi, neoniteGem;
     
     // dust
-    public static Item dustIron, dustGold, dustStamatic, dustIgnious, 
+    public static Item ingotDust;
+    public static ItemStack dustIron, dustGold, dustStamatic, dustIgnious, 
     	dustCopper, dustTin, dustSilver, dustLead, dustVesi;
     
     //blueprints
     public static Item bluePrint;
+    public static ItemStack bpCoil, bpAtmos, bpOre, bpArea, 
+    	bpGen, bpLava, bpMatter;
+    
+    //Rockets
+    public static Item weatherRockets;
+    public static ItemStack sunRocket, mornRocket, nocRocket,
+    	darkRocket, cloudRocket, endRocket;
     
     // wands
     public static Item basicWand, chemistWand, alchemistWand;
@@ -56,6 +76,11 @@ public class ModItemsMagiks
     public static Item diggersWandS, diggersWandI, diggersWandD;
 
     public static Item wand;
+    
+    //Food
+    public static Item processedFood;
+    public static ItemStack pSteak, pPork, pChicken, pFish, pApple, 
+    	pMelon, pCarrot, pPotato, pSludge, pPumpkin, soylentGreen;
 
     public static void registerItems()
     {
@@ -105,9 +130,6 @@ public class ModItemsMagiks
         smeltingUpgrade = new ItemUpgrades(ItemIDs.smeltingUpgradeID, "speedUpgrade")
         	.setDescription("Speeds up smelting by 5 ticks").setUnlocalizedName("speed");
         
-        weatherRockets = new ItemWeatherRockets(ItemIDs.weatherRocketsID, "rockets")
-        	.setUnlocalizedName("rockets");
-        
         wand = new ItemGeneric(ItemIDs.wandID, "magicianwand", false)
             .setCreativeTab(null).setUnlocalizedName("wand");
 
@@ -131,28 +153,9 @@ public class ModItemsMagiks
         		EnumWandStrength.IRON).setUnlocalizedName("diggersWandI");
         diggersWandD = new ItemMiningWands(ItemIDs.diggersWandDiamondID, "tools/diggerswand",
         		EnumWandStrength.DIAMOND).setUnlocalizedName("diggersWandD");
-        bluePrint = new ItemMachineBluePrints(ItemIDs.bluePrintID)
-        	.setUnlocalizedName("blueprints");
+        
         ingotVesi = new ItemGeneric(ItemIDs.ingotVesiID, "ingots/ingotVesi", false)
         	.setUnlocalizedName("vesiingot");
-        dustIron = new ItemGeneric(ItemIDs.dustIronID, "dusts/irondust", false)
-        	.setUnlocalizedName("dustiron");
-        dustGold = new ItemGeneric(ItemIDs.dustGoldID, "dusts/golddust", false)
-        	.setUnlocalizedName("dustgold");
-        dustStamatic = new ItemGeneric(ItemIDs.dustStamaticID, "dusts/stamaticdust", false)
-        	.setUnlocalizedName("duststamatic");
-        dustIgnious = new ItemGeneric(ItemIDs.dustIgniousID, "dusts/igniousdust", false)
-        	.setUnlocalizedName("dustignious");
-        dustCopper = new ItemGeneric(ItemIDs.dustCopperID, "dusts/copperdust", false)
-        	.setUnlocalizedName("dustcopper");
-        dustTin = new ItemGeneric(ItemIDs.dustTinID, "dusts/tindust", false)
-    		.setUnlocalizedName("dusttin");
-        dustSilver = new ItemGeneric(ItemIDs.dustSilverID, "dusts/silverdust", false)
-    		.setUnlocalizedName("dustsilver");
-        dustLead = new ItemGeneric(ItemIDs.dustLeadID, "dusts/leaddust", false)
-    		.setUnlocalizedName("dustlead");
-        dustVesi = new ItemGeneric(ItemIDs.dustVesiID, "dusts/vesidust", false)
-        	.setUnlocalizedName("dustvesi");
         grindingPick = new ItemGeneric(ItemIDs.grindingPickID, "tools/grindingPick", false)
         	.setMaxDamage(5).setMaxStackSize(1).setUnlocalizedName("grindingPick");
         
@@ -163,13 +166,6 @@ public class ModItemsMagiks
         OreDictionary.registerOre("copperWire", copperWire);
         OreDictionary.registerOre("electronicCircuit", electroicCircuit);
         
-        OreDictionary.registerOre("dustIron", dustIron);
-        OreDictionary.registerOre("dustGold", dustGold);
-        OreDictionary.registerOre("dustCopper", dustCopper);
-        OreDictionary.registerOre("dustTin", dustTin);
-        OreDictionary.registerOre("dustSilver", dustSilver);
-        OreDictionary.registerOre("dustLead", dustLead);
-
         LanguageRegistry.addName(flyingRing, "ShadowWing's Gale");
         LanguageRegistry.addName(neoniteGem, "Neonite Gem");
         LanguageRegistry.addName(neonitePick, "Neonite Pickaxe");
@@ -202,34 +198,83 @@ public class ModItemsMagiks
         LanguageRegistry.addName(smeltingUpgrade, ToolTipUtil.CYAN + "Smelting Upgrade");
         LanguageRegistry.addName(grindingPick, "Grinding Pick");
         
-        LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 0),  "Sunny Rocket");
-        LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 1),  "Morning Rocket");
-        LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 2),  "Noctornal Rocket");
-        LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 3),  "Dark Rocket");
-        LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 4),  "Cloudy Rocket");
-        LanguageRegistry.addName(new ItemStack(weatherRockets, 1, 5),  "Ender Rocket");
-        
         LanguageRegistry.addName(wirelessReciever, "Wireless Reciever");
         LanguageRegistry.addName(advReciever, "Advanced Wireless Reciever");
         
-        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 0), "Large Mist Coil BluePrint");
-        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 1), "Atmospheric Disruptor BluePrint");
-        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 2), "Adv. Ore Crusher BluePrint");
-        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 3), "Area Detoxifier BluePrint");
-        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 4), "Matter Generator BluePrint");
-        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 5), "Lava Generator BluePrint");
-        LanguageRegistry.addName(new ItemStack(bluePrint, 1, 6), "Matter Condenser BluePrint");
-        
         LanguageRegistry.addName(ingotVesi, "Vesi Ingot");
-        LanguageRegistry.addName(dustIron, "Iron Dust");
-        LanguageRegistry.addName(dustGold, "Gold Dust");
-        LanguageRegistry.addName(dustStamatic, "Stamatic Dust");
-        LanguageRegistry.addName(dustIgnious, "Ignious Dust");
-        LanguageRegistry.addName(dustCopper, "Copper Dust");
-        LanguageRegistry.addName(dustTin, "Tin Dust");
-        LanguageRegistry.addName(dustSilver, "Silver Dust");
-        LanguageRegistry.addName(dustLead, "Lead Dust");
-        LanguageRegistry.addName(dustVesi, "Vesi Dust");
+        
+        // Meta Data items
+        ingotDust = new ItemDusts(ItemIDs.dustIngotsID);
+        GameRegistry.registerItem(ingotDust, "dusts");
+        for(int i = 0; i < 9; i++)
+        {
+        	LanguageRegistry.addName(new ItemStack(ingotDust , 1, i), dustNames[i]);
+        }
+        
+        dustIron = new ItemStack(ingotDust, 1, 0);
+        dustGold = new ItemStack(ingotDust, 1, 1);
+        dustStamatic = new ItemStack(ingotDust, 1, 2);
+        dustIgnious  = new ItemStack(ingotDust, 1, 3);
+    	dustCopper = new ItemStack(ingotDust, 1, 4);
+    	dustTin = new ItemStack(ingotDust, 1, 5);
+    	dustSilver = new ItemStack(ingotDust, 1, 6);
+    	dustLead = new ItemStack(ingotDust, 1, 7);
+    	dustVesi = new ItemStack(ingotDust, 1, 8);
+    	
+    	OreDictionary.registerOre("dustIron", dustIron);
+        OreDictionary.registerOre("dustGold", dustGold);
+        OreDictionary.registerOre("dustCopper", dustCopper);
+        OreDictionary.registerOre("dustTin", dustTin);
+        OreDictionary.registerOre("dustSilver", dustSilver);
+        OreDictionary.registerOre("dustLead", dustLead);
+        
+        weatherRockets = new ItemWeatherRockets(ItemIDs.weatherRocketsID, "rockets").setUnlocalizedName("rockets");
+        GameRegistry.registerItem(weatherRockets, "rockets");
+        for(int i = 0; i < 6; i++)
+        {
+        	LanguageRegistry.addName(new ItemStack(weatherRockets, 1, i),  rockets[i]);
+        }
+        
+        sunRocket = new ItemStack(weatherRockets, 1, 0);
+        mornRocket = new ItemStack(weatherRockets, 1, 1); 
+        nocRocket = new ItemStack(weatherRockets, 1, 2);
+    	darkRocket = new ItemStack(weatherRockets, 1, 3);
+    	cloudRocket = new ItemStack(weatherRockets, 1, 4);
+    	endRocket = new ItemStack(weatherRockets, 1, 5);
+        
+    	bluePrint = new ItemMachineBluePrints(ItemIDs.bluePrintID).setUnlocalizedName("bluePrint");
+    	GameRegistry.registerItem(bluePrint, "bluePrint");
+    	for(int i = 0; i < 7; i++)
+    	{
+    		LanguageRegistry.addName(new ItemStack(bluePrint, 1, i), bluePrints[i]);
+    	}
+    	
+    	bpCoil = new ItemStack(bluePrint, 1, 0);
+    	bpAtmos = new ItemStack(bluePrint, 1, 1);
+    	bpOre = new ItemStack(bluePrint, 1, 2);
+    	bpArea = new ItemStack(bluePrint, 1, 3);
+    	bpGen = new ItemStack(bluePrint, 1, 4);
+    	bpLava = new ItemStack(bluePrint, 1, 5);
+    	bpMatter = new ItemStack(bluePrint, 1, 6);
+    	
+        processedFood = new ItemProcessedFood(9000).setUnlocalizedName("processedFood");
+        GameRegistry.registerItem(processedFood, "processedFood");
+        for(int i = 0; i < 11; i++)
+        {
+        	LanguageRegistry.addName(new ItemStack(processedFood, 1, i), foodNames[i]);
+        }
+        
+        pSteak = new ItemStack(processedFood, 1, 0);
+        pPork = new ItemStack(processedFood, 1, 1);
+        pChicken = new ItemStack(processedFood, 1, 2);
+        pFish = new ItemStack(processedFood, 1, 3);
+        pApple = new ItemStack(processedFood, 1, 4);
+        pMelon = new ItemStack(processedFood, 1, 5);
+        pCarrot = new ItemStack(processedFood, 1, 6);
+        pPotato = new ItemStack(processedFood, 1, 7);
+        pSludge = new ItemStack(processedFood, 1, 8);
+        pPumpkin = new ItemStack(processedFood, 1, 9);
+        soylentGreen = new ItemStack(processedFood, 1, 10);
     }
 
     public static void addChargeableItems()
