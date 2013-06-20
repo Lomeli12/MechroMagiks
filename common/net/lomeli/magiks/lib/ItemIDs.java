@@ -72,6 +72,7 @@ public class ItemIDs
     public static int builderCoreID;
     public static int builderDummyID;
     public static int neoStillID;
+    public static int jouleBoxID;
     
     //ores
     public static int stamaticOreID;

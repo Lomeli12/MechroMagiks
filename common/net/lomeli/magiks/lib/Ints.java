@@ -9,4 +9,6 @@ public class Ints
 	public static int copperGen;
 	public static int tinGen;
 	public static int silverGen;
+	
+	public static int mjMistConversionRate;
 }

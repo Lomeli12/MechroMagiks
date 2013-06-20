@@ -38,19 +38,15 @@ public class TileEntityCoil extends TileEntityMagiks
 	@Override
     public void updateEntity()
     {
-        if (this.worldObj != null)
+		scanArea();
+        if(inventory[0] != null)
         {
-        	scanArea();
-        	
-        	if(inventory[0] != null)
+        	if(inventory[0].getItemDamage() > 0)
         	{
-        		if(inventory[0].getItemDamage() > 0)
+        		if(canRecharge(inventory[0]) && this.mistLevel > 0)
         		{
-        			if(canRecharge(inventory[0]) && this.mistLevel > 0)
-        			{
-        				inventory[0].setItemDamage(inventory[0].getItemDamage() - 1);
-        				this.mistLevel--;
-        			}
+        			inventory[0].setItemDamage(inventory[0].getItemDamage() - 1);
+        			this.mistLevel--;
         		}
         	}
         }
@@ -60,7 +56,7 @@ public class TileEntityCoil extends TileEntityMagiks
 	{
 		for(ItemStack recharge : MagiksArrays.rechargeableItems)
 		{
-			if(stack.isItemEqual(recharge))
+			if(stack.itemID == recharge.itemID)
 				return true;
 		}
 		

@@ -14,6 +14,7 @@ import net.lomeli.magiks.lib.RenderIDs;
 import net.lomeli.magiks.tileentity.TileEntityBuilder;
 import net.lomeli.magiks.tileentity.TileEntityCoil;
 import net.lomeli.magiks.tileentity.TileEntityHollowWood;
+import net.lomeli.magiks.tileentity.TileEntityJouleBox;
 import net.lomeli.magiks.tileentity.TileEntityKineticGenerator;
 import net.lomeli.magiks.tileentity.TileEntityLinkingChest;
 import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
@@ -101,6 +102,7 @@ public class ClientProxy extends CommonProxy
                 "dupedummy");
         GameRegistry.registerTileEntity(TileEntityOreCrusher.class, "orecrusher");
         GameRegistry.registerTileEntity(TileEntityBuilder.class, "builder");
+        GameRegistry.registerTileEntity(TileEntityJouleBox.class, "joulebox");
 
         try
         {

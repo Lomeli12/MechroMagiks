@@ -25,15 +25,15 @@ public class TileEntityMagiks extends TileEntity implements IMagiks
     public void addToMistLevel(int value)
     {}
 
-    public int getHeatLevel()
+    public float getHeatLevel()
     {
-        return 0;
+        return 0F;
     }
 
-    public void setHeatLevel(int temp)
+    public void setHeatLevel(float temp)
     {}
 
-    public void addToHeatLevel(int temp)
+    public void addToHeatLevel(float temp)
     {}
 
     public int getMaxMistLevel()

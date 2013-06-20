@@ -9,6 +9,7 @@ import net.lomeli.magiks.blocks.aesthetic.BlockMechroPanes;
 import net.lomeli.magiks.blocks.aesthetic.BlockMecroGlass;
 import net.lomeli.magiks.blocks.liquids.BlockNeoStill;
 import net.lomeli.magiks.blocks.machine.BlockBuilderCore;
+import net.lomeli.magiks.blocks.machine.BlockJouleBox;
 import net.lomeli.magiks.blocks.machine.BlockKineticGenerator;
 import net.lomeli.magiks.blocks.machine.BlockMancerWorkTable;
 import net.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
@@ -43,7 +44,7 @@ public class ModBlocksMagiks
     
     //Machines
     public static Block kineticGenerator, solarMistCollector, oreCrusher, 
-    	smallCoil, builderBlock, builderCore, dupeFurnace, updateDetector;
+    	smallCoil, builderBlock, builderCore, dupeFurnace, jouleBox;
     
     //Liquids
     public static Block neoStill;//, neoMoving;
@@ -122,70 +123,79 @@ public class ModBlocksMagiks
         builderCore = new BlockBuilderCore(ItemIDs.builderCoreID).setUnlocalizedName("builderCore");
         builderBlock = new BlockBuilderDummy(ItemIDs.builderDummyID);
         neoStill = new BlockNeoStill(ItemIDs.neoStillID);
+        jouleBox = new BlockJouleBox(ItemIDs.jouleBoxID).setUnlocalizedName("jouleBox");
         
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");
-        GameRegistry.registerBlock(neoniteBlock, "Neonite Block");
-        GameRegistry.registerBlock(kineticGenerator, "Kinetic Generator");
-        GameRegistry.registerBlock(manceryBlock, "Mancery Stone");
-        GameRegistry.registerBlock(manceryGlass, "Mancery Glass");
         GameRegistry.registerBlock(stamaticOre, "Stamatic Ore");
         GameRegistry.registerBlock(igniousOre, "Ignious Ore");
-        GameRegistry.registerBlock(solarMistCollector, "Solar Mist Collector");
-        GameRegistry.registerBlock(dupeFurnace, "Piras Oven Core");
-        GameRegistry.registerBlock(burningStone, "Burning Stone");
-        GameRegistry.registerBlock(manceryBrick, "Mancery Brick");
         GameRegistry.registerBlock(netherIgnious, "Nether Ignious Ore");
         GameRegistry.registerBlock(copperOre, "Copper Ore");
         GameRegistry.registerBlock(tinOre, "Tin Ore");
         GameRegistry.registerBlock(silverOre, "Silver Ore");
-        GameRegistry.registerBlock(smallCoil, "Small Mist Coil");
+        
+        GameRegistry.registerBlock(neoniteBlock, "Neonite Block");
+        GameRegistry.registerBlock(manceryBlock, "Mancery Stone");
+        GameRegistry.registerBlock(manceryGlass, "Mancery Glass");
+        GameRegistry.registerBlock(burningStone, "Burning Stone");
+        GameRegistry.registerBlock(manceryBrick, "Mancery Brick");
         GameRegistry.registerBlock(manceryPane, "Mancery Pane");
         GameRegistry.registerBlock(stamaticBlock, "Stamatic Block");
         GameRegistry.registerBlock(igniousBlock, "Ignious Block");
-        GameRegistry.registerBlock(builderCore, "Builder");
-        GameRegistry.registerBlock(builderBlock, "BuilderBlock");
+        
         GameRegistry.registerBlock(neoStill, "Liquid Neonite");
         
         GameRegistry.registerBlock(obsidianStairs, "Obsidian Stairs");
         GameRegistry.registerBlock(manceryBlockStairs, "Mancery Stone Stairs");
         GameRegistry.registerBlock(manceryBrickStairs, "Mancery Brick Stairs");
         GameRegistry.registerBlock(burningStoneStairs, "Burning Stone Stairs");
+        
+        GameRegistry.registerBlock(kineticGenerator, "Kinetic Generator");
+        GameRegistry.registerBlock(solarMistCollector, "Solar Mist Collector");
+        GameRegistry.registerBlock(dupeFurnace, "Piras Oven Core");
+        GameRegistry.registerBlock(smallCoil, "Small Mist Coil");
+        GameRegistry.registerBlock(builderCore, "Builder");
+        GameRegistry.registerBlock(builderBlock, "BuilderBlock");
         GameRegistry.registerBlock(mancerWorkTable, "Mancer WorkTable");
         GameRegistry.registerBlock(hollowWood, "Hollow Wood");
         GameRegistry.registerBlock(linkingChest, "Linking Chest");
         GameRegistry.registerBlock(oreCrusher, "Ore Crusher");
+        GameRegistry.registerBlock(jouleBox, "MysticJoule Box");
 
         LanguageRegistry.addName(neoniteOre, "Neonite Ore");
-        LanguageRegistry.addName(neoniteBlock, "Neonite Block");
-        LanguageRegistry.addName(kineticGenerator, "Kinetic Generator");
-        LanguageRegistry.addName(manceryBlock, "Mancery Stone");
-        LanguageRegistry.addName(manceryGlass, "Mancery Glass");
-        LanguageRegistry.addName(stamaticOre, "Stamatic Ore");
-        LanguageRegistry.addName(igniousOre, "Ignious Ore");
-        LanguageRegistry.addName(solarMistCollector, "Solar Mist Collector");
-        LanguageRegistry.addName(dupeFurnace, "Piras Oven Core");
-        LanguageRegistry.addName(burningStone, "Burning Stone");
-        LanguageRegistry.addName(manceryBrick, "Mancery Brick");
         LanguageRegistry.addName(netherIgnious, "Nether Ignious Ore");
         LanguageRegistry.addName(copperOre, "Copper Ore");
         LanguageRegistry.addName(tinOre, "Tin Ore");
         LanguageRegistry.addName(silverOre, "Silver Ore");
-        LanguageRegistry.addName(smallCoil, "Small Coil");
+        LanguageRegistry.addName(stamaticOre, "Stamatic Ore");
+        LanguageRegistry.addName(igniousOre, "Ignious Ore");
+        
+        LanguageRegistry.addName(neoniteBlock, "Neonite Block");
+        LanguageRegistry.addName(manceryBlock, "Mancery Stone");
+        LanguageRegistry.addName(manceryGlass, "Mancery Glass");
         LanguageRegistry.addName(manceryPane, "Mancery Pane");
         LanguageRegistry.addName(stamaticBlock, "Stamatic Block");
         LanguageRegistry.addName(igniousBlock, "Ignious Block");
-        LanguageRegistry.addName(builderCore, "Builder (In development, DO NOT USE)");
-        LanguageRegistry.addName(builderBlock, "Builder (In development, DO NOT USE)");
+        LanguageRegistry.addName(burningStone, "Burning Stone");
+        LanguageRegistry.addName(manceryBrick, "Mancery Brick");
+        
         LanguageRegistry.addName(neoStill, "Liquid Neonite");
         
         LanguageRegistry.addName(obsidianStairs, "Obsidian Stairs");
         LanguageRegistry.addName(manceryBlockStairs, "Mancery Stone Stairs");
         LanguageRegistry.addName(manceryBrickStairs, "Mancery Brick Stairs");
         LanguageRegistry.addName(burningStoneStairs, "Burning Stone Stairs");
+        
+        LanguageRegistry.addName(smallCoil, "Small Coil");
+        LanguageRegistry.addName(solarMistCollector, "Solar Mist Collector");
+        LanguageRegistry.addName(dupeFurnace, "Piras Oven Core");
+        LanguageRegistry.addName(kineticGenerator, "Kinetic Generator");
+        LanguageRegistry.addName(builderCore, "Builder (In development, DO NOT USE)");
+        LanguageRegistry.addName(builderBlock, "Builder (In development, DO NOT USE)");
         LanguageRegistry.addName(mancerWorkTable, "Mancer WorkTable");
         LanguageRegistry.addName(hollowWood, "Hollow Wood");
         LanguageRegistry.addName(linkingChest, "Linking Chest");
         LanguageRegistry.addName(oreCrusher, "Ore Crusher");
+        LanguageRegistry.addName(jouleBox, "MysticJoule Box");
 
         MinecraftForge.setBlockHarvestLevel(neoniteOre, "pickaxe", 2);
         MinecraftForge.setBlockHarvestLevel(neoniteBlock, "pickaxe", 2);

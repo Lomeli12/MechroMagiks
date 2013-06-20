@@ -78,7 +78,7 @@ public class ConfigMod
         ItemIDs.copperWireID = config.get("Items", "copperWire", 7035).getInt(7035);
         ItemIDs.wirelessRecieverID = config.get("Items", "wirelessReciever", 7036).getInt(7036);
         ItemIDs.advRecieverID = config.get("Items", "advReciever", 7037).getInt(7037);
-        ItemIDs.bluePrintID = config.get("Items", "BluePrints", 7038).getInt(7038);
+        ItemIDs.bluePrintID = config.get("Items", "BluePrints", 7043).getInt(7043);
         ItemIDs.processedFoodID = config.get("Foods", "ProcessedFood", 7040).getInt(7040);
         ItemIDs.ingotVesiID = config.get("Ingots", "vesiIngot", 7041).getInt(7041);
         ItemIDs.dustIngotsID = config.get("Dusts", "ironDust", 7042).getInt(7042);
@@ -135,6 +135,7 @@ public class ConfigMod
         ItemIDs.builderCoreID = config.get("Machines", "builderCore", 727).getInt(727);
         ItemIDs.builderDummyID = config.get("Machines", "builderDummy", 728).getInt(728);
         ItemIDs.neoStillID = config.get("Liquids", "liquidNeoniteStll", 729).getInt(729);
+        ItemIDs.jouleBoxID = config.get("Machines", "jouleBox", 730).getInt(730);
         
         config.save();
     }
@@ -149,6 +150,8 @@ public class ConfigMod
         capesEnabled = config2.get(config2.CATEGORY_GENERAL, "capesEnabled", true).getBoolean(true);
         disablePiras = config2.get(config2.CATEGORY_GENERAL, "disablePiras", false)
                 .getBoolean(false);
+        Ints.mjMistConversionRate = config2.get(config2.CATEGORY_GENERAL, "mjMistConversionRate", 16)
+        		.getInt(16);
         
         Ints.neoniteGen = config2.get("OreGen", "neonite", 3).getInt(3);
         Ints.igniousGen = config2.get("OreGen", "ignious", 4).getInt(4);
@@ -157,6 +160,8 @@ public class ConfigMod
         Ints.copperGen = config2.get("OreGen", "copper", 10).getInt(10);
         Ints.tinGen = config2.get("OreGen", "tin", 7).getInt(7);
         Ints.silverGen = config2.get("OreGen", "silver", 7).getInt(7);
+        
+        
         
         config2.save();   
     }

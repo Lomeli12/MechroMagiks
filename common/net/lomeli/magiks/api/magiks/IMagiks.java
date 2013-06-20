@@ -10,11 +10,11 @@ public interface IMagiks
 
     void addToMistLevel(int value);
 
-    int getHeatLevel();
+    float getHeatLevel();
 
-    void setHeatLevel(int temp);
+    void setHeatLevel(float temp);
 
-    void addToHeatLevel(int temp);
+    void addToHeatLevel(float temp);
 
     int getMaxMistLevel();
 

@@ -64,7 +64,7 @@ public class ItemWands extends ItemGeneric
     			world.notifyBlockOfNeighborChange(x, y, z, world.getBlockId(x, y, z));
     			world.markBlockForUpdate(x, y, z);
     			world.addBlockEvent(x, y, z, ModBlocksMagiks.hollowWood.blockID, 1, 1);
-    			this.setItemDamageForStack(itemstack, (itemstack.getItemDamage() + 10));
+    			itemstack.damageItem(10, player);
     			result = true;
     		}
     	}

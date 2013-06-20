@@ -23,8 +23,10 @@ public class TileEntityKineticGenerator extends TileEntity implements
     
     private TileEntity connected;
     
-	private static int maxMistLevel = 30000, mistLevel, heatLevel, generationTime = 0,
+	private int maxMistLevel = 30000, mistLevel, generationTime = 0,
             coolDown = 0;
+	
+	private float heatLevel;
 
     public TileEntityKineticGenerator()
     {
@@ -98,7 +100,7 @@ public class TileEntityKineticGenerator extends TileEntity implements
         super.readFromNBT(nbtTagCompound);
 
         mistLevel = nbtTagCompound.getInteger("Mist");
-        heatLevel = nbtTagCompound.getInteger("Heat");
+        heatLevel = nbtTagCompound.getFloat("Heat");
 
         NBTTagList tagList = nbtTagCompound.getTagList("Inventory");
         for (int i = 0; i < tagList.tagCount(); ++i)
@@ -118,7 +120,7 @@ public class TileEntityKineticGenerator extends TileEntity implements
         super.writeToNBT(nbtTagCompound);
 
         nbtTagCompound.setInteger("Mist", mistLevel);
-        nbtTagCompound.setInteger("Heat", heatLevel);
+        nbtTagCompound.setFloat("Heat", heatLevel);
 
         NBTTagList tagList = new NBTTagList();
         for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
@@ -292,19 +294,19 @@ public class TileEntityKineticGenerator extends TileEntity implements
 	}
 
 	@Override
-	public int getHeatLevel() 
+	public float getHeatLevel() 
 	{
 		return heatLevel;
 	}
 
 	@Override
-	public void setHeatLevel(int temp) 
+	public void setHeatLevel(float temp) 
 	{
 		heatLevel = temp;
 	}
 
 	@Override
-	public void addToHeatLevel(int temp) 
+	public void addToHeatLevel(float temp) 
 	{
 		heatLevel += temp;
 	}
