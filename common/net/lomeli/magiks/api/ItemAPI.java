@@ -21,7 +21,7 @@ import cpw.mods.fml.common.FMLLog;
  * mod's source: https://github.com/Lomeli12/MechroMagiks as well as at the bottom
  * of this file.
  * 
- * @author Anthony
+ * @author Lomeli12
  * 
  */
 public class ItemAPI

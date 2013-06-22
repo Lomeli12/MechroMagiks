@@ -14,7 +14,8 @@ public class DeveloperCapesImageBufferDownload implements IImageBuffer {
 	private int imageWidth;
 	private int imageHeight;
 	
-	public BufferedImage parseUserSkin(BufferedImage par1BufferedImage) {
+	@Override
+    public BufferedImage parseUserSkin(BufferedImage par1BufferedImage) {
 		if (par1BufferedImage == null) {
 			return null;
 		}

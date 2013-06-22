@@ -35,7 +35,8 @@ public class ItemDusts extends ItemGeneric
 		}
 	}
 	
-	public int getMetadata(int par1)
+	@Override
+    public int getMetadata(int par1)
     {
         return par1;
     }
@@ -47,7 +48,8 @@ public class ItemDusts extends ItemGeneric
 		return this.iconArray[i];
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
 	@SideOnly(Side.CLIENT)
     public void getSubItems(int itemID, CreativeTabs tabs, List list)
 	{
@@ -57,7 +59,8 @@ public class ItemDusts extends ItemGeneric
 		}
 	}
 	
-	public String getUnlocalizedName(ItemStack par1ItemStack)
+	@Override
+    public String getUnlocalizedName(ItemStack par1ItemStack)
     {
         return super.getUnlocalizedName() + "." + par1ItemStack.getItemDamage();
     }

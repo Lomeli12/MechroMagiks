@@ -73,7 +73,8 @@ public class ContainerMancerWorkTable extends Container
         this.onCraftMatrixChanged(craftMatrix);
 	}
 	
-	public void onCraftMatrixChanged(IInventory iinventory)
+	@Override
+    public void onCraftMatrixChanged(IInventory iinventory)
 	{
 		if(this.tileEntity.getStackInSlot(17) != null 
 			&& this.tileEntity.getStackInSlot(17).getItem() == Item.paper)
@@ -108,7 +109,8 @@ public class ContainerMancerWorkTable extends Container
 		}
     }
 
-	public void onCraftGuiClosed(EntityPlayer entityplayer)
+	@Override
+    public void onCraftGuiClosed(EntityPlayer entityplayer)
 	{
 		super.onCraftGuiClosed(entityplayer);
 		if(worldObj.isRemote)
@@ -121,16 +123,18 @@ public class ContainerMancerWorkTable extends Container
 	    }
 	}
 	
-	public boolean canInteractWith(EntityPlayer entityplayer)
+	@Override
+    public boolean canInteractWith(EntityPlayer entityplayer)
 	{
 		if(worldObj.getBlockId(posX, posY, posZ) != ModBlocksMagiks.mancerWorkTable.blockID)
 			return false;
 		else
-			return entityplayer.getDistanceSq((double)posX + 0.5D, (double)posY + 0.5D, 
-					(double)posZ + 0.5D) <= 64D;
+			return entityplayer.getDistanceSq(posX + 0.5D, posY + 0.5D, 
+					posZ + 0.5D) <= 64D;
 	}
 
-	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
+	@Override
+    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
 	{
 		ItemStack itemstack = null;
 		Slot slot = (Slot)inventorySlots.get(par2);

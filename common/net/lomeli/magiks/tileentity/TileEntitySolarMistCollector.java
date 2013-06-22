@@ -99,6 +99,7 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
 		return type;
 	}
 
+    @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
         super.readFromNBT(nbtTagCompound);
@@ -108,6 +109,7 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
     
     
 
+    @Override
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
         super.writeToNBT(nbtTagCompound);

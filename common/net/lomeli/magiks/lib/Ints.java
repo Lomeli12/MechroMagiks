@@ -11,4 +11,8 @@ public class Ints
 	public static int silverGen;
 	
 	public static int mjMistConversionRate;
+	
+	public static final int VERSION_MAJOR = 0;
+	public static final int VERSION_MINOR = 0;
+	public static final int VERSION_REVISION = 9;
 }

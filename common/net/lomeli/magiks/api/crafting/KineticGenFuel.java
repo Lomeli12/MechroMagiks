@@ -65,7 +65,7 @@ public class KineticGenFuel
         {
             return null;
         }
-        ItemStack ret = (ItemStack)metaFuelList.get(Arrays.asList(item.itemID, item.getItemDamage()));
+        ItemStack ret = metaFuelList.get(Arrays.asList(item.itemID, item.getItemDamage()));
         if (ret != null) 
         {
             return ret;

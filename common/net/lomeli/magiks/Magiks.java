@@ -14,6 +14,7 @@ import net.lomeli.magiks.core.handler.GuiHandler;
 import net.lomeli.magiks.core.handler.ItemDroppedHandler;
 import net.lomeli.magiks.core.handler.PlayerInteractHandler;
 import net.lomeli.magiks.core.handler.MagiksCraftingHandler;
+import net.lomeli.magiks.core.handler.VersionCheckTickHandler;
 import net.lomeli.magiks.core.helper.UpdateHelper;
 import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.lib.Strings;
@@ -38,6 +39,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, 
 	version = Strings.VERSION, dependencies="required-after:LomLib@[1.0.2,)")
@@ -58,15 +61,22 @@ public class Magiks
     private GuiHandler guih = new GuiHandler();
     
     public static LogHelper logger;
+    
+    public static UpdateHelper updateInstance = new UpdateHelper();
 
+    @SuppressWarnings("static-access")
     @PreInit
     public void preInit(FMLPreInitializationEvent event)
     {
+    	logger = new LogHelper(Strings.MOD_NAME);
+    	
+    	updateInstance.execute(Strings.FILE_URL);
+    	
+    	TickRegistry.registerTickHandler(new VersionCheckTickHandler(), Side.CLIENT);
+    	
         configDir = event.getModConfigurationDirectory() + "/Magiks/";
 
         ConfigMod.configureMod(configDir);
-        
-        logger = new LogHelper(Strings.MOD_NAME);
     }
 
     @Init
@@ -99,7 +109,6 @@ public class Magiks
     @PostInit
     public void postLoad(FMLPostInitializationEvent event) throws IOException
     {
-    	UpdateHelper.execute(Strings.FILE_URL);
     	AddonRecipes.getInstance().loadAddons();   
     }
 }

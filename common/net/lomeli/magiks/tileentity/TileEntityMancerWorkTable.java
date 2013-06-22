@@ -119,6 +119,7 @@ public class TileEntityMancerWorkTable extends TileEntity implements
         return true;
     }
     
+    @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
         super.readFromNBT(nbtTagCompound);
@@ -136,6 +137,7 @@ public class TileEntityMancerWorkTable extends TileEntity implements
         }
     }
 
+    @Override
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
         super.writeToNBT(nbtTagCompound);
@@ -155,6 +157,7 @@ public class TileEntityMancerWorkTable extends TileEntity implements
         nbtTagCompound.setTag("Inventory", tagList);
     }
     
+    @Override
     public void updateEntity()
     {
     	super.updateEntity();

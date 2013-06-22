@@ -9,6 +9,7 @@ public class TileEntityMagiks extends TileEntity implements IMagiks
 		return null;
 	}
 	
+    @Override
     public int getMistLevel()
     {
         return 0;
@@ -19,23 +20,29 @@ public class TileEntityMagiks extends TileEntity implements IMagiks
     	return 0;
     }
 
+    @Override
     public void setMistLevel(int value)
     {}
 
+    @Override
     public void addToMistLevel(int value)
     {}
 
+    @Override
     public float getHeatLevel()
     {
         return 0F;
     }
 
+    @Override
     public void setHeatLevel(float temp)
     {}
 
+    @Override
     public void addToHeatLevel(float temp)
     {}
 
+    @Override
     public int getMaxMistLevel()
     {
         return 0;
@@ -66,12 +73,14 @@ public class TileEntityMagiks extends TileEntity implements IMagiks
     public void addToCoolTime(int value)
     {}
 
+    @Override
     public boolean hasMist()
     {
         return false;
     }
 
-	public boolean isConnected() 
+	@Override
+    public boolean isConnected() 
 	{
 		return false;
 	}
@@ -79,7 +88,8 @@ public class TileEntityMagiks extends TileEntity implements IMagiks
 	public void setConnection(TileEntityMagiks tileEntity) 
 	{}
 
-	public TileEntityMagiks getConnection() 
+	@Override
+    public TileEntityMagiks getConnection() 
 	{
 		return null;
 	}

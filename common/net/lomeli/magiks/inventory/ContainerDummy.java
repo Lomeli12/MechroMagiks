@@ -5,7 +5,8 @@ import net.minecraft.inventory.Container;
 
 public class ContainerDummy extends Container
 {
-	public boolean canInteractWith(EntityPlayer var1)
+	@Override
+    public boolean canInteractWith(EntityPlayer var1)
 	{
 		return false;
 	}

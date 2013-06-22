@@ -33,7 +33,8 @@ public class MancerShapedRecipes implements IRecipe
         this.recipeOutput = par4ItemStack;
 	}
 
-	public ItemStack getRecipeOutput()
+	@Override
+    public ItemStack getRecipeOutput()
 	{
 		return this.recipeOutput;
 	}
@@ -41,7 +42,8 @@ public class MancerShapedRecipes implements IRecipe
 	/**
      * Used to check if a recipe matches current crafting inventory
      */
-	public boolean matches(InventoryCrafting par1InventoryCrafting, World par2World)
+	@Override
+    public boolean matches(InventoryCrafting par1InventoryCrafting, World par2World)
 	{
 		for (int i = 0; i <= 4 - this.recipeWidth; ++i)
 		{
@@ -97,7 +99,8 @@ public class MancerShapedRecipes implements IRecipe
 	/**
      * Returns an Item that is the result of this recipe
      */
-	public ItemStack getCraftingResult(InventoryCrafting par1InventoryCrafting)
+	@Override
+    public ItemStack getCraftingResult(InventoryCrafting par1InventoryCrafting)
 	{
 		ItemStack itemstack = this.getRecipeOutput().copy();
 		if (this.field_92101_f)
@@ -115,7 +118,8 @@ public class MancerShapedRecipes implements IRecipe
 	/**
       * Returns the size of the recipe area
       */
-	public int getRecipeSize()
+	@Override
+    public int getRecipeSize()
 	{
 		return this.recipeWidth * this.recipeHeight;
 	}

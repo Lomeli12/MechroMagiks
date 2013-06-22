@@ -26,7 +26,7 @@ public class MachineRecipes
 
         if (par2ArrayOfObj[var4] instanceof String[])
         {
-        	String[] var7 = (String[])((String[])par2ArrayOfObj[var4++]);
+        	String[] var7 = ((String[])par2ArrayOfObj[var4++]);
         	
         	for (int var8 = 0; var8 < var7.length; ++var8)
         	{

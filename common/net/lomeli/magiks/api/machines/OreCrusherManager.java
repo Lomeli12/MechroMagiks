@@ -38,7 +38,7 @@ public class OreCrusherManager
     	if(item == null)
     		return null;
     	
-    	ItemStack ret = (ItemStack)metaCrushableOre.get(Arrays.asList(item.itemID, item.getItemDamage()));
+    	ItemStack ret = metaCrushableOre.get(Arrays.asList(item.itemID, item.getItemDamage()));
     	if(ret != null)
     		return ret;
     	

@@ -161,8 +161,6 @@ public class ConfigMod
         Ints.tinGen = config2.get("OreGen", "tin", 7).getInt(7);
         Ints.silverGen = config2.get("OreGen", "silver", 7).getInt(7);
         
-        
-        
         config2.save();   
     }
 }

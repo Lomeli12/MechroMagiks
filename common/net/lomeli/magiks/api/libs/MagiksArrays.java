@@ -18,6 +18,8 @@ import net.minecraft.tileentity.TileEntity;
  * 
  * MagiksArrays.
  * 
+ * @author Lomeli12
+ * 
  */
 public class MagiksArrays
 {
@@ -51,8 +53,6 @@ public class MagiksArrays
      * Stuff that will double in the piras oven
      */
     public static List<ItemStack> doubledOres = new ArrayList<ItemStack>();
-    
-    
     
     public static void addNewKinGenFuel(ItemStack itemStack, int amount, int slot)
     {

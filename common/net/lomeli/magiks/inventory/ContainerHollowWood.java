@@ -55,7 +55,8 @@ public class ContainerHollowWood extends Container
 		return true;
 	}
 	
-	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
+	@Override
+    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
     {
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(par2);

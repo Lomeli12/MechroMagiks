@@ -1,10 +1,10 @@
 package net.lomeli.magiks.core.handler;
 
 import net.lomeli.magiks.items.ModItemsMagiks;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -20,23 +20,20 @@ public class PlayerInteractHandler
         {
             if (player.capabilities.isCreativeMode == false)
             {
-                if (player.inventory.hasItem(ModItemsMagiks.flyingRing.itemID))
-                {
-                } else
+                if (player.inventory.hasItem(ModItemsMagiks.flyingRing.itemID)){} 
+                else
                 {
                     player.capabilities.allowFlying = false;
                     player.capabilities.isFlying = false;
                     player.stepHeight = 0.5F;
                 }
-            } else
+            } 
+            else
             {
             	player.stepHeight = 0.5F;
                 if (player.capabilities.allowFlying == false)
-                {
-                    player.capabilities.allowFlying = true;
-                } else
-                {
-                }
+                	player.capabilities.allowFlying = true;
+                else{}
             }
         }
     }

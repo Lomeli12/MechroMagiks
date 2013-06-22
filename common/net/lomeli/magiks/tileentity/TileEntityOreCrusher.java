@@ -110,13 +110,15 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 		}
 	}
 	
-	public void readFromNBT(NBTTagCompound nbtTagCompound)
+	@Override
+    public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
         super.readFromNBT(nbtTagCompound);
         
         loadNBT(nbtTagCompound);
     }
     
+    @Override
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
         super.writeToNBT(nbtTagCompound);

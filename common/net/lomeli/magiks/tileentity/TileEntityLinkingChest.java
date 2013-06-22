@@ -207,6 +207,7 @@ public class TileEntityLinkingChest extends TileEntity implements
         return true;
     }
     
+    @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
         super.readFromNBT(nbtTagCompound);
@@ -214,6 +215,7 @@ public class TileEntityLinkingChest extends TileEntity implements
         addToNBT(nbtTagCompound);
     }
 
+    @Override
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
         super.writeToNBT(nbtTagCompound);

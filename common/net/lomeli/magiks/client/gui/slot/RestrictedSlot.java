@@ -22,7 +22,8 @@ public class RestrictedSlot extends Slot
 	    tile = tileEntity;
     }
 
-	public boolean isItemValid(ItemStack itemStack)
+	@Override
+    public boolean isItemValid(ItemStack itemStack)
 	{
 		if(tile instanceof TileEntityMultiFurnaceCore)
 		{

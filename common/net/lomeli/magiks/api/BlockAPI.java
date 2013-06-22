@@ -20,7 +20,7 @@ import cpw.mods.fml.common.FMLLog;
  * At the bottom of this class is the name for
  * all the blocks added into the mod so far.
  * 
- * @author Anthony
+ * @author Lomeli12
  * 
  */
 public class BlockAPI
