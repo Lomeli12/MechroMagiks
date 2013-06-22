@@ -76,10 +76,10 @@ public class UpdateHelper
 		int[] currentVersion = { Ints.VERSION_MAJOR, Ints.VERSION_MINOR, Ints.VERSION_REVISION };
 		
 		for(int i = 0; i < 3; i++)
-        {
+		{
             if(latestVersion[i] > currentVersion[i])
                 results = true;
-        }
+		}
 		
 		return results;
 	}
