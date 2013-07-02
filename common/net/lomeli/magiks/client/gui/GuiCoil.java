@@ -7,6 +7,7 @@ import net.lomeli.magiks.lib.Strings;
 import net.lomeli.magiks.tileentity.TileEntityCoil;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 
@@ -64,7 +65,7 @@ public class GuiCoil extends GuiContainer
     {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.renderEngine
-                .bindTexture("/mods/magiks/textures/gui/solarmistcollectorGUI.png");
+                .func_110577_a(new ResourceLocation("/mods/magiks/textures/gui/solarmistcollectorGUI.png"));
         int xStart = (width - xSize) / 2;
         int yStart = (height - ySize) / 2;
         drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);

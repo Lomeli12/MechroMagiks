@@ -3,6 +3,7 @@ package net.lomeli.magiks.tileentity.renderer;
 import net.lomeli.magiks.client.model.ModelKineticGenerator;
 import net.lomeli.magiks.tileentity.TileEntityKineticGenerator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
@@ -36,7 +37,7 @@ public class TileEntityKineticGeneratorRenderer extends
                 (float) par6 + 1.0F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
-        bindTextureByName("/mods/magiks/models/kineticgenerator.png");
+        func_110628_a(new ResourceLocation("/mods/magiks/models/kineticgenerator.png"));
 
         kineticModel.render(0.0625F);
 

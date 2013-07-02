@@ -21,7 +21,7 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
     
 	public int maxMistLevel = 2000, 
 			mistLevel, 
-			generationTime = 0;
+			generationTime = 0, tick;
 	
 	private EnumMachineTypes type;
 	
@@ -56,6 +56,13 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
     @Override
     public void updateEntity()
     {
+    	tick++;
+		
+		if(tick == 10)
+		{
+			System.out.println("Solar: " + this.mistLevel);
+			tick = 0;
+		}
         if (this.worldObj != null)
         {
             ItemStack item = getStackInSlot(0);

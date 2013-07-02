@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.model.ModelChest;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 
@@ -52,7 +53,8 @@ public class ItemLinkingChestRenderer implements IItemRenderer
 
 	private void renderChest(float x, float y, float z) {
 
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture("/mods/magiks/models/linkingChest.png");
+        FMLClientHandler.instance().getClient().renderEngine
+        	.func_110577_a(new ResourceLocation("/mods/magiks/models/linkingChest.png"));
         GL11.glPushMatrix(); //start
         GL11.glTranslatef(x, y, z); //size
         GL11.glRotatef(180, 1, 0, 0);

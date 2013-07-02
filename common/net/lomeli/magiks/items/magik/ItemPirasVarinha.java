@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.lomeli.magiks.core.config.ConfigMod;
 import net.lomeli.magiks.items.ItemGeneric;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
@@ -11,10 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemPirasVarinha extends ItemGeneric
 {
@@ -28,7 +25,6 @@ public class ItemPirasVarinha extends ItemGeneric
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, EntityPlayer player,
             List infoList, boolean bool)
     {
@@ -60,7 +56,7 @@ public class ItemPirasVarinha extends ItemGeneric
             }
         } else
         {
-            player.sendChatToPlayer("Not enough Mist!");
+            player.addChatMessage("Not enough Mist!");
         }
         return true;
     }

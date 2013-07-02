@@ -2,9 +2,6 @@ package net.lomeli.magiks.blocks;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.lib.GuiIDs;
 import net.lomeli.magiks.lib.RenderIDs;
@@ -36,7 +33,6 @@ public class BlockLinkingChest extends BlockContainer
 	}
 	
 	@Override
-    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
         blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":"
@@ -132,7 +128,6 @@ public class BlockLinkingChest extends BlockContainer
         }
     }
     
-    @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entityLiving, ItemStack itemStack) 
     {     
         int direction = 0;

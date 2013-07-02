@@ -1,8 +1,5 @@
 package net.lomeli.magiks.blocks.machine;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.lib.Strings;
@@ -27,7 +24,6 @@ public class BlockJouleBox extends BlockContainer
     }
 	
 	@Override
-    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
         blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":mysticjoule");
@@ -47,12 +43,13 @@ public class BlockJouleBox extends BlockContainer
         	{
         		for(ItemStack item : MagiksArrays.wands)
         		{
-        			if(player.inventory.getCurrentItem() == item)
+        			if(player.inventory.getCurrentItem() != null &&
+        					player.inventory.getCurrentItem().itemID == item.itemID)
         			{
         				tick++;
         				if(tick >= 2)
         				{
-        					player.sendChatToPlayer("Can Recieve: " + tile.getPowerProvider().getMaxEnergyReceived()
+        					player.addChatMessage("Can Recieve: " + tile.getPowerProvider().getMaxEnergyReceived()
         						+ "MJ Outputting: " + tile.getMistLevel() + " Mist Heat: " + tile.getHeatLevel() + "C");
         					tick = 0;
         				}

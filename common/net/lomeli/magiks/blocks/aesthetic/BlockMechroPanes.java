@@ -2,10 +2,9 @@ package net.lomeli.magiks.blocks.aesthetic;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.lib.Strings;
+
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -26,7 +25,6 @@ public class BlockMechroPanes extends BlockPane
 	}
 	
 	@Override
-    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
         blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":" + blockTexture);
@@ -34,7 +32,6 @@ public class BlockMechroPanes extends BlockPane
     }
 	
 	@Override
-	@SideOnly(Side.CLIENT)
     public Icon getSideTextureIndex()
 	{
 		return sideTexture;

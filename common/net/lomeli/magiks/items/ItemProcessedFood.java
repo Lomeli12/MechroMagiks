@@ -3,9 +3,6 @@ package net.lomeli.magiks.items;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.lomeli.magiks.lib.Strings;
 
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -30,7 +27,6 @@ public class ItemProcessedFood extends ItemFood
     }
 
 	@Override
-	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister)
 	{
 		for(int i = 0; i < 11; i++)
@@ -81,7 +77,6 @@ public class ItemProcessedFood extends ItemFood
     }
 	
 	@Override
-	@SideOnly(Side.CLIENT)
     public Icon getIconFromDamage(int i)
 	{
 		return this.iconArray[i];
@@ -89,7 +84,6 @@ public class ItemProcessedFood extends ItemFood
 	
 	@Override
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	@SideOnly(Side.CLIENT)
     public void getSubItems(int itemID, CreativeTabs tabs, List list)
 	{
 		for(int i = 0; i < 11; i++)

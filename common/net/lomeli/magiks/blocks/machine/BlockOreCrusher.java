@@ -2,9 +2,6 @@ package net.lomeli.magiks.blocks.machine;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.lib.GuiIDs;
 import net.lomeli.magiks.lib.Strings;
@@ -45,7 +42,6 @@ public class BlockOreCrusher extends BlockContainer
     }
 	
 	@Override
-    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
 		defaultSide = iconRegister.registerIcon(Strings.MOD_ID + ":orecrusher");
@@ -157,7 +153,6 @@ public class BlockOreCrusher extends BlockContainer
         }
     }
     
-    @Override
     public void onBlockPlacedBy(World world, int x, int y, int z,
             EntityLiving entity, ItemStack itemStack)
     {
@@ -187,7 +182,6 @@ public class BlockOreCrusher extends BlockContainer
     }
     
     @Override
-    @SideOnly(Side.CLIENT)
     public Icon getIcon(int side, int metadata)
     {
     	return side == 0 ? defaultSide : side == 1 ? topSide : side != metadata ? defaultSide : frontSide;

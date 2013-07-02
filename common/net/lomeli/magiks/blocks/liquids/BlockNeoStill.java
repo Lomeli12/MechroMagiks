@@ -1,14 +1,14 @@
 package net.lomeli.magiks.blocks.liquids;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.lib.RenderIDs;
 import net.lomeli.magiks.lib.Strings;
+
 import net.minecraft.block.BlockStationary;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.world.World;
+
 import net.minecraftforge.liquids.ILiquid;
 
 public class BlockNeoStill extends BlockStationary implements ILiquid 
@@ -30,7 +30,6 @@ public class BlockNeoStill extends BlockStationary implements ILiquid
 	}
 	
 	@Override
-    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
         blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":liquids/neo");

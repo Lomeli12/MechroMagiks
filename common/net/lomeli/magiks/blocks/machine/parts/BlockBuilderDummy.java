@@ -2,9 +2,6 @@ package net.lomeli.magiks.blocks.machine.parts;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.lib.Strings;
 import net.lomeli.magiks.tileentity.TileEntityBuilder;
@@ -47,7 +44,6 @@ public class BlockBuilderDummy extends BlockContainer
     }
 	
 	@Override
-    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
         blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":burningstone");

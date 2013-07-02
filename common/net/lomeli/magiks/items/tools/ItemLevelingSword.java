@@ -3,8 +3,10 @@ package net.lomeli.magiks.items.tools;
 import java.util.List;
 
 import net.lomeli.lomlib.util.NBTUtil;
+
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.lib.Strings;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -14,10 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemLevelingSword extends ItemSword
 {
@@ -34,7 +32,6 @@ public class ItemLevelingSword extends ItemSword
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
         itemIcon = iconRegister.registerIcon(Strings.MOD_ID + ":" + itemTexture);
@@ -59,7 +56,6 @@ public class ItemLevelingSword extends ItemSword
         NBTUtil.setInteger(itemStack, "Level", level + plus);
     }
 
-    @Override
     public boolean hitEntity(ItemStack itemStack, EntityLiving entityLiving,
             EntityLiving player)
     {
@@ -68,11 +64,11 @@ public class ItemLevelingSword extends ItemSword
             if (getLevel(itemStack) >= 2)
             {
                 itemStack.setItemDamage(itemStack.getItemDamage()
-                        - entityLiving.getMaxHealth() / getLevel(itemStack));
+                        - entityLiving.experienceValue / getLevel(itemStack));
             } else
             {
                 itemStack.setItemDamage(itemStack.getItemDamage()
-                        - entityLiving.getMaxHealth());
+                        - entityLiving.experienceValue);
             }
             if (itemStack.getItemDamage() == 0 && getLevel(itemStack) < 25)
             {
@@ -124,7 +120,6 @@ public class ItemLevelingSword extends ItemSword
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, EntityPlayer player,
             List infoList, boolean bool)
     {

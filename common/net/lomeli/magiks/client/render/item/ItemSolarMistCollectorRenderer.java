@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.client.FMLClientHandler;
 
 import net.lomeli.magiks.client.model.ModelSolarMistCollector;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 
@@ -48,7 +49,8 @@ public class ItemSolarMistCollectorRenderer implements IItemRenderer
         GL11.glScalef(scale, scale, scale);
         GL11.glTranslatef(x, y, z);
         GL11.glRotatef(180F, 1F, 0, 0);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture("/mods/magiks/models/SolarMistCollector.png");
+        FMLClientHandler.instance().getClient().renderEngine
+        	.func_110577_a(new ResourceLocation("/mods/magiks/models/SolarMistCollector.png"));
         
         solarCollector.render(0.0625F);
         

@@ -149,6 +149,11 @@ public class MagiksRecipes
     			ModItemsMagiks.dustStamatic, "dustSilver", "dustSilver"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItemsMagiks.grindingPick), true, "TTF",
         		" ST", "S T", 'S',Item.stick, 'F',Item.flint, 'T',"ingotTin"));
+        
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItemsMagiks.ingotIgnious, 9), new Object[]
+        		{ ModBlocksMagiks.igniousBlock });
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItemsMagiks.ingotStamatic, 9), new Object[]
+        		{ ModBlocksMagiks.stamaticBlock });
     }
 
     public static void registerFurnaceRecipes()

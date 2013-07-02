@@ -6,6 +6,7 @@ import net.lomeli.magiks.inventory.ContainerMancerWorkTable;
 import net.lomeli.magiks.lib.Strings;
 import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 import cpw.mods.fml.relauncher.Side;
@@ -47,7 +48,7 @@ public class GuiMancerWorkTable extends GuiContainer
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.renderEngine
-                .bindTexture("/mods/magiks/textures/gui/mancerWT.png");
+                .func_110577_a(new ResourceLocation("/mods/magiks/textures/gui/mancerWT.png"));
         int var5 = (width - xSize) / 2;
         int var6 = (height - ySize) / 2;
         this.drawTexturedModalRect(var5, var6, 0, 0, xSize, ySize);

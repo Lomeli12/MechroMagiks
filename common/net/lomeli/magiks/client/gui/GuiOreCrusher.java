@@ -4,6 +4,7 @@ import net.lomeli.magiks.inventory.ContainerOreCrusher;
 import net.lomeli.magiks.lib.Strings;
 import net.lomeli.magiks.tileentity.TileEntityOreCrusher;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 
@@ -47,7 +48,7 @@ public class GuiOreCrusher extends GuiContainer
         GL11.glColor4f(1f, 1f, 1f, 1f);
 
         mc.renderEngine
-                .bindTexture("/mods/magiks/textures/gui/orecrusher.png");
+                .func_110577_a(new ResourceLocation("/mods/magiks/textures/gui/orecrusher.png"));
 
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;

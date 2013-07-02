@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL12;
 import net.lomeli.magiks.client.model.ModelCoil;
 import net.lomeli.magiks.tileentity.TileEntityCoil;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -37,7 +38,7 @@ public class TileEntityCoilRenderer extends TileEntitySpecialRenderer
                 (float) z + 1.0F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
-        bindTextureByName("/mods/magiks/models/coilbase.png");
+        func_110628_a(new ResourceLocation("/mods/magiks/models/coilbase.png"));
             
         coilModel.render(0.0625F);
             

@@ -2,16 +2,13 @@ package net.lomeli.magiks.items.tools;
 
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.lib.Strings;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 //import net.minecraft.util.MathHelper;
 //import net.minecraft.util.Vec3;
 
@@ -29,13 +26,11 @@ public class ItemEmpoweredPick extends ItemPickaxe
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
         itemIcon = iconRegister.registerIcon(Strings.MOD_ID + ":" + itemTexture);
     }
 
-    @SideOnly(Side.CLIENT)
     public void doKeyBindingAction(EntityPlayer thePlayer, ItemStack itemStack,
             String keyBinding)
     {

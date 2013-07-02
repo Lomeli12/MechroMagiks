@@ -4,15 +4,13 @@ import java.util.List;
 
 import net.lomeli.lomlib.item.ItemUtil;
 import net.lomeli.lomlib.util.NBTUtil;
+
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.items.ItemGeneric;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemAmulets extends ItemGeneric
 {
@@ -98,7 +96,7 @@ public class ItemAmulets extends ItemGeneric
             }
             else
             {
-            	player.sendChatToPlayer("You're not allowd to use this!");
+            	player.addChatMessage("You're not allowd to use this!");
             	player.setFire(10);
             }
         } 
@@ -117,7 +115,6 @@ public class ItemAmulets extends ItemGeneric
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, EntityPlayer player,
             List infoList, boolean bool)
     {

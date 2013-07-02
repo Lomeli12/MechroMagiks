@@ -7,6 +7,7 @@ import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.lib.Strings;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceCore;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceDummy;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -14,10 +15,6 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockMultiFurnaceDummy extends BlockContainer
 {
@@ -49,7 +46,6 @@ public class BlockMultiFurnaceDummy extends BlockContainer
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
         blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":burningstone");

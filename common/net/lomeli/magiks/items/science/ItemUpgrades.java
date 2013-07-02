@@ -2,10 +2,8 @@ package net.lomeli.magiks.items.science;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.lomeli.lomlib.util.ToolTipUtil;
+
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.lib.Strings;
 
@@ -33,7 +31,6 @@ public class ItemUpgrades extends Item
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
         itemIcon = iconRegister.registerIcon(Strings.MOD_ID + ":" + itemTexture);
@@ -41,7 +38,6 @@ public class ItemUpgrades extends Item
     
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, EntityPlayer player,
             List infoList, boolean bool)
     {

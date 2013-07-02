@@ -1,5 +1,6 @@
 package net.lomeli.magiks.core.helper;
 
+import java.net.SocketException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.io.InputStream;
@@ -28,35 +29,29 @@ public class UpdateHelper
 		return isUpdated;
 	}
 	
-	public static void execute(String textURL)
+	public static void execute(String textURL) throws SocketException
 	{
 		new Thread(run(textURL));
 	}
 	
-	private static Runnable run(String textURL)
+	private static Runnable run(String textURL) throws SocketException
 	{
 		int trys = 0;
 		while(trys < 5)
 		{
-			try
+			if(checkForUpdates(textURL))
 			{
-				if(checkForUpdates(textURL))
-				{
-					isUpdated = true;
-					Magiks.logger.log(Level.WARNING, updateText(textURL));
-				}
-				else
-					Magiks.logger.log(Level.INFO, "Using the Latest Version");
-
-				break;
+				isUpdated = true;
+				Magiks.logger.log(Level.WARNING, updateText(textURL));
 			}
-			catch(Exception e)
-			{
-				Magiks.logger.log(Level.INFO, "Failed to update, trying again. Attempt:" + (trys + 1));
-			}
+			else
+				Magiks.logger.log(Level.INFO, "Using the Latest Version");
 			
 			trys++;
 		}
+		if(trys == 5 && isUpdated == false)
+			Magiks.logger.log(Level.WARNING, "Failed to check for updates!");
+			
 		return null;
 	}
 	
@@ -77,15 +72,15 @@ public class UpdateHelper
 		
 		for(int i = 0; i < 3; i++)
 		{
-            if(latestVersion[i] > currentVersion[i])
-                results = true;
+			if(latestVersion[i] > currentVersion[i])
+				results = true;
 		}
 		
 		return results;
 	}
 	
 	private static Object praseXML(String URLLoc, String nodeName)
-    {
+	{
         Object var1 = new Object();
         try
         {
@@ -106,5 +101,5 @@ public class UpdateHelper
             e.printStackTrace();
         }
         return var1;
-    }
+	}
 }

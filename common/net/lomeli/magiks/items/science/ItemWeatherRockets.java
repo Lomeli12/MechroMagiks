@@ -2,10 +2,9 @@ package net.lomeli.magiks.items.science;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.lomeli.magiks.items.ItemGeneric;
 import net.lomeli.magiks.lib.Strings;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -25,7 +24,6 @@ public class ItemWeatherRockets extends ItemGeneric
 	}
 	
 	@Override
-	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister)
 	{
 		for(int i = 0; i < 6; i++)
@@ -41,7 +39,6 @@ public class ItemWeatherRockets extends ItemGeneric
     }
 	
 	@Override
-	@SideOnly(Side.CLIENT)
     public Icon getIconFromDamage(int i)
 	{
 		return this.iconArray[i];
@@ -49,7 +46,6 @@ public class ItemWeatherRockets extends ItemGeneric
 	
 	@Override
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	@SideOnly(Side.CLIENT)
     public void getSubItems(int itemID, CreativeTabs tabs, List list)
 	{
 		for(int i = 0; i < 6; i++)

@@ -3,11 +3,13 @@ package net.lomeli.magiks.blocks.machine;
 import java.util.Random;
 
 import net.lomeli.lomlib.item.ItemUtil;
+
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.lib.GuiIDs;
 import net.lomeli.magiks.lib.Strings;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceCore;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -21,9 +23,6 @@ import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockMultiFurnaceCore extends BlockContainer
 {
@@ -55,7 +54,6 @@ public class BlockMultiFurnaceCore extends BlockContainer
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
         faceIconUnlit = iconRegister.registerIcon(Strings.MOD_ID.toLowerCase() + ":dupeFurnace_Front_Unlit");
@@ -64,7 +62,6 @@ public class BlockMultiFurnaceCore extends BlockContainer
     }
     
     @Override
-    @SideOnly(Side.CLIENT)
     public Icon getIcon(int side, int metadata)
     {
         boolean isActive = metadata >> 3 == 1;
@@ -73,7 +70,6 @@ public class BlockMultiFurnaceCore extends BlockContainer
         		? faceIconLit : !isActive ? faceIconUnlit: faceIconUnlit;
     }
 
-    @Override
     public void onBlockPlacedBy(World world, int x, int y, int z,
             EntityLiving entity, ItemStack itemStack)
     {
@@ -137,7 +133,7 @@ public class BlockMultiFurnaceCore extends BlockContainer
                             		.damageItem(10, player);
                                 tileEntity.convertDummies();
                                 if (world.isRemote)
-                                	player.sendChatToPlayer(Strings.dupeFurnaceName
+                                	player.addChatMessage(Strings.dupeFurnaceName
                                         + "Created!");
                             }
                             else if(!tileEntity.getIsValid())
@@ -149,7 +145,7 @@ public class BlockMultiFurnaceCore extends BlockContainer
                             	tileEntity.convertDummies();
                             	
                             	if (world.isRemote)
-                            		player.sendChatToPlayer(Strings.dupeFurnaceName
+                            		player.addChatMessage(Strings.dupeFurnaceName
                             			+ "Created!");
                             }
                         }

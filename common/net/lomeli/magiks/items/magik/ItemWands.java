@@ -52,7 +52,7 @@ public class ItemWands extends ItemGeneric
     	boolean result = false;
     	
     	if(entity != null)
-    		player.sendChatToPlayer(entity.getTranslatedEntityName());
+    		player.addChatMessage(entity.getTranslatedEntityName());
     	
     	if(regBlock == 5)
     	{

@@ -4,6 +4,7 @@ import net.lomeli.magiks.api.helpers.MultiblockHelper;
 import net.lomeli.magiks.blocks.BlockMagiks;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.items.ModItemsMagiks;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;

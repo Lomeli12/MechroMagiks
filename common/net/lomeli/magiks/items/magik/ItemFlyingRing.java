@@ -3,9 +3,11 @@ package net.lomeli.magiks.items.magik;
 import java.util.List;
 
 import net.lomeli.lomlib.util.NBTUtil;
+
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.core.helper.RechargeHelper;
 import net.lomeli.magiks.lib.Strings;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,9 +15,6 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemFlyingRing extends Item
 {
@@ -53,14 +52,12 @@ public class ItemFlyingRing extends Item
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public EnumRarity getRarity(ItemStack stack)
     {
         return EnumRarity.epic;
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
         itemIcon = iconRegister.registerIcon(Strings.MOD_ID + ":" + itemTexture);
@@ -68,7 +65,6 @@ public class ItemFlyingRing extends Item
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, EntityPlayer player,
             List infoList, boolean bool)
     {

@@ -1,6 +1,7 @@
 package net.lomeli.magiks;
 
 import java.io.IOException;
+import java.net.SocketException;
 
 import net.lomeli.lomlib.util.LogHelper;
 
@@ -27,10 +28,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PostInit;
-import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -65,12 +64,19 @@ public class Magiks
     public static UpdateHelper updateInstance = new UpdateHelper();
 
     @SuppressWarnings("static-access")
-    @PreInit
+    @EventHandler 
     public void preInit(FMLPreInitializationEvent event)
     {
     	logger = new LogHelper(Strings.MOD_NAME);
-    	
-    	updateInstance.execute(Strings.FILE_URL);
+    	/*
+    	try
+        {
+	        updateInstance.execute(Strings.FILE_URL);
+        } catch (SocketException e)
+        {
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
+        }*/
     	
     	TickRegistry.registerTickHandler(new VersionCheckTickHandler(), Side.CLIENT);
     	
@@ -79,7 +85,7 @@ public class Magiks
         ConfigMod.configureMod(configDir);
     }
 
-    @Init
+    @EventHandler 
     public void main(FMLInitializationEvent event)
     {	
         NetworkRegistry.instance().registerGuiHandler(this, guih);
@@ -106,7 +112,7 @@ public class Magiks
         proxy.registerTileEntities();
     }
 
-    @PostInit
+    @EventHandler 
     public void postLoad(FMLPostInitializationEvent event) throws IOException
     {
     	AddonRecipes.getInstance().loadAddons();   

@@ -16,7 +16,7 @@ import buildcraft.api.power.PowerFramework;
 
 public class TileEntityJouleBox extends TileEntityMagiks implements IPowerReceptor
 {
-	private int mistLevel, maxMistLevel, coolDownTime;
+	private int mistLevel, maxMistLevel = 600, coolDownTime = 0, tick = 0;
 	
 	private float heatLevel;
 	
@@ -27,7 +27,6 @@ public class TileEntityJouleBox extends TileEntityMagiks implements IPowerRecept
 	public TileEntityJouleBox()
 	{
 		type = EnumMachineTypes.GENERATOR;
-		maxMistLevel = 600;
 		mJouleProvider = PowerFramework.currentFramework.createPowerProvider();
 		initPowerProvider();
 	}
@@ -35,29 +34,34 @@ public class TileEntityJouleBox extends TileEntityMagiks implements IPowerRecept
 	@Override
 	public void updateEntity() 
 	{
-		super.updateEntity();
+		this.tick++;
 		
-		if(mJouleProvider.getEnergyStored() > 16)
+		if(this.tick == 10)
 		{
-			if(mistLevel < maxMistLevel)
+			System.out.println(this.getMistLevel() + "|" + this.mJouleProvider.getEnergyStored());
+			this.tick = 0;
+		}
+		if(this.getMistLevel() < this.getMaxMistLevel())
+		{
+			if(this.mJouleProvider.getEnergyStored() > 16)
 			{
 				float energy = mJouleProvider.useEnergy(16, 32, true);
 				int convertedEnergy = Math.round(energy / Ints.mjMistConversionRate);
-				mistLevel += convertedEnergy;
-				heatLevel += 0.05F;
+				this.addToMistLevel(convertedEnergy);
+				this.addToHeatLevel(0.05F);
 			}
 		}
 		
-		if(getHeatLevel() >= 100F)
-			worldObj.createExplosion(null, this.xCoord, this.yCoord, this.zCoord, 5F, true);
+		if(this.getHeatLevel() >= 50F)
+			this.worldObj.createExplosion(null, this.xCoord, this.yCoord, this.zCoord, 5F, true);
 			
-		if(getHeatLevel() > 0)
+		if(this.getHeatLevel() > 0)
 		{
-			coolDownTime++;
-			if(coolDownTime >= 25)
+			this.coolDownTime++;
+			if(this.coolDownTime >= 25)
 			{
-				addToHeatLevel(-0.05F);
-				coolDownTime = 0;
+				this.addToHeatLevel(-0.05F);
+				this.coolDownTime = 0;
 			}
 		}
 	}
@@ -77,15 +81,15 @@ public class TileEntityJouleBox extends TileEntityMagiks implements IPowerRecept
 	
 	public void addToNBT(NBTTagCompound tag)
 	{
-		tag.setInteger("Mist", mistLevel);
-		tag.setFloat("Heat", heatLevel);
+		tag.setInteger("Mist", this.mistLevel);
+		tag.setFloat("Heat", this.heatLevel);
 		PowerFramework.currentFramework.savePowerProvider(this, tag);
 	}
 	
 	public void loadFromNBT(NBTTagCompound tag)
 	{
-		mistLevel = tag.getInteger("Mist");
-		heatLevel = tag.getFloat("Heat");
+		this.mistLevel = tag.getInteger("Mist");
+		this.heatLevel = tag.getFloat("Heat");
 		PowerFramework.currentFramework.loadPowerProvider(this, tag);
 	}
 	
@@ -111,67 +115,67 @@ public class TileEntityJouleBox extends TileEntityMagiks implements IPowerRecept
 	
 	private void initPowerProvider() 
 	{
-		mJouleProvider.configure(20, 8, 64, 16, 300);
+		this.mJouleProvider.configure(20, 8, 64, 16, 300);
 	}
 	
 	@Override
 	public float getHeatLevel()
     {
-        return heatLevel;
+        return this.heatLevel;
     }
 
 	@Override
     public void setHeatLevel(float temp)
     {
-    	heatLevel = temp;
+		this.heatLevel = temp;
     }
 
 	@Override
     public void addToHeatLevel(float temp)
     {
-    	heatLevel += temp;
+		this.heatLevel += temp;
     }
 	
 	@Override
 	public int getMaxMistLevel()
     {
-		return maxMistLevel;
+		return this.maxMistLevel;
     }
 	
 	@Override
 	public EnumMachineTypes getType()
 	{
-		return type;
+		return this.type;
 	}
 	
 	@Override
 	public int getMistLevel()
     {
-		return mistLevel;
+		return this.mistLevel;
     }
 	
 	@Override
 	public void setMistLevel(int value)
     {
-		mistLevel = value;
+		this.mistLevel = value;
     }
 
 	@Override
     public void addToMistLevel(int value)
     {
-		mistLevel += value;
+		this.mistLevel += value;
     }
 
 	@Override
     public void setPowerProvider(IPowerProvider provider)
     {
-		mJouleProvider = provider;
+		this.mJouleProvider = provider;
     }
 
 	@Override
     public IPowerProvider getPowerProvider()
     {
-	    return mJouleProvider;
+	    return this.mJouleProvider;
     }
 
 	@Override
@@ -183,4 +187,12 @@ public class TileEntityJouleBox extends TileEntityMagiks implements IPowerRecept
 		return 16;
     }
 
+	@Override
+	public boolean hasMist()
+    {
+		if(this.getMistLevel() > 0)
+			return true;
+		else
+			return false;
+    }
 }

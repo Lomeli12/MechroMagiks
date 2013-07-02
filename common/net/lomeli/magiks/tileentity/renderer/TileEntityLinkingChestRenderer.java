@@ -3,6 +3,7 @@ package net.lomeli.magiks.tileentity.renderer;
 import net.lomeli.magiks.tileentity.TileEntityLinkingChest;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
@@ -31,7 +32,7 @@ public class TileEntityLinkingChestRenderer extends TileEntitySpecialRenderer {
                 direction = ForgeDirection.getOrientation(tileLinkingChest.getBlockMetadata());
             }
 
-            FMLClientHandler.instance().getClient().renderEngine.bindTexture("/mods/magiks/models/linkingChest.png");
+            FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("/mods/magiks/models/linkingChest.png"));
             GL11.glPushMatrix();
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

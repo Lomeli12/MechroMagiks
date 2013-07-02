@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 
@@ -48,7 +49,8 @@ public class ItemCoilRenderer implements IItemRenderer {
         GL11.glTranslatef(x, y, z);
         GL11.glRotatef(180F, 1F, 0, 0);
         
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture("/mods/magiks/models/coilbase.png");
+        FMLClientHandler.instance().getClient().
+        	renderEngine.func_110577_a(new ResourceLocation("/mods/magiks/models/coilbase.png"));
         
         coilModel.render(0.0625F);
         

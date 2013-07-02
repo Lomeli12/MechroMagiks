@@ -1,6 +1,6 @@
 package net.lomeli.magiks.core;
 
-import com.jadarstudios.api.developercapesapi.DeveloperCapesAPI;
+//import com.jadarstudios.api.developercapesapi.DeveloperCapesAPI;
 
 import net.lomeli.magiks.client.render.item.ItemCoilRenderer;
 import net.lomeli.magiks.client.render.item.ItemHollowWoodRenderer;
@@ -104,20 +104,20 @@ public class ClientProxy extends CommonProxy
         GameRegistry.registerTileEntity(TileEntityBuilder.class, "builder");
         GameRegistry.registerTileEntity(TileEntityJouleBox.class, "joulebox");
 
-        try
+        /*try
         {
         	renderCapes(ConfigMod.capesEnabled);
         }catch(Exception e)
         {
         	e.getStackTrace();
-        }
+        }*/
     }
-
+/*
     public void renderCapes(boolean capes)
     {
         if (capes == true)
             DeveloperCapesAPI
                     .getInstance()
                     .init("https://dl.dropbox.com/u/17430088/Minecraft%20Mods/DivingGear/UserCapes.txt");
-    }
+    }*/
 }

@@ -2,9 +2,6 @@ package net.lomeli.magiks.blocks.machine;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.lib.GuiIDs;
 import net.lomeli.magiks.lib.RenderIDs;
@@ -52,7 +49,6 @@ public class BlockCoil extends BlockContainer
     }
 	
 	@Override
-    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
         blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":"

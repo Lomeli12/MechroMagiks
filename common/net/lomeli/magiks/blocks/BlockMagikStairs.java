@@ -1,9 +1,8 @@
 package net.lomeli.magiks.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.lib.Strings;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -20,7 +19,6 @@ public class BlockMagikStairs extends BlockStairs
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
         blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":"
