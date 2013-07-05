@@ -14,5 +14,5 @@ public class Ints
 	
 	public static final int VERSION_MAJOR = 0;
 	public static final int VERSION_MINOR = 0;
-	public static final int VERSION_REVISION = 6;
+	public static final int VERSION_REVISION = 9;
 }

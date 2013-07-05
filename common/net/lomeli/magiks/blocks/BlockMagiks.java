@@ -1,7 +1,7 @@
 package net.lomeli.magiks.blocks;
 
 import net.lomeli.magiks.Magiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -20,7 +20,7 @@ public class BlockMagiks extends Block
     @Override
     public void registerIcons(IconRegister iconRegister)
     {
-        blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":"
+        blockIcon = iconRegister.registerIcon(ModStrings.MOD_ID + ":"
                 + blockTexture);
     }
 }

@@ -2,7 +2,7 @@ package net.lomeli.magiks.blocks.machine;
 
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.api.libs.MagiksArrays;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.tileentity.TileEntityJouleBox;
 
 import net.minecraft.block.BlockContainer;
@@ -26,7 +26,7 @@ public class BlockJouleBox extends BlockContainer
 	@Override
     public void registerIcons(IconRegister iconRegister)
     {
-        blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":mysticjoule");
+        blockIcon = iconRegister.registerIcon(ModStrings.MOD_ID + ":mysticjoule");
     }
 	
 	@Override

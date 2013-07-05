@@ -1,7 +1,7 @@
 package net.lomeli.magiks.blocks.machine;
 
 import net.lomeli.magiks.Magiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.tileentity.TileEntityBuilder;
 
 import net.minecraft.block.BlockContainer;
@@ -32,7 +32,7 @@ public class BlockBuilderCore extends BlockContainer
 	@Override
     public void registerIcons(IconRegister iconRegister)
     {
-        blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":" + Strings.NO_TEXTURE);
+        blockIcon = iconRegister.registerIcon(ModStrings.MOD_ID + ":" + ModStrings.NO_TEXTURE);
     }
 	
 	@Override

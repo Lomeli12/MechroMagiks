@@ -20,7 +20,7 @@ import net.lomeli.magiks.blocks.machine.parts.BlockBuilderDummy;
 import net.lomeli.magiks.blocks.machine.parts.BlockMecroBlock;
 import net.lomeli.magiks.blocks.machine.parts.BlockMultiFurnaceDummy;
 import net.lomeli.magiks.lib.ItemIDs;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -53,7 +53,7 @@ public class ModBlocksMagiks
     {
         neoniteOre = new BlockNeoniteOre(ItemIDs.enchantedOreID, "neoniteOre")
                 .setUnlocalizedName("neoniteOre").setLightValue(0.5F)
-                .setResistance(50F).setHardness(3.0F);
+                .setResistance(50F).setHardness(3.0F).func_111022_d("Neonite Ore");
         neoniteBlock = new BlockMagiks(ItemIDs.enchantedBlockID, Material.rock,
                 "neoniteBlock").setUnlocalizedName("neoniteBlock")
                 .setLightValue(1.5F).setResistance(100F).setHardness(3.0F)
@@ -114,10 +114,10 @@ public class ModBlocksMagiks
         manceryPane = new BlockMechroPanes(ItemIDs.manceryPaneID, "manceryglass")
         	.setUnlocalizedName("mancerypanes");
         oreCrusher = new BlockOreCrusher(ItemIDs.oreCrusherID).setUnlocalizedName("oreCrusher");
-        stamaticBlock = new BlockGeneric(ItemIDs.stamaticBlockID, Material.iron, Strings.MOD_ID, 
+        stamaticBlock = new BlockGeneric(ItemIDs.stamaticBlockID, Material.iron, ModStrings.MOD_ID, 
         	"blockStamatic").setHardness(0.5F).setResistance(5000F)
         	.setUnlocalizedName("stamaticBlock").setCreativeTab(Magiks.modTab);
-        igniousBlock = new BlockGeneric(ItemIDs.igniousBlockID, Material.iron, Strings.MOD_ID, 
+        igniousBlock = new BlockGeneric(ItemIDs.igniousBlockID, Material.iron, ModStrings.MOD_ID, 
             "blockIgnious").setHardness(0.5F).setResistance(5000F)
             .setUnlocalizedName("igniousBlock").setCreativeTab(Magiks.modTab);
         builderCore = new BlockBuilderCore(ItemIDs.builderCoreID).setUnlocalizedName("builderCore");

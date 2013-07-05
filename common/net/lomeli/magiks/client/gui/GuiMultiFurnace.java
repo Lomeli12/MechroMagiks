@@ -1,6 +1,7 @@
 package net.lomeli.magiks.client.gui;
 
 import net.lomeli.magiks.inventory.ContainerMultiFurnace;
+import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceCore;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.ResourceLocation;
@@ -49,7 +50,8 @@ public class GuiMultiFurnace extends GuiContainer
         GL11.glColor4f(1f, 1f, 1f, 1f);
 
         mc.renderEngine
-                .func_110577_a(new ResourceLocation("/mods/magiks/textures/gui/dupefurnace.png"));
+                .func_110577_a(new ResourceLocation(ModStrings.MOD_ID.toLowerCase(),
+                		ModStrings.GUI_LOC + "dupefurnace.png"));
 
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;

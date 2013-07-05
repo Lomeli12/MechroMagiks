@@ -3,7 +3,7 @@ package net.lomeli.magiks.blocks.aesthetic;
 import java.util.Random;
 
 import net.lomeli.magiks.Magiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.material.Material;
@@ -27,8 +27,8 @@ public class BlockMechroPanes extends BlockPane
 	@Override
     public void registerIcons(IconRegister iconRegister)
     {
-        blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":" + blockTexture);
-        sideTexture = iconRegister.registerIcon(Strings.MOD_ID + ":thin_" + blockTexture);
+        blockIcon = iconRegister.registerIcon(ModStrings.MOD_ID + ":" + blockTexture);
+        sideTexture = iconRegister.registerIcon(ModStrings.MOD_ID + ":thin_" + blockTexture);
     }
 	
 	@Override

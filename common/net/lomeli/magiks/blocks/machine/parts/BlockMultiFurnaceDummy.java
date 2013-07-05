@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceCore;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceDummy;
 
@@ -48,7 +48,7 @@ public class BlockMultiFurnaceDummy extends BlockContainer
     @Override
     public void registerIcons(IconRegister iconRegister)
     {
-        blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":burningstone");
+        blockIcon = iconRegister.registerIcon(ModStrings.MOD_ID + ":burningstone");
     }
 
     @Override

@@ -6,7 +6,7 @@ import net.lomeli.lomlib.util.NBTUtil;
 
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.core.helper.RechargeHelper;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
@@ -60,7 +60,7 @@ public class ItemFlyingRing extends Item
     @Override
     public void registerIcons(IconRegister iconRegister)
     {
-        itemIcon = iconRegister.registerIcon(Strings.MOD_ID + ":" + itemTexture);
+        itemIcon = iconRegister.registerIcon(ModStrings.MOD_ID + ":" + itemTexture);
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })

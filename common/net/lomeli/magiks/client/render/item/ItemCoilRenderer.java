@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 
 import net.lomeli.magiks.client.model.ModelCoil;
+import net.lomeli.magiks.lib.ModStrings;
 
 @SideOnly(Side.CLIENT)
 public class ItemCoilRenderer implements IItemRenderer {
@@ -50,7 +51,7 @@ public class ItemCoilRenderer implements IItemRenderer {
         GL11.glRotatef(180F, 1F, 0, 0);
         
         FMLClientHandler.instance().getClient().
-        	renderEngine.func_110577_a(new ResourceLocation("/mods/magiks/models/coilbase.png"));
+        	renderEngine.func_110577_a(new ResourceLocation(ModStrings.MOD_ID,"textures/entities/coilbase.png"));
         
         coilModel.render(0.0625F);
         

@@ -6,7 +6,7 @@ import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.lib.GuiIDs;
 import net.lomeli.magiks.lib.RenderIDs;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.tileentity.TileEntityKineticGenerator;
 
 import net.minecraft.block.BlockContainer;
@@ -39,7 +39,7 @@ public class BlockKineticGenerator extends BlockContainer
     @Override
     public void registerIcons(IconRegister iconRegister)
     {
-        blockIcon = iconRegister.registerIcon(Strings.MOD_ID
+        blockIcon = iconRegister.registerIcon(ModStrings.MOD_ID
                 + ":kineticgentexture");
     }
 

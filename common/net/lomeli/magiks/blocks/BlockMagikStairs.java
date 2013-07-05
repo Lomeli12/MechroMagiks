@@ -1,7 +1,7 @@
 package net.lomeli.magiks.blocks;
 
 import net.lomeli.magiks.Magiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
@@ -21,7 +21,7 @@ public class BlockMagikStairs extends BlockStairs
     @Override
     public void registerIcons(IconRegister iconRegister)
     {
-        blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":"
+        blockIcon = iconRegister.registerIcon(ModStrings.MOD_ID + ":"
                 + blockTexture);
     }
 }

@@ -1,7 +1,7 @@
 package net.lomeli.magiks.items.tools;
 
 import net.lomeli.magiks.Magiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,7 +28,7 @@ public class ItemEmpoweredPick extends ItemPickaxe
     @Override
     public void registerIcons(IconRegister iconRegister)
     {
-        itemIcon = iconRegister.registerIcon(Strings.MOD_ID + ":" + itemTexture);
+        itemIcon = iconRegister.registerIcon(ModStrings.MOD_ID + ":" + itemTexture);
     }
 
     public void doKeyBindingAction(EntityPlayer thePlayer, ItemStack itemStack,

@@ -3,7 +3,7 @@ package net.lomeli.magiks.client.gui;
 import org.lwjgl.opengl.GL11;
 
 import net.lomeli.magiks.inventory.ContainerCoil;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.tileentity.TileEntityCoil;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -36,7 +36,7 @@ public class GuiCoil extends GuiContainer
         String containerName = tileEntity.isInvNameLocalized() ? tileEntity
                 .getInvName() : StatCollector.translateToLocal(tileEntity
                 .getInvName());
-        fontRenderer.drawString(Strings.smallCoilName , xStart
+        fontRenderer.drawString(ModStrings.smallCoilName , xStart
                 - fontRenderer.getStringWidth(containerName) / 2, 6, 4210752);
         fontRenderer.drawString(
                 StatCollector.translateToLocal("container.inventory"), 8,
@@ -64,8 +64,9 @@ public class GuiCoil extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
     {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        mc.renderEngine
-                .func_110577_a(new ResourceLocation("/mods/magiks/textures/gui/solarmistcollectorGUI.png"));
+        mc.func_110434_K()
+        	.func_110577_a(new ResourceLocation(ModStrings.MOD_ID.toLowerCase(),
+        		ModStrings.GUI_LOC + "solarmistcollectorGUI.png"));
         int xStart = (width - xSize) / 2;
         int yStart = (height - ySize) / 2;
         drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);

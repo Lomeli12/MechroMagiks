@@ -2,7 +2,7 @@ package net.lomeli.magiks.tileentity;
 
 import java.util.List;
 
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -86,7 +86,7 @@ public class TileEntityHollowWood extends TileEntity implements
     @Override
     public String getInvName()
     {
-        return Strings.containerHollowWood;
+        return ModStrings.containerHollowWood;
     }
 
     @Override

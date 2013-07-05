@@ -8,7 +8,7 @@ import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
 import net.lomeli.magiks.items.ModItemsMagiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -400,7 +400,7 @@ public class TileEntityMultiFurnaceCore extends TileEntityMagiks implements
     @Override
     public String getInvName()
     {
-        return Strings.dupeFurnaceName;
+        return ModStrings.dupeFurnaceName;
     }
 
     @Override

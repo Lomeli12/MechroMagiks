@@ -8,7 +8,6 @@ import net.lomeli.magiks.client.render.item.ItemKineticGeneratorRenderer;
 import net.lomeli.magiks.client.render.item.ItemLinkingChestRenderer;
 import net.lomeli.magiks.client.render.item.ItemMancerWorkTableRenderer;
 import net.lomeli.magiks.client.render.item.ItemSolarMistCollectorRenderer;
-import net.lomeli.magiks.core.config.ConfigMod;
 import net.lomeli.magiks.lib.ItemIDs;
 import net.lomeli.magiks.lib.RenderIDs;
 import net.lomeli.magiks.tileentity.TileEntityBuilder;

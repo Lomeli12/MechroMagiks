@@ -1,11 +1,13 @@
 package net.lomeli.magiks.lib;
 
-public class Strings
+public class ModStrings
 {
     public static final String MOD_ID = "magiks";
     public static final String MOD_NAME = "MechroMagiks";
     public static final String VERSION = Ints.VERSION_MAJOR + "." + Ints.VERSION_MINOR + "." + Ints.VERSION_REVISION;
     public static final String NO_TEXTURE = "missingNo";
+    
+    public static final String GUI_LOC = "textures/gui/";
 
     public static final String COMMON_PROXY = "net.lomeli.magiks.core.CommonProxy";
     public static final String CLIENT_PROXY = "net.lomeli.magiks.core.ClientProxy";

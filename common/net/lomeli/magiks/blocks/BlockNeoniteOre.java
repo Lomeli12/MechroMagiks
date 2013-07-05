@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.items.ModItemsMagiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -25,8 +25,8 @@ public class BlockNeoniteOre extends Block
     @Override
     public void registerIcons(IconRegister iconRegister)
     {
-        blockIcon = iconRegister.registerIcon(Strings.MOD_ID  + ":"
-                + blockTexture);
+        this.blockIcon = iconRegister.registerIcon(ModStrings.MOD_ID.toLowerCase() + ":"
+        	+ blockTexture);
     }
 
     @Override

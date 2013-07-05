@@ -18,7 +18,7 @@ import net.lomeli.magiks.core.handler.MagiksCraftingHandler;
 import net.lomeli.magiks.core.handler.VersionCheckTickHandler;
 import net.lomeli.magiks.core.helper.UpdateHelper;
 import net.lomeli.magiks.items.ModItemsMagiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.recipes.AddonRecipes;
 import net.lomeli.magiks.recipes.MagiksRecipes;
 import net.lomeli.magiks.tileentity.TileEntityKineticGenerator;
@@ -28,32 +28,30 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-//import cpw.mods.fml.common.event.
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid = Strings.MOD_ID, name = Strings.MOD_NAME, 
-	version = Strings.VERSION, dependencies="required-after:LomLib@[1.0.2,)")
+@Mod(modid = ModStrings.MOD_ID, name = ModStrings.MOD_NAME, 
+	version = ModStrings.VERSION, dependencies="required-after:LomLib@[1.0.2,)")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class Magiks
 {
-    @SidedProxy(clientSide = Strings.CLIENT_PROXY, serverSide = Strings.COMMON_PROXY)
+    @SidedProxy(clientSide = ModStrings.CLIENT_PROXY, serverSide = ModStrings.COMMON_PROXY)
     public static CommonProxy proxy;
 
-    @Instance(Strings.MOD_ID)
+    @Instance(ModStrings.MOD_ID)
     public static Magiks instance;
 
     public static CreativeTabs modTab = new CreativeTabSIW(
-            CreativeTabs.getNextID(), Strings.MOD_NAME);
+            CreativeTabs.getNextID(), ModStrings.MOD_NAME);
 
     public static String configDir;
 
@@ -64,28 +62,36 @@ public class Magiks
     public static UpdateHelper updateInstance = new UpdateHelper();
 
     @SuppressWarnings("static-access")
-    @EventHandler 
+    @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-    	logger = new LogHelper(Strings.MOD_NAME);
-    	/*
+    	logger = new LogHelper(ModStrings.MOD_NAME);
+    	
     	try
         {
-	        updateInstance.execute(Strings.FILE_URL);
+	        updateInstance.execute(ModStrings.FILE_URL);
         } catch (SocketException e)
         {
-	        // TODO Auto-generated catch block
 	        e.printStackTrace();
-        }*/
+        }
     	
     	TickRegistry.registerTickHandler(new VersionCheckTickHandler(), Side.CLIENT);
     	
-        configDir = event.getModConfigurationDirectory() + "/Magiks/";
+    	configDir = event.getModConfigurationDirectory() + "/Magiks/";
 
         ConfigMod.configureMod(configDir);
+    	
+    	ModBlocksMagiks.registerBlocks();
+        ModBlocksMagiks.registerKinGenFuel();
+        
+        ModItemsMagiks.registerItems();
+        ModItemsMagiks.addChargeableItems();
+
+        MagiksRecipes.registerRecipes();
+        MagiksRecipes.addDoubleOres();
     }
 
-    @EventHandler 
+    @Mod.EventHandler
     public void main(FMLInitializationEvent event)
     {	
         NetworkRegistry.instance().registerGuiHandler(this, guih);
@@ -93,17 +99,8 @@ public class Magiks
         MinecraftForge.EVENT_BUS.register(new ItemDroppedHandler());
         MinecraftForge.EVENT_BUS.register(new PlayerInteractHandler());
         
-        ModBlocksMagiks.registerBlocks();
-        ModBlocksMagiks.registerKinGenFuel();
-        
-        ModItemsMagiks.registerItems();
-        ModItemsMagiks.addChargeableItems();
-
         GameRegistry.registerWorldGenerator(new MagikWorldGen());
         GameRegistry.registerCraftingHandler(new MagiksCraftingHandler());
-        
-        MagiksRecipes.registerRecipes();
-        MagiksRecipes.addDoubleOres();
         
         MagiksArrays.canRecieveMist.add(new TileEntitySolarMistCollector());
         MagiksArrays.canRecieveMist.add(new TileEntityKineticGenerator());
@@ -111,8 +108,8 @@ public class Magiks
         proxy.registerThings();
         proxy.registerTileEntities();
     }
-
-    @EventHandler 
+    
+    @Mod.EventHandler
     public void postLoad(FMLPostInitializationEvent event) throws IOException
     {
     	AddonRecipes.getInstance().loadAddons();   

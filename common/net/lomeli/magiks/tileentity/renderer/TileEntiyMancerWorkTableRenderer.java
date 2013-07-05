@@ -4,6 +4,8 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import net.lomeli.magiks.client.model.ModelMancerWorkTable;
+import net.lomeli.magiks.lib.ModStrings;
+import net.lomeli.magiks.lib.Models;
 import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.resources.ResourceLocation;
@@ -37,7 +39,8 @@ public class TileEntiyMancerWorkTableRenderer extends
                 (float) z + 1.0F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
-        func_110628_a(new ResourceLocation("/mods/magiks/models/MancerTable.png"));
+        func_110628_a(new ResourceLocation(ModStrings.MOD_ID, 
+        		Models.MODEL_TEXTURES + "MancerTable.png"));
         
         mancerModel.render(0.0625F);
 

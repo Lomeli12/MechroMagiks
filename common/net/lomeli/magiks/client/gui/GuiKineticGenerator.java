@@ -1,7 +1,7 @@
 package net.lomeli.magiks.client.gui;
 
 import net.lomeli.magiks.inventory.ContainerKineticGenerator;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.tileentity.TileEntityKineticGenerator;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -34,7 +34,7 @@ public class GuiKineticGenerator extends GuiContainer
         String containerName = tileentitykingen.isInvNameLocalized() ? tileentitykingen
                 .getInvName() : StatCollector.translateToLocal(tileentitykingen
                 .getInvName());
-        fontRenderer.drawString(Strings.kineticGenName, 6 + xSize / 2
+        fontRenderer.drawString(ModStrings.kineticGenName, 6 + xSize / 2
                 - fontRenderer.getStringWidth(containerName) / 2, 6, 4210752);
         fontRenderer.drawString(
                 StatCollector.translateToLocal("container.inventory"), 8,
@@ -47,7 +47,8 @@ public class GuiKineticGenerator extends GuiContainer
     	
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.renderEngine
-                .func_110577_a(new ResourceLocation("/mods/magiks/textures/gui/kineticgeneratorGUI.png"));
+                .func_110577_a(new ResourceLocation(ModStrings.MOD_ID.toLowerCase(),
+                		ModStrings.GUI_LOC + "kineticgeneratorGUI.png"));
         int xStart = (width - xSize) / 2;
         int yStart = (height - ySize) / 2;
         this.drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);

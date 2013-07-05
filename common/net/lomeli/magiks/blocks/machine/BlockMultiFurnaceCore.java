@@ -7,7 +7,7 @@ import net.lomeli.lomlib.item.ItemUtil;
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.lib.GuiIDs;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceCore;
 
 import net.minecraft.block.Block;
@@ -56,9 +56,9 @@ public class BlockMultiFurnaceCore extends BlockContainer
     @Override
     public void registerIcons(IconRegister iconRegister)
     {
-        faceIconUnlit = iconRegister.registerIcon(Strings.MOD_ID.toLowerCase() + ":dupeFurnace_Front_Unlit");
-        faceIconLit = iconRegister.registerIcon(Strings.MOD_ID.toLowerCase() + ":dupeFurnace_Front_Lit");
-        other = iconRegister.registerIcon(Strings.MOD_ID.toLowerCase() + ":burningstone");
+        faceIconUnlit = iconRegister.registerIcon(ModStrings.MOD_ID.toLowerCase() + ":dupeFurnace_Front_Unlit");
+        faceIconLit = iconRegister.registerIcon(ModStrings.MOD_ID.toLowerCase() + ":dupeFurnace_Front_Lit");
+        other = iconRegister.registerIcon(ModStrings.MOD_ID.toLowerCase() + ":burningstone");
     }
     
     @Override
@@ -133,7 +133,7 @@ public class BlockMultiFurnaceCore extends BlockContainer
                             		.damageItem(10, player);
                                 tileEntity.convertDummies();
                                 if (world.isRemote)
-                                	player.addChatMessage(Strings.dupeFurnaceName
+                                	player.addChatMessage(ModStrings.dupeFurnaceName
                                         + "Created!");
                             }
                             else if(!tileEntity.getIsValid())
@@ -145,7 +145,7 @@ public class BlockMultiFurnaceCore extends BlockContainer
                             	tileEntity.convertDummies();
                             	
                             	if (world.isRemote)
-                            		player.addChatMessage(Strings.dupeFurnaceName
+                            		player.addChatMessage(ModStrings.dupeFurnaceName
                             			+ "Created!");
                             }
                         }

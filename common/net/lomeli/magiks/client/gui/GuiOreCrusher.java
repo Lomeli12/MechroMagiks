@@ -1,7 +1,7 @@
 package net.lomeli.magiks.client.gui;
 
 import net.lomeli.magiks.inventory.ContainerOreCrusher;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.tileentity.TileEntityOreCrusher;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.ResourceLocation;
@@ -25,8 +25,8 @@ public class GuiOreCrusher extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-    	fontRenderer.drawString(Strings.oreCrusherName, xSize / 2 - 
-    		fontRenderer.getStringWidth(Strings.oreCrusherName) / 2, 6, 4210752);
+    	fontRenderer.drawString(ModStrings.oreCrusherName, xSize / 2 - 
+    		fontRenderer.getStringWidth(ModStrings.oreCrusherName) / 2, 6, 4210752);
     	fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, 
     		ySize - 104, 4210752);
     	
@@ -48,7 +48,8 @@ public class GuiOreCrusher extends GuiContainer
         GL11.glColor4f(1f, 1f, 1f, 1f);
 
         mc.renderEngine
-                .func_110577_a(new ResourceLocation("/mods/magiks/textures/gui/orecrusher.png"));
+                .func_110577_a(new ResourceLocation(ModStrings.MOD_ID.toLowerCase(),
+                		ModStrings.GUI_LOC + "orecrusher.png"));
 
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;

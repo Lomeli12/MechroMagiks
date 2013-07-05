@@ -1,6 +1,6 @@
 package net.lomeli.magiks.tileentity;
 
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -80,7 +80,7 @@ public class TileEntityMancerWorkTable extends TileEntity implements
     @Override
     public String getInvName()
     {
-        return Strings.containerMancerWT;
+        return ModStrings.containerMancerWT;
     }
 
     @Override

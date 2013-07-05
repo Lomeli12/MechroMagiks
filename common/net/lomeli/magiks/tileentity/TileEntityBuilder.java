@@ -3,7 +3,7 @@ package net.lomeli.magiks.tileentity;
 import net.lomeli.magiks.api.magiks.EnumMachineTypes;
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -216,7 +216,7 @@ public class TileEntityBuilder extends TileEntityMagiks
 	@Override
     public String getInvName()
     {
-	    return Strings.containerBuilder;
+	    return ModStrings.containerBuilder;
     }
 
 	@Override

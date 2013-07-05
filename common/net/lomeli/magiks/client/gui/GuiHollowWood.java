@@ -3,7 +3,7 @@ package net.lomeli.magiks.client.gui;
 import org.lwjgl.opengl.GL11;
 
 import net.lomeli.magiks.inventory.ContainerHollowWood;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.tileentity.TileEntityHollowWood;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -35,7 +35,7 @@ public class GuiHollowWood extends GuiContainer
         String containerName = tileEntity.isInvNameLocalized() ? tileEntity
                 .getInvName() : StatCollector.translateToLocal(tileEntity
                 .getInvName());
-        fontRenderer.drawString(Strings.hollowWoodName , 25 + xStart
+        fontRenderer.drawString(ModStrings.hollowWoodName , 25 + xStart
                 - fontRenderer.getStringWidth(containerName) / 2, 6, 4210752);
         fontRenderer.drawString(
                 StatCollector.translateToLocal("container.inventory"), 8,
@@ -48,7 +48,8 @@ public class GuiHollowWood extends GuiContainer
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.renderEngine
-                .func_110577_a(new ResourceLocation("/mods/magiks/textures/gui/hallowwood.png"));
+                .func_110577_a(new ResourceLocation(ModStrings.MOD_ID.toLowerCase(),
+                		ModStrings.GUI_LOC + "hallowwood.png"));
         int var5 = (width - xSize) / 2;
         int var6 = (height - ySize) / 2;
         this.drawTexturedModalRect(var5, var6, 0, 0, xSize, ySize);

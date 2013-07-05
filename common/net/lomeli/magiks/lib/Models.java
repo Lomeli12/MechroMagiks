@@ -4,4 +4,5 @@ public class Models
 {
 	public static final String MODEL_LOC = "/mods/magiks/models/";
 	public static final String MODEL_COIL = MODEL_LOC + "smallcoil.obj";
+	public static final String MODEL_TEXTURES = "textures/entities/";
 }

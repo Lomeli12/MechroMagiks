@@ -3,7 +3,7 @@ package net.lomeli.magiks.items.science;
 import java.util.List;
 
 import net.lomeli.magiks.items.ItemGeneric;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -28,7 +28,7 @@ public class ItemWeatherRockets extends ItemGeneric
 	{
 		for(int i = 0; i < 6; i++)
 		{
-			this.iconArray[i] = iconRegister.registerIcon(Strings.MOD_ID + ":" + itemTexture + "_" + i);
+			this.iconArray[i] = iconRegister.registerIcon(ModStrings.MOD_ID + ":" + itemTexture + "_" + i);
 		}
 	}
 	

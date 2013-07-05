@@ -3,7 +3,7 @@ package net.lomeli.magiks.blocks.machine.parts;
 import java.util.Random;
 
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.tileentity.TileEntityBuilder;
 import net.lomeli.magiks.tileentity.TileEntityBuilderDummy;
 
@@ -46,7 +46,7 @@ public class BlockBuilderDummy extends BlockContainer
 	@Override
     public void registerIcons(IconRegister iconRegister)
     {
-        blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":burningstone");
+        blockIcon = iconRegister.registerIcon(ModStrings.MOD_ID + ":burningstone");
     }
 	
 	@Override

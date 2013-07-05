@@ -3,7 +3,7 @@ package net.lomeli.magiks.items;
 import java.util.List;
 import java.util.Random;
 
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -31,7 +31,7 @@ public class ItemProcessedFood extends ItemFood
 	{
 		for(int i = 0; i < 11; i++)
 		{
-			this.iconArray[i] = iconRegister.registerIcon(Strings.MOD_ID + ":" + "food/processed_" + i);
+			this.iconArray[i] = iconRegister.registerIcon(ModStrings.MOD_ID + ":" + "food/processed_" + i);
 		}
 	}
 	

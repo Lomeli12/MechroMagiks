@@ -10,7 +10,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.lib.Ints;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -58,7 +58,7 @@ public class UpdateHelper
 	public static String updateText(String updateURL)
 	{
 		String download = String.valueOf(praseXML(updateURL, "modURL"));
-		return ("A new version of " + Strings.MOD_NAME + " is available at " + download);
+		return ("A new version of " + ModStrings.MOD_NAME + " is available at " + download);
 	}
 	
 	private static boolean checkForUpdates(String updateURL)

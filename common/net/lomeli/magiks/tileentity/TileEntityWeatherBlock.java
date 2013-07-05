@@ -2,7 +2,7 @@ package net.lomeli.magiks.tileentity;
 
 import net.lomeli.magiks.api.magiks.EnumMachineTypes;
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -86,7 +86,7 @@ public class TileEntityWeatherBlock extends TileEntityMagiks implements
     @Override
     public String getInvName()
     {
-        return Strings.conatinerWeatherBlock;
+        return ModStrings.conatinerWeatherBlock;
     }
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)

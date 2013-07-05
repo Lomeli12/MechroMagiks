@@ -4,7 +4,7 @@ import net.lomeli.lomlib.block.BlockUtil;
 import net.lomeli.magiks.api.crafting.KineticGenFuel;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.api.magiks.IMagiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -91,7 +91,7 @@ public class TileEntityKineticGenerator extends TileEntity implements
     @Override
     public String getInvName()
     {
-        return Strings.containterKineticGen;
+        return ModStrings.containterKineticGen;
     }
 
     @Override

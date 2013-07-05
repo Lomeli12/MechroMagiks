@@ -5,7 +5,7 @@ import java.util.List;
 import net.lomeli.lomlib.util.ToolTipUtil;
 
 import net.lomeli.magiks.Magiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,7 +33,7 @@ public class ItemUpgrades extends Item
     @Override
     public void registerIcons(IconRegister iconRegister)
     {
-        itemIcon = iconRegister.registerIcon(Strings.MOD_ID + ":" + itemTexture);
+        itemIcon = iconRegister.registerIcon(ModStrings.MOD_ID + ":" + itemTexture);
     }
     
     @SuppressWarnings({ "unchecked", "rawtypes" })

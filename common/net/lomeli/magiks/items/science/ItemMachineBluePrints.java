@@ -5,7 +5,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.lomeli.magiks.items.ItemGeneric;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -28,7 +28,7 @@ public class ItemMachineBluePrints extends ItemGeneric
 	{
 		for(int i = 0; i < 7; i++)
 		{
-			this.iconArray[i] = iconRegister.registerIcon(Strings.MOD_ID + ":blueprint" );
+			this.iconArray[i] = iconRegister.registerIcon(ModStrings.MOD_ID + ":blueprint" );
 		}
 	}
 	

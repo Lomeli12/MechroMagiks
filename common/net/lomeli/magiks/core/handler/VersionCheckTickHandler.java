@@ -5,7 +5,7 @@ import java.util.EnumSet;
 import net.lomeli.lomlib.util.ToolTipUtil;
 
 import net.lomeli.magiks.Magiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.ITickHandler;
@@ -35,8 +35,8 @@ public class VersionCheckTickHandler implements ITickHandler
                         {
                         	initialized = true;
                         	FMLClientHandler.instance().getClient().ingameGUI.getChatGUI()
-                        		.printChatMessage(ToolTipUtil.BLUE + "[" + ToolTipUtil.ORANGE + Strings.MOD_NAME 
-                        		+ ToolTipUtil.BLUE + "]: "+ Magiks.updateInstance.updateText(Strings.FILE_URL));
+                        		.printChatMessage(ToolTipUtil.BLUE + "[" + ToolTipUtil.ORANGE + ModStrings.MOD_NAME 
+                        		+ ToolTipUtil.BLUE + "]: "+ Magiks.updateInstance.updateText(ModStrings.FILE_URL));
                         }
                     }
                 }
@@ -53,6 +53,6 @@ public class VersionCheckTickHandler implements ITickHandler
     @Override
     public String getLabel() 
     {
-    	return Strings.MOD_NAME + ": " + this.getClass().getSimpleName();
+    	return ModStrings.MOD_NAME + ": " + this.getClass().getSimpleName();
     }
 }

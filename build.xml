@@ -4,18 +4,18 @@
 	<property file="build_number.properties" prefix="build_number"/>
     
 	<target name="clean">
-		<delete file="${dir.development}\mcp\src\minecraft\mcmod.info" />
-        <delete dir="${dir.development}\mcp\src\minecraft\net\lomeli" />
-        <delete dir="${dir.development}\mcp\src\minecraft\com" />
-        <delete dir="${dir.development}\mcp\src\minecraft\buildcraft" />
-        <delete dir="${dir.development}\mcp\src\minecraft\smalldeadguy" />
-        <delete dir="${dir.development}\mcp\src\minecraft\extrabiomes" />
-        <delete dir="${dir.development}\mcp\src\minecraft\thaumcraft" />
-        <delete dir="${dir.development}\mcp\src\minecraft\forestry" />
-        <delete dir="${dir.development}\mcp\src\minecraft\thermalexpansion" />
-        <delete dir="${dir.development}\mcp\src\minecraft\appeng" />
-        <delete dir="${dir.development}\mcp\src\minecraft\ic2" />
-		<delete dir="${dir.development}\mcp\reobf\minecraft" />
+		<delete file="${dir.development}\forge\mcp\src\minecraft\mcmod.info" />
+        <delete dir="${dir.development}\forge\mcp\src\minecraft\net\lomeli" />
+        <delete dir="${dir.development}\forge\mcp\src\minecraft\com" />
+        <delete dir="${dir.development}\forge\mcp\src\minecraft\buildcraft" />
+        <delete dir="${dir.development}\forge\mcp\src\minecraft\smalldeadguy" />
+        <delete dir="${dir.development}\forge\mcp\src\minecraft\extrabiomes" />
+        <delete dir="${dir.development}\forge\mcp\src\minecraft\thaumcraft" />
+        <delete dir="${dir.development}\forge\mcp\src\minecraft\forestry" />
+        <delete dir="${dir.development}\forge\mcp\src\minecraft\thermalexpansion" />
+        <delete dir="${dir.development}\forge\mcp\src\minecraft\appeng" />
+        <delete dir="${dir.development}\forge\mcp\src\minecraft\ic2" />
+		<delete dir="${dir.development}\forge\mcp\reobf\minecraft" />
 	</target>
     
 	<target name="increment_build_number">
@@ -25,27 +25,28 @@
 	</target>
     
 	<target name="build">
-		<copy todir="${dir.development}\mcp\src\minecraft">
+		<copy todir="${dir.development}\forge\mcp\src\minecraft">
 			<fileset dir="${dir.development}\source\${dir.modname}\common" />
+            <fileset dir="${dir.development}\source\${dir.modname}\dependencies" />
             <fileset dir="${dir.development}\source\LomLib\common" />
 		</copy>
-		<replace dir="${dir.development}\mcp\src\minecraft" token="@VERSION@" value="${release.mod.version}" />
+		<replace dir="${dir.development}\forge\mcp\src\minecraft" token="@VERSION@" value="${release.mod.version}" />
 	</target>
 
 	<target name="recompile">
-		<exec dir="${dir.development}\mcp" executable="cmd" osfamily="windows">
+		<exec dir="${dir.development}\forge\mcp" executable="cmd" osfamily="windows">
 			<arg line="/c recompile.bat" />
 		</exec>
-		<exec dir="${dir.development}\mcp" executable="bash" osfamily="unix">
+		<exec dir="${dir.development}\forge\mcp" executable="bash" osfamily="unix">
 			<arg line="recompile.sh" />
 		</exec>
 	</target>
 	
 	<target name="reobfuscate">
-		<exec dir="${dir.development}\mcp" executable="cmd" osfamily="windows">
+		<exec dir="${dir.development}\forge\mcp" executable="cmd" osfamily="windows">
 			<arg line="/c reobfuscate_srg.bat" />
 		</exec>
-		<exec dir="${dir.development}\mcp" executable="bash" osfamily="unix">
+		<exec dir="${dir.development}\forge\mcp" executable="bash" osfamily="unix">
 			<arg line="reobfuscate_srg.sh" />
 		</exec>
 	</target>
@@ -54,8 +55,8 @@
     <target name="buildjar">
         <mkdir dir="..\..\releases\${dir.modname}\${release.minecraft.version}\${release.mod.version}" />
 		<jar destfile="..\..\releases\${dir.modname}\${release.minecraft.version}\${release.mod.version}\${release.mod.name}-universal-${release.mod.version}-build-${build_number.build_number}.jar" >
-			<fileset dir="${dir.development}\mcp\src\minecraft\" includes="mcmod.info" />
-			<fileset dir="${dir.development}\mcp\reobf\minecraft" excludes="**/lomlib/**" />
+			<fileset dir="${dir.development}\forge\mcp\src\minecraft\" includes="mcmod.info" />
+			<fileset dir="${dir.development}\forge\mcp\reobf\minecraft" excludes="**/lomlib/**" />
 			<fileset dir="${dir.development}\source\${dir.modname}\resources" excludes="**/xcf/**" />
 		</jar>
     </target>
@@ -70,8 +71,8 @@
 		<!-- Build the jar -->
 		<mkdir dir="..\..\${dir.share}\${dir.modname}\${release.minecraft.version}\${release.mod.version}" />
 		<jar destfile="..\..\${dir.share}\${dir.modname}\${release.minecraft.version}\${release.mod.version}\${release.mod.name}-universal-${release.mod.version}-build-${build_number.build_number}.jar">
-			<fileset dir="${dir.development}\mcp\src\common\"	includes="mcmod.info" />
-			<fileset dir="${dir.development}\mcp\reobf\minecraft" excludes="**/lomlib/**" />
+			<fileset dir="${dir.development}\forge\mcp\src\common\"	includes="mcmod.info" />
+			<fileset dir="${dir.development}\forge\mcp\reobf\minecraft" excludes="**/lomlib/**" />
 			<fileset dir="${dir.development}\source\${dir.modname}\resources" excludes="**/xcf/**" />
 		</jar>
 		

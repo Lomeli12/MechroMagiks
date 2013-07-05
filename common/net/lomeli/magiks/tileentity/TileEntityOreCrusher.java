@@ -3,7 +3,7 @@ package net.lomeli.magiks.tileentity;
 import net.lomeli.magiks.api.machines.OreCrusherManager;
 import net.lomeli.magiks.api.magiks.EnumMachineTypes;
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -302,7 +302,7 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 	@Override
     public String getInvName()
     {
-	    return Strings.containerOreCrusher;
+	    return ModStrings.containerOreCrusher;
     }
 	
 	@Override

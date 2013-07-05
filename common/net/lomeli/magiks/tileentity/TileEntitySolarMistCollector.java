@@ -3,7 +3,7 @@ package net.lomeli.magiks.tileentity;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.api.magiks.EnumMachineTypes;
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -36,7 +36,7 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
     @Override
     public String getInvName()
     {
-        return Strings.containerSolarGen;
+        return ModStrings.containerSolarGen;
     }
 
     @Override
@@ -56,13 +56,6 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
     @Override
     public void updateEntity()
     {
-    	tick++;
-		
-		if(tick == 10)
-		{
-			System.out.println("Solar: " + this.mistLevel);
-			tick = 0;
-		}
         if (this.worldObj != null)
         {
             ItemStack item = getStackInSlot(0);

@@ -3,7 +3,7 @@ package net.lomeli.magiks.blocks.aesthetic;
 import java.util.Random;
 
 import net.lomeli.magiks.Magiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -28,7 +28,7 @@ public class BlockMecroGlass extends BlockGlass
     @Override
     public void registerIcons(IconRegister iconRegister)
     {
-        blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":"
+        blockIcon = iconRegister.registerIcon(ModStrings.MOD_ID + ":"
                 + blockTexture);
     }
 }

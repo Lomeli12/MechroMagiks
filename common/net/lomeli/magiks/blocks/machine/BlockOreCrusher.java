@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.lib.GuiIDs;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.tileentity.TileEntityOreCrusher;
 
 import net.minecraft.block.BlockContainer;
@@ -44,9 +44,9 @@ public class BlockOreCrusher extends BlockContainer
 	@Override
     public void registerIcons(IconRegister iconRegister)
     {
-		defaultSide = iconRegister.registerIcon(Strings.MOD_ID + ":orecrusher");
-		frontSide = iconRegister.registerIcon(Strings.MOD_ID + ":orecrusherfront");
-		topSide = iconRegister.registerIcon(Strings.MOD_ID + ":orecrushertop");
+		defaultSide = iconRegister.registerIcon(ModStrings.MOD_ID + ":orecrusher");
+		frontSide = iconRegister.registerIcon(ModStrings.MOD_ID + ":orecrusherfront");
+		topSide = iconRegister.registerIcon(ModStrings.MOD_ID + ":orecrushertop");
         blockIcon = defaultSide;
     }
 	

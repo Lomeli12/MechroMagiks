@@ -3,6 +3,8 @@ package net.lomeli.magiks.client.render.item;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import net.lomeli.magiks.lib.ModStrings;
+import net.lomeli.magiks.lib.Models;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.item.ItemStack;
@@ -54,7 +56,8 @@ public class ItemLinkingChestRenderer implements IItemRenderer
 	private void renderChest(float x, float y, float z) {
 
         FMLClientHandler.instance().getClient().renderEngine
-        	.func_110577_a(new ResourceLocation("/mods/magiks/models/linkingChest.png"));
+        	.func_110577_a(new ResourceLocation(ModStrings.MOD_ID, 
+            		Models.MODEL_TEXTURES +"linkingChest.png"));
         GL11.glPushMatrix(); //start
         GL11.glTranslatef(x, y, z); //size
         GL11.glRotatef(180, 1, 0, 0);

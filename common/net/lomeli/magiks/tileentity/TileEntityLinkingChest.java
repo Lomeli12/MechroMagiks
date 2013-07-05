@@ -1,7 +1,7 @@
 package net.lomeli.magiks.tileentity;
 
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -112,7 +112,7 @@ public class TileEntityLinkingChest extends TileEntity implements
     @Override
     public String getInvName()
     {
-        return Strings.containerLinkingChest;
+        return ModStrings.containerLinkingChest;
     }
 
     @Override

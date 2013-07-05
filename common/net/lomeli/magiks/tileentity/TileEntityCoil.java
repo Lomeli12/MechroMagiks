@@ -4,7 +4,7 @@ import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.api.magiks.EnumMachineTypes;
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.core.handler.ErrorHandler;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -189,7 +189,7 @@ public class TileEntityCoil extends TileEntityMagiks
 	@Override
     public String getInvName()
     {
-	    return Strings.containerBuilder;
+	    return ModStrings.containerBuilder;
     }
 
 	@Override

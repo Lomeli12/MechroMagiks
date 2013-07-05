@@ -5,7 +5,7 @@ import java.util.Random;
 import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.lib.GuiIDs;
 import net.lomeli.magiks.lib.RenderIDs;
-import net.lomeli.magiks.lib.Strings;
+import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
 
 import net.minecraft.block.BlockContainer;
@@ -34,7 +34,7 @@ public class BlockSolarMistCollector extends BlockContainer
     @Override
     public void registerIcons(IconRegister iconRegister)
     {
-        blockIcon = iconRegister.registerIcon(Strings.MOD_ID + ":"
+        blockIcon = iconRegister.registerIcon(ModStrings.MOD_ID + ":"
                 + blockTexture);
     }
 
