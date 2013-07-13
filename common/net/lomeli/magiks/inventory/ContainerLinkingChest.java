@@ -46,13 +46,6 @@ public class ContainerLinkingChest extends Container
 	
 	
 	@Override
-    public void onCraftGuiClosed(EntityPlayer entityPlayer) 
-	{
-        super.onCraftGuiClosed(entityPlayer);
-        tileEntity.closeChest();
-	}
-	
-	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) 
 	{
 		return true;

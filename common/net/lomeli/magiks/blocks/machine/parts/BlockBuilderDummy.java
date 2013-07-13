@@ -57,7 +57,8 @@ public class BlockBuilderDummy extends BlockContainer
 
 		if (dummy != null && dummy.getCore() != null)
         {
-			
+			dummy.getCore().invalidateMultiBlock(world,
+				dummy.getCore().xCoord, dummy.getCore().yCoord, dummy.getCore().zCoord);
         }
 		
 		super.breakBlock(world, x, y, z, par5, par6);

@@ -10,20 +10,17 @@ public class ItemDroppedHandler
     @ForgeSubscribe
     public void onItemTossEvent(ItemTossEvent event)
     {
-    	if (event.entityItem.getEntityItem() != null && event.entityItem.getEntityItem().itemID == ModItemsMagiks.flyingRing.itemID)
+    	if (event.entityItem.getEntityItem() != null 
+    		&& event.entityItem.getEntityItem().itemID == ModItemsMagiks.flyingRing.itemID)
     	{
     		EntityPlayer player = event.player;
     		if(player != null)
     		{
             	player.stepHeight = 0.5F;
-    			if (player.capabilities.isCreativeMode == false)
+    			if (!player.capabilities.isCreativeMode)
     	        {
     				player.capabilities.allowFlying = false;
-                    if (player.capabilities.isFlying == true)
-                    {
-                    	player.capabilities.allowFlying = false;
-                    	player.capabilities.isFlying = false;
-                    }
+    				player.capabilities.isFlying = false;
     	        }
     		}
     	}

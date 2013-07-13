@@ -2,6 +2,12 @@ package net.lomeli.magiks.api.magiks;
 
 import net.minecraft.tileentity.TileEntity;
 
+/**
+ * Plain TileEntity for Mist Machines. Extend
+ * this if you want your machines to work
+ * properly with Power Coils
+ * @author Lomeli12
+ */
 public class TileEntityMagiks extends TileEntity implements IMagiks
 {
 	public EnumMachineTypes getType()

@@ -1,11 +1,11 @@
 package net.lomeli.magiks.recipes;
 
-import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.api.MechroMagiksAPI;
 import net.lomeli.magiks.api.crafting.BasicRecipeManager;
 import net.lomeli.magiks.api.crafting.specialrecipes.MancerShapedOreRecipes;
 import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
+import net.lomeli.magiks.items.ModItemsMagiks;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -80,7 +80,7 @@ public class MagiksRecipes
     public static void registerItemRecipes()
     {    	
         GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.enchantedDiamond, 1), 
-        		new Object[] { "GEG", "EDE", "RER", 'G', Item.lightStoneDust, 'R',
+        		new Object[] { "GEG", "EDE", "RER", 'G', Item.glowstone, 'R',
                 Item.redstone, 'D', Item.diamond, 'E', ModItemsMagiks.neoniteGem });
         GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.ironStick, 2), new Object[] {
                 "  I", " I ", "I  ", 'I', Item.ingotIron });
@@ -88,13 +88,13 @@ public class MagiksRecipes
                 " I ", "IBI", " I ", 'I', ModItemsMagiks.ironStick, 'B', Item.bucketLava });
         GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.flyingRing, 1), new Object[] {
                 "GLR", "DID", "FEF", 'G', ModItemsMagiks.enchantedDiamond, 'D', Item.diamond,
-                'L', Item.lightStoneDust, 'E', Item.enderPearl, 'I', ModItemsMagiks.ironBand,
+                'L', Item.glowstone, 'E', Item.enderPearl, 'I', ModItemsMagiks.ironBand,
                 'R', Item.redstone, 'F', Item.feather });
         GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.darkMatter, 1), new Object[] {
                 "GMG", "MOM", "GMG", 'G', ModItemsMagiks.neoniteGem, 'M',
                 ModBlocksMagiks.manceryBlock, 'O', ModItemsMagiks.enchantedDiamond });
         GameRegistry.addShapelessRecipe(new ItemStack(ModItemsMagiks.deprivedDust, 1),
-                new Object[] { Item.lightStoneDust, Block.slowSand,
+                new Object[] { Item.glowstone, Block.slowSand,
         		ModItemsMagiks.ingotStamatic });
         GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.mistPanel, 1), new Object[] {
                 "RDR", "DSD", "III", 'R', Item.redstone, 'S',
@@ -126,7 +126,7 @@ public class MagiksRecipes
                 " IE", "ISI", "RI ", 'E', Item.emerald, 'R', Item.redstone,
                 'S', Item.stick, 'I', ModItemsMagiks.ingotStamatic });
         GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.chemistWand, 1), new Object[] {
-                " IE", "ISI", "RI ", 'E', Item.lightStoneDust, 'R',
+                " IE", "ISI", "RI ", 'E', Item.glowstone, 'R',
                 Item.diamond, 'S', ModItemsMagiks.basicWand, 'I', ModItemsMagiks.ingotStamatic });
         GameRegistry.addRecipe(new ItemStack(ModItemsMagiks.alchemistWand, 1), new Object[] {
                 " IE", "ISI", "RI ", 'E', ModItemsMagiks.enchantedDiamond, 'R', ModItemsMagiks.darkMatter,

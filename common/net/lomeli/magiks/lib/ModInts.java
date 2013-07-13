@@ -1,6 +1,6 @@
 package net.lomeli.magiks.lib;
 
-public class Ints 
+public class ModInts 
 {
 	public static int neoniteGen;
 	public static int igniousGen;
@@ -14,5 +14,5 @@ public class Ints
 	
 	public static final int VERSION_MAJOR = 0;
 	public static final int VERSION_MINOR = 0;
-	public static final int VERSION_REVISION = 9;
+	public static final int VERSION_REVISION = 7;
 }

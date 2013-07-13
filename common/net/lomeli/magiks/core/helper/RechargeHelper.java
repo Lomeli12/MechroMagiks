@@ -14,10 +14,10 @@ public class RechargeHelper
         if (player != null)
             if (itemStack.getItemDamage() != 0)
             {
-                if (player.inventory.hasItem(Item.lightStoneDust.itemID))
+                if (player.inventory.hasItem(Item.glowstone.itemID))
                 {
                     player.inventory
-                            .consumeInventoryItem(Item.lightStoneDust.itemID);
+                            .consumeInventoryItem(Item.glowstone.itemID);
                     itemStack.setItemDamage(itemStack.getItemDamage() - 100);
                 } else if (player.inventory.hasItem(Item.coal.itemID))
                 {
@@ -48,12 +48,12 @@ public class RechargeHelper
         if (player != null)
             if (itemStack.getItemDamage() > 0)
             {
-                if (player.inventory.hasItem(Item.lightStoneDust.itemID))
+                if (player.inventory.hasItem(Item.glowstone.itemID))
                 {
                     while (itemStack.getItemDamage() > 0)
                     {
                         player.inventory
-                                .consumeInventoryItem(Item.lightStoneDust.itemID);
+                                .consumeInventoryItem(Item.glowstone.itemID);
                         itemStack
                                 .setItemDamage(itemStack.getItemDamage() - 100);
                     }

@@ -156,9 +156,9 @@ public class TileEntityMultiFurnaceDummy extends TileEntity implements
     }
 
     @Override
-    public boolean isStackValidForSlot(int i, ItemStack itemstack)
+    public boolean isItemValidForSlot(int i, ItemStack itemstack)
     {
-        return tileEntityCore.isStackValidForSlot(i, itemstack);
+        return tileEntityCore.isItemValidForSlot(i, itemstack);
     }
 
     @SuppressWarnings("static-access")
@@ -172,9 +172,9 @@ public class TileEntityMultiFurnaceDummy extends TileEntity implements
 	@Override
 	public boolean canInsertItem(int slot, ItemStack itemstack, int side) {
 		if(side == 1)
-			return this.isStackValidForSlot(0, itemstack);
+			return this.isItemValidForSlot(0, itemstack);
 		if(side == 0)
-			return this.isStackValidForSlot(1, itemstack);
+			return this.isItemValidForSlot(1, itemstack);
 		else
 			return false;
 	}

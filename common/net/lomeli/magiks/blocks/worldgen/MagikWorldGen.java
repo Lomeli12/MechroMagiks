@@ -5,7 +5,7 @@ import java.util.Random;
 import net.lomeli.lomlib.worldgen.WorldGenNether;
 
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
-import net.lomeli.magiks.lib.Ints;
+import net.lomeli.magiks.lib.ModInts;
 
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -35,7 +35,7 @@ public class MagikWorldGen implements IWorldGenerator
     {
     	int xCoord = chunkX + random.nextInt(16);
         int zCoord = chunkZ + random.nextInt(16);
-        new WorldGenNether(ModBlocksMagiks.netherIgnious.blockID, Ints.nIgniousGen)
+        new WorldGenNether(ModBlocksMagiks.netherIgnious.blockID, ModInts.nIgniousGen)
         	.generate(world, random, xCoord, random.nextInt(126), zCoord);
     }
 
@@ -48,17 +48,17 @@ public class MagikWorldGen implements IWorldGenerator
     {
         int xCoord = chunkX + random.nextInt(16);
         int zCoord = chunkZ + random.nextInt(16);
-        new WorldGenMinable(ModBlocksMagiks.neoniteOre.blockID, Ints.neoniteGen).generate(
+        new WorldGenMinable(ModBlocksMagiks.neoniteOre.blockID, ModInts.neoniteGen).generate(
                 world, random, xCoord, random.nextInt(50), zCoord);
-        new WorldGenMinable(ModBlocksMagiks.stamaticOre.blockID, Ints.stamaticGen).generate(
+        new WorldGenMinable(ModBlocksMagiks.stamaticOre.blockID, ModInts.stamaticGen).generate(
                 world, random, xCoord, random.nextInt(65), zCoord);
-        new WorldGenMinable(ModBlocksMagiks.igniousOre.blockID, Ints.igniousGen).generate(
+        new WorldGenMinable(ModBlocksMagiks.igniousOre.blockID, ModInts.igniousGen).generate(
                 world, random, xCoord, random.nextInt(35), zCoord);
-        new WorldGenMinable(ModBlocksMagiks.copperOre.blockID, Ints.copperGen).generate(
+        new WorldGenMinable(ModBlocksMagiks.copperOre.blockID, ModInts.copperGen).generate(
         		world, random, xCoord, random.nextInt(75), zCoord);
-        new WorldGenMinable(ModBlocksMagiks.tinOre.blockID, Ints.tinGen).generate(
+        new WorldGenMinable(ModBlocksMagiks.tinOre.blockID, ModInts.tinGen).generate(
         		world, random, xCoord, random.nextInt(55), zCoord);
-        new WorldGenMinable(ModBlocksMagiks.silverOre.blockID, Ints.silverGen).generate(
+        new WorldGenMinable(ModBlocksMagiks.silverOre.blockID, ModInts.silverGen).generate(
         		world, random, xCoord, random.nextInt(35), zCoord);
         
     }

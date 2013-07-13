@@ -7,7 +7,7 @@
 package thermalexpansion.api.crafting;
 
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.liquids.LiquidStack;
+import net.minecraftforge.fluids.FluidStack;
 
 /**
  * Provides an interface to the recipe manager of the Liquid Transposer. Accessible via
@@ -32,9 +32,9 @@ public interface ITransposerManager {
      *            Flag to enable recipe overwriting. This will only be allowed if enabled in the
      *            Thermal Expansion Configuration file and will be logged for information purposes.
      */
-    public boolean addFillRecipe(int energy, ItemStack input, ItemStack output, LiquidStack liquid, boolean reversible, boolean overwrite);
+    public boolean addFillRecipe(int energy, ItemStack input, ItemStack output, FluidStack liquid, boolean reversible, boolean overwrite);
 
-    public boolean addFillRecipe(int energy, ItemStack input, ItemStack output, LiquidStack liquid, boolean reversible);
+    public boolean addFillRecipe(int energy, ItemStack input, ItemStack output, FluidStack liquid, boolean reversible);
 
     /**
      * Add a recipe to the Liquid Transposer
@@ -58,9 +58,9 @@ public interface ITransposerManager {
      *            Flag to enable recipe overwriting. This will only be allowed if enabled in the
      *            Thermal Expansion Configuration file and will be logged for information purposes.
      */
-    public boolean addExtractionRecipe(int energy, ItemStack input, ItemStack output, LiquidStack liquid, int chance, boolean reversible, boolean overwrite);
+    public boolean addExtractionRecipe(int energy, ItemStack input, ItemStack output, FluidStack liquid, int chance, boolean reversible, boolean overwrite);
 
-    public boolean addExtractionRecipe(int energy, ItemStack input, ItemStack output, LiquidStack liquid, int chance, boolean reversible);
+    public boolean addExtractionRecipe(int energy, ItemStack input, ItemStack output, FluidStack liquid, int chance, boolean reversible);
 
     /**
      * Access to the list of recipes.

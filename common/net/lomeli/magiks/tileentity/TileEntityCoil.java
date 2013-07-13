@@ -38,6 +38,7 @@ public class TileEntityCoil extends TileEntityMagiks
 	@Override
     public void updateEntity()
     {
+		super.updateEntity();
 		scanArea();
         if(inventory[0] != null)
         {
@@ -81,28 +82,28 @@ public class TileEntityCoil extends TileEntityMagiks
 						if(mistMachine.getType().equals(EnumMachineTypes.MACHINE))
 						{
 							connectedMachine++;
-							if(mistLevel > 0 && mistMachine.getMistLevel() < mistMachine.getMaxMistLevel())
+							if(this.mistLevel > 0 && mistMachine.getMistLevel() < mistMachine.getMaxMistLevel())
 							{
-								mistLevel--;
+								this.mistLevel--;
 								mistMachine.addToMistLevel(1);
 							}
 						}
 						else if(mistMachine.getType().equals(EnumMachineTypes.GENERATOR))
 						{
 							connectedGen++;
-							if(mistLevel < maxMistLevel && mistMachine.getMistLevel() > 0)
+							if(this.mistLevel < this.maxMistLevel && mistMachine.getMistLevel() > 0)
 							{
 								mistMachine.addToMistLevel(-1);
-								mistLevel++;
+								this.mistLevel++;
 							}
 						}
 						else if(mistMachine.getType().equals(EnumMachineTypes.BATBOX))
 						{
 							localBatboxs++;
-							if(mistLevel < 100 && mistMachine.getMistLevel() > 0)
+							if(this.mistLevel < 100 && mistMachine.getMistLevel() > 0)
 							{
 								mistMachine.addToMistLevel(-1);
-								mistLevel++;
+								this.mistLevel++;
 							}
 						}
 						else
@@ -219,7 +220,7 @@ public class TileEntityCoil extends TileEntityMagiks
     {}
 
 	@Override
-    public boolean isStackValidForSlot(int i, ItemStack itemstack)
+    public boolean isItemValidForSlot(int i, ItemStack itemstack)
     {
 		if(getStackInSlot(i).isItemEqual(itemstack) && 
 			getStackInSlot(i).stackSize <= getStackInSlot(i).getMaxDamage())
@@ -227,7 +228,7 @@ public class TileEntityCoil extends TileEntityMagiks
 		else
 			return false;
     }
-	
+    
 	@Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
@@ -236,6 +237,8 @@ public class TileEntityCoil extends TileEntityMagiks
         loadNBT(nbtTagCompound);
     }
     
+    
+
     @Override
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
@@ -254,7 +257,7 @@ public class TileEntityCoil extends TileEntityMagiks
             NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
             
             byte slot = tagCompound.getByte("Slot");
-            if (slot >= 0 && slot < inventory.length)
+            if (slot >= 0 && slot < 2)
             {
                 inventory[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
             }

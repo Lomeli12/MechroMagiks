@@ -23,7 +23,7 @@ public class VersionCheckTickHandler implements ITickHandler
     @Override
     public void tickEnd(EnumSet<TickType> type, Object... tickData)
     {
-    	if(Magiks.updateInstance.isUpdate())
+    	if(!Magiks.updateInstance.isUpdate())
     	{
     		if (!initialized) 
     		{
@@ -36,7 +36,7 @@ public class VersionCheckTickHandler implements ITickHandler
                         	initialized = true;
                         	FMLClientHandler.instance().getClient().ingameGUI.getChatGUI()
                         		.printChatMessage(ToolTipUtil.BLUE + "[" + ToolTipUtil.ORANGE + ModStrings.MOD_NAME 
-                        		+ ToolTipUtil.BLUE + "]: "+ Magiks.updateInstance.updateText(ModStrings.FILE_URL));
+                        		+ ToolTipUtil.BLUE + "]: "+ Magiks.updateInstance.updateText());
                         }
                     }
                 }

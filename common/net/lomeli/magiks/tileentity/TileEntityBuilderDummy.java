@@ -3,6 +3,7 @@ package net.lomeli.magiks.tileentity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityBuilderDummy extends TileEntity implements
@@ -25,6 +26,14 @@ public class TileEntityBuilderDummy extends TileEntity implements
         tileEntityCore = core;
     }
     
+    public void setCore(int x, int y, int z)
+    {
+    	coreX = x;
+    	coreY = y;
+    	coreZ = z;
+    	tileEntityCore = (TileEntityBuilder)worldObj.getBlockTileEntity(coreX, coreY, coreZ);
+    }
+    
     public TileEntityBuilder getCore()
     {
     	if (tileEntityCore == null)
@@ -32,6 +41,36 @@ public class TileEntityBuilderDummy extends TileEntity implements
     		tileEntityCore = (TileEntityBuilder)worldObj.getBlockTileEntity(coreX, coreY, coreZ);
         }
     	return tileEntityCore;
+    }
+    
+    public void addToNBT(NBTTagCompound nbtTagCompound)
+    {
+    	nbtTagCompound.setInteger("coreX", coreX);
+    	nbtTagCompound.setInteger("coreY", coreY);
+    	nbtTagCompound.setInteger("coreZ", coreZ);
+    }
+    
+    public void loadNBT(NBTTagCompound nbtTag)
+    {
+    	coreX = nbtTag.getInteger("coreX");
+    	coreY = nbtTag.getInteger("coreY");
+    	coreZ = nbtTag.getInteger("coreZ");
+    }
+    
+    @Override
+    public void readFromNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.readFromNBT(nbtTagCompound);
+        
+        loadNBT(nbtTagCompound);
+    }
+    
+    @Override
+    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.writeToNBT(nbtTagCompound);
+
+        addToNBT(nbtTagCompound);
     }
     
     @Override
@@ -101,7 +140,7 @@ public class TileEntityBuilderDummy extends TileEntity implements
     }
 
 	@Override
-    public boolean isStackValidForSlot(int i, ItemStack itemstack)
+	public boolean isItemValidForSlot(int i, ItemStack itemstack)
     {
 	    // TODO Auto-generated method stub
 	    return false;

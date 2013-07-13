@@ -177,7 +177,7 @@ public class AddonRecipes
     	    'L', lavaCell });
     	    advRecipes.addRecipe(hvTransformer, new Object[] { " c ", "CED", " c ", 'E', mvTransformer, 'c', 
     	    trippleInsulatedIronCableItem, 'D', energyCrystal, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(remote, new Object[] { " c ", "GCG", "TTT", 'c', "copperWire", 'G', Item.lightStoneDust, 
+    	    advRecipes.addRecipe(remote, new Object[] { " c ", "GCG", "TTT", 'c', "copperWire", 'G', Item.glowstone, 
     	    'C', "electronicCircuit", 'T', Block.tnt });
     	    advRecipes.addRecipe(detectorCableItem, new Object[] { " C ", "RIR", " R ", 'R', Item.redstone, 
     	    'I', trippleInsulatedIronCableItem, 'C', "electronicCircuit" });
@@ -192,9 +192,9 @@ public class AddonRecipes
     	    advRecipes.addRecipe(chainsaw, new Object[] { " II", "ICI", "BI ", 'I', "ingotRefinedIron", 
     	    'B', chargedReBattery, 'C', "electronicCircuit" });
     	    advRecipes.addRecipe(odScanner, new Object[] { " G ", "CBC", "ccc", 'B', reBattery, 
-    	    'c', "copperWire", 'G', Item.lightStoneDust, 'C', "electronicCircuit" });
+    	    'c', "copperWire", 'G', Item.glowstone, 'C', "electronicCircuit" });
     	    advRecipes.addRecipe(odScanner, new Object[] { " G ", "CBC", "ccc", 'B', chargedReBattery, 
-    	    'c', "copperWire", 'G', Item.lightStoneDust, 'C', "electronicCircuit" });
+    	    'c', "copperWire", 'G', Item.glowstone, 'C', "electronicCircuit" });
     	    advRecipes.addRecipe(electricWrench, new Object[] { "  W", " C ", "B  ", 'W', wrench, 
     	    'B', reBattery, 'C', "electronicCircuit" });
     	    advRecipes.addRecipe(electricWrench, new Object[] { "  W", " C ", "B  ", 'W', wrench, 
@@ -203,16 +203,16 @@ public class AddonRecipes
     	    'B', reBattery, 'C', "electronicCircuit" });
     	    advRecipes.addRecipe(electricTreetap, new Object[] { "  W", " C ", "B  ", 'W', treetap, 
     	    'B', chargedReBattery, 'C', "electronicCircuit" });
-    	    advRecipes.addRecipe(ecMeter, new Object[] { " G ", "cCc", "c c", 'G', Item.lightStoneDust, 
+    	    advRecipes.addRecipe(ecMeter, new Object[] { " G ", "cCc", "c c", 'G', Item.glowstone, 
     	    'c', "copperWire", 'C', "electronicCircuit" });
     	    advRecipes.addRecipe(electricHoe, new Object[] { "II ", " C ", " B ", 'I', "ingotRefinedIron", 
     	    'B', reBattery, 'C', "electronicCircuit" });
     	    advRecipes.addRecipe(electricHoe, new Object[] { "II ", " C ", " B ", 'I', "ingotRefinedIron", 
     	    'B', chargedReBattery, 'C', "electronicCircuit" });
     	    advRecipes.addRecipe(advancedCircuit, new Object[] { "RGR", "LCL", "RGR", 'L', new ItemStack(Item.dyePowder, 1, 4), 
-    	    'G', Item.lightStoneDust, 'R', Item.redstone, 'C', "electronicCircuit" });
+    	    'G', Item.glowstone, 'R', Item.redstone, 'C', "electronicCircuit" });
     	    advRecipes.addRecipe(advancedCircuit, new Object[] { "RLR", "GCG", "RLR", 'L', new ItemStack(Item.dyePowder, 1, 4), 
-    	    'G', Item.lightStoneDust, 'R', Item.redstone, 'C', "electronicCircuit" });
+    	    'G', Item.glowstone, 'R', Item.redstone, 'C', "electronicCircuit" });
     	    advRecipes.addRecipe(electronicCircuit, new Object[] { "CCC", "RIR", "CCC", 'I', "ingotRefinedIron", 
     	    'R', Item.redstone, 'C', "copperWire" });
     	    advRecipes.addRecipe(electronicCircuit, new Object[] { "CRC", "CIC", "CRC", 'I', "ingotRefinedIron", 

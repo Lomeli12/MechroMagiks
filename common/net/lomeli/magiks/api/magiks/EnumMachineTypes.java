@@ -11,6 +11,7 @@ public enum EnumMachineTypes
 	GENERATOR	(0),
 	MACHINE		(1),
 	BATBOX		(2),
+	BOOSTER		(3),
 	;
 	
 	private final int type;

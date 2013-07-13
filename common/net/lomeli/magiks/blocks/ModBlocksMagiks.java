@@ -20,6 +20,7 @@ import net.lomeli.magiks.blocks.machine.parts.BlockBuilderDummy;
 import net.lomeli.magiks.blocks.machine.parts.BlockMecroBlock;
 import net.lomeli.magiks.blocks.machine.parts.BlockMultiFurnaceDummy;
 import net.lomeli.magiks.lib.ItemIDs;
+import net.lomeli.magiks.lib.ModFluids;
 import net.lomeli.magiks.lib.ModStrings;
 
 import net.minecraft.block.Block;
@@ -121,8 +122,8 @@ public class ModBlocksMagiks
             "blockIgnious").setHardness(0.5F).setResistance(5000F)
             .setUnlocalizedName("igniousBlock").setCreativeTab(Magiks.modTab);
         builderCore = new BlockBuilderCore(ItemIDs.builderCoreID).setUnlocalizedName("builderCore");
-        builderBlock = new BlockBuilderDummy(ItemIDs.builderDummyID);
-        neoStill = new BlockNeoStill(ItemIDs.neoStillID);
+        builderBlock = new BlockBuilderDummy(ItemIDs.builderDummyID).setUnlocalizedName("builderBlock");
+        neoStill = new BlockNeoStill(ItemIDs.neoStillID, ModFluids.neoNite).setUnlocalizedName("liquidNeonite");
         jouleBox = new BlockJouleBox(ItemIDs.jouleBoxID).setUnlocalizedName("jouleBox");
         
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");

@@ -1,62 +1,80 @@
 package net.lomeli.magiks.blocks.liquids;
 
-import net.lomeli.magiks.blocks.ModBlocksMagiks;
-import net.lomeli.magiks.lib.RenderIDs;
+import net.lomeli.magiks.Magiks;
 import net.lomeli.magiks.lib.ModStrings;
 
-import net.minecraft.block.BlockStationary;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-import net.minecraftforge.liquids.ILiquid;
+import net.minecraftforge.fluids.BlockFluidFinite;
+import net.minecraftforge.fluids.Fluid;
 
-public class BlockNeoStill extends BlockStationary implements ILiquid 
+public class BlockNeoStill extends BlockFluidFinite
 {
 
-	public BlockNeoStill(int par1)
+	public BlockNeoStill(int id, Fluid fluid)
     {
-	    super(par1, Material.water);
-	    
-	    this.setHardness(100F);
-		this.setLightValue(1F);
-		this.setUnlocalizedName("neoStill");
+	    super(id, fluid, Material.water);
+	    this.setCreativeTab(Magiks.modTab);
+	    this.setLightValue(1.0F);
+	    this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
-	
-	@Override
-	public int getRenderType() 
-	{
-		return RenderIDs.liquidNeoStillID;
-	}
-	
+
 	@Override
     public void registerIcons(IconRegister iconRegister)
     {
         blockIcon = iconRegister.registerIcon(ModStrings.MOD_ID + ":liquids/neo");
     }
-
-	@Override
-    public int stillLiquidId()
-    {
-	    return ModBlocksMagiks.neoStill.blockID;
-    }
-
-	@Override
-    public boolean isMetaSensitive()
-    {
-	    return false;
-    }
-
-	@Override
-    public int stillLiquidMeta()
-    {
-	    return 0;
-    }
 	
 	@Override
-	public boolean isBlockReplaceable(World world, int i, int j, int k) 
+	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
-		return true;
+		if(world != null && entity != null)
+		{
+			if(entity instanceof EntityPlayerMP)
+			{
+				try
+				{
+					((EntityPlayerMP)entity).addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 30, 10));
+					((EntityPlayerMP)entity).addPotionEffect(new PotionEffect(Potion.field_76444_x.getId(), 30, 1));
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+			else if(entity instanceof EntityClientPlayerMP)
+			{
+				try
+				{
+					((EntityClientPlayerMP)entity).addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 30, 10));
+					((EntityClientPlayerMP)entity).addPotionEffect(new PotionEffect(Potion.field_76444_x.getId(), 30, 1));
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+			else if(entity instanceof EntityLiving || entity instanceof EntityPlayer)
+			{
+				try
+				{
+					((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 30, 10));
+					((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.field_76444_x.getId(), 30, 1));
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
 	}
-
 }

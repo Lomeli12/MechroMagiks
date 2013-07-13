@@ -1,15 +1,14 @@
 package net.lomeli.magiks.core.helper;
 
-import java.net.SocketException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.logging.Level;
-import java.io.InputStream;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import net.lomeli.magiks.Magiks;
-import net.lomeli.magiks.lib.Ints;
+import net.lomeli.magiks.lib.ModInts;
 import net.lomeli.magiks.lib.ModStrings;
 
 import org.w3c.dom.Document;
@@ -18,10 +17,11 @@ import org.w3c.dom.NodeList;
 public class UpdateHelper 
 {
 	private static boolean isUpdated;
+	private static String downloadURL;
 	
 	public UpdateHelper()
 	{
-		isUpdated = false;
+		isUpdated = true;
 	}
 	
 	public boolean isUpdate()
@@ -29,54 +29,33 @@ public class UpdateHelper
 		return isUpdated;
 	}
 	
-	public static void execute(String textURL) throws SocketException
+	public void check(String updateUrl)
 	{
-		new Thread(run(textURL));
+		checkForUpdates(updateUrl);
 	}
 	
-	private static Runnable run(String textURL) throws SocketException
+	public static String updateText()
 	{
-		int trys = 0;
-		while(trys < 5)
-		{
-			if(checkForUpdates(textURL))
-			{
-				isUpdated = true;
-				Magiks.logger.log(Level.WARNING, updateText(textURL));
-			}
-			else
-				Magiks.logger.log(Level.INFO, "Using the Latest Version");
-			
-			trys++;
-		}
-		if(trys == 5 && isUpdated == false)
-			Magiks.logger.log(Level.WARNING, "Failed to check for updates!");
-			
-		return null;
+		return ("A new version of " + ModStrings.MOD_NAME + " is available at " + downloadURL);
 	}
 	
-	public static String updateText(String updateURL)
+	private void checkForUpdates(String updateURL)
 	{
-		String download = String.valueOf(praseXML(updateURL, "modURL"));
-		return ("A new version of " + ModStrings.MOD_NAME + " is available at " + download);
-	}
-	
-	private static boolean checkForUpdates(String updateURL)
-	{
-		boolean results = false;
 		Object[] xml = { praseXML(updateURL, "majorBuildNumber"), praseXML(updateURL, "minorBuildNumber"),
 		           praseXML(updateURL, "revisionBuildNumber") };
 		int[] latestVersion = { new Integer(xml[0].toString()), 
 	            new Integer(xml[1].toString()), new Integer(xml[2].toString()) };
-		int[] currentVersion = { Ints.VERSION_MAJOR, Ints.VERSION_MINOR, Ints.VERSION_REVISION };
+		int[] currentVersion = { ModInts.VERSION_MAJOR, ModInts.VERSION_MINOR, ModInts.VERSION_REVISION };
 		
 		for(int i = 0; i < 3; i++)
 		{
 			if(latestVersion[i] > currentVersion[i])
-				results = true;
+			{
+				isUpdated = false;
+				downloadURL = String.valueOf(praseXML(updateURL, "modURL"));
+				Magiks.logger.log(Level.WARNING, updateText());
+			}
 		}
-		
-		return results;
 	}
 	
 	private static Object praseXML(String URLLoc, String nodeName)

@@ -2,7 +2,7 @@ package net.lomeli.magiks.tileentity;
 
 import net.lomeli.magiks.api.magiks.TileEntityMagiks;
 import net.lomeli.magiks.api.magiks.EnumMachineTypes;
-import net.lomeli.magiks.lib.Ints;
+import net.lomeli.magiks.lib.ModInts;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
@@ -46,7 +46,7 @@ public class TileEntityJouleBox extends TileEntityMagiks implements IPowerRecept
 			if(this.mJouleProvider.getEnergyStored() > 16)
 			{
 				float energy = mJouleProvider.useEnergy(16, 32, true);
-				int convertedEnergy = Math.round(energy / Ints.mjMistConversionRate);
+				int convertedEnergy = Math.round(energy / ModInts.mjMistConversionRate);
 				this.addToMistLevel(convertedEnergy);
 				this.addToHeatLevel(0.05F);
 			}

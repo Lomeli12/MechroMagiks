@@ -434,7 +434,7 @@ public class TileEntityMultiFurnaceCore extends TileEntityMagiks implements
     }
 
     @Override
-    public boolean isStackValidForSlot(int slot, ItemStack itemStack)
+    public boolean isItemValidForSlot(int slot, ItemStack itemStack)
     {
         return slot == 2 ? false : slot == 1 ? TileEntityFurnace
                 .isItemFuel(itemStack) : true;
@@ -646,9 +646,9 @@ public class TileEntityMultiFurnaceCore extends TileEntityMagiks implements
 	@Override
 	public boolean canInsertItem(int slot, ItemStack itemstack, int side) {
 		if(side == 1)
-			return this.isStackValidForSlot(0, itemstack);
+			return this.isItemValidForSlot(0, itemstack);
 		if(side == 0)
-			return this.isStackValidForSlot(1, itemstack);
+			return this.isItemValidForSlot(1, itemstack);
 		else
 			return false;
 	}

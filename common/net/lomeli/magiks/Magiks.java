@@ -1,28 +1,24 @@
 package net.lomeli.magiks;
 
 import java.io.IOException;
-import java.net.SocketException;
+import java.util.logging.Level;
 
 import net.lomeli.lomlib.util.LogHelper;
 
-import net.lomeli.magiks.api.libs.MagiksArrays;
 import net.lomeli.magiks.blocks.ModBlocksMagiks;
 import net.lomeli.magiks.blocks.worldgen.MagikWorldGen;
 import net.lomeli.magiks.core.CommonProxy;
-import net.lomeli.magiks.core.CreativeTabSIW;
+import net.lomeli.magiks.core.CreativeTabMagiks;
 import net.lomeli.magiks.core.config.ConfigMod;
 import net.lomeli.magiks.core.handler.GuiHandler;
 import net.lomeli.magiks.core.handler.ItemDroppedHandler;
 import net.lomeli.magiks.core.handler.PlayerInteractHandler;
 import net.lomeli.magiks.core.handler.MagiksCraftingHandler;
-import net.lomeli.magiks.core.handler.VersionCheckTickHandler;
 import net.lomeli.magiks.core.helper.UpdateHelper;
 import net.lomeli.magiks.items.ModItemsMagiks;
 import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.recipes.AddonRecipes;
 import net.lomeli.magiks.recipes.MagiksRecipes;
-import net.lomeli.magiks.tileentity.TileEntityKineticGenerator;
-import net.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -36,8 +32,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = ModStrings.MOD_ID, name = ModStrings.MOD_NAME, 
 	version = ModStrings.VERSION, dependencies="required-after:LomLib@[1.0.2,)")
@@ -50,7 +44,7 @@ public class Magiks
     @Instance(ModStrings.MOD_ID)
     public static Magiks instance;
 
-    public static CreativeTabs modTab = new CreativeTabSIW(
+    public static CreativeTabs modTab = new CreativeTabMagiks(
             CreativeTabs.getNextID(), ModStrings.MOD_NAME);
 
     public static String configDir;
@@ -61,7 +55,6 @@ public class Magiks
     
     public static UpdateHelper updateInstance = new UpdateHelper();
 
-    @SuppressWarnings("static-access")
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
@@ -69,13 +62,11 @@ public class Magiks
     	
     	try
         {
-	        updateInstance.execute(ModStrings.FILE_URL);
-        } catch (SocketException e)
+	        updateInstance.check(ModStrings.FILE_URL);
+        } catch (Exception e)
         {
-	        e.printStackTrace();
+        	logger.log(Level.SEVERE, "Could not connect to update server...");
         }
-    	
-    	TickRegistry.registerTickHandler(new VersionCheckTickHandler(), Side.CLIENT);
     	
     	configDir = event.getModConfigurationDirectory() + "/Magiks/";
 
@@ -89,6 +80,8 @@ public class Magiks
 
         MagiksRecipes.registerRecipes();
         MagiksRecipes.addDoubleOres();
+        
+        proxy.initTickRegistry();
     }
 
     @Mod.EventHandler
@@ -101,9 +94,6 @@ public class Magiks
         
         GameRegistry.registerWorldGenerator(new MagikWorldGen());
         GameRegistry.registerCraftingHandler(new MagiksCraftingHandler());
-        
-        MagiksArrays.canRecieveMist.add(new TileEntitySolarMistCollector());
-        MagiksArrays.canRecieveMist.add(new TileEntityKineticGenerator());
 
         proxy.registerThings();
         proxy.registerTileEntities();

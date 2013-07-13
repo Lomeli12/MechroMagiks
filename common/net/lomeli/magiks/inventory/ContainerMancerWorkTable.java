@@ -109,6 +109,7 @@ public class ContainerMancerWorkTable extends Container
 		}
     }
 
+	/*
 	@Override
     public void onCraftGuiClosed(EntityPlayer entityplayer)
 	{
@@ -121,7 +122,7 @@ public class ContainerMancerWorkTable extends Container
 	    	if(itemstack != null)
 	    		entityplayer.dropPlayerItem(itemstack);
 	    }
-	}
+	}*/
 	
 	@Override
     public boolean canInteractWith(EntityPlayer entityplayer)

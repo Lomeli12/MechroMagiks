@@ -114,7 +114,7 @@ public class TileEntityMancerWorkTable extends TileEntity implements
     }
 
     @Override
-    public boolean isStackValidForSlot(int slot, ItemStack itemstack)
+    public boolean isItemValidForSlot(int i, ItemStack itemstack)
     {
         return true;
     }

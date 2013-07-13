@@ -8,7 +8,10 @@ public class CommonProxy
 
     public void registerTileEntities()
     {
+    }
 
+	public void initTickRegistry()
+    {
     }
 
 }

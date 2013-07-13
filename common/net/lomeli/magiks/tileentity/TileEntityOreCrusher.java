@@ -77,11 +77,11 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 		if(itemStack != null)
 		{
 			if(inventory[1] == null)
-				inventory[1] = itemStack.copy();
+				this.setInventorySlotContents(1, itemStack);
 			else if(inventory[1].isItemEqual(itemStack) && inventory[1].stackSize <= 64)
 				inventory[1].stackSize += itemStack.stackSize;
 			else if(inventory[2] == null)
-				inventory[2] = itemStack.copy();
+				this.setInventorySlotContents(2, itemStack);
 			else if(inventory[2].isItemEqual(itemStack) && inventory[2].stackSize <= 64)
 				inventory[2].stackSize += itemStack.stackSize;
 		}
@@ -285,7 +285,7 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 	public void closeChest() {}
 
 	@Override
-	public boolean isStackValidForSlot(int i, ItemStack itemstack) 
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) 
 	{
 		ItemStack slotItem = this.inventory[i];
 		if(slotItem == null)
@@ -315,7 +315,7 @@ public class TileEntityOreCrusher extends TileEntityMagiks implements
 	public boolean canInsertItem(int slot, ItemStack itemstack, int side)
 	{
 		if(side == 1)
-			return this.isStackValidForSlot(0, itemstack);
+			return this.isItemValidForSlot(0, itemstack);
 		else
 			return false;
 	}

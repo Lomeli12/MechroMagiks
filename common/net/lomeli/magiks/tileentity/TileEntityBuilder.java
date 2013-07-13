@@ -8,6 +8,7 @@ import net.lomeli.magiks.lib.ModStrings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class TileEntityBuilder extends TileEntityMagiks 
 	implements IInventory
@@ -33,89 +34,95 @@ public class TileEntityBuilder extends TileEntityMagiks
 		return valid;
 	}
 	
-	public boolean checkIfProperlyFormed()
-    {	
-		if(!valid)
-		{
-			outerloop:
-				for(int j = -1; j < 2; j++)
-					for(int l = -1; l < 2; l++)
-					{
-						int k = checkArea(j, l);
-						if(k > 7)
-						{
-							System.out.println("breaking");
-							valid = true;
-							break outerloop;
-						}
-					}
-    	}
-		return valid;
-    }
-	
-	private int checkArea(int var1, int var2)
+	public void invalidateMultiBlock(World world, int x, int y, int z)
 	{
-		int x = this.xCoord, y = this.yCoord, z = this.zCoord;
-		int connected = 1;
-		int addX, addZ;
-		if(var1 > 0)
-			addX = -1;
-		else
-			addX = 1;
-		
-		if(var2 > 0)
-			addZ = -1;
-		else
-			addZ = 1;
-		
-		for(int Ix = (x + var1); Ix <= x; Ix+=addX)
-			for(int Iy = y; Iy <= (y+1); Iy++)
-				for(int Iz = (z + var2); Iz <= z; Iz+=addZ)
-				{
-					System.out.println(worldObj.getBlockId(Ix, Iy, Iz));
-					if(worldObj.getBlockId(Ix, Iy, Iz) == ModBlocksMagiks.builderCore.blockID)
-						connected++;
-				}
-		
-		return connected;
+		if(!checkIfFormedProperly(world, x, y, z))
+		{
+			revertDummies(world, x, y, z);
+			this.valid = false;
+		}
 	}
 	
-	public void convertDummies()
+	public boolean check(World world, int x, int y, int z)
 	{
-		int x = this.xCoord, y = this.yCoord, z = this.zCoord;
-		int addX, addZ;
+		if(checkIfFormedProperly(world, x, y, z))
+		{
+			this.valid = true;
+			convertDummies(world, x, y, z);
+			return true;
+		}
+		else
+		{
+			this.valid = false;
+			return false;
+		}
+	}
+	
+	public boolean checkIfFormedProperly(World world, int x, int y, int z)
+	{
+		int count = 1;
+		for(int xRange = (x - 1); xRange < (x + 2); xRange++)
+		{
+			if(world.getBlockId(xRange, y - 1, z) == ModBlocksMagiks.builderCore.blockID ||
+				world.getBlockId(xRange, y - 1, z) == ModBlocksMagiks.builderBlock.blockID)
+				count++;
+		}
+		if(world.getBlockId(x, y - 1, z + 1) == ModBlocksMagiks.builderCore.blockID ||
+			world.getBlockId(x, y-1, z + 1)  == ModBlocksMagiks.builderBlock.blockID)
+			count++;
+		if(world.getBlockId(x, y - 1, z - 1) == ModBlocksMagiks.builderCore.blockID ||
+			world.getBlockId(x, y - 1, z - 1) == ModBlocksMagiks.builderBlock.blockID)
+			count++;
+		if(world.getBlockId(x, y - 2, z) == ModBlocksMagiks.builderCore.blockID ||
+			world.getBlockId(x, y - 2, z) == ModBlocksMagiks.builderBlock.blockID)
+			count++;
 		
-		for(int j = -1; j < 2; j++)
-			for(int l = -1; l < 2; l++)
-			{
-				if(j > 0)
-					addX = -1;
-				else
-					addX = 1;
-				
-				if(l > 0)
-					addZ = -1;
-				else
-					addZ = 1;
-				
-				for(int Ix = (x + j); Ix <= x; Ix+=addX)
-					for(int Iy = y; Iy <= (y+1); Iy++)
-						for(int Iz = (z + l); Iz <= z; Iz+=addZ)
-						{
-							System.out.println(worldObj.getBlockId(Ix, Iy, Iz));
-							if(Ix != x & Iz != z & Iy != y)
-							{
-								if(worldObj.getBlockId(Ix, Iy, Iz) == ModBlocksMagiks.builderCore.blockID)
-								{
-									worldObj.setBlock(Ix, Iy, Iz, ModBlocksMagiks.builderBlock.blockID);
-									worldObj.markBlockForUpdate(Ix, Iy, Iz);
-									TileEntityBuilderDummy dummy = (TileEntityBuilderDummy) worldObj
-						                .getBlockTileEntity(Ix, Iy, Iz);
-									dummy.setCore(this);
-								}
-							}
-						}
-			}
+		if(count == 7)
+			return true;
+		else
+			return false;
+	}
+	
+	public void revertDummies(World world, int x, int y, int z)
+	{
+		for(int xRange = (x - 1); xRange < (x + 2); xRange++)
+		{
+			world.setBlock(xRange, y - 1, z, ModBlocksMagiks.builderCore.blockID);
+			world.markBlockForUpdate(xRange, y - 1, z);
+		}
+		world.setBlock(x, y - 2, z, ModBlocksMagiks.builderCore.blockID);
+		world.markBlockForUpdate(x, y - 2, z);
+		
+		world.setBlock(x, y - 1, z - 1, ModBlocksMagiks.builderCore.blockID);
+		world.markBlockForUpdate(x, y - 1, z - 1);
+		
+		world.setBlock(x, y - 1, z + 1, ModBlocksMagiks.builderCore.blockID);
+		world.markBlockForUpdate(x, y - 1, z + 1);
+	}
+	
+	public void convertDummies(World world, int x, int y, int z)
+	{
+		for(int xRange = (x - 1); xRange < (x + 2); xRange++)
+		{
+			world.setBlock(xRange, y - 1, z, ModBlocksMagiks.builderBlock.blockID);
+			world.markBlockForUpdate(xRange, y - 1, z);
+			TileEntityBuilderDummy tile = (TileEntityBuilderDummy)world.getBlockTileEntity(xRange, y - 1, z);
+			tile.setCore(this);
+		}
+		world.setBlock(x, y - 2, z, ModBlocksMagiks.builderBlock.blockID);
+		world.markBlockForUpdate(x, y - 2, z);
+		TileEntityBuilderDummy tile1 = (TileEntityBuilderDummy)world.getBlockTileEntity(x, y - 2, z);
+		tile1.setCore(this);
+		
+		world.setBlock(x, y - 1, z - 1, ModBlocksMagiks.builderBlock.blockID);
+		world.markBlockForUpdate(x, y - 1, z - 1);
+		TileEntityBuilderDummy tile2 = (TileEntityBuilderDummy)world.getBlockTileEntity(x, y - 1, z - 1);
+		tile2.setCore(this);
+		
+		world.setBlock(x, y - 1, z + 1, ModBlocksMagiks.builderBlock.blockID);
+		world.markBlockForUpdate(x, y - 1, z + 1);
+		TileEntityBuilderDummy tile3 = (TileEntityBuilderDummy)world.getBlockTileEntity(x, y - 1, z + 1);
+		tile3.setCore(this);
 	}
 	
 	@Override
@@ -246,7 +253,7 @@ public class TileEntityBuilder extends TileEntityMagiks
     {}
 
 	@Override
-    public boolean isStackValidForSlot(int i, ItemStack itemstack)
+	public boolean isItemValidForSlot(int i, ItemStack itemstack)
     {
 		if(getStackInSlot(i).isItemEqual(itemstack) && 
 			getStackInSlot(i).stackSize <= getStackInSlot(i).getMaxDamage())

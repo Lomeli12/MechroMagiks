@@ -4,7 +4,7 @@ public class ModStrings
 {
     public static final String MOD_ID = "magiks";
     public static final String MOD_NAME = "MechroMagiks";
-    public static final String VERSION = Ints.VERSION_MAJOR + "." + Ints.VERSION_MINOR + "." + Ints.VERSION_REVISION;
+    public static final String VERSION = ModInts.VERSION_MAJOR + "." + ModInts.VERSION_MINOR + "." + ModInts.VERSION_REVISION;
     public static final String NO_TEXTURE = "missingNo";
     
     public static final String GUI_LOC = "textures/gui/";
@@ -12,7 +12,7 @@ public class ModStrings
     public static final String COMMON_PROXY = "net.lomeli.magiks.core.CommonProxy";
     public static final String CLIENT_PROXY = "net.lomeli.magiks.core.ClientProxy";
     
-    public static final String FILE_URL = "http://anthony-lomeli.net/MinecraftMods/MechroMagik/updateXML.xml";
+    public static final String FILE_URL = "https://dl.dropboxusercontent.com/u/17430088/Minecraft%20Mods/Magiks/updateXML.xml";//"http://anthony-lomeli.net/MinecraftMods/MechroMagik/updateXML.xml";
 
     public static String containterKineticGen = "container.kineticgen";
     public static String kineticGenName = "Kinetic Generator";

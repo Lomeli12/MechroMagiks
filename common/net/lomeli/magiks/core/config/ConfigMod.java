@@ -2,7 +2,7 @@ package net.lomeli.magiks.core.config;
 
 import java.io.File;
 
-import net.lomeli.magiks.lib.Ints;
+import net.lomeli.magiks.lib.ModInts;
 import net.lomeli.magiks.lib.ItemIDs;
 import net.minecraftforge.common.Configuration;
 
@@ -20,7 +20,6 @@ public class ConfigMod
     
     public static void configureItemIDs(String loc)
     {
-    	System.out.println(loc);
         Configuration config = new Configuration(new File(loc,
                 "MechroMagikIDs.cfg"));
 
@@ -90,7 +89,6 @@ public class ConfigMod
     
     public static void configureBlockIDs(String loc)
     {
-    	System.out.println(loc);
     	Configuration config = new Configuration(new File(loc,
                 "MechroMagikIDs.cfg"));
 
@@ -150,16 +148,16 @@ public class ConfigMod
         capesEnabled = config2.get(config2.CATEGORY_GENERAL, "capesEnabled", true).getBoolean(true);
         disablePiras = config2.get(config2.CATEGORY_GENERAL, "disablePiras", false)
                 .getBoolean(false);
-        Ints.mjMistConversionRate = config2.get(config2.CATEGORY_GENERAL, "mjMistConversionRate", 16)
+        ModInts.mjMistConversionRate = config2.get(config2.CATEGORY_GENERAL, "mjMistConversionRate", 16)
         		.getInt(16);
         
-        Ints.neoniteGen = config2.get("OreGen", "neonite", 3).getInt(3);
-        Ints.igniousGen = config2.get("OreGen", "ignious", 4).getInt(4);
-        Ints.nIgniousGen = config2.get("OreGen", "netherIgnious", 15).getInt(15);
-        Ints.stamaticGen = config2.get("OreGen", "stamatic", 15).getInt(15);
-        Ints.copperGen = config2.get("OreGen", "copper", 10).getInt(10);
-        Ints.tinGen = config2.get("OreGen", "tin", 7).getInt(7);
-        Ints.silverGen = config2.get("OreGen", "silver", 7).getInt(7);
+        ModInts.neoniteGen = config2.get("OreGen", "neonite", 3).getInt(3);
+        ModInts.igniousGen = config2.get("OreGen", "ignious", 4).getInt(4);
+        ModInts.nIgniousGen = config2.get("OreGen", "netherIgnious", 15).getInt(15);
+        ModInts.stamaticGen = config2.get("OreGen", "stamatic", 15).getInt(15);
+        ModInts.copperGen = config2.get("OreGen", "copper", 10).getInt(10);
+        ModInts.tinGen = config2.get("OreGen", "tin", 7).getInt(7);
+        ModInts.silverGen = config2.get("OreGen", "silver", 7).getInt(7);
         
         config2.save();   
     }
