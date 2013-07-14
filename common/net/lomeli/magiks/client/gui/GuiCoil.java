@@ -7,7 +7,7 @@ import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.tileentity.TileEntityCoil;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 

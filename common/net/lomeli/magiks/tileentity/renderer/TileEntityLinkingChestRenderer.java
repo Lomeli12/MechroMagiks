@@ -5,7 +5,7 @@ import net.lomeli.magiks.lib.Models;
 import net.lomeli.magiks.tileentity.TileEntityLinkingChest;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 

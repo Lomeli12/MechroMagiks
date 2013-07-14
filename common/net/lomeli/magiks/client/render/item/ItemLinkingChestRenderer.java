@@ -6,7 +6,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.lib.Models;
 import net.minecraft.client.model.ModelChest;
-import net.minecraft.client.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 

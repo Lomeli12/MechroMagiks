@@ -7,7 +7,7 @@ import net.lomeli.magiks.client.model.ModelCoil;
 import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.tileentity.TileEntityCoil;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
