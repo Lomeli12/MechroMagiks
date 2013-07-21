@@ -3,106 +3,65 @@ package net.lomeli.magiks.blocks.machine;
 import java.util.Random;
 
 import net.lomeli.magiks.Magiks;
-import net.lomeli.magiks.blocks.ModBlocksMagiks;
-import net.lomeli.magiks.lib.GuiIDs;
 import net.lomeli.magiks.lib.RenderIDs;
-import net.lomeli.magiks.lib.ModStrings;
-import net.lomeli.magiks.tileentity.TileEntityKineticGenerator;
-
+import net.lomeli.magiks.tileentity.TileEntitySimplePipe;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockKineticGenerator extends BlockContainer
+public class BlockSimplePipe extends BlockContainer
 {
 
-    public BlockKineticGenerator(int par1, Material par2Material)
+	public BlockSimplePipe(int par1)
     {
-        super(par1, par2Material);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.67F, 1.0F);
-        this.setBlockBoundsForItemRender();
+	    super(par1, Material.rock);
+	    this.setCreativeTab(Magiks.modTab);
+	    this.setBlockBounds(0F, 0.25F, 0F, 1F, 0.5F, 1F);
     }
 
-    @Override
-    public int idDropped(int par1, Random par2Random, int par3)
+	@Override
+    public TileEntity createNewTileEntity(World world)
     {
-        return ModBlocksMagiks.manceryBlock.blockID;
+	    return new TileEntitySimplePipe();
     }
-
-    @Override
-    public void registerIcons(IconRegister iconRegister)
-    {
-        blockIcon = iconRegister.registerIcon(ModStrings.MOD_ID
-                + ":kineticgentexture");
-    }
-
-    @Override
-    public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isOpaqueCube()
-    {
-        return false;
-    }
-
-    @Override
-    public int getRenderType()
-    {
-        return RenderIDs.kineticGID;
-    }
-
-    @Override
-    public TileEntity createTileEntity(World world, int meta)
-    {
-        return new TileEntityKineticGenerator();
-    }
-
-    @Override
+	
+	@Override
     public boolean hasTileEntity(int metadata)
     {
         return true;
     }
 
+	@Override
+    public int getRenderType()
+    {
+        return RenderIDs.simplePipeID;
+    }
+	
+	@Override
+    public boolean renderAsNormalBlock() 
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube() 
+    {
+        return false;
+    }
+    
     @Override
     public void breakBlock(World world, int x, int y, int z, int id, int meta)
     {
-        dropInventory(world, x, y, z);
 
+        dropInventory(world, x, y, z);
         super.breakBlock(world, x, y, z, id, meta);
     }
-
-    @Override
-    public boolean onBlockActivated(World world, int x, int y, int z,
-            EntityPlayer player, int i, float f, float g, float t)
-    {
-        if (player.isSneaking())
-            return false;
-        else
-        {
-            if (!world.isRemote)
-            {
-                TileEntityKineticGenerator kineticGen = (TileEntityKineticGenerator) world
-                        .getBlockTileEntity(x, y, z);
-                if (kineticGen != null)
-                {
-                    player.openGui(Magiks.instance, GuiIDs.kineticGen, world,
-                            x, y, z);
-                }
-            }
-        }
-        return true;
-    }
-
+    
     private Random rand = new Random();
 
     private void dropInventory(World world, int x, int y, int z)
@@ -144,12 +103,5 @@ public class BlockKineticGenerator extends BlockContainer
                 itemStack.stackSize = 0;
             }
         }
-    }
-
-	@Override
-    public TileEntity createNewTileEntity(World world)
-    {
-	    // TODO Auto-generated method stub
-	    return null;
     }
 }

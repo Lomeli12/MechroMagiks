@@ -134,6 +134,7 @@ public class ConfigMod
         ItemIDs.builderDummyID = config.get("Machines", "builderDummy", 728).getInt(728);
         ItemIDs.neoStillID = config.get("Liquids", "liquidNeoniteStll", 729).getInt(729);
         ItemIDs.jouleBoxID = config.get("Machines", "jouleBox", 730).getInt(730);
+        ItemIDs.simplePipeID = config.get("Machines", "simplePipe", 731).getInt(731);
         
         config.save();
     }

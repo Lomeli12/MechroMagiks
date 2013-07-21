@@ -97,7 +97,7 @@ public class ItemChestLink extends ItemGeneric
 		
 		return result;
     }
-	
+	private int tick = 0;
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemstack, World world,
             EntityPlayer player)
@@ -112,7 +112,7 @@ public class ItemChestLink extends ItemGeneric
 				{
 					TileEntity tileEntity = world
 		            		.getBlockTileEntity(getChestX(itemstack), getChestY(itemstack), getChestZ(itemstack));
-					if (tileEntity != null)
+					if (tileEntity != null && checkIfNear(player, getChestX(itemstack), getChestY(itemstack), getChestZ(itemstack)))
 					{
 						if(tileEntity instanceof TileEntityHollowWood)
 							player.openGui(Magiks.instance, GuiIDs.hallowWood, world, getChestX(itemstack), getChestY(itemstack), getChestZ(itemstack));
@@ -120,12 +120,44 @@ public class ItemChestLink extends ItemGeneric
 							player.openGui(Magiks.instance, GuiIDs.chest, world, getChestX(itemstack), getChestY(itemstack), getChestZ(itemstack));
 					}	
 					else
-						unLinkChest(itemstack);
+					{
+						tick++;
+						if(tick == 1)
+						{
+							player.addChatMessage("To far from chest...");
+							tick = 0;
+						}
+					}
 				}
 			}
 		}
 		return itemstack;
     }
+	
+    public boolean checkIfNear(EntityPlayer player, int x, int y, int z)
+	{
+    	int limit = 96;
+		int close = 0;
+		for(int xj = (x-limit); xj < (x+limit); xj++)
+		{
+			if((int)player.posX == xj)
+				close++;
+		}
+		for(int yj = (y-limit); yj < (y+limit); yj++)
+		{
+			if((int)player.posY == yj)
+				close++;
+		}
+		for(int zj = (z-limit); zj < (z+limit); zj++)
+		{
+			if((int)player.posZ == zj)
+				close++;
+		}
+		if(close >= 3)
+			return true;
+		else
+			return false;
+	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
     @Override

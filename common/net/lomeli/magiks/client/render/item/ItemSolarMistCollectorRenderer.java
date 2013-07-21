@@ -7,8 +7,10 @@ import cpw.mods.fml.client.FMLClientHandler;
 import net.lomeli.magiks.client.model.ModelSolarMistCollector;
 import net.lomeli.magiks.lib.ModStrings;
 import net.lomeli.magiks.lib.Models;
+
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.item.ItemStack;
+
 import net.minecraftforge.client.IItemRenderer;
 
 public class ItemSolarMistCollectorRenderer implements IItemRenderer
@@ -38,6 +40,9 @@ public class ItemSolarMistCollectorRenderer implements IItemRenderer
     {
     	if(type == ItemRenderType.EQUIPPED)
 			renderSMC(0.25F, 2F, 0.25F, 1.25F);
+
+		else if(type == ItemRenderType.EQUIPPED_FIRST_PERSON)
+			renderSMC(0.25F, 1.75F, 0.25F, 1.25F);
 		else
 			renderSMC(0F, 1F, 0F, 1.0F);
     }

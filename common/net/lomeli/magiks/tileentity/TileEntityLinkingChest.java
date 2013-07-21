@@ -204,7 +204,11 @@ public class TileEntityLinkingChest extends TileEntity implements
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemstack)
     {
-        return true;
+    	if(getStackInSlot(i) == null || (getStackInSlot(i).isItemEqual(itemstack) && 
+    		getStackInSlot(i).stackSize <= getStackInSlot(i).getMaxDamage()))
+    		return true;
+    	else
+    		return false;
     }
     
     @Override

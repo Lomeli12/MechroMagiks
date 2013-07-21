@@ -56,7 +56,7 @@ public class TileEntitySolarMistCollector extends TileEntityMagiks implements
     @Override
     public void updateEntity()
     {
-        if (this.worldObj != null)
+        if (this.worldObj != null && this.worldObj.isRemote)
         {
             ItemStack item = getStackInSlot(0);
             if (item != null)

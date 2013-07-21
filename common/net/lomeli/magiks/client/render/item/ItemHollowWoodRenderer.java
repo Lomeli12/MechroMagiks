@@ -9,6 +9,7 @@ import net.lomeli.magiks.lib.Models;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 public class ItemHollowWoodRenderer implements IItemRenderer
 {
@@ -37,6 +38,8 @@ public class ItemHollowWoodRenderer implements IItemRenderer
 	{
 		if(type == ItemRenderType.EQUIPPED)
 			renderHallowWood(0.25F, 1.5F, 0.25F, 1.25F);
+		else if(type == ItemRenderType.EQUIPPED_FIRST_PERSON)
+			renderHallowWood(0.25F, 1.75F, 0.25F, 1.25F);
 		else
 			renderHallowWood(0F, 1F, 0F, 1.0F);
 	}

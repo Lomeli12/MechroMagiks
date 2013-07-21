@@ -13,6 +13,7 @@ import net.lomeli.magiks.blocks.machine.BlockJouleBox;
 import net.lomeli.magiks.blocks.machine.BlockKineticGenerator;
 import net.lomeli.magiks.blocks.machine.BlockMancerWorkTable;
 import net.lomeli.magiks.blocks.machine.BlockMultiFurnaceCore;
+import net.lomeli.magiks.blocks.machine.BlockSimplePipe;
 import net.lomeli.magiks.blocks.machine.BlockSolarMistCollector;
 import net.lomeli.magiks.blocks.machine.BlockOreCrusher;
 import net.lomeli.magiks.blocks.machine.BlockCoil;
@@ -45,7 +46,8 @@ public class ModBlocksMagiks
     
     //Machines
     public static Block kineticGenerator, solarMistCollector, oreCrusher, 
-    	smallCoil, builderBlock, builderCore, dupeFurnace, jouleBox;
+    	smallCoil, builderBlock, builderCore, dupeFurnace, jouleBox,
+    	simplePipe;
     
     //Liquids
     public static Block neoStill;//, neoMoving;
@@ -125,6 +127,7 @@ public class ModBlocksMagiks
         builderBlock = new BlockBuilderDummy(ItemIDs.builderDummyID).setUnlocalizedName("builderBlock");
         neoStill = new BlockNeoStill(ItemIDs.neoStillID, ModFluids.neoNite).setUnlocalizedName("liquidNeonite");
         jouleBox = new BlockJouleBox(ItemIDs.jouleBoxID).setUnlocalizedName("jouleBox");
+        simplePipe = new BlockSimplePipe(ItemIDs.simplePipeID).setUnlocalizedName("simplepipe");
         
         GameRegistry.registerBlock(neoniteOre, "Neonite Ore");
         GameRegistry.registerBlock(stamaticOre, "Stamatic Ore");
@@ -161,6 +164,7 @@ public class ModBlocksMagiks
         GameRegistry.registerBlock(linkingChest, "Linking Chest");
         GameRegistry.registerBlock(oreCrusher, "Ore Crusher");
         GameRegistry.registerBlock(jouleBox, "MysticJoule Box");
+        GameRegistry.registerBlock(simplePipe, "Simple Pipe");
 
         LanguageRegistry.addName(neoniteOre, "Neonite Ore");
         LanguageRegistry.addName(netherIgnious, "Nether Ignious Ore");
@@ -197,6 +201,7 @@ public class ModBlocksMagiks
         LanguageRegistry.addName(linkingChest, "Linking Chest");
         LanguageRegistry.addName(oreCrusher, "Ore Crusher");
         LanguageRegistry.addName(jouleBox, "MysticJoule Box");
+        LanguageRegistry.addName(simplePipe, "Simple Pipe");
 
         MinecraftForge.setBlockHarvestLevel(neoniteOre, "pickaxe", 2);
         MinecraftForge.setBlockHarvestLevel(neoniteBlock, "pickaxe", 2);

@@ -8,6 +8,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import net.lomeli.magiks.client.model.ModelCoil;
 import net.lomeli.magiks.lib.ModStrings;
@@ -37,6 +38,8 @@ public class ItemCoilRenderer implements IItemRenderer {
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 		if(type == ItemRenderType.EQUIPPED)
 			renderCoil(0.25F, 1.5F, 0.25F, 1.25F);
+		else if(type == ItemRenderType.EQUIPPED_FIRST_PERSON)
+			renderCoil(0.25F, 1.75F, 0.25F, 1.25F);
 		else
 			renderCoil(0F, 1F, 0F, 1.0F);
 	}

@@ -64,11 +64,11 @@ public class ItemLevelingSword extends ItemSword
             if (getLevel(itemStack) >= 2)
             {
                 itemStack.setItemDamage(itemStack.getItemDamage()
-                        - entityLiving.experienceValue / getLevel(itemStack));
+                        - (int)entityLiving.prevHealth / getLevel(itemStack));
             } else
             {
                 itemStack.setItemDamage(itemStack.getItemDamage()
-                        - entityLiving.experienceValue);
+                        - (int)entityLiving.prevHealth);
             }
             if (itemStack.getItemDamage() == 0 && getLevel(itemStack) < 25)
             {

@@ -44,6 +44,10 @@ public class ItemLinkingChestRenderer implements IItemRenderer
             renderChest(1.0F, 1.0F, 1.0F);
             break;
         }
+        case EQUIPPED_FIRST_PERSON: {
+        	renderChest(1.0F, 1.75F, 1.0F);
+            break;
+        }
         case INVENTORY: {
             renderChest(0.0F, 0.075F, 0.0F);
             break;

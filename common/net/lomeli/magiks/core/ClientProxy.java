@@ -5,6 +5,7 @@ import net.lomeli.magiks.client.render.item.ItemHollowWoodRenderer;
 import net.lomeli.magiks.client.render.item.ItemKineticGeneratorRenderer;
 import net.lomeli.magiks.client.render.item.ItemLinkingChestRenderer;
 import net.lomeli.magiks.client.render.item.ItemMancerWorkTableRenderer;
+import net.lomeli.magiks.client.render.item.ItemSimplePipeRenderer;
 import net.lomeli.magiks.client.render.item.ItemSolarMistCollectorRenderer;
 import net.lomeli.magiks.core.handler.VersionCheckTickHandler;
 import net.lomeli.magiks.lib.ItemIDs;
@@ -20,10 +21,12 @@ import net.lomeli.magiks.tileentity.TileEntityMancerWorkTable;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceCore;
 import net.lomeli.magiks.tileentity.TileEntityMultiFurnaceDummy;
 import net.lomeli.magiks.tileentity.TileEntityOreCrusher;
+import net.lomeli.magiks.tileentity.TileEntitySimplePipe;
 import net.lomeli.magiks.tileentity.TileEntitySolarMistCollector;
 import net.lomeli.magiks.tileentity.renderer.TileEntityCoilRenderer;
 import net.lomeli.magiks.tileentity.renderer.TileEntityKineticGeneratorRenderer;
 import net.lomeli.magiks.tileentity.renderer.TileEntityLinkingChestRenderer;
+import net.lomeli.magiks.tileentity.renderer.TileEntitySimplePipeRenderer;
 import net.lomeli.magiks.tileentity.renderer.TileEntitySolarMistCollectorRenderer;
 import net.lomeli.magiks.tileentity.renderer.TileEntiyMancerWorkTableRenderer;
 import net.lomeli.magiks.tileentity.renderer.TileEntityHollowWoodRenderer;
@@ -53,6 +56,7 @@ public class ClientProxy extends CommonProxy
         RenderIDs.mancerWTID = RenderingRegistry.getNextAvailableRenderId();
         RenderIDs.hollowWoodID = RenderingRegistry.getNextAvailableRenderId();
         RenderIDs.chestID = RenderingRegistry.getNextAvailableRenderId();
+        RenderIDs.simplePipeID = RenderingRegistry.getNextAvailableRenderId();
         
         RenderIDs.liquidNeoStillID = RenderingRegistry.getNextAvailableRenderId();
 
@@ -74,6 +78,9 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(
         		TileEntityLinkingChest.class,
         		new TileEntityLinkingChestRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(
+        		TileEntitySimplePipe.class,
+        		new TileEntitySimplePipeRenderer());
 
         MinecraftForgeClient.registerItemRenderer(
                 ItemIDs.kineticGenID,
@@ -89,6 +96,8 @@ public class ClientProxy extends CommonProxy
         		new ItemHollowWoodRenderer());
         MinecraftForgeClient.registerItemRenderer(ItemIDs.linkingChestID,
         		new ItemLinkingChestRenderer());
+        MinecraftForgeClient.registerItemRenderer(ItemIDs.simplePipeID,
+        		new ItemSimplePipeRenderer());
 
         ClientRegistry.registerTileEntity(TileEntityKineticGenerator.class,
                 "keneticGen", new TileEntityKineticGeneratorRenderer());
@@ -102,6 +111,9 @@ public class ClientProxy extends CommonProxy
         		new TileEntityHollowWoodRenderer());
         ClientRegistry.registerTileEntity(TileEntityLinkingChest.class, "linkingChest",
         		new TileEntityLinkingChestRenderer());
+        ClientRegistry.registerTileEntity(TileEntitySimplePipe.class, "simplePipe",
+        		new TileEntitySimplePipeRenderer());
+        
 
         GameRegistry.registerTileEntity(TileEntityMultiFurnaceCore.class,
                 "dupefurnace");

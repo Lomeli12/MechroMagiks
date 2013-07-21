@@ -85,44 +85,58 @@ public class TileEntityBuilder extends TileEntityMagiks
 	
 	public void revertDummies(World world, int x, int y, int z)
 	{
-		for(int xRange = (x - 1); xRange < (x + 2); xRange++)
+		try
 		{
-			world.setBlock(xRange, y - 1, z, ModBlocksMagiks.builderCore.blockID);
-			world.markBlockForUpdate(xRange, y - 1, z);
+			for(int xRange = (x - 1); xRange < (x + 2); xRange++)
+			{
+				world.setBlock(xRange, y - 1, z, ModBlocksMagiks.builderCore.blockID);
+				world.markBlockForUpdate(xRange, y - 1, z);
+			}
+			world.setBlock(x, y - 2, z, ModBlocksMagiks.builderCore.blockID);
+			world.markBlockForUpdate(x, y - 2, z);
+		
+			world.setBlock(x, y - 1, z - 1, ModBlocksMagiks.builderCore.blockID);
+			world.markBlockForUpdate(x, y - 1, z - 1);
+		
+			world.setBlock(x, y - 1, z + 1, ModBlocksMagiks.builderCore.blockID);
+			world.markBlockForUpdate(x, y - 1, z + 1);
 		}
-		world.setBlock(x, y - 2, z, ModBlocksMagiks.builderCore.blockID);
-		world.markBlockForUpdate(x, y - 2, z);
-		
-		world.setBlock(x, y - 1, z - 1, ModBlocksMagiks.builderCore.blockID);
-		world.markBlockForUpdate(x, y - 1, z - 1);
-		
-		world.setBlock(x, y - 1, z + 1, ModBlocksMagiks.builderCore.blockID);
-		world.markBlockForUpdate(x, y - 1, z + 1);
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	public void convertDummies(World world, int x, int y, int z)
 	{
-		for(int xRange = (x - 1); xRange < (x + 2); xRange++)
-		{
-			world.setBlock(xRange, y - 1, z, ModBlocksMagiks.builderBlock.blockID);
-			world.markBlockForUpdate(xRange, y - 1, z);
-			TileEntityBuilderDummy tile = (TileEntityBuilderDummy)world.getBlockTileEntity(xRange, y - 1, z);
-			tile.setCore(this);
+		try	
+		{	
+			for(int xRange = (x - 1); xRange < (x + 2); xRange++)
+			{
+				world.setBlock(xRange, y - 1, z, ModBlocksMagiks.builderBlock.blockID);
+				world.markBlockForUpdate(xRange, y - 1, z);
+				TileEntityBuilderDummy tile = (TileEntityBuilderDummy)world.getBlockTileEntity(xRange, y - 1, z);
+				tile.setCore(this);
+			}
+			world.setBlock(x, y - 2, z, ModBlocksMagiks.builderBlock.blockID);
+			world.markBlockForUpdate(x, y - 2, z);
+			TileEntityBuilderDummy tile1 = (TileEntityBuilderDummy)world.getBlockTileEntity(x, y - 2, z);
+			tile1.setCore(this);
+		
+			world.setBlock(x, y - 1, z - 1, ModBlocksMagiks.builderBlock.blockID);
+			world.markBlockForUpdate(x, y - 1, z - 1);
+			TileEntityBuilderDummy tile2 = (TileEntityBuilderDummy)world.getBlockTileEntity(x, y - 1, z - 1);
+			tile2.setCore(this);
+		
+			world.setBlock(x, y - 1, z + 1, ModBlocksMagiks.builderBlock.blockID);
+			world.markBlockForUpdate(x, y - 1, z + 1);
+			TileEntityBuilderDummy tile3 = (TileEntityBuilderDummy)world.getBlockTileEntity(x, y - 1, z + 1);
+			tile3.setCore(this);
 		}
-		world.setBlock(x, y - 2, z, ModBlocksMagiks.builderBlock.blockID);
-		world.markBlockForUpdate(x, y - 2, z);
-		TileEntityBuilderDummy tile1 = (TileEntityBuilderDummy)world.getBlockTileEntity(x, y - 2, z);
-		tile1.setCore(this);
-		
-		world.setBlock(x, y - 1, z - 1, ModBlocksMagiks.builderBlock.blockID);
-		world.markBlockForUpdate(x, y - 1, z - 1);
-		TileEntityBuilderDummy tile2 = (TileEntityBuilderDummy)world.getBlockTileEntity(x, y - 1, z - 1);
-		tile2.setCore(this);
-		
-		world.setBlock(x, y - 1, z + 1, ModBlocksMagiks.builderBlock.blockID);
-		world.markBlockForUpdate(x, y - 1, z + 1);
-		TileEntityBuilderDummy tile3 = (TileEntityBuilderDummy)world.getBlockTileEntity(x, y - 1, z + 1);
-		tile3.setCore(this);
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	@Override

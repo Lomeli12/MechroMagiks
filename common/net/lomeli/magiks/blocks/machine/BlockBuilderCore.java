@@ -46,7 +46,8 @@ public class BlockBuilderCore extends BlockContainer
         	TileEntityBuilder tileEntity = (TileEntityBuilder)world.getBlockTileEntity(x, y, z);
         	if(tileEntity != null)
         	{
-        		player.addChatMessage(tileEntity.check(world, x, y, z) + "");
+        		if(!tileEntity.isValidMultiBlock())
+        			player.addChatMessage(tileEntity.check(world, x, y, z) + "");
         		/*
         		if(tileEntity.isValidMultiBlock())
         		{
@@ -62,7 +63,7 @@ public class BlockBuilderCore extends BlockContainer
         	return true;
         }
     }
-
+	
 	@Override
     public TileEntity createNewTileEntity(World world)
     {

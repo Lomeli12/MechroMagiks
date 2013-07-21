@@ -11,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.FurnaceRecipes;
 
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -170,28 +171,29 @@ public class MagiksRecipes
                 new ItemStack(ModItemsMagiks.ingotTin), 5);
         GameRegistry.addSmelting(ModBlocksMagiks.silverOre.blockID, 
         		new ItemStack(ModItemsMagiks.ingotSilver), 5);
-        GameRegistry.addSmelting(ModItemsMagiks.dustIron.itemID, 
-        		new ItemStack(Item.ingotIron), 5);
-        GameRegistry.addSmelting(ModItemsMagiks.dustGold.itemID, 
+        
+        addSmelting(ModItemsMagiks.ingotDust.itemID, ModItemsMagiks.dustIron.getItemDamage(), 
+        		new ItemStack(Item.ingotIron), 5F);
+        addSmelting(ModItemsMagiks.ingotDust.itemID, ModItemsMagiks.dustGold.getItemDamage(), 
         		new ItemStack(Item.ingotGold), 5);
-        GameRegistry.addSmelting(ModItemsMagiks.dustStamatic.itemID, 
+        addSmelting(ModItemsMagiks.ingotDust.itemID, ModItemsMagiks.dustStamatic.getItemDamage(), 
         		new ItemStack(ModItemsMagiks.ingotStamatic), 5);
-        GameRegistry.addSmelting(ModItemsMagiks.dustIgnious.itemID, 
+        addSmelting(ModItemsMagiks.ingotDust.itemID, ModItemsMagiks.dustIgnious.getItemDamage(), 
         		new ItemStack(ModItemsMagiks.ingotIgnious), 5);
-        GameRegistry.addSmelting(ModItemsMagiks.dustVesi.itemID, 
+        addSmelting(ModItemsMagiks.ingotDust.itemID, ModItemsMagiks.dustVesi.getItemDamage(), 
         		new ItemStack(ModItemsMagiks.ingotVesi), 5);
         
-        GameRegistry.addSmelting(ModItemsMagiks.dustCopper.itemID, 
+        addSmelting(ModItemsMagiks.ingotDust.itemID, ModItemsMagiks.dustCopper.getItemDamage(), 
         		new ItemStack(ModItemsMagiks.ingotCopper), 5);
-    	GameRegistry.addSmelting(ModItemsMagiks.dustTin.itemID, 
+        addSmelting(ModItemsMagiks.ingotDust.itemID, ModItemsMagiks.dustTin.getItemDamage(), 
     			new ItemStack(ModItemsMagiks.ingotTin), 5);
-    	GameRegistry.addSmelting(ModItemsMagiks.dustSilver.itemID, 
+        addSmelting(ModItemsMagiks.ingotDust.itemID, ModItemsMagiks.dustSilver.getItemDamage(), 
     			new ItemStack(ModItemsMagiks.ingotSilver), 5);
     	
     	for(ItemStack lead : OreDictionary.getOres("ingotLead"))
     	{
     		if(lead != null)
-    			GameRegistry.addSmelting(ModItemsMagiks.dustLead.itemID, 
+    			addSmelting(ModItemsMagiks.ingotDust.itemID, ModItemsMagiks.dustLead.getItemDamage(), 
     	        	lead, 5);
     	}
     }
@@ -397,5 +399,8 @@ public class MagiksRecipes
     		MagiksArrays.doubledOres.add(oreAluminum);
     	}
     }
-    
+    private static void addSmelting(int itemID, int metadata, ItemStack itemstack, float experience)
+    {
+    	FurnaceRecipes.smelting().addSmelting(itemID, metadata, itemstack, experience);
+    }
 }
